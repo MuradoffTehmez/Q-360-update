@@ -1,0 +1,998 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Dashboard" %} - Q360{% endblock %}
+
+{% block extra_css %}
+<style>
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --info-gradient: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    --card-shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.15);
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dashboard-container {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Header Styles */
+.dashboard-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    animation: slideInDown 0.8s ease;
+}
+
+.dashboard-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+}
+
+.dashboard-header h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.dashboard-header p {
+    opacity: 0.9;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Statistics Cards */
+.stat-card {
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    border: none;
+    box-shadow: var(--card-shadow);
+    animation: fadeInUp 0.6s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.stat-card.pending {
+    --gradient-start: #f093fb;
+    --gradient-end: #f5576c;
+    background: linear-gradient(135deg, #fff 0%, #fdf2ff 100%);
+}
+
+.stat-card.completed {
+    --gradient-start: #4facfe;
+    --gradient-end: #00f2fe;
+    background: linear-gradient(135deg, #fff 0%, #f0fdff 100%);
+}
+
+.stat-card.campaigns {
+    --gradient-start: #667eea;
+    --gradient-end: #764ba2;
+    background: linear-gradient(135deg, #fff 0%, #f7f5ff 100%);
+}
+
+.stat-card.average {
+    --gradient-start: #4ecdc4;
+    --gradient-end: #44a08d;
+    background: linear-gradient(135deg, #fff 0%, #f0fffd 100%);
+}
+
+.stat-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    background: var(--icon-bg);
+    color: var(--icon-color);
+    transition: var(--transition);
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.stat-card.pending .stat-icon {
+    --icon-bg: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --icon-color: white;
+}
+
+.stat-card.completed .stat-icon {
+    --icon-bg: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --icon-color: white;
+}
+
+.stat-card.campaigns .stat-icon {
+    --icon-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --icon-color: white;
+}
+
+.stat-card.average .stat-icon {
+    --icon-bg: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    --icon-color: white;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #1f2937;
+    line-height: 1;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.dark .stat-number {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Active Tasks Section */
+.active-tasks {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+}
+
+.active-tasks::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+}
+
+.task-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 1.25rem;
+    transition: var(--transition);
+    border: none;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    /* height: 100%; removed */
+}
+
+.task-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--task-color), transparent);
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.task-card.pending-evaluations {
+    --task-color: #f5576c;
+}
+
+.task-card.upcoming-trainings {
+    --task-color: #4facfe;
+}
+
+.task-card.skills-pending {
+    --task-color: #8b5cf6;
+}
+
+.task-card.active-goals {
+    --task-color: #10b981;
+}
+
+.task-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    background: var(--icon-bg);
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.task-count {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--task-color);
+    line-height: 1;
+    margin: 0.5rem 0;
+}
+
+/* Main Content Cards */
+.content-card {
+    background: white;
+    border-radius: 20px;
+    border: none;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.content-card:hover {
+    box-shadow: var(--card-shadow-hover);
+}
+
+.content-card .card-header {
+    background: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1.5rem 2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.content-card .card-body {
+    padding: 2rem;
+}
+
+/* Table Styles */
+.assignment-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.assignment-table th {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.assignment-table td {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.2s ease;
+}
+
+.assignment-table tr:hover td {
+    background-color: #f8fafc;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Quick Actions */
+.quick-action {
+    background: white;
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-action::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--action-color), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.quick-action:hover::before {
+    opacity: 0.1;
+}
+
+.quick-action:hover {
+    transform: translateX(5px);
+    border-color: var(--action-color);
+}
+
+.quick-action.evaluations { --action-color: #3b82f6; }
+.quick-action.reports { --action-color: #10b981; }
+.quick-action.goals { --action-color: #8b5cf6; }
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease;
+}
+
+.stagger-animation > * {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .content-card,
+    .quick-action,
+    .task-card {
+        background: #1e293b;
+        color: #e2e8f0;
+    }
+    
+    .assignment-table th {
+        background: #334155;
+        color: #cbd5e1;
+        border-bottom-color: #475569;
+    }
+    
+    .assignment-table td {
+        border-bottom-color: #334155;
+    }
+    
+    .assignment-table tr:hover td {
+        background-color: #334155;
+    }
+    
+    .stat-card {
+        background: #1e293b;
+        color: #e2e8f0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+    
+    .stat-number {
+        color: #1f2937;
+        .dark & { color: #f9fafb; }
+        font-size: 2.5rem;
+    }
+    
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .content-card .card-body {
+        padding: 1.25rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block page_header %}
+<div class="dashboard-header py-8 px-6 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl mb-8 shadow-lg relative overflow-hidden">
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-4xl font-bold text-white">
+                {% trans "Welcome" %}, {{ user.get_full_name|default:user.username }}!
+            </h1>
+            <p class="text-white font-medium text-lg mt-2">{% trans "Here's what's happening today" %}</p>
+        </div>
+        <button onclick="window.print()" class="hidden md:flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-xl hover:bg-white/30 transition-all border border-white/20">
+            <i class="fas fa-print mr-2"></i>
+            {% trans "Print" %}
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Statistics Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 stagger-animation">
+    <!-- Pending -->
+    <div class="stat-card pending">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase font-bold tracking-wider">{% trans "Pending" %}</p>
+                <p class="stat-number">{{ pending_evaluations_count|default:0 }}</p>
+            </div>
+            <div class="stat-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+        </div>
+        <div class="mt-4 px-2">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-fuchsia-400 to-pink-500 h-2 rounded-full" style="width: 65%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Completed -->
+    <div class="stat-card completed">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase font-bold tracking-wider">{% trans "Completed" %}</p>
+                <p class="stat-number">{{ completed_evaluations_count|default:0 }}</p>
+            </div>
+            <div class="stat-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+        </div>
+        <div class="mt-4 px-2">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 85%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Campaigns -->
+    <div class="stat-card campaigns">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase font-bold tracking-wider">{% trans "Campaigns" %}</p>
+                <p class="stat-number">{{ active_campaigns_count|default:0 }}</p>
+            </div>
+            <div class="stat-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+        </div>
+        <div class="mt-4 px-2">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-indigo-400 to-purple-500 h-2 rounded-full" style="width: 45%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Average Score -->
+    <div class="stat-card average">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase font-bold tracking-wider">{% trans "Avg Score" %}</p>
+                <p class="stat-number">{{ average_score|default:"N/A" }}</p>
+            </div>
+            <div class="stat-icon">
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+        <div class="mt-4 px-2">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                {% if average_score and average_score != 'N/A' and average_score != '0' and average_score != 0 %}
+                <div class="bg-gradient-to-r from-teal-400 to-green-500 h-2 rounded-full" style="width: 78%"></div>
+                {% else %}
+                <div class="bg-gray-400 dark:bg-gray-500 h-2 rounded-full" style="width: 100%"></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- My Active Tasks -->
+<div class="active-tasks mb-8">
+    <div class="flex items-center mb-6 relative z-10">
+        <div class="bg-white/20 p-3 rounded-xl mr-4 backdrop-blur-sm">
+            <i class="fas fa-fire text-2xl text-white"></i>
+        </div>
+        <div>
+            <h2 class="text-2xl font-bold text-white">{% trans "My Active Tasks" %}</h2>
+            <p class="text-white/80">{% trans "Top 3 critical functions for your attention" %}</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
+        <!-- Pending Evaluations -->
+        <div class="task-card pending-evaluations" onclick="window.location.href='{% url 'evaluations:my-assignments' %}'">
+            <div class="flex items-start justify-between mb-4">
+                <div class="task-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                {% if pending_evaluations_count > 0 %}
+                <span class="px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full animate-pulse">
+                    {{ pending_evaluations_count }}
+                </span>
+                {% endif %}
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Pending Evaluations" %}</h3>
+            <p class="text-3xl font-bold text-red-300 dark:text-red-400 mb-3">{{ pending_evaluations_count|default:0 }}</p>
+            <p class="text-sm text-slate-300 flex items-center">
+                <span>{% trans "Awaiting your response" %}</span>
+                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+            </p>
+        </div>
+
+        <!-- Upcoming Trainings -->
+        <div class="task-card upcoming-trainings" onclick="window.location.href='{% url 'training:my-trainings' %}'">
+            <div class="flex items-start justify-between mb-4">
+                <div class="task-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                {% if upcoming_trainings_count > 0 %}
+                <span class="px-3 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full">
+                    {{ upcoming_trainings_count }}
+                </span>
+                {% endif %}
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Upcoming Trainings" %}</h3>
+            <p class="text-3xl font-bold text-blue-300 dark:text-blue-400 mb-3">{{ upcoming_trainings_count|default:0 }}</p>
+            <p class="text-sm text-slate-300 flex items-center">
+                <span>{% trans "Due within 7 days" %}</span>
+                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+            </p>
+        </div>
+
+        <!-- Skills Pending Approval / Active Goals -->
+        {% if user.role in 'admin,manager' or user.is_staff %}
+        <div class="task-card skills-pending" onclick="window.location.href='{% url 'competencies:my-skills' %}'">
+            <div class="flex items-start justify-between mb-4">
+                <div class="task-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                {% if pending_skills_count > 0 %}
+                <span class="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
+                    {{ pending_skills_count }}
+                </span>
+                {% endif %}
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Skills Pending Approval" %}</h3>
+            <p class="text-3xl font-bold text-purple-300 dark:text-purple-400 mb-3">{{ pending_skills_count|default:0 }}</p>
+            <p class="text-sm text-slate-300 flex items-center">
+                <span>{% trans "Requires your approval" %}</span>
+                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+            </p>
+        </div>
+        {% else %}
+        <div class="task-card active-goals" onclick="window.location.href='{% url 'development-plans:my-goals' %}'">
+            <div class="flex items-start justify-between mb-4">
+                <div class="task-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                {% if active_goals_count > 0 %}
+                <span class="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">
+                    {{ active_goals_count }}
+                </span>
+                {% endif %}
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Active Development Goals" %}</h3>
+            <p class="text-3xl font-bold text-green-500 mb-3">{{ active_goals_count|default:0 }}</p>
+            <p class="text-sm text-slate-300 flex items-center">
+                <span>{% trans "In progress" %}</span>
+                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+            </p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+    <div class="mt-8 mb-4"></div>
+<!-- My Assignments -->
+    <div class="lg:col-span-2">
+        <div class="content-card">
+            <div class="card-header flex items-center justify-between">
+                <h2 class="text-xl font-bold text-gray-900">
+                    <i class="fas fa-tasks mr-3 text-blue-500"></i>
+                    {% trans "My Assignments" %}
+                </h2>
+                <a href="{% url 'evaluations:my-assignments' %}" class="text-blue-500 hover:text-blue-700 font-medium transition-colors">
+                    {% trans "Hamısına Bax" %} <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                {% if pending_assignments %}
+                <div class="overflow-x-auto rounded-xl">
+                    <table class="assignment-table">
+                        <thead>
+                            <tr>
+                                <th class="text-left rounded-tl-xl">{% trans "Person" %}</th>
+                                <th class="text-left">{% trans "Campaign" %}</th>
+                                <th class="text-left">{% trans "Type" %}</th>
+                                <th class="text-left rounded-tr-xl">{% trans "Action" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for assignment in pending_assignments %}
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td>
+                                    <div class="flex items-center">
+                                        <div class="user-avatar">
+                                            {{ assignment.evaluatee.first_name.0 }}
+                                        </div>
+                                        <span class="ml-3 font-medium text-gray-900">{{ assignment.evaluatee.get_full_name }}</span>
+                                    </div>
+                                </td>
+                                <td class="text-gray-600 dark:text-gray-400">{{ assignment.campaign.title }}</td>
+                                <td>
+                                    <span class="px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
+                                        {{ assignment.get_relationship_display }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{% url 'evaluations:assignment-detail' assignment.id %}" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg transition-all shadow-md hover:shadow-lg">
+                                        <i class="fas fa-edit mr-2"></i> {% trans "Fill" %}
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-12">
+                    <div class="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clipboard-check text-3xl text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-500 text-lg">{% trans "No pending evaluations" %}</p>
+                    <p class="text-gray-400 text-sm mt-1">{% trans "You're all caught up!" %}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="space-y-6">
+        <div class="mt-8 mb-4"></div>
+<!-- Quick Actions -->
+        <div class="content-card">
+            <div class="card-header">
+                <h3 class="text-xl font-bold text-gray-900">
+                    <i class="fas fa-bolt mr-3 text-yellow-500"></i>
+                    {% trans "Quick Actions" %}
+                </h3>
+            </div>
+            <div class="card-body space-y-3">
+                <a href="{% url 'evaluations:my-assignments' %}" class="quick-action evaluations block">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-clipboard-list text-xl text-blue-600"></i>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-gray-900">{% trans "Evaluations" %}</span>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">{% trans "Complete pending assignments" %}</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="{% url 'reports:my-reports' %}" class="quick-action reports block">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-bar text-xl text-green-600"></i>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-gray-900">{% trans "Reports" %}</span>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">{% trans "View performance insights" %}</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="{% url 'development-plans:my-goals' %}" class="quick-action goals block">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-bullseye text-xl text-purple-600"></i>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-gray-900">{% trans "Goals" %}</span>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">{% trans "Track development progress" %}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="content-card">
+            <div class="card-header">
+                <h3 class="text-xl font-bold text-gray-900">
+                    <i class="fas fa-bell mr-3 text-red-500"></i>
+                    {% trans "Notifications" %}
+                </h3>
+            </div>
+            <div class="card-body">
+                {% if notifications %}
+                <div class="space-y-4">
+                    {% for notification in notifications|slice:":3" %}
+                    <div class="p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border-l-4 border-blue-500 shadow-sm">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="font-semibold text-gray-900">{{ notification.title }}</span>
+                            <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">{{ notification.created_at|timesince }}</span>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ notification.message|truncatewords:15 }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center py-8">
+                    <div class="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bell-slash text-2xl text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-500">{% trans "No notifications" %}</p>
+                    <p class="text-gray-400 text-sm mt-1">{% trans "You're all up to date!" %}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Section -->
+{% if user_stats %}
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="text-xl font-bold text-gray-900">
+                <i class="fas fa-chart-line mr-3 text-green-500"></i>
+                {% trans "Performance Trend" %}
+            </h3>
+        </div>
+        <div class="card-body">
+            <div style="height: 300px; position: relative;">
+                <canvas id="performanceTrendChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="text-xl font-bold text-gray-900">
+                <i class="fas fa-chart-pie mr-3 text-purple-500"></i>
+                {% trans "Score Distribution" %}
+            </h3>
+        </div>
+        <div class="card-body">
+            <div style="height: 300px; position: relative;">
+                <canvas id="scoreDistributionChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Initialize animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Add scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe all cards for animation
+    document.querySelectorAll('.stat-card, .content-card, .task-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+});
+
+// Charts code remains the same as original
+{% if user_stats %}
+// Dark mode detection for charts
+const isDarkMode = document.documentElement.classList.contains('dark');
+const textColor = isDarkMode ? '#d1d5db' : '#374151';
+const gridColor = isDarkMode ? 'rgba(75, 85, 99, 0.3)' : 'rgba(156, 163, 175, 0.3)';
+
+// Performance Trend Chart
+const trendCtx = document.getElementById('performanceTrendChart').getContext('2d');
+new Chart(trendCtx, {
+    type: 'line',
+    data: {
+        labels: {{ trend_labels|safe }},
+        datasets: [{
+            label: 'Ortalama Bal',
+            data: {{ trend_data|safe }},
+            borderColor: '#10b981',
+            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+            borderWidth: 3,
+            tension: 0.4,
+            fill: true,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            pointBackgroundColor: '#10b981',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    color: textColor,
+                    padding: 15,
+                    font: { size: 12 }
+                }
+            },
+            tooltip: {
+                backgroundColor: isDarkMode ? '#1f2937' : '#fff',
+                titleColor: textColor,
+                bodyColor: textColor,
+                borderColor: gridColor,
+                borderWidth: 1,
+                padding: 12,
+                displayColors: true
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: { color: gridColor },
+                ticks: { color: textColor }
+            },
+            x: {
+                grid: { color: gridColor },
+                ticks: { color: textColor }
+            }
+        }
+    }
+});
+
+// Score Distribution Chart
+const distCtx = document.getElementById('scoreDistributionChart').getContext('2d');
+new Chart(distCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Özüm', 'Rəhbər', 'Həmkar', 'Tabelik'],
+        datasets: [{
+            data: {{ score_distribution|safe }},
+            backgroundColor: ['#f59e0b', '#3b82f6', '#8b5cf6', '#10b981'],
+            borderWidth: 2,
+            borderColor: isDarkMode ? '#1f2937' : '#fff'
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    color: textColor,
+                    padding: 15,
+                    font: { size: 12 }
+                }
+            },
+            tooltip: {
+                backgroundColor: isDarkMode ? '#1f2937' : '#fff',
+                titleColor: textColor,
+                bodyColor: textColor,
+                borderColor: gridColor,
+                borderWidth: 1,
+                padding: 12
+            }
+        }
+    }
+});
+{% endif %}
+</script>
+{% endblock %}
+<script>
+// Watch for theme changes
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#e2e8f0' : '#475569';
+            const gridColor = isDark ? '#334155' : '#e2e8f0';
+            
+            // Update all charts if Chart is defined
+            if (typeof Chart !== 'undefined') {
+                Chart.instances.forEach(chart => {
+                    if (chart.options.scales) {
+                        if (chart.options.scales.x) {
+                            chart.options.scales.x.ticks.color = textColor;
+                            chart.options.scales.x.grid.color = gridColor;
+                        }
+                        if (chart.options.scales.y) {
+                            chart.options.scales.y.ticks.color = textColor;
+                            chart.options.scales.y.grid.color = gridColor;
+                        }
+                    }
+                    if (chart.options.plugins && chart.options.plugins.legend) {
+                        chart.options.plugins.legend.labels.color = textColor;
+                    }
+                    chart.update();
+                });
+            }
+        }
+    });
+});
+observer.observe(document.documentElement, { attributes: true });
+</script>

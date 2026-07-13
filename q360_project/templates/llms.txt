@@ -1,0 +1,48 @@
+# Q360
+
+> Q360 is a comprehensive 360° HR/ERP platform built with Django and Django REST Framework, designed for government-sector organizations in Azerbaijan.
+
+## Platform Overview
+
+Q360 provides end-to-end human resource management capabilities including 360-degree performance evaluations, competency frameworks, succession planning, and workforce analytics. The platform is bilingual (Azerbaijani and English) and follows enterprise-grade security standards including 2FA, RBAC, and GDPR compliance.
+
+## Core Modules
+
+- **360° Performance Evaluation**: Multi-rater assessments including self, manager, peer, and subordinate evaluations with radar charts and trend analysis.
+- **Competency Framework**: Define organizational competencies, behavioral indicators, and proficiency levels mapped to roles and departments.
+- **Performance Reviews**: Structured review cycles with goal-setting, KPI tracking, and calibration workflows.
+- **9-Box Grid / Talent Matrix**: Visual talent classification based on performance and potential axes for succession planning.
+- **Succession Planning**: Identify critical roles, map talent pipelines, and track readiness levels for key positions.
+- **OKR Management**: Objectives and Key Results tracking with alignment to organizational strategy.
+- **Development Plans**: Individual development goals linked to competency gaps identified through evaluations.
+- **Training Management**: Course catalog, enrollment tracking, and learning path recommendations.
+- **Recruitment**: Job posting, applicant tracking, and hiring workflow management.
+- **Compensation & Benefits**: Salary structures, bonus calculations, and compensation benchmarking.
+- **Leave & Attendance**: Time-off requests, attendance tracking, and leave balance management.
+- **Employee Wellness**: Wellness program management and employee wellbeing tracking.
+- **Engagement Surveys**: Pulse surveys and engagement analytics with sentiment analysis.
+- **Continuous Feedback**: Real-time peer feedback and recognition system.
+- **Workforce Planning**: Headcount planning, scenario modeling, and workforce analytics.
+- **Reports & Analytics**: Comprehensive reporting with export to PDF and Excel.
+
+## Technical Stack
+
+- Backend: Django 5.x, Django REST Framework, Celery, Redis
+- Database: PostgreSQL 16
+- Frontend: Server-side rendered templates with Tailwind CSS, Alpine.js, Chart.js
+- Authentication: JWT + Session, 2FA (TOTP), RBAC/ABAC
+- Deployment: Docker, Nginx, Gunicorn
+
+## Public Page Structure
+
+- `/` — Landing page (product overview, features, FAQ)
+- `/haqqimizda/` — About page (mission, team, contact)
+- `/faq/` — Frequently Asked Questions
+- `/privacy/` — Privacy Policy
+- `/terms/` — Terms of Service
+- `/help/` — Help & Documentation
+
+## Contact
+
+- Email: info@q360.gov.az
+- Location: Baku, Azerbaijan

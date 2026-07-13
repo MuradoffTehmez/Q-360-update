@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Kütləvi İstifadəçi İdxalı | Q360{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-3xl">
+    <div class="mb-8">
+        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">Kütləvi İstifadəçi İdxalı</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">CSV və ya Excel formatında fayl yükləyərək birdən çox istifadəçini sistemə əlavə edin.</p>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-none rounded-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
+        <div class="p-6 sm:p-8">
+            <form method="post" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">İdxal Faylı Seçin</label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-lg hover:border-indigo-500 transition-colors bg-gray-50 dark:bg-gray-700/50">
+                        <div class="space-y-1 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div class="flex text-sm text-gray-600 dark:text-gray-400 justify-center">
+                                <label for="import_file" class="relative cursor-pointer bg-white dark:bg-gray-800 rounded-md font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                    <span>Fayl Yüklə</span>
+                                    <input id="import_file" name="import_file" type="file" class="sr-only" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+                                </label>
+                                <p class="pl-1">və ya sürükləyib buraxın</p>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
+                                Dəstəklənən formatlar: .csv, .xlsx, .xls
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-100 dark:border-blue-800/50">
+                    <h4 class="text-sm font-medium text-blue-800 dark:text-blue-300 flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Fayl Formatı Tələbləri
+                    </h4>
+                    <ul class="mt-2 text-xs text-blue-700 dark:text-blue-400 list-disc list-inside space-y-1">
+                        <li>Faylda ən azı <code>email</code> sütunu olmalıdır.</li>
+                        <li>İstəyə bağlı sütunlar: <code>username</code>, <code>first_name</code>, <code>last_name</code>.</li>
+                        <li>Mövcud olan istifadəçi e-poçtları avtomatik olaraq buraxılacaqdır.</li>
+                        <li>Yaradılan istifadəçilər üçün standart şifrə: <code>Q360@Welcome2025!</code> təyin ediləcək.</li>
+                    </ul>
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-end">
+                    <button type="submit" class="inline-flex justify-center rounded-lg border border-transparent bg-indigo-600 py-2.5 px-6 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-800 transition-colors">
+                        İdxal Et
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

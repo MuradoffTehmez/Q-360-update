@@ -1,0 +1,345 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Xüsusi Hesabat Nəticəsi - Q360{% endblock %}
+
+{% block extra_css %}
+<style>
+    .stat-card {
+        border-left: 4px solid;
+        transition: transform 0.2s;
+    }
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+    .chart-container {
+        position: relative;
+        height: 400px;
+        margin-bottom: 2rem;
+    }
+    @media print {
+        .no-print {
+            display: none;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-1">
+                <i class="fas fa-file-chart-line text-primary"></i> Xüsusi Hesabat Nəticəsi
+            </h1>
+            <p class="text-muted mb-0">Yaradılma tarixi: {% now "d.m.Y H:i" %}</p>
+        </div>
+        <div class="no-print">
+            <a href="{% url 'reports:custom-builder' %}" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-arrow-left"></i> Geri
+            </a>
+            <button onclick="window.print()" class="btn btn-outline-primary">
+                <i class="fas fa-print"></i> Çap et
+            </button>
+        </div>
+    </div>
+
+    <!-- Overall Statistics -->
+    {% if report_data.summary.overall %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <h4 class="mb-3"><i class="fas fa-chart-bar me-2"></i>Ümumi Statistika</h4>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card stat-card shadow-sm" style="border-left-color: #0d6efd;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">Cəmi Qiymətləndirmə</h6>
+                            <h2 class="mb-0">{{ report_data.summary.overall.total_evaluations }}</h2>
+                        </div>
+                        <i class="fas fa-users fa-2x text-primary opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card stat-card shadow-sm" style="border-left-color: #198754;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">Orta Bal</h6>
+                            <h2 class="mb-0">{{ report_data.summary.overall.avg_score|floatformat:2|default:"-" }}</h2>
+                        </div>
+                        <i class="fas fa-star fa-2x text-success opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card stat-card shadow-sm" style="border-left-color: #ffc107;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">Maksimum</h6>
+                            <h2 class="mb-0">{{ report_data.summary.overall.max_score|floatformat:2|default:"-" }}</h2>
+                        </div>
+                        <i class="fas fa-arrow-up fa-2x text-warning opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card stat-card shadow-sm" style="border-left-color: #dc3545;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-muted mb-1">Minimum</h6>
+                            <h2 class="mb-0">{{ report_data.summary.overall.min_score|floatformat:2|default:"-" }}</h2>
+                        </div>
+                        <i class="fas fa-arrow-down fa-2x text-danger opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Chart Controls -->
+    <div class="row mb-3 no-print">
+        <div class="col-12 d-flex justify-content-end align-items-center">
+            <label for="chartTypeSelector" class="form-label me-2 mb-0 fw-bold">Qrafik Növü:</label>
+            <select id="chartTypeSelector" class="form-select w-auto" onchange="window.updateChartType(this.value)">
+                <option value="bar">Bar (Sütun)</option>
+                <option value="line">Line (Xətt)</option>
+                <option value="scatterpolar">Radar</option>
+                <option value="pie">Pie (Piroq)</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row">
+        <!-- Category Chart -->
+        {% if report_json.charts.category %}
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-layer-group me-2"></i>Kateqoriya Analizi</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div id="categoryChart" class="w-100 h-100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Relationship Chart -->
+        {% if report_json.charts.relationship %}
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-users me-2"></i>Əlaqə Növü Analizi</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div id="relationshipChart" class="w-100 h-100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Trend Chart -->
+        {% if report_json.charts.trend %}
+        <div class="col-12 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Trend Analizi</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div id="trendChart" class="w-100 h-100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Detailed Results Table -->
+    {% if report_data.results %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0"><i class="fas fa-table me-2"></i>Ətraflı Nəticələr</h5>
+                </div>
+                <div class="card-body p-0">
+                    {% if filters_summary %}
+                    <div class="border-bottom px-3 py-2 bg-light">
+                        <small class="text-muted text-uppercase fw-semibold">
+                            <i class="fas fa-filter me-1"></i>Tətbiq olunan filtrlər
+                        </small>
+                        <div class="mt-2 d-flex flex-wrap gap-2">
+                            {% for item in filters_summary %}
+                            <span class="badge rounded-pill bg-primary-subtle text-primary fw-semibold">{{ item }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    {% for header in table_headers %}
+                                    <th class="{% if header.type == 'number' %}text-center{% elif header.type == 'date' %}text-center text-nowrap{% endif %}">
+                                        {{ header.label }}
+                                    </th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if table_rows_render %}
+                                    {% for row in table_rows_render %}
+                                    <tr>
+                                        {% for cell in row %}
+                                            {% if cell.type == 'number' %}
+                                            <td class="text-center">
+                                                <span class="badge bg-success-subtle text-success fw-semibold">
+                                                    {{ cell.value|floatformat:2 }}
+                                                </span>
+                                            </td>
+                                            {% else %}
+                                            <td class="{% if cell.type == 'date' %}text-center text-nowrap{% endif %}">
+                                                {{ cell.value|default:"-" }}
+                                            </td>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="{{ table_headers|length }}" class="text-center text-muted py-4">
+                                            Nəticə tapılmadı
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-2.29.1.min.js"></script>
+<script>
+const plotlyPayload = JSON.parse('{{ plotly_charts_json|escapejs }}');
+
+// Define global layout and config
+const baseLayout = {
+    autosize: true,
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    font: { family: 'Segoe UI, system-ui, sans-serif' }
+};
+
+const baseConfig = {
+    responsive: true,
+    displaylogo: false,
+    modeBarButtonsToRemove: ['lasso2d', 'toggleSpikelines']
+};
+
+function renderPlotlyChart(containerId, payload) {
+    const container = document.getElementById(containerId);
+    if (!container || !payload) return;
+    
+    const layout = Object.assign({}, baseLayout, payload.layout || {});
+    const config = Object.assign({}, baseConfig, payload.config || {});
+
+    Plotly.newPlot(container, payload.data || [], layout, config);
+}
+
+// Initial render
+renderPlotlyChart('categoryChart', plotlyPayload.category);
+renderPlotlyChart('relationshipChart', plotlyPayload.relationship);
+renderPlotlyChart('trendChart', plotlyPayload.trend);
+
+// Dynamic update function using Plotly.react to clean old instances properly
+window.updateChartType = function(newType) {
+    console.log("Updating chart types to:", newType);
+    ['categoryChart', 'relationshipChart', 'trendChart'].forEach(id => {
+        const container = document.getElementById(id);
+        if (!container) return;
+        
+        let payloadKey = id.replace('Chart', '');
+        let payload = plotlyPayload[payloadKey];
+        if (!payload || !payload.data) return;
+
+        // Clone data to avoid mutating the original payload
+        let newData = JSON.parse(JSON.stringify(payload.data));
+        
+        // Update type for each trace
+        newData.forEach(trace => {
+            if (newType === 'radar') {
+                trace.type = 'scatterpolar';
+                trace.fill = 'toself';
+                // Move x/y to theta/r for polar chart if needed
+                if (trace.x && trace.y) {
+                    trace.theta = trace.x;
+                    trace.r = trace.y;
+                    delete trace.x;
+                    delete trace.y;
+                }
+            } else if (newType === 'pie') {
+                trace.type = 'pie';
+                // Move x/y to labels/values
+                if (trace.x && trace.y) {
+                    trace.labels = trace.x;
+                    trace.values = trace.y;
+                    delete trace.x;
+                    delete trace.y;
+                }
+            } else {
+                trace.type = newType;
+                // Move back from polar/pie if needed
+                if (trace.theta && trace.r) {
+                    trace.x = trace.theta;
+                    trace.y = trace.r;
+                    delete trace.theta;
+                    delete trace.r;
+                } else if (trace.labels && trace.values && newType !== 'pie') {
+                    trace.x = trace.labels;
+                    trace.y = trace.values;
+                    delete trace.labels;
+                    delete trace.values;
+                }
+            }
+        });
+
+        const layout = Object.assign({}, baseLayout, payload.layout || {});
+        // Fix layout for polar if radar
+        if (newType === 'radar') {
+            layout.polar = { radialaxis: { visible: true } };
+            delete layout.xaxis;
+            delete layout.yaxis;
+        }
+
+        // Use Plotly.react for efficient re-rendering and clearing old state!
+        Plotly.react(container, newData, layout, baseConfig);
+    });
+};
+</script>
+{% endblock %}

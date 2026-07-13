@@ -1,0 +1,342 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Tez-tez Verilən Suallar (FAQ) — {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}Q360 platforması haqqında tez-tez verilən suallar: 360° qiymətləndirmə, səriştə çərçivəsi, 9-Box Grid, OKR, xələflik planlaması və digər HR modulları.{% endblock %}
+{% block og_title %}FAQ — {{ SITE_NAME }}{% endblock %}
+
+{% block breadcrumb_schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Ana Səhifə", "item": "{{ SITE_URL }}/"},
+    {"@type": "ListItem", "position": 2, "name": "FAQ", "item": "{{ SITE_URL }}/faq/"}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Q360 nədir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Q360, Django və Django REST Framework əsaslı tam funksional HR/ERP platformasıdır. Platforma 360° performans qiymətləndirmə, səriştə çərçivəsi, xələflik planlaması, OKR idarəetməsi, işə qəbul, kompensasiya və iş qüvvəsi analitikası daxil olmaqla 20-dən çox HR modulunu vahid sistemdə birləşdirir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q360 hansı HR proseslərini avtomatlaşdırır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Q360 aşağıdakı HR proseslərini avtomatlaşdırır: 360° performans qiymətləndirmə, səriştə çərçivəsi idarəetməsi, performans icmalları, 9-Box Grid talent matrisi, xələflik planlaması, OKR izləmə, fərdi inkişaf planları, təlim idarəetməsi, işə qəbul, kompensasiya və mükafatlar, icazə və davamiyyət, işçi sağlamlığı proqramları, əlaqə sorğuları, davamlı əks-əlaqə və iş qüvvəsi planlaması."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Competency Framework (Səriştə Çərçivəsi) nədir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Competency Framework (Səriştə Çərçivəsi) — təşkilat daxilində hər bir vəzifə üçün tələb olunan səriştələri, davranış göstəricilərini və peşəkarlıq səviyyələrini müəyyən edən strukturlaşdırılmış modeldir. Q360-da səriştələr departament və rola əsasən xəritələnir, qiymətləndirmə nəticələri ilə əlaqələndirilir və boşluq analizi avtomatik aparılır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "360° Performans Qiymətləndirmə necə işləyir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "360° qiymətləndirmə dörd mənbədən rəy toplayır: 1) İşçinin özünüqiymətləndirməsi, 2) Birbaşa rəhbərin qiymətləndirməsi, 3) Həmkar (peer) qiymətləndirmələri, 4) Tabelikdə olanların qiymətləndirmələri. Nəticələr radar diaqramları, trend analizi və kateqoriya üzrə statistika ilə vizuallaşdırılır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "9-Box Grid nədir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "9-Box Grid (Doqquz Xana Matrisi) — işçiləri performans (aşağı/orta/yüksək) və potensial (aşağı/orta/yüksək) oxları üzrə 9 kateqoriyaya ayıran talent idarəetmə alətidir. Bu matris xələflik planlaması, inkişaf prioritetləri və HR strategiyası üçün qərar dəstəyi təmin edir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Succession Planning (Xələflik Planlaması) nədir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Succession Planning (Xələflik Planlaması) — təşkilatdakı kritik vəzifələr üçün potensial xələfləri müəyyən edən, onların hazırlıq səviyyəsini izləyən və inkişaf planları ilə əlaqələndirən strateji prosesdir. Q360-da bu modul 9-Box Grid nəticələri ilə inteqrasiya olunmuşdur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q360 hansı dilləri dəstəkləyir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Q360 hazırda Azərbaycan dili (əsas) və İngilis dilini dəstəkləyir. Platforma Django-nun i18n (internationalization) infrastrukturundan istifadə edir və yeni dillər asanlıqla əlavə edilə bilər."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q360-un təhlükəsizlik standartları hansılardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Q360 enterprise-səviyyəli təhlükəsizlik standartlarına əməl edir: İki faktorlu autentifikasiya (2FA/TOTP), rol əsaslı giriş nəzarəti (RBAC), atribut əsaslı giriş nəzarəti (ABAC), HTTPS/HSTS, CSRF/XSS qorunması, məlumat şifrələməsi, audit jurnalları və GDPR uyğunluğu."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .faq-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 0 0 50px 50px;
+    }
+    .faq-item {
+        border-radius: 16px;
+        transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+    .faq-question {
+        cursor: pointer;
+    }
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-item.active .faq-answer {
+        max-height: 500px;
+        padding-top: 1rem;
+    }
+    .faq-item.active .faq-chevron {
+        transform: rotate(180deg);
+    }
+    .faq-chevron {
+        transition: transform 0.3s ease;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<article>
+    {# ── Hero Section ── #}
+    <header class="faq-hero text-white py-16 mb-12 shadow-lg">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Tez-tez Verilən Suallar</h1>
+            <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                Q360 platforması haqqında ən çox soruşulan suallar və cavablar
+            </p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 max-w-4xl mb-16">
+
+        {# ── FAQ Items ── #}
+
+        <div class="space-y-4" x-data="{ active: null }">
+
+            {# Q1 #}
+            <div class="faq-item bg-white dark:bg-gray-800 p-6 shadow-sm" :class="{ 'active': active === 1 }">
+                <div class="faq-question flex items-center justify-between" @click="active = active === 1 ? null : 1">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">Q360 nədir?</h2>
+                    <i class="fas fa-chevron-down faq-chevron text-gray-400"></i>
+                </div>
+                <div class="faq-answer text-gray-700 dark:text-gray-300">
+                    <p class="mb-3">
+                        Q360, Django və Django REST Framework əsaslı tam funksional HR/ERP platformasıdır.
+                        Platforma 360° performans qiymətləndirmə, səriştə çərçivəsi, xələflik planlaması,
+                        OKR idarəetməsi, işə qəbul, kompensasiya və iş qüvvəsi analitikası daxil olmaqla
+                        20-dən çox HR modulunu vahid sistemdə birləşdirir.
+                    </p>
+                    <p>Azərbaycan və İngilis dillərini dəstəkləyir, GDPR uyğundur və enterprise-səviyyəli təhlükəsizlik standartlarına əməl edir.</p>
+                </div>
+            </div>
+
+            {# Q2 #}
+            <div class="faq-item bg-white dark:bg-gray-800 p-6 shadow-sm" :class="{ 'active': active === 2 }">
+                <div class="faq-question flex items-center justify-between" @click="active = active === 2 ? null : 2">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">Q360 hansı HR proseslərini avtomatlaşdırır?</h2>
+                    <i class="fas fa-chevron-down faq-chevron text-gray-400"></i>
+                </div>
+                <div class="faq-answer text-gray-700 dark:text-gray-300">
+                    <p class="mb-3">Q360 aşağıdakı əsas HR proseslərini avtomatlaşdırır:</p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>360° performans qiymətləndirmə</li>
+                        <li>Səriştə çərçivəsi idarəetməsi</li>
+                        <li>Performans icmalları (Performance Reviews)</li>
+                        <li>9-Box Grid talent matrisi</li>
+                        <li>Xələflik planlaması (Succession Planning)</li>
+                        <li>OKR (Objectives & Key Results) izləmə</li>
+                        <li>Fərdi inkişaf planları</li>
+                        <li>Təlim idarəetməsi</li>
+                        <li>İşə qəbul (Recruitment)</li>
+                        <li>Kompensasiya və mükafatlar</li>
+                        <li>İcazə və davamiyyət</li>
+                        <li>Əlaqə sorğuları (Engagement Surveys)</li>
+                        <li>Davamlı əks-əlaqə (Continuous Feedback)</li>
+                        <li>İş qüvvəsi planlaması (Workforce Planning)</li>
+                        <li>İşçi sağlamlığı proqramları (Wellness)</li>
+                    </ul>
+                </div>
+            </div>
+
+            {# Q3 #}
+            <div class="faq-item bg-white dark:bg-gray-800 p-6 shadow-sm" :class="{ 'active': active === 3 }">
+                <div class="faq-question flex items-center justify-between" @click="active = active === 3 ? null : 3">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">Competency Framework (Səriştə Çərçivəsi) nədir?</h2>
+                    <i class="fas fa-chevron-down faq-chevron text-gray-400"></i>
+                </div>
+                <div class="faq-answer text-gray-700 dark:text-gray-300">
+                    <p class="mb-3">
+                        Competency Framework — təşkilat daxilində hər bir vəzifə üçün tələb olunan səriştələri,
+                        davranış göstəricilərini və peşəkarlıq səviyyələrini müəyyən edən strukturlaşdırılmış modeldir.
+                    </p>
+                    <p>
+                        Q360-da səriştələr departament və rola əsasən xəritələnir, qiymətləndirmə nəticələri ilə
+                        əlaqələndirilir və boşluq analizi (gap analysis) avtomatik aparılır. Hər bir səriştə üçün
+                        davranış göstəriciləri və peşəkarlıq səviyyələri (1-5 bal) müəyyən edilir.
+                    </p>
+                </div>
+            </div>
+
+            {# Q4 #}
+            <div class="faq-item bg-white dark:bg-gray-800 p-6 shadow-sm" :class="{ 'active': active === 4 }">
+                <div class="faq-question flex items-center justify-between" @click="active = active === 4 ? null : 4">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">360° Performans Qiymətləndirmə necə işləyir?</h2>
+                    <i class="fas fa-chevron-down faq-chevron text-gray-400"></i>
+                </div>
+                <div class="faq-answer text-gray-700 dark:text-gray-300">
+                    <p class="mb-3">360° qiymətləndirmə dörd mənbədən rəy toplayır:</p>
+                    <ol class="list-decimal pl-6 space-y-2">
+                        <li><strong>Özünüqiymətləndirmə</strong> — İşçi öz performansını dəyərləndirir</li>
+                        <li><strong>Rəhbər qiymətləndirməsi</strong> — Birbaşa menecer qiymətləndirir</li>
+                        <li><strong>Həmkar qiymətləndirməsi</strong> — Eyni səviyyəli həmkarlar rəy verir</li>
+                        <li><strong>Tabelik qiymətləndirməsi</strong> — Tabelikdə olanlar rəy verir</li>
+                    </ol>
+                    <p class="mt-3">
+                        Nəticələr radar diaqramları, trend analizi və kateqoriya üzrə statistika ilə vizuallaşdırılır.
+                    </p>
+                </div>
+            </div>
+
+            {# Q5 #}
+            <div class="faq-item bg-white dark:bg-gray-800 p-6 shadow-sm" :class="{ 'active': active === 5 }">
+                <div class="faq-question flex items-center justify-between" @click="active = active === 5 ? null : 5">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">9-Box Grid nədir?</h2>
+                    <i class="fas fa-chevron-down faq-chevron text-gray-400"></i>
+                </div>
+                <div class="faq-answer text-gray-700 dark:text-gray-300">
+                    <p class="mb-3">
+                        9-Box Grid (Doqquz Xana Matrisi) — işçiləri performans və potensial oxları üzrə
+                        9 kateqoriyaya ayıran talent idarəetmə alətidir.
+                    </p>
+                    <div class="overflow-x-auto mt-4">
+                        <table class="w-full text-sm border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 dark:bg-gray-700">
+                                    <th class="p-3 border dark:border-gray-600"></th>
+                                    <th class="p-3 border dark:border-gray-600">Aşağı Performans</th>
+                                    <th class="p-3 border dark:border-gray-600">Orta Performans</th>
+                                    <th class="p-3 border dark:border-gray-600">Yüksək Performans</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-3 border dark:border-gray-600 font-bold bg-gray-50 dark:bg-gray-700">Yüksək Potensial</td>
+                                    <td class="p-3 border dark:border-gray-600 bg-yellow-50 dark:bg-yellow-900/20">İnkişaf tələb edir</td>
+                                    <td class="p-3 border dark:border-gray-600 bg-blue-50 dark:bg-blue-900/20">Yüksək potensial</td>
+                                    <td class="p-3 border dark:border-gray-600 bg-green-50 dark:bg-green-900/20">⭐ Ulduz işçi</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border dark:border-gray-600 font-bold bg-gray-50 dark:bg-gray-700">Orta Potensial</td>
+                                    <td class="p-3 border dark:border-gray-600 bg-red-50 dark:bg-red-900/20">Diqqət tələb edir</td>
+                                    <td class="p-3 border dark:border-gray-600 bg-yellow-50 dark:bg-yellow-900/20">Əsas işçi</td>
+                                    <td class="p-3 border dark:border-gray-600 bg-blue-50 dark:bg-blue-900/20">Güclü işçi</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border dark:border-gray-600 font-bold bg-gray-50 dark:bg-gray-700">Aşağı Potensial</td>
+                                    <td class="p-3 border dark:border-gray-600 bg-red-50 dark:bg-red-900/20">Risk zonası</td>
+                                    <td class="p-3 border dark:border-gray-600 bg-yellow-50 dark:bg-yellow-900/20">Etibarlı işçi</td>
+                                    <td class="p-3 border dark:border-gray-600 bg-green-50 dark:bg-green-900/20">Peşəkar</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            {# Q6 #}
+            <div class="faq-item bg-white dark:bg-gray-800 p-6 shadow-sm" :class="{ 'active': active === 6 }">
+                <div class="faq-question flex items-center justify-between" @click="active = active === 6 ? null : 6">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">Succession Planning (Xələflik Planlaması) nədir?</h2>
+                    <i class="fas fa-chevron-down faq-chevron text-gray-400"></i>
+                </div>
+                <div class="faq-answer text-gray-700 dark:text-gray-300">
+                    <p class="mb-3">
+                        Succession Planning — təşkilatdakı kritik vəzifələr üçün potensial xələfləri
+                        müəyyən edən, onların hazırlıq səviyyəsini izləyən və inkişaf planları ilə
+                        əlaqələndirən strateji prosesdir.
+                    </p>
+                    <p>Q360-da bu modul 9-Box Grid nəticələri ilə inteqrasiya olunmuşdur və aşağıdakı addımları əhatə edir:</p>
+                    <ol class="list-decimal pl-6 space-y-1 mt-2">
+                        <li>Kritik vəzifələri müəyyən edin</li>
+                        <li>Hər vəzifə üçün potensial xələfləri seçin</li>
+                        <li>Hazırlıq səviyyəsini qiymətləndirin (Hazır / 1-2 il / 3+ il)</li>
+                        <li>İnkişaf planları təyin edin</li>
+                        <li>İrəliləyişi mütəmadi izləyin</li>
+                    </ol>
+                </div>
+            </div>
+
+            {# Q7 #}
+            <div class="faq-item bg-white dark:bg-gray-800 p-6 shadow-sm" :class="{ 'active': active === 7 }">
+                <div class="faq-question flex items-center justify-between" @click="active = active === 7 ? null : 7">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">Q360 hansı dilləri dəstəkləyir?</h2>
+                    <i class="fas fa-chevron-down faq-chevron text-gray-400"></i>
+                </div>
+                <div class="faq-answer text-gray-700 dark:text-gray-300">
+                    <p>
+                        Q360 hazırda Azərbaycan dili (əsas) və İngilis dilini dəstəkləyir.
+                        Platforma Django-nun i18n (internationalization) infrastrukturundan istifadə edir
+                        və yeni dillər asanlıqla əlavə edilə bilər.
+                    </p>
+                </div>
+            </div>
+
+            {# Q8 #}
+            <div class="faq-item bg-white dark:bg-gray-800 p-6 shadow-sm" :class="{ 'active': active === 8 }">
+                <div class="faq-question flex items-center justify-between" @click="active = active === 8 ? null : 8">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">Q360-un təhlükəsizlik standartları hansılardır?</h2>
+                    <i class="fas fa-chevron-down faq-chevron text-gray-400"></i>
+                </div>
+                <div class="faq-answer text-gray-700 dark:text-gray-300">
+                    <p class="mb-3">Q360 enterprise-səviyyəli təhlükəsizlik standartlarına əməl edir:</p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>İki faktorlu autentifikasiya (2FA/TOTP)</li>
+                        <li>Rol əsaslı giriş nəzarəti (RBAC)</li>
+                        <li>Atribut əsaslı giriş nəzarəti (ABAC)</li>
+                        <li>HTTPS/HSTS (HTTP Strict Transport Security)</li>
+                        <li>CSRF və XSS qorunması</li>
+                        <li>Həssas məlumatların şifrələnməsi</li>
+                        <li>Audit jurnalları və aktivlik izləmə</li>
+                        <li>GDPR uyğunluğu</li>
+                        <li>Rate limiting və brute-force qorunması</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</article>
+{% endblock %}

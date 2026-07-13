@@ -1,0 +1,56 @@
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from . import template_views
+from . import views
+
+router = DefaultRouter()
+
+app_name = 'notifications'
+
+urlpatterns = [
+    # Notification views
+    path('', template_views.inbox, name='index'),  # Default to inbox
+    path('inbox/', template_views.inbox, name='inbox'),
+    path('<int:pk>/', template_views.notification_detail, name='notification-detail'),
+    path('<int:pk>/read/', template_views.mark_as_read, name='mark-as-read'),
+    path('<int:pk>/mark-read/', template_views.mark_as_read, name='mark-read'),  # Alternative URL
+    path('mark-all-read/', template_views.mark_all_as_read, name='mark-all-as-read'),
+    path('<int:pk>/delete/', template_views.delete_notification, name='delete-notification'),
+    path('delete-all/', template_views.delete_all_notifications, name='delete-all-notifications'),
+    path('settings/', template_views.notification_settings, name='settings'),
+    
+    # Enhanced notification settings
+    path('preferences/', views.notification_preferences, name='preferences'),
+    path('settings/dashboard/', views.notification_settings_dashboard, name='settings-dashboard'),
+    path('sms/providers/', views.sms_providers_list, name='sms-providers-list'),
+    path('sms/providers/create/', views.sms_provider_create, name='sms-provider-create'),
+    path('sms/providers/<int:pk>/update/', views.sms_provider_update, name='sms-provider-update'),
+    path('templates/', views.notification_templates_list, name='templates-list'),
+    path('templates/create/', views.notification_template_create, name='template-create'),
+    path('templates/<int:pk>/update/', views.notification_template_update, name='template-update'),
+    path('templates/<int:pk>/delete/', views.notification_template_delete, name='template-delete'),
+    path('templates/<int:pk>/preview/', views.notification_template_preview, name='template-preview'),
+    path('test/', views.test_notification, name='test'),
+    path('bulk-send/', views.notification_bulk_send, name='bulk-send'),
+    path('api/update-preferences/', views.update_notification_preferences, name='update-preferences'),
+    path('statistics/', views.notification_statistics, name='statistics'),
+
+    # Bulk notification (admin/manager only)
+    path('bulk/', template_views.bulk_notification, name='bulk-notification'),
+
+    # Email template management (admin only)
+    path('templates/emails/', template_views.EmailTemplateListView.as_view(), name='email-templates'),
+    path('templates/emails/create/', template_views.EmailTemplateCreateView.as_view(), name='email-template-create'),
+    path('templates/emails/<int:pk>/', template_views.EmailTemplateDetailView.as_view(), name='email-template-detail'),
+    path('templates/emails/<int:pk>/edit/', template_views.EmailTemplateUpdateView.as_view(), name='email-template-edit'),
+    path('templates/emails/<int:pk>/delete/', template_views.delete_email_template, name='email-template-delete'),
+
+    # AJAX endpoints
+    path('api/unread-count/', template_views.get_unread_count, name='api-unread-count'),
+    path('delivery-logs/', views.delivery_logs, name='delivery_logs'),
+    path('api/recent/', template_views.get_recent_notifications, name='api-recent'),
+    path('api/notifications/', template_views.get_recent_notifications, name='api-notifications-list'),
+
+    # API (Router-based endpoints)
+    path('api/', include(router.urls)),
+]

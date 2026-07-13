@@ -1,0 +1,234 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Terms of Service - Q360" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Breadcrumb -->
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+            <li>
+                <a href="{% url 'dashboard' %}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li class="flex items-center">
+                <i class="fas fa-chevron-right text-xs mx-2"></i>
+                <span class="text-gray-900 dark:text-gray-100 font-medium">{% trans "Terms of Service" %}</span>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-lg mb-6">
+            <i class="fas fa-file-contract text-white text-3xl"></i>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {% trans "Terms of Service" %}
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            {% trans "Please read these terms carefully before using Q360 Performance Evaluation System" %}
+        </p>
+        <div class="mt-6 inline-flex items-center text-sm text-gray-500 dark:text-gray-400">
+            <i class="fas fa-calendar-alt mr-2"></i>
+            <span>{% trans "Effective date" %}: {% trans "January 1, 2025" %}</span>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="p-8 md:p-12">
+
+            <!-- Acceptance -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-check-circle text-green-600 dark:text-green-400 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white m-0">
+                        1. {% trans "Acceptance of Terms" %}
+                    </h2>
+                </div>
+
+                <div class="ml-16 text-gray-600 dark:text-gray-400 space-y-4">
+                    <p>
+                        {% trans "By accessing and using Q360 Performance Evaluation System, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the system." %}
+                    </p>
+                </div>
+            </section>
+
+            <!-- User Responsibilities -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-user-check text-blue-600 dark:text-blue-400 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white m-0">
+                        2. {% trans "User Responsibilities" %}
+                    </h2>
+                </div>
+
+                <div class="ml-16 text-gray-600 dark:text-gray-400 space-y-4">
+                    <p>{% trans "As a user of Q360, you agree to:" %}</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>{% trans "Provide accurate and complete information" %}</li>
+                        <li>{% trans "Maintain the confidentiality of your login credentials" %}</li>
+                        <li>{% trans "Use the system only for authorized business purposes" %}</li>
+                        <li>{% trans "Comply with all applicable laws and regulations" %}</li>
+                        <li>{% trans "Respect the privacy and confidentiality of other users" %}</li>
+                        <li>{% trans "Report any security vulnerabilities or unauthorized access" %}</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Prohibited Activities -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-ban text-red-600 dark:text-red-400 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white m-0">
+                        3. {% trans "Prohibited Activities" %}
+                    </h2>
+                </div>
+
+                <div class="ml-16 text-gray-600 dark:text-gray-400 space-y-4">
+                    <p>{% trans "You must not:" %}</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>{% trans "Attempt to gain unauthorized access to any part of the system" %}</li>
+                        <li>{% trans "Interfere with or disrupt the system's operation" %}</li>
+                        <li>{% trans "Use automated tools to access or scrape data" %}</li>
+                        <li>{% trans "Share your login credentials with others" %}</li>
+                        <li>{% trans "Upload malicious code or viruses" %}</li>
+                        <li>{% trans "Misrepresent your identity or affiliation" %}</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Intellectual Property -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-copyright text-purple-600 dark:text-purple-400 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white m-0">
+                        4. {% trans "Intellectual Property" %}
+                    </h2>
+                </div>
+
+                <div class="ml-16 text-gray-600 dark:text-gray-400 space-y-4">
+                    <p>
+                        {% trans "All content, features, and functionality of Q360 are owned by the organization and are protected by international copyright, trademark, and other intellectual property laws." %}
+                    </p>
+                </div>
+            </section>
+
+            <!-- Data and Privacy -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-shield-alt text-indigo-600 dark:text-indigo-400 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white m-0">
+                        5. {% trans "Data and Privacy" %}
+                    </h2>
+                </div>
+
+                <div class="ml-16 text-gray-600 dark:text-gray-400 space-y-4">
+                    <p>
+                        {% trans "Your use of Q360 is subject to our Privacy Policy. By using the system, you consent to the collection and use of information as described in the" %}
+                        <a href="{% url 'privacy' %}" class="text-blue-600 dark:text-blue-400 hover:underline">{% trans "Privacy Policy" %}</a>.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Disclaimer -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-exclamation-triangle text-orange-600 dark:text-orange-400 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white m-0">
+                        6. {% trans "Disclaimer of Warranties" %}
+                    </h2>
+                </div>
+
+                <div class="ml-16 text-gray-600 dark:text-gray-400 space-y-4">
+                    <p>
+                        {% trans "Q360 is provided 'as is' without any warranties, express or implied. We do not guarantee that the system will be error-free or uninterrupted." %}
+                    </p>
+                </div>
+            </section>
+
+            <!-- Termination -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-times-circle text-red-600 dark:text-red-400 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white m-0">
+                        7. {% trans "Termination" %}
+                    </h2>
+                </div>
+
+                <div class="ml-16 text-gray-600 dark:text-gray-400 space-y-4">
+                    <p>
+                        {% trans "We reserve the right to suspend or terminate your access to Q360 at any time for violations of these Terms of Service or for any other reason at our discretion." %}
+                    </p>
+                </div>
+            </section>
+
+            <!-- Changes to Terms -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="flex-shrink-0 w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-sync-alt text-teal-600 dark:text-teal-400 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white m-0">
+                        8. {% trans "Changes to Terms" %}
+                    </h2>
+                </div>
+
+                <div class="ml-16 text-gray-600 dark:text-gray-400 space-y-4">
+                    <p>
+                        {% trans "We may modify these Terms of Service at any time. Continued use of the system after changes constitutes acceptance of the new terms." %}
+                    </p>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <div class="text-center">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                        {% trans "Questions About These Terms?" %}
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        {% trans "Contact our legal team for clarification" %}
+                    </p>
+                    <a href="mailto:legal@q360.az" class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all">
+                        <i class="fas fa-envelope mr-2"></i>
+                        legal@q360.az
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="bg-gray-50 dark:bg-gray-900/50 px-8 py-6 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+                <a href="{% url 'privacy' %}" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    {% trans "Read Privacy Policy" %}
+                </a>
+                <a href="{% url 'dashboard' %}" class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    {% trans "Back to Dashboard" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

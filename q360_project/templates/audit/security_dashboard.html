@@ -1,0 +1,542 @@
+{% extends 'base/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Security Dashboard" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --danger-color: #f72585;
+    --warning-color: #f8961e;
+    --success-color: #4cc9f0;
+    --dark-color: #212529;
+    --light-color: #f8f9fa;
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --transition: all 0.3s ease;
+}
+
+.security-dashboard {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+    animation: fadeInDown 0.8s ease;
+}
+
+.dashboard-header h2 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.dashboard-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    border: none;
+    overflow: hidden;
+    animation: fadeIn 0.6s ease;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.dashboard-card .card-header {
+    background: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.dashboard-card .card-body {
+    padding: 1.5rem;
+}
+
+.stat-card {
+    color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    animation: fadeIn 0.6s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.stat-card-danger {
+    background: linear-gradient(135deg, #f72585, #b5179e);
+}
+
+.stat-card h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.table-responsive {
+    border-radius: 8px;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    color: var(--dark-color);
+    font-size: 0.9rem;
+    padding: 1rem 0.75rem;
+}
+
+.table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.65em;
+}
+
+.bg-danger {
+    background-color: var(--danger-color) !important;
+}
+
+.bg-warning {
+    background-color: var(--warning-color) !important;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease;
+}
+
+.card-animation {
+    animation: fadeIn 0.6s ease;
+}
+
+.card-animation:nth-child(1) { animation-delay: 0.1s; }
+.card-animation:nth-child(2) { animation-delay: 0.2s; }
+.card-animation:nth-child(3) { animation-delay: 0.3s; }
+.card-animation:nth-child(4) { animation-delay: 0.4s; }
+
+/* Loading animation for charts */
+.chart-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #6c757d;
+}
+
+/* Pulse animation for stats */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="security-dashboard py-4">
+    <div class="dashboard-header">
+        <h2><i class="fas fa-shield-alt me-2"></i> {% trans "Security Dashboard" %}</h2>
+        <p class="mb-0 mt-2 opacity-75">{% trans "Monitor login attempts and security events in real-time" %}</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="stat-card stat-card-danger pulse">
+                <h2 id="totalFailures">{{ total_failures }}</h2>
+                <p>{% trans "Total Login Failures (7 days)" %}</p>
+                <div class="mt-2">
+                    <i class="fas fa-exclamation-triangle fa-2x opacity-75"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 mb-4">
+            <div class="dashboard-card card-animation">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">{% trans "Failures by Day" %}</h5>
+                    <span class="badge bg-primary">{% trans "Last 7 Days" %}</span>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="failuresChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- *** NEW: THREAT DETECTION SECTION *** -->
+    {% if detected_threats %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="dashboard-card card-animation border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        {% trans "Detected Threats" %}
+                        <span class="badge bg-white text-danger ms-2">{{ threat_count }}</span>
+                    </h5>
+                    <small class="opacity-75">{% trans "Brute force attacks detected (5+ failures in 5 minutes)" %}</small>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{% trans "Severity" %}</th>
+                                    <th>{% trans "IP Address" %}</th>
+                                    <th>{% trans "Targeted Users" %}</th>
+                                    <th>{% trans "Attempts" %}</th>
+                                    <th>{% trans "Time Span" %}</th>
+                                    <th>{% trans "Last Attempt" %}</th>
+                                    <th>{% trans "Action" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for threat in detected_threats %}
+                                <tr class="fade-in">
+                                    <td>
+                                        {% if threat.severity == 'critical' %}
+                                        <span class="badge bg-danger">
+                                            <i class="fas fa-skull-crossbones"></i> {% trans "CRITICAL" %}
+                                        </span>
+                                        {% else %}
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="fas fa-exclamation-triangle"></i> {% trans "HIGH" %}
+                                        </span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-network-wired text-danger me-2"></i>
+                                        <strong>{{ threat.ip_address }}</strong>
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-users text-muted me-2"></i>
+                                        {{ threat.usernames }}
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-danger">{{ threat.failure_count }}+</span>
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-clock text-muted me-2"></i>
+                                        {{ threat.time_span_minutes }} {% trans "min" %}
+                                    </td>
+                                    <td>
+                                        <i class="far fa-calendar-alt text-muted me-2"></i>
+                                        {{ threat.last_attempt }}
+                                    </td>
+                                    <td>
+                                        {% if threat.ip_address in blocked_ips %}
+                                        <form method="post" action="{% url 'audit:unblock-ip' %}" class="d-inline" x-data @submit.prevent="apiSubmit($el, () => location.reload())">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="ip_address" value="{{ threat.ip_address }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-success" title="{% trans 'Blokdan çıxar' %}">
+                                                <i class="fas fa-unlock"></i>
+                                            </button>
+                                        </form>
+                                        {% else %}
+                                        <form method="post" action="{% url 'audit:block-ip' %}" class="d-inline" x-data @submit.prevent="apiSubmit($el, () => location.reload())">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="ip_address" value="{{ threat.ip_address }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="{% trans 'Blokla' %}">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </form>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- *** END THREAT DETECTION *** -->
+
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="dashboard-card card-animation">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-desktop me-2"></i>{% trans "Top Failed IPs" %}</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{% trans "IP Address" %}</th>
+                                    <th class="text-end">{% trans "Failures" %}</th>
+                                    <th class="text-end">{% trans "Action" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in top_failed_ips %}
+                                <tr class="fade-in">
+                                    <td>
+                                        <i class="fas fa-network-wired text-muted me-2"></i>
+                                        {% if item.ip_address %}
+                                            {{ item.ip_address }}
+                                        {% else %}
+                                            <em>{% trans "Unknown" %}</em>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end">
+                                        <span class="badge bg-secondary rounded-pill">{{ item.failure_count }}</span>
+                                    </td>
+                                    <td class="text-end">
+                                        {% if item.ip_address %}
+                                            {% if item.ip_address in blocked_ips %}
+                                            <form method="post" action="{% url 'audit:unblock-ip' %}" class="d-inline" x-data @submit.prevent="apiSubmit($el, () => location.reload())">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="ip_address" value="{{ item.ip_address }}">
+                                                <button type="submit" class="btn btn-sm btn-outline-success" title="{% trans 'Blokdan çıxar' %}">
+                                                    <i class="fas fa-unlock"></i>
+                                                </button>
+                                            </form>
+                                            {% else %}
+                                            <form method="post" action="{% url 'audit:block-ip' %}" class="d-inline" x-data @submit.prevent="apiSubmit($el, () => location.reload())">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="ip_address" value="{{ item.ip_address }}">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" title="{% trans 'Blokla' %}">
+                                                    <i class="fas fa-ban"></i>
+                                                </button>
+                                            </form>
+                                            {% endif %}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr><td colspan="3" class="text-center text-muted py-4">{% trans "No data available" %}</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="dashboard-card card-animation">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-user me-2"></i>{% trans "Top Failed Users" %}</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{% trans "Username" %}</th>
+                                    <th class="text-end">{% trans "Failures" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topUsersTable">
+                                {% for user in top_failed_users %}
+                                <tr class="fade-in">
+                                    <td>
+                                        <i class="fas fa-user-circle text-muted me-2"></i>
+                                        {{ user.username }}
+                                    </td>
+                                    <td class="text-end"><span class="badge bg-warning text-dark">{{ user.failure_count }}</span></td>
+                                </tr>
+                                {% empty %}
+                                <tr><td colspan="2" class="text-center text-muted py-4">{% trans "No data available" %}</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="dashboard-card card-animation">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fas fa-history me-2"></i>{% trans "Recent Failures" %}</h5>
+                    <span class="badge bg-primary">{% trans "Real-time" %}</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{% trans "User" %}</th>
+                                    <th>{% trans "IP Address" %}</th>
+                                    <th>{% trans "Time" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentTable">
+                                {% for failure in recent_failures %}
+                                <tr class="fade-in">
+                                    <td>
+                                        <i class="fas fa-user me-2 text-muted"></i>
+                                        {{ failure.user }}
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-network-wired me-2 text-muted"></i>
+                                        {{ failure.ip_address }}
+                                    </td>
+                                    <td>
+                                        <i class="far fa-clock me-2 text-muted"></i>
+                                        {{ failure.timestamp|date:"d M Y H:i" }}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr><td colspan="3" class="text-center text-muted py-4">{% trans "No data available" %}</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function() {
+    // Chart data from Django backend
+    const failuresByDay = {{ failures_by_day|safe }};
+
+    // Chart initialization with loading state
+    const ctx = document.getElementById('failuresChart');
+    
+    // Show loading state
+    if (failuresByDay.length === 0) {
+        ctx.parentElement.innerHTML = '<div class="chart-loading"><div class="spinner-border text-primary" role="status"></div></div>';
+    } else {
+        // Create chart
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: failuresByDay.map(d => {
+                    const dt = new Date(d.date);
+                    if (isNaN(dt)) return d.date;
+                    const day = String(dt.getDate()).padStart(2, '0');
+                    const month = String(dt.getMonth() + 1).padStart(2, '0');
+                    const year = dt.getFullYear();
+                    return `${day}.${month}.${year}`;
+                }),
+                datasets: [{
+                    label: '{% trans "Login Failures" %}',
+                    data: failuresByDay.map(d => d.count),
+                    borderColor: '#f72585',
+                    backgroundColor: 'rgba(247, 37, 133, 0.1)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#f72585',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(33, 37, 41, 0.9)',
+                        titleFont: {
+                            size: 14
+                        },
+                        bodyFont: {
+                            size: 13
+                        },
+                        padding: 12
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        },
+                        grid: {
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+    }
+
+    // Add hover effects to table rows
+    $('table tbody tr').hover(
+        function() {
+            $(this).addClass('table-active');
+        }, 
+        function() {
+            $(this).removeClass('table-active');
+        }
+    );
+});
+</script>
+{% endblock %}

@@ -1,0 +1,559 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Təhlükəsizlik Parametrləri" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .security-card {
+        border: 1px solid rgba(13, 110, 253, 0.12);
+        transition: transform 0.2s ease;
+    }
+    .security-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 1.25rem 1.5rem rgba(0, 0, 0, 0.05);
+    }
+    .password-strength {
+        height: 6px;
+        border-radius: 6px;
+        background: #e9ecef;
+        overflow: hidden;
+    }
+    .password-strength-bar {
+        height: 100%;
+        transition: width 0.3s ease;
+    }
+    .badge-dot {
+        position: relative;
+        padding-left: 1.2rem;
+    }
+    .badge-dot::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+        position: absolute;
+        left: 0.45rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+</style>
+{% endblock %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb" class="mt-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Əsas Səhifə" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'accounts:profile' %}">{% trans "Profil" %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Təhlükəsizlik" %}</li>
+    </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h3 mb-1">
+                <i class="fas fa-shield-alt me-2 text-primary"></i>{% trans "Təhlükəsizlik Parametrləri" %}
+            </h1>
+            <p class="text-muted mb-0">{% trans "Hesabınızı qorumaq üçün bütün mühüm tənzimləmələr bir paneldə." %}</p>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-sm-6 col-xl-3">
+            <div class="card security-card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <span class="badge bg-primary-subtle text-primary badge-dot">{% trans "2FA statusu" %}</span>
+                        <i class="fas fa-mobile-alt text-primary"></i>
+                    </div>
+                    {% if mfa_config.is_enabled %}
+                        <h2 class="h4 fw-bold text-success mb-1">{% trans "Aktiv" %}</h2>
+                        <p class="text-muted small mb-0">
+                            {% trans "Son təsdiq" %}: {{ mfa_config.last_verified_at|date:"d.m.Y H:i"|default:_("Naməlum") }}
+                        </p>
+                    {% else %}
+                        <h2 class="h4 fw-bold text-danger mb-1">{% trans "Deaktiv" %}</h2>
+                        <p class="text-muted small mb-0">
+                            {% trans "Hesabınıza əlavə qoruma üçün iki faktorlu autentifikasiyanı aktiv edin." %}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="card security-card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <span class="badge bg-success-subtle text-success badge-dot">{% trans "Məlumat şifrələnməsi" %}</span>
+                        <i class="fas fa-lock text-success"></i>
+                    </div>
+                    {% if encryption_available %}
+                        <h2 class="h4 fw-bold text-success mb-1">{% trans "Aktiv" %}</h2>
+                        <p class="text-muted small mb-0">
+                            {% if encryption_key_loaded %}
+                                {% trans "Fernet açarı uğurla yüklənib." %}
+                            {% else %}
+                                {% trans "Açar tapılmadı, SECRET_KEY istifadə olunur." %}
+                            {% endif %}
+                        </p>
+                    {% else %}
+                        <h2 class="h4 fw-bold text-danger mb-1">{% trans "Passiv" %}</h2>
+                        <p class="text-muted small mb-0">
+                            {% trans "Şifrələmə üçün 'cryptography' paketini qurun." %}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="card security-card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <span class="badge bg-warning-subtle text-warning badge-dot">{% trans "Aktiv sesiyalar" %}</span>
+                        <i class="fas fa-laptop text-warning"></i>
+                    </div>
+                    <h2 class="h4 fw-bold text-warning mb-1">{{ active_sessions|default:1 }}</h2>
+                    <p class="text-muted small mb-0">
+                        {% trans "Zəruri olmadıqda şübhəli sesiyaları sonlandırın." %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="card security-card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <span class="badge bg-danger-subtle text-danger badge-dot">{% trans "Audit təsdiqi" %}</span>
+                        <i class="fas fa-eye text-danger"></i>
+                    </div>
+                    <h2 class="h4 fw-bold text-danger mb-1">{{ audit_alerts|default:0 }}</h2>
+                    <p class="text-muted small mb-0">
+                        {% trans "Son 24 saatda şübhəli giriş və icazə rəddi hadisələri." %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Two factor section -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="mb-1"><i class="fas fa-mobile-alt text-primary me-2"></i>{% trans "İki faktorlu autentifikasiya (2FA)" %}</h5>
+                    <p class="text-muted small mb-0">
+                        {% trans "Authenticator tətbiqi və ehtiyat kodları ilə hesabınıza əlavə qoruma əlavə edin." %}
+                    </p>
+                </div>
+                {% if mfa_config.is_enabled %}
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#resetMfaModal">
+                            <i class="fas fa-sync me-1"></i>{% trans "Yenidən Quraşdır" %}
+                        </button>
+                        <form method="post" action="{% url 'accounts:mfa-disable' %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('2FA-nı deaktiv etmək istədiyinizə əminsiniz?')">
+                                <i class="fas fa-times me-1"></i>{% trans "Deaktiv et" %}
+                            </button>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if mfa_config.is_enabled %}
+                <div class="row g-4 align-items-start">
+                    <div class="col-md-6">
+                        <div class="border rounded p-3 h-100 bg-light">
+                            <h6 class="fw-semibold mb-2">{% trans "Backup kodlarınız" %}</h6>
+                            <p class="text-muted small mb-3">
+                                {% trans "Bu kodları təhlükəsiz saxlayın. Cihazınızı itirdikdə giriş üçün istifadə edə bilərsiniz." %}
+                            </p>
+                            <div class="row g-2">
+                                {% for code in backup_codes %}
+                                <div class="col-6">
+                                    <div class="form-control form-control-sm bg-white text-center backup-code">
+                                        {{ code }}
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <div class="col-12 text-muted small">
+                                    {% trans "Hazırda backup kod yoxdur. Yenidən generasiya edin." %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <button class="btn btn-outline-secondary btn-sm mt-3" id="copyBackupCodes">
+                                <i class="fas fa-copy me-1"></i>{% trans "Kopyala" %}
+                            </button>
+                            <form method="post" action="{% url 'accounts:mfa-backup-regenerate' %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-primary btn-sm mt-3">
+                                    <i class="fas fa-sync me-1"></i>{% trans "Yenilə" %}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="fw-semibold mb-2">{% trans "Son təsdiq məlumatı" %}</h6>
+                        <ul class="list-unstyled small text-muted mb-0">
+                            <li class="mb-2">
+                                <i class="fas fa-calendar-check text-success me-2"></i>
+                                {% trans "Son təsdiq tarixi" %}: {{ mfa_config.last_verified_at|date:"d.m.Y H:i"|default:_("Naməlum") }}
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-user-shield text-success me-2"></i>
+                                {% trans "Məsul" %}: {{ request.user.get_full_name|default:request.user.username }}
+                            </li>
+                            <li>
+                                <i class="fas fa-info-circle text-success me-2"></i>
+                                {% trans "Zaman pəncərəsi" %}: 30s TOTP
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6">
+                        <div class="border rounded p-3 text-center h-100">
+                            <p class="text-muted mb-3">
+                                {% trans "Authenticator tətbiqiniz ilə bu QR kodu skan edin." %}
+                            </p>
+                            {% if mfa_qr_svg %}
+                                <div class="bg-white d-inline-block p-3 rounded border">
+                                    {{ mfa_qr_svg|safe }}
+                                </div>
+                            {% else %}
+                                <div class="bg-light p-4 rounded text-muted">
+                                    {% trans "QR kodu generasiya etmək üçün 'Aktivləşdir' düyməsinə sıxın." %}
+                                </div>
+                            {% endif %}
+                            {% if mfa_secret %}
+                                <p class="small text-muted mt-3 mb-0">{% trans "Manual kod" %}: <code>{{ mfa_secret }}</code></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <form method="post" action="{% url 'accounts:mfa-verify' %}" class="vstack gap-3">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="enable">
+                            <p class="text-muted small mb-1">
+                                {% trans "Authenticator tətbiqinizdə görünən 6 rəqəmli kodu daxil edin və təsdiq edin." %}
+                            </p>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <input type="text" name="totp_code" id="totp_code" class="form-control" inputmode="numeric" maxlength="6" placeholder="000000" required autocomplete="off">
+                            </div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-check me-1"></i>{% trans "Təsdiq et və Aktivləşdir" %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Password change & sessions -->
+    <div class="row g-4 mb-4">
+        <div class="col-xl-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="mb-3"><i class="fas fa-key text-primary me-2"></i>{% trans "Şifrə dəyişdirilməsi" %}</h5>
+                    <form method="post" action="{% url 'accounts:change-password' %}" x-data @submit.prevent="apiSubmit($el, function(data) { if(data.success) { $el.reset(); } })">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">{% trans "Cari şifrə" %}</label>
+                                <div class="input-group">
+                                    {{ form.old_password }}
+                                    <button class="btn btn-outline-secondary toggle-password" type="button">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                {% if form.old_password.errors %}
+                                <div class="text-danger small mt-1">{{ form.old_password.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">{% trans "Yeni şifrə" %}</label>
+                                <div class="input-group">
+                                    {{ form.new_password1 }}
+                                    <button class="btn btn-outline-secondary toggle-password" type="button">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="password-strength mt-2">
+                                    <div class="password-strength-bar bg-danger" style="width: 0%;"></div>
+                                </div>
+                                <div class="form-text" id="passwordStrengthText"></div>
+                                {% if form.new_password1.errors %}
+                                <div class="text-danger small mt-1">{{ form.new_password1.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">{% trans "Yeni şifrə (təkrar)" %}</label>
+                                <div class="input-group">
+                                    {{ form.new_password2 }}
+                                    <button class="btn btn-outline-secondary toggle-password" type="button">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                {% if form.new_password2.errors %}
+                                <div class="text-danger small mt-1">{{ form.new_password2.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-3 mb-3 small">
+                            <strong>{% trans "Şifrə tövsiyələri" %}</strong>
+                            <ul class="mb-0 mt-2 ps-3">
+                                <li>{% trans "Minimum 12 simvol istifadə edin." %}</li>
+                                <li>{% trans "Kiçik-böyük hərf, rəqəm və xüsusi simvol daxil edin." %}</li>
+                                <li>{% trans "Şifrəni heç bir yerdə paylaşmayın." %}</li>
+                            </ul>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save me-1"></i>{% trans "Şifrəni yenilə" %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0"><i class="fas fa-desktop text-primary me-2"></i>{% trans "Aktiv sesiyalar" %}</h5>
+                        <a href="{% url 'accounts:sessions-terminate-all' %}" class="btn btn-outline-danger btn-sm">
+                            <i class="fas fa-sign-out-alt me-1"></i>{% trans "Hamısını sonlandır" %}
+                        </a>
+                    </div>
+                    {% if sessions %}
+                        <div class="vstack gap-3">
+                            {% for session in sessions %}
+                            <div class="border rounded p-3 {% if session.is_current %}bg-light{% endif %}">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="fw-semibold">
+                                            <i class="fas {% if session.is_mobile %}fa-mobile-alt{% else %}fa-laptop{% endif %} me-2 text-primary"></i>
+                                            {{ session.device }}
+                                            {% if session.is_current %}
+                                            <span class="badge bg-success ms-2">{% trans "Cari sessiya" %}</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="text-muted small mt-1">
+                                            <i class="fas fa-map-marker-alt me-1"></i>{{ session.location|default:_("Naməlum") }}
+                                            <span class="mx-2">•</span>
+                                            <i class="fas fa-network-wired me-1"></i>{{ session.ip_address|default:"-" }}
+                                            <span class="mx-2">•</span>
+                                            <i class="far fa-clock me-1"></i>{{ session.last_activity|timesince }} {% trans "əvvəl" %}
+                                        </div>
+                                    </div>
+                                    {% if not session.is_current %}
+                                    <a href="{% url 'accounts:sessions-terminate' session.id %}" class="btn btn-outline-danger btn-sm">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted mb-0 text-center">{% trans "Aktiv sessiya tapılmadı." %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login history & row-level access -->
+    <div class="row g-4 mb-4">
+        <div class="col-xl-7">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="mb-3"><i class="fas fa-history text-primary me-2"></i>{% trans "Giriş tarixçəsi" %}</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{% trans "Tarix" %}</th>
+                                    <th>{% trans "Platforma" %}</th>
+                                    <th>{% trans "IP" %}</th>
+                                    <th>{% trans "Status" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for login in login_history %}
+                                <tr>
+                                    <td>{{ login.timestamp|date:"d.m.Y H:i" }}</td>
+                                    <td>{{ login.device }}</td>
+                                    <td>{{ login.ip_address|default:"-" }}</td>
+                                    <td>
+                                        {% if login.success %}
+                                        <span class="badge bg-success">{% trans "Uğurlu" %}</span>
+                                        {% else %}
+                                        <span class="badge bg-danger">{% trans "Uğursuz" %}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted">{% trans "Tarixçə boşdur." %}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="mb-3"><i class="fas fa-users-cog text-primary me-2"></i>{% trans "Sətir səviyyəsində icazələr" %}</h5>
+                    <p class="text-muted small">
+                        {% trans "İcazənizin çatdığı əməkdaşlar və məlumat dairəsi." %}
+                    </p>
+                    <ul class="list-group list-group-flush">
+                        {% for accessible in accessible_users %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fw-semibold">{{ accessible.get_full_name|default:accessible.username }}</div>
+                                <small class="text-muted">
+                                    {{ accessible.department.name|default:_("Şöbə yoxdur") }}
+                                </small>
+                            </div>
+                            <span class="badge bg-light text-dark">{{ accessible.role|title }}</span>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item text-muted small text-center">
+                            {% trans "Yalnız öz məlumatlarınıza girişiniz var." %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-warning">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>{% trans "Təhlükəsizlik tövsiyələri" %}</h5>
+        </div>
+        <div class="card-body">
+            <ul class="mb-0 text-muted">
+                <li class="mb-2">{% trans "Şifrələrinizi ən azı 90 gündə bir dəyişdirin." %}</li>
+                <li class="mb-2">{% trans "Mümkün qədər 2FA aktiv saxlayın və backup kodları yeniləyin." %}</li>
+                <li class="mb-2">{% trans "Şübhəli giriş gördükdə audit jurnalına baxın və HR təhlükəsizlik komandası ilə əlaqə saxlayın." %}</li>
+                <li class="mb-2">{% trans "Şirkət cihazlarında yalnız etibarlı şəbəkələrdən istifadə edin." %}</li>
+                <li class="mb-0">{% trans "Məlumat ixracı zamanı faylları şifrəli şəkildə paylaşın." %}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Modal: Yenidən MFA Quraşdır -->
+<div class="modal fade" id="resetMfaModal" tabindex="-1" aria-labelledby="resetMfaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resetMfaModalLabel">
+                    <i class="fas fa-sync text-primary me-2"></i>{% trans "2FA Yenidən Quraşdır" %}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="{% url 'accounts:mfa-reset' %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        {% trans "2FA-nı yenidən quraşdırmaq üçün şifrənizi daxil edin. Bu əməliyyat mövcud 2FA-nı silib yenisini yaradacaq." %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="resetMfaPassword" class="form-label">{% trans "Şifrəniz" %}</label>
+                        <input type="password" class="form-control" id="resetMfaPassword" name="password" required placeholder="{% trans 'Şifrəni daxil edin' %}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i>{% trans "Ləğv et" %}
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sync me-1"></i>{% trans "Yenidən Quraşdır" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelectorAll('.toggle-password').forEach(function (button) {
+    button.addEventListener('click', function () {
+        // Use parent element (input-group) to safely find the input, even if errors are appended
+        const input = this.parentElement.querySelector('input');
+        const icon = this.querySelector('i');
+        if (input && input.type === 'password') {
+            input.type = 'text';
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        } else if (input) {
+            input.type = 'password';
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    });
+});
+
+const passwordInput = document.getElementById('{{ form.new_password1.id_for_label }}');
+if (passwordInput) {
+    const bar = document.querySelector('.password-strength-bar');
+    const text = document.getElementById('passwordStrengthText');
+    passwordInput.addEventListener('input', function () {
+        const password = this.value;
+        let score = 0;
+        if (password.length >= 8) score++;
+        if (/[a-z]/.test(password)) score++;
+        if (/[A-Z]/.test(password)) score++;
+        if (/[0-9]/.test(password)) score++;
+        if (/[^a-zA-Z0-9]/.test(password)) score++;
+
+        const percent = (score / 5) * 100;
+        bar.style.width = percent + '%';
+        bar.classList.remove('bg-danger', 'bg-warning', 'bg-success');
+        if (score <= 2) {
+            bar.classList.add('bg-danger');
+            text.textContent = '{% trans "Şifrə gücü: zəif" %}';
+            text.className = 'text-danger small';
+        } else if (score === 3 || score === 4) {
+            bar.classList.add('bg-warning');
+            text.textContent = '{% trans "Şifrə gücü: orta" %}';
+            text.className = 'text-warning small';
+        } else {
+            bar.classList.add('bg-success');
+            text.textContent = '{% trans "Şifrə gücü: güclü" %}';
+            text.className = 'text-success small';
+        }
+    });
+}
+
+const copyBtn = document.getElementById('copyBackupCodes');
+if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+        const codes = Array.from(document.querySelectorAll('.backup-code'))
+            .map(el => el.textContent.trim());
+        navigator.clipboard.writeText(codes.join('\n'))
+            .then(() => {
+                this.classList.remove('btn-outline-secondary');
+                this.classList.add('btn-success');
+                this.innerHTML = '<i class="fas fa-check me-1"></i>{% trans "Kopyalandı" %}';
+            })
+            .catch(() => alert('{% trans "Kopyalama zamanı xəta baş verdi." %}'));
+    });
+}
+</script>
+{% endblock %}

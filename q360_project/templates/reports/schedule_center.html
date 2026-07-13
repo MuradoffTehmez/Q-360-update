@@ -1,0 +1,311 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Planlaşdırılmış Hesabatlar" %}{% endblock %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb" class="mt-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Əsas Səhifə" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'reports:analytics-dashboard' %}">{% trans "Hesabatlar" %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{% trans "Planlaşdırılmış Exportlar" %}</li>
+    </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" x-data="scheduleManager()">
+    <div class="row mb-4 align-items-center">
+        <div class="col-lg-8">
+            <h1 class="h3 mb-1">{% trans "Planlaşdırılmış Hesabatlar Mərkəzi" %}</h1>
+            <p class="text-muted mb-0">
+                {% trans "Excel/PDF göndərişlərini, email siyahılarını və son icra statuslarını izləyin." %}
+            </p>
+        </div>
+        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+            <a href="{% url 'reports:blueprint-list' %}" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-layer-group me-1"></i> {% trans "Şablonlara keç" %}
+            </a>
+            <button type="button" @click="openModal = true" class="btn btn-primary">
+                <i class="fas fa-calendar-plus me-1"></i> {% trans "Yeni planlama" %}
+            </button>
+        </div>
+    </div>
+    
+    <!-- Create Schedule Modal -->
+    <div x-show="openModal" class="modal fade show" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);" aria-modal="true" role="dialog" x-transition>
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-calendar-plus me-2 text-primary"></i>{% trans "Yeni Planlama Yarat" %}</h5>
+                    <button type="button" class="btn-close" @click="openModal = false" aria-label="Close"></button>
+                </div>
+                <form id="scheduleCreateForm" @submit.prevent="submitScheduleForm">
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">{% trans "Hesabat Şablonu" %}</label>
+                                <select name="blueprint" class="form-select" required>
+                                    <option value="">{% trans "Seçin..." %}</option>
+                                    {% for bp in blueprints %}
+                                    <option value="{{ bp.id }}">{{ bp.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">{% trans "Tezlik" %}</label>
+                                <select name="frequency" class="form-select" x-model="frequency" required>
+                                    <option value="daily">{% trans "Gündəlik" %}</option>
+                                    <option value="weekly">{% trans "Həftəlik" %}</option>
+                                    <option value="monthly">{% trans "Aylıq" %}</option>
+                                    <option value="once">{% trans "Bir dəfə" %}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">{% trans "İnterval" %}</label>
+                                <input type="number" name="interval" class="form-control" value="1" min="1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">{% trans "İcra Vaxtı" %}</label>
+                                <input type="time" name="run_time" class="form-control" value="09:00" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6" x-show="frequency === 'weekly'">
+                                <label class="form-label">{% trans "Həftənin Günü" %}</label>
+                                <select name="weekday" class="form-select">
+                                    <option value="0">{% trans "Bazar ertəsi" %}</option>
+                                    <option value="1">{% trans "Çərşənbə axşamı" %}</option>
+                                    <option value="2">{% trans "Çərşənbə" %}</option>
+                                    <option value="3">{% trans "Cümə axşamı" %}</option>
+                                    <option value="4">{% trans "Cümə" %}</option>
+                                    <option value="5">{% trans "Şənbə" %}</option>
+                                    <option value="6">{% trans "Bazar" %}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6" x-show="frequency === 'monthly'">
+                                <label class="form-label">{% trans "Ayın Günü" %}</label>
+                                <input type="number" name="day_of_month" class="form-control" min="1" max="31">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <label class="form-label">{% trans "Qəbul Edənlər" %}</label>
+                                <select name="recipients" class="form-select" multiple required>
+                                    {% for user in users %}
+                                    <option value="{{ user.id }}">{{ user.get_full_name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <small class="text-muted">{% trans "Ctrl (Windows) və ya Cmd (Mac) basılı saxlayaraq bir neçə seçin." %}</small>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <label class="form-label">{% trans "Əlavə Emaillər" %}</label>
+                                <input type="text" name="additional_emails" class="form-control" placeholder="virgül ilə ayrılmış">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @click="openModal = false">{% trans "Ləğv Et" %}</button>
+                        <button type="submit" class="btn btn-primary">{% trans "Yadda Saxla" %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-xl-3">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="mb-3">{% trans "Status Xülasəsi" %}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{% trans "Aktiv" %}</span>
+                            <span class="badge bg-success">{{ stats.active|default:0 }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{% trans "Dayandırılıb" %}</span>
+                            <span class="badge bg-secondary">{{ stats.paused|default:0 }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{% trans "Uğursuz" %}</span>
+                            <span class="badge bg-danger">{{ stats.failed|default:0 }}</span>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="small text-muted">
+                        <p class="mb-2">
+                            <i class="fas fa-clock me-1"></i>{% trans "Növbəti icra" %}: {{ stats.next_run|date:"d.m.Y H:i"|default:"-" }}
+                        </p>
+                        <p class="mb-0">
+                            <i class="fas fa-envelope me-1"></i>{% trans "Emailə göndərilən" %}: {{ stats.sent_last_7_days|default:0 }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{% trans "Şablon" %}</th>
+                                    <th>{% trans "Tezlik" %}</th>
+                                    <th>{% trans "Format" %}</th>
+                                    <th>{% trans "Növbəti İcra" %}</th>
+                                    <th>{% trans "Son Status" %}</th>
+                                    <th>{% trans "Qəbul edənlər" %}</th>
+                                    <th class="text-end">{% trans "Əməliyyatlar" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for schedule in schedules %}
+                                <tr>
+                                    <td>
+                                        <div class="fw-semibold">{{ schedule.blueprint.title }}</div>
+                                        <small class="text-muted">{{ schedule.blueprint.get_data_source_display }}</small>
+                                    </td>
+                                    <td>{{ schedule.get_frequency_display }} ({{ schedule.interval }})</td>
+                                    <td>{{ schedule.get_export_format_display }}</td>
+                                    <td>{{ schedule.next_run|date:"d.m.Y H:i" }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ schedule.last_status_badge }}">
+                                            {{ schedule.get_last_status_display }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-light text-dark">
+                                            <i class="fas fa-users me-1"></i>{{ schedule.recipients.count }}
+                                        </span>
+                                        {% if schedule.additional_emails %}
+                                            <span class="badge bg-light text-dark ms-1">
+                                                <i class="fas fa-at me-1"></i>{{ schedule.additional_emails|length }}
+                                            </span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end">
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="#" class="btn btn-outline-secondary">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-outline-secondary">
+                                                <i class="fas {% if schedule.is_active %}fa-pause{% else %}fa-play{% endif %}"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-outline-primary">
+                                                <i class="fas fa-bolt"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-outline-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted py-4">
+                                        {% trans "Planlaşdırılmış hesabat yoxdur." %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0 mt-4">
+                <div class="card-body">
+                    <h5 class="mb-3">{% trans "Loglar" %}</h5>
+                    <div class="timeline list-unstyled mb-0">
+                        {% for log in recent_logs %}
+                        <div class="border-start ps-3 mb-3">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="mb-1">{{ log.schedule.blueprint.title }}</h6>
+                                    <p class="text-muted small mb-1">
+                                        {{ log.triggered_at|date:"d.m.Y H:i" }} • {{ log.get_status_display }}
+                                    </p>
+                                    {% if log.message %}
+                                        <p class="small text-muted mb-0">{{ log.message }}</p>
+                                    {% endif %}
+                                </div>
+                                {% if log.export_log %}
+                                <a href="#" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="text-muted small">
+                            {% trans "Hələ log qeydi yoxdur." %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function scheduleManager() {
+    return {
+        openModal: false,
+        frequency: 'weekly',
+        async submitScheduleForm(e) {
+            const form = e.target;
+            const formData = new FormData(form);
+            // Convert multiple select to array
+            const recipients = Array.from(form.querySelectorAll('select[name="recipients"] option:checked')).map(el => el.value);
+            
+            const data = {
+                blueprint: formData.get('blueprint'),
+                frequency: formData.get('frequency'),
+                interval: formData.get('interval'),
+                run_time: formData.get('run_time'),
+                recipients: recipients,
+                is_active: true
+            };
+            
+            if (this.frequency === 'weekly') data.weekday = formData.get('weekday');
+            if (this.frequency === 'monthly') data.day_of_month = formData.get('day_of_month');
+            if (formData.get('additional_emails')) {
+                // If the model expects JSON array or string
+                data.additional_emails = formData.get('additional_emails').split(',').map(e => e.trim());
+            }
+
+            try {
+                const response = await fetch('/api/v1/reports/schedules/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    this.openModal = false;
+                    form.reset();
+                    if(typeof showToast === 'function') showToast('Uğurla yaradıldı', 'success');
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    const err = await response.json();
+                    alert('Xəta: ' + JSON.stringify(err));
+                }
+            } catch(err) {
+                console.error(err);
+                alert('Sistem xətası baş verdi.');
+            }
+        }
+    }
+}
+</script>
+{% endblock %}

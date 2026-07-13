@@ -1,0 +1,225 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Dashboard" %}{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block extra_css %}
+<!-- Tailwind CSS handles everything now -->
+{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <div class="flex items-center justify-between mb-2">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{% trans "Analytics Dashboard" %}</h1>
+    </div>
+    
+    <!-- Real-time Statistics -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {% for stat in stats %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-soft p-6 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-card hover:-translate-y-1 group relative overflow-hidden">
+            <div class="absolute top-0 right-0 -mr-4 -mt-4 w-24 h-24 bg-gradient-to-br from-primary-100 to-transparent dark:from-primary-900/20 rounded-full opacity-50"></div>
+            <div class="flex items-center justify-between relative z-10">
+                <div>
+                    <span class="block text-3xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary-600 transition-colors">{{ stat.current_value }}{{ stat.unit }}</span>
+                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ stat.description }}</span>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-primary-50 dark:bg-primary-900/50 flex items-center justify-center text-primary-600 dark:text-primary-400 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-chart-line text-xl"></i>
+                </div>
+            </div>
+            {% if stat.previous_value %}
+                {% with change=stat.current_value|sub:stat.previous_value %}
+                <div class="mt-4 flex items-center text-sm relative z-10">
+                    <span class="{% if change >= 0 %}text-success-600 dark:text-success-400{% else %}text-error-600 dark:text-error-400{% endif %} font-medium flex items-center">
+                        <i class="fas {% if change >= 0 %}fa-arrow-up{% else %}fa-arrow-down{% endif %} mr-1"></i>
+                        {{ change|abs }}
+                    </span>
+                    <span class="ml-2 text-gray-400 dark:text-gray-500">{% trans "vs last period" %}</span>
+                </div>
+                {% endwith %}
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- KPI Summary -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-soft border border-gray-100 dark:border-gray-700 overflow-hidden">
+        <div class="px-6 py-5 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50">
+            <h4 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
+                <i class="fas fa-bullseye text-primary-500 mr-2"></i> {% trans "Key Performance Indicators" %}
+            </h4>
+        </div>
+        <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {% for kpi in kpi_stats %}
+                <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-gray-700 transition-all hover:border-primary-300 dark:hover:border-primary-700">
+                    <h5 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 truncate" title="{{ kpi.name }}">{{ kpi.name }}</h5>
+                    <div class="flex items-end space-x-2 mb-3">
+                        <span class="text-2xl font-bold text-gray-900 dark:text-white">{{ kpi.value }}{{ kpi.unit }}</span>
+                        {% if kpi.target %}
+                            <span class="text-xs text-gray-500 dark:text-gray-400 mb-1">/ {{ kpi.target }}{{ kpi.unit }}</span>
+                        {% endif %}
+                    </div>
+                    {% if kpi.target %}
+                        {% with percentage=kpi.value|div:kpi.target|mul:100 %}
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-2 overflow-hidden">
+                            <div class="bg-gradient-to-r from-primary-500 to-indigo-600 h-2 rounded-full transition-all duration-1000 ease-out" style="width: {{ percentage|floatformat:0 }}%"></div>
+                        </div>
+                        {% endwith %}
+                    {% endif %}
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center">
+                        <i class="far fa-calendar-alt mr-1.5 text-gray-400"></i> {{ kpi.period_start|date:"M d" }} - {{ kpi.period_end|date:"M d" }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Widgets -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        {% for widget in widgets %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-soft border border-gray-100 dark:border-gray-700 flex flex-col transition-all duration-300 hover:shadow-card">
+            <div class="px-6 py-5 border-b border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/50">
+                <h5 class="text-base font-semibold text-gray-900 dark:text-white flex items-center">
+                    {{ widget.title }}
+                </h5>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ widget.description }}</p>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-center min-h-[300px]">
+                {% if widget.widget_type == 'realtime_stats' %}
+                <div id="realtime-chart-{{ widget.id }}" class="w-full h-64 relative"></div>
+                {% elif widget.widget_type == 'kpi_summary' %}
+                <div class="relative w-full h-64"><canvas id="kpi-chart-{{ widget.id }}"></canvas></div>
+                {% elif widget.widget_type == 'trend_analysis' %}
+                <div class="relative w-full h-64"><canvas id="trend-chart-{{ widget.id }}"></canvas></div>
+                {% elif widget.widget_type == 'forecasting' %}
+                <div class="relative w-full h-64"><canvas id="forecast-chart-{{ widget.id }}"></canvas></div>
+                {% else %}
+                <div class="text-center text-gray-400 dark:text-gray-500 py-8">
+                    <i class="fas fa-chart-bar text-5xl mb-4 opacity-50"></i>
+                    <p class="text-sm font-medium">{% trans "Data visualization" %}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-gray-200 dark:border-gray-800 mt-8">
+        <a href="{% url 'dashboard:kpi_dashboard' %}" class="inline-flex items-center px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+            <i class="fas fa-chart-line mr-2"></i> {% trans "KPI Dashboard" %}
+        </a>
+        <a href="{% url 'dashboard:trend_analysis' %}" class="inline-flex items-center px-4 py-2.5 bg-secondary-600 hover:bg-secondary-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500">
+            <i class="fas fa-chart-area mr-2"></i> {% trans "Trend Analysis" %}
+        </a>
+        <a href="{% url 'dashboard:forecasting_dashboard' %}" class="inline-flex items-center px-4 py-2.5 bg-success-600 hover:bg-success-700 text-white text-sm font-medium rounded-lg shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-success-500">
+            <i class="fas fa-project-diagram mr-2"></i> {% trans "Forecasting" %}
+        </a>
+        <button id="update-stats-btn" class="inline-flex items-center px-4 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium rounded-lg shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 ml-auto">
+            <i class="fas fa-sync-alt mr-2 text-gray-500 dark:text-gray-400"></i> {% trans "Update Statistics" %}
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script>
+    // Update real-time stats (using new getCSRFToken helper)
+    const updateStatsBtn = document.getElementById('update-stats-btn');
+    if (updateStatsBtn) {
+        updateStatsBtn.addEventListener('click', function() {
+            const csrfToken = getCSRFToken();
+            if (!csrfToken) {
+                console.error('CSRF token not found');
+                showError('CSRF token tapılmadı');
+                return;
+            }
+
+            fetch('{% url "dashboard:update_realtime_stats" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    refreshDashboard();
+                } else {
+                    showError(data.message || 'Xəta baş verdi');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showError('Statistika yenilənərkən xəta baş verdi');
+            });
+        });
+    }
+
+    // Initialize charts for widgets
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sample chart initialization - in a real app, this would use actual data
+        const widgets = {{ widgets|length }};
+        
+        // Example chart for KPI widget
+        {% for widget in widgets %}
+        if ('{{ widget.widget_type }}' === 'kpi_summary') {
+            const ctx = document.getElementById('kpi-chart-{{ widget.id }}').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['{% trans "Active Users" %}', '{% trans "Evaluations" %}', '{% trans "Departments" %}', '{% trans "Avg Performance" %}'],
+                    datasets: [{
+                        label: '{% trans "Current Values" %}',
+                        data: [120, 8, 15, 4.2],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',  /* primary-500 */
+                            'rgba(99, 102, 241, 0.7)',  /* indigo-500 */
+                            'rgba(16, 185, 129, 0.7)',  /* emerald-500 */
+                            'rgba(245, 158, 11, 0.7)'   /* amber-500 */
+                        ],
+                        borderColor: [
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(99, 102, 241, 1)',
+                            'rgba(16, 185, 129, 1)',
+                            'rgba(245, 158, 11, 1)'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        {% endfor %}
+    });
+</script>
+{% endblock %}

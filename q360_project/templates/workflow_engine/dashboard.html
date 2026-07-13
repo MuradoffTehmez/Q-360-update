@@ -1,0 +1,60 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "İş Axını Mühərriki (Workflow Engine)" %}{% endblock %}
+
+{% block page_header %}
+<div class="mb-6 animate-fade-in-down">
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">{% trans "İş Axını Mühərriki" %}</h1>
+    <p class="text-gray-600 dark:text-gray-400">{% trans "İş axınları, addımlar, keçidlər və instansiyaların idarə olunması." %}</p>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">{% trans "İş Axını Şablonları" %}</h2>
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+            {{ templates|length }} {% trans "şablon" %}
+        </span>
+    </div>
+    
+    <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
+        {% if templates %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-gray-50 dark:bg-gray-700">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{% trans "Şablonun Adı" %}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{% trans "Açıqlama" %}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{% trans "Status" %}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{% trans "Yaradılma Tarixi" %}</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                    {% for tmpl in templates %}
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">{{ tmpl.name }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">{{ tmpl.description|default:"-" }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            {% if tmpl.is_active %}
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">{% trans "Aktiv" %}</span>
+                            {% else %}
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">{% trans "Passiv" %}</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ tmpl.created_at|date:"d.m.Y H:i" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-gray-600 dark:text-gray-400 text-center py-8">
+            <i class="fas fa-inbox text-3xl mb-3 block text-gray-300"></i>
+            {% trans "Sistemdə heç bir iş axını şablonu tapılmadı." %}
+        </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

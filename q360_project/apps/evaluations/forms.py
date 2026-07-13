@@ -1,0 +1,214 @@
+"""
+Forms for evaluations app.
+"""
+from django import forms
+from django.core.exceptions import ValidationError
+from .models import (
+    EvaluationCampaign, Question, QuestionCategory,
+    EvaluationAssignment, Response
+)
+
+
+class EvaluationCampaignForm(forms.ModelForm):
+    """Form for creating/editing evaluation campaigns."""
+
+    class Meta:
+        model = EvaluationCampaign
+        fields = ['title', 'description', 'start_date', 'end_date',
+                  'is_anonymous', 'allow_self_evaluation',
+                  'weight_self', 'weight_supervisor', 'weight_peer', 'weight_subordinate',
+                  'target_departments', 'target_users']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'start_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'weight_self': forms.NumberInput(attrs={
+                'class': 'form-control weight-input', 'min': '0', 'max': '100', 'step': '0.01',
+            }),
+            'weight_supervisor': forms.NumberInput(attrs={
+                'class': 'form-control weight-input', 'min': '0', 'max': '100', 'step': '0.01',
+            }),
+            'weight_peer': forms.NumberInput(attrs={
+                'class': 'form-control weight-input', 'min': '0', 'max': '100', 'step': '0.01',
+            }),
+            'weight_subordinate': forms.NumberInput(attrs={
+                'class': 'form-control weight-input', 'min': '0', 'max': '100', 'step': '0.01',
+            }),
+            'target_departments': forms.SelectMultiple(attrs={'class': 'form-select'}),
+            'target_users': forms.SelectMultiple(attrs={'class': 'form-select'}),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        start_date = cleaned_data.get('start_date')
+        end_date = cleaned_data.get('end_date')
+
+        if start_date and end_date:
+            if end_date <= start_date:
+                raise ValidationError('Bitmə tarixi başlama tarixindən sonra olmalıdır.')
+
+        # Validate weights sum to 100%
+        from decimal import Decimal
+        weight_fields = ['weight_self', 'weight_supervisor', 'weight_peer', 'weight_subordinate']
+        weights = [cleaned_data.get(f) for f in weight_fields if cleaned_data.get(f) is not None]
+
+        if weights:
+            total = sum(Decimal(str(w)) for w in weights)
+            if total != Decimal('100.00'):
+                raise ValidationError(
+                    f'Ağırlıq çəkilərinin cəmi 100% olmalıdır. Hazırda: {total}%'
+                )
+
+        return cleaned_data
+
+
+class QuestionForm(forms.ModelForm):
+    """Form for creating/editing questions."""
+
+    class Meta:
+        model = Question
+        fields = ['category', 'text', 'question_type', 'max_score',
+                  'is_required', 'order']
+        widgets = {
+            'category': forms.Select(attrs={'class': 'form-select'}),
+            'text': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'question_type': forms.Select(attrs={'class': 'form-select'}),
+            'max_score': forms.NumberInput(attrs={'class': 'form-control'}),
+            'order': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
+
+class QuestionCategoryForm(forms.ModelForm):
+    """Form for creating/editing question categories."""
+
+    class Meta:
+        model = QuestionCategory
+        fields = ['name', 'description', 'order']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'order': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
+
+class ResponseForm(forms.ModelForm):
+    """Form for submitting evaluation responses."""
+
+    class Meta:
+        model = Response
+        fields = ['score', 'boolean_answer', 'text_answer', 'comment']
+        widgets = {
+            'score': forms.NumberInput(attrs={'class': 'form-control'}),
+            'text_answer': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'comment': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        question = self.instance.question if self.instance else None
+
+        if question:
+            if question.question_type == 'scale' and not cleaned_data.get('score'):
+                raise ValidationError('Bal skalası üçün bal daxil edilməlidir.')
+            elif question.question_type == 'boolean' and cleaned_data.get('boolean_answer') is None:
+                raise ValidationError('Bəli/Xeyr sualı üçün cavab seçilməlidir.')
+            elif question.question_type == 'text' and not cleaned_data.get('text_answer'):
+                raise ValidationError('Mətn cavabı daxil edilməlidir.')
+
+        return cleaned_data
+
+
+class EvaluationAssignmentForm(forms.ModelForm):
+    """Form for creating evaluation assignments."""
+
+    class Meta:
+        model = EvaluationAssignment
+        fields = ['campaign', 'evaluator', 'evaluatee', 'relationship']
+        widgets = {
+            'campaign': forms.Select(attrs={'class': 'form-select'}),
+            'evaluator': forms.Select(attrs={'class': 'form-select'}),
+            'evaluatee': forms.Select(attrs={'class': 'form-select'}),
+            'relationship': forms.Select(attrs={'class': 'form-select'}),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        evaluator = cleaned_data.get('evaluator')
+        evaluatee = cleaned_data.get('evaluatee')
+        relationship = cleaned_data.get('relationship')
+
+        if evaluator and evaluatee:
+            # Check if evaluator can evaluate evaluatee
+            if not evaluator.can_evaluate(evaluatee):
+                raise ValidationError(
+                    'Bu istifadəçinin göstərilən şəxsi qiymətləndirməyə icazəsi yoxdur.'
+                )
+
+            # Self-evaluation check
+            if relationship == 'self' and evaluator != evaluatee:
+                raise ValidationError(
+                    'Özünüdəyərləndirmə üçün qiymətləndirən və qiymətləndirilən eyni olmalıdır.'
+                )
+
+            # Check for duplicates
+            if EvaluationAssignment.objects.filter(
+                campaign=cleaned_data.get('campaign'),
+                evaluator=evaluator,
+                evaluatee=evaluatee
+            ).exists():
+                raise ValidationError('Bu tapşırıq artıq mövcuddur.')
+
+        return cleaned_data
+
+
+class BulkAssignmentForm(forms.Form):
+    """Form for creating bulk evaluation assignments."""
+
+    campaign = forms.ModelChoiceField(
+        queryset=EvaluationCampaign.objects.filter(status='draft'),
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
+    include_self_evaluation = forms.BooleanField(
+        required=False,
+        initial=True,
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+
+    include_supervisor = forms.BooleanField(
+        required=False,
+        initial=True,
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+
+    include_peers = forms.BooleanField(
+        required=False,
+        initial=True,
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+
+    include_subordinates = forms.BooleanField(
+        required=False,
+        initial=True,
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+
+
+class CampaignQuestionForm(forms.Form):
+    """Form for assigning questions to a campaign."""
+
+    question = forms.ModelChoiceField(
+        queryset=Question.objects.filter(is_active=True),
+        label='Sual',
+        widget=forms.Select(attrs={'class': 'form-select'}),
+        help_text='Kampaniyaya əlavə etmək istədiyiniz sualı seçin'
+    )
+
+    order = forms.IntegerField(
+        label='Sıra',
+        initial=1,
+        min_value=1,
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'min': '1'}),
+        help_text='Sualın kampaniyadakı sırası'
+    )

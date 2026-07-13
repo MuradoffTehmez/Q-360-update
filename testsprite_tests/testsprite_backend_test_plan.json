@@ -1,0 +1,32 @@
+[
+  {
+    "id": "TC001",
+    "title": "jwt_token_generation",
+    "description": "Test the /api/auth/token/ endpoint by submitting valid username and password to verify that JWT access and refresh tokens are correctly generated and returned."
+  },
+  {
+    "id": "TC002",
+    "title": "jwt_token_refresh",
+    "description": "Test the /api/auth/token/refresh/ endpoint by submitting a valid refresh token to verify that a new JWT access token is issued successfully."
+  },
+  {
+    "id": "TC003",
+    "title": "get_user_notifications",
+    "description": "Test the /api/notifications/ endpoint with a valid authentication token to verify that the authenticated user can retrieve their list of notifications."
+  },
+  {
+    "id": "TC004",
+    "title": "get_unread_notification_count",
+    "description": "Test the /api/unread-count/ endpoint with a valid authentication token to verify that the authenticated user can retrieve the correct count of unread notifications."
+  },
+  {
+    "id": "TC005",
+    "title": "system_health_check",
+    "description": "Test the /health/ endpoint to verify that the system health status is correctly reported, including database and cache connectivity, without requiring authentication."
+  },
+  {
+    "id": "TC006",
+    "title": "system_readiness_check",
+    "description": "Test the /ready/ endpoint to verify that the system readiness status is correctly reported and the system is ready to serve requests, without requiring authentication."
+  }
+]

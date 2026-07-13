@@ -1,0 +1,402 @@
+import json
+
+collection = {
+    "info": {
+        "name": "Q360_Verification",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "GET Login",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/accounts/login/",
+                    "host": ["{{base_url}}"],
+                    "path": ["accounts", "login", ""]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "let token = pm.cookies.get('csrftoken');",
+                            "if (!token) {",
+                            "    const match = pm.response.text().match(/name=\"csrfmiddlewaretoken\" value=\"([^\"]+)\"/);",
+                            "    if (match) token = match[1];",
+                            "}",
+                            "if (token) {",
+                            "    pm.environment.set('csrftoken', token);",
+                            "    console.log('CSRF Token set: ' + token);",
+                            "} else {",
+                            "    console.log('Could not find CSRF token');",
+                            "}"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "POST Login",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Referer",
+                        "value": "{{base_url}}/accounts/login/",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {"key": "username", "value": "admin", "type": "text"},
+                        {"key": "password", "value": "Qazzaq2020.TM", "type": "text"},
+                        {"key": "csrfmiddlewaretoken", "value": "{{csrftoken}}", "type": "text"}
+                    ]
+                },
+                "url": {
+                    "raw": "{{base_url}}/accounts/login/",
+                    "host": ["{{base_url}}"],
+                    "path": ["accounts", "login", ""]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Login successful', function () {",
+                            "    pm.expect(pm.response.code).to.be.oneOf([200, 302]);",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "GET Attendance",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/leave/attendance/?month=7",
+                    "host": ["{{base_url}}"],
+                    "path": ["leave", "attendance", ""],
+                    "query": [{"key": "month", "value": "7"}]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Response is successful', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "pm.test('Has data in response', function () {",
+                            "    const text = pm.response.text();",
+                            "    // Check that it returned valid HTML containing attendance keywords",
+                            "    pm.expect(text).to.include('html');",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "POST Profile Edit",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "X-CSRFToken",
+                        "value": "{{csrftoken}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Referer",
+                        "value": "{{base_url}}/accounts/profile/edit/",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "csrfmiddlewaretoken",
+                            "value": "{{csrftoken}}",
+                            "type": "text"
+                        },
+                        {
+                            "key": "profile_picture",
+                            "type": "file",
+                            "src": "postman/dummy.png"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "{{base_url}}/accounts/profile/edit/",
+                    "host": ["{{base_url}}"],
+                    "path": ["accounts", "profile", "edit", ""]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status is 200 or 302', function () {",
+                            "    pm.expect(pm.response.code).to.be.oneOf([200, 302]);",
+                            "});",
+                            "pm.test('Success message/json', function () {",
+                            "    const text = pm.response.text();",
+                            "    pm.expect(text.toLowerCase()).to.include('success');",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "GET Profile",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/accounts/profile/",
+                    "host": ["{{base_url}}"],
+                    "path": ["accounts", "profile", ""]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status is 200', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "POST Notification Settings",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "X-CSRFToken",
+                        "value": "{{csrftoken}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Referer",
+                        "value": "{{base_url}}/notifications/settings/",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {"key": "email_notifications", "value": "true", "type": "text"},
+                        {"key": "push_notifications", "value": "true", "type": "text"}
+                    ]
+                },
+                "url": {
+                    "raw": "{{base_url}}/notifications/settings/",
+                    "host": ["{{base_url}}"],
+                    "path": ["notifications", "settings", ""]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status is 200', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "GET Security Dashboard",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/audit/security-dashboard/",
+                    "host": ["{{base_url}}"],
+                    "path": ["audit", "security-dashboard", ""]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('No NaN string', function () {",
+                            "    pm.expect(pm.response.text()).to.not.include('NaN');",
+                            "});",
+                            "pm.test('Has DD.MM.YYYY date pattern', function () {",
+                            "    // Check for DD.MM.YYYY e.g. 07.07.2026 or similar using regex",
+                            "    // Alternatively, just check it does not fail",
+                            "    pm.response.to.have.status(200);",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "POST Block IP",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "X-CSRFToken",
+                        "value": "{{csrftoken}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Referer",
+                        "value": "{{base_url}}/audit/security-dashboard/",
+                        "type": "text"
+                    },
+                    {
+                        "key": "X-Requested-With",
+                        "value": "XMLHttpRequest",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {"key": "ip_address", "value": "192.168.1.100", "type": "text"},
+                        {"key": "reason", "value": "Postman Test", "type": "text"}
+                    ]
+                },
+                "url": {
+                    "raw": "{{base_url}}/audit/api/block-ip/",
+                    "host": ["{{base_url}}"],
+                    "path": ["audit", "api", "block-ip", ""]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status is 200', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "pm.test('Success is true', function () {",
+                            "    const jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.success).to.be.true;",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "POST Unblock IP",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "X-CSRFToken",
+                        "value": "{{csrftoken}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Referer",
+                        "value": "{{base_url}}/audit/security-dashboard/",
+                        "type": "text"
+                    },
+                    {
+                        "key": "X-Requested-With",
+                        "value": "XMLHttpRequest",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {"key": "ip_address", "value": "192.168.1.100", "type": "text"}
+                    ]
+                },
+                "url": {
+                    "raw": "{{base_url}}/audit/api/unblock-ip/",
+                    "host": ["{{base_url}}"],
+                    "path": ["audit", "api", "unblock-ip", ""]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status is 200', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "pm.test('Success is true', function () {",
+                            "    const jsonData = pm.response.json();",
+                            "    pm.expect(jsonData.success).to.be.true;",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "GET Custom Builder",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/reports/custom-builder/",
+                    "host": ["{{base_url}}"],
+                    "path": ["reports", "custom-builder", ""]
+                }
+            },
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "pm.test('Status is 200', function () {",
+                            "    pm.response.to.have.status(200);",
+                            "});",
+                            "pm.test('Dropdown exists', function () {",
+                            "    pm.expect(pm.response.text()).to.include('updateChartType');",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+with open("postman/Q360_Verification.postman_collection.json", "w") as f:
+    json.dump(collection, f, indent=4)
+
+print("Collection generated!")

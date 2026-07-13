@@ -1,0 +1,785 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="az" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <meta name="csrf-token" content="9hdJQk0dHhaA4SN6Ub35vqvWqzBqS6ZON3d712uebAceVVEJ8RZsq85pw1XgHh2g">
+    <title>404 - Səhifə Tapılmadı | Q360</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Q360 - Professional 360° Performance Evaluation System for comprehensive talent management and employee development.">
+    <meta name="keywords" content="performance evaluation, 360 feedback, talent management, HR software, employee development">
+    <meta name="author" content="Q360 Team">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.svg">
+    <link rel="shortcut icon" type="image/svg+xml" href="/static/images/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicon.svg">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6', // Corporate Blue
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            500: '#64748b', // Slate
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        success: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        },
+                        warning: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        },
+                        error: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.3s ease-in-out',
+                        'fade-in-up': 'fadeInUp 0.4s ease-out',
+                        'fade-in-down': 'fadeInDown 0.4s ease-out',
+                        'slide-in': 'slideIn 0.3s ease-out',
+                        'slide-in-right': 'slideInRight 0.3s ease-out',
+                        'bounce-in': 'bounceIn 0.4s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeInDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0)' },
+                        },
+                        bounceIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 10px rgba(0, 0, 0, 0.05)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'elevated': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            },
+            plugins: [
+                function({ addUtilities }) {
+                    addUtilities({
+                        '.text-shadow': {
+                            'text-shadow': '0 2px 4px rgba(0, 0, 0, 0.1)',
+                        },
+                        '.text-shadow-md': {
+                            'text-shadow': '0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08)',
+                        },
+                        '.text-shadow-lg': {
+                            'text-shadow': '0 15px 30px rgba(0, 0, 0, 0.11), 0 5px 15px rgba(0, 0, 0, 0.08)',
+                        },
+                    })
+                }
+            ]
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Alpine.js for interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Modern Thin Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Smooth transitions */
+        * {
+            transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 200ms;
+        }
+
+        /* Focus styles */
+        .focus-ring:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Loading animation */
+        @keyframes shimmer {
+            0% {
+                background-position: -468px 0;
+            }
+            100% {
+                background-position: 468px 0;
+            }
+        }
+
+        .shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+            background-size: 800px 104px;
+        }
+
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            
+            .print-break {
+                page-break-after: always;
+            }
+        }
+    </style>
+
+    
+
+    <!-- Dark Mode Script (must load before body) -->
+    <script>
+        // Check for saved theme preference or default to 'light'
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+        }
+
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    const perfEntries = performance.getEntriesByType('navigation');
+                    if (perfEntries.length > 0) {
+                        const navEntry = perfEntries[0];
+                        console.log('Page load time:', navEntry.loadEventEnd - navEntry.fetchStart, 'ms');
+                    }
+                }, 0);
+            });
+        }
+    </script>
+
+    <!-- Q360 API Utilities & Toast Notifications -->
+    <link rel="stylesheet" href="/static/css/toast.css?v=2">
+    <!-- IMPORTANT: auth-fix.js must load FIRST to save original Storage methods -->
+    <script src="/static/js/auth-fix.js?v=2"></script>
+    <script src="/static/js/api-utils.js?v=2"></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans antialiased">
+    <!-- Loading Spinner -->
+    <div id="global-loader" x-ref="globalLoader" class="fixed inset-0 bg-white dark:bg-gray-900 z-50 flex items-center justify-center transition-opacity duration-300" x-data="{ show: true }" x-show="show" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin-slow mx-auto mb-4"></div>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">Loading Q360...</p>
+        </div>
+    </div>
+
+    <div class="min-h-screen flex flex-col" x-data="{ sidebarOpen: window.innerWidth >= 768, darkMode: localStorage.theme === 'dark' }" x-init="if ($refs.globalLoader) { setTimeout(() => $refs.globalLoader.style.display = 'none', 500) }">
+        <!-- Navigation -->
+        
+
+<nav class="bg-white dark:bg-gray-900 shadow-lg border-b border-blue-500/30" x-data="{ mobileMenuOpen: false }">
+    <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <div class="flex items-center flex-shrink-0">
+                <a href="/dashboard/" class="flex items-center space-x-2 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                    <div class="bg-blue-50 dark:bg-gray-800 p-1.5 rounded-lg shadow-md group-hover:shadow-lg transition-all">
+                        <i class="fas fa-chart-pie text-blue-600 text-lg"></i>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="text-xl font-bold tracking-tight">Q360</span>
+                        <span class="text-xs text-gray-500 dark:text-gray-400 block -mt-0.5">Performance Suite</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            
+
+            <!-- Right side items -->
+            <div class="flex items-center space-x-4">
+                <!-- Quick Send Feedback Button -->
+                
+
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="p-1.5 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 group" title="Toggle Dark Mode">
+                    <i class="fas fa-moon dark:hidden text-base group-hover:scale-110 transition-transform"></i>
+                    <i class="fas fa-sun hidden dark:inline text-base group-hover:scale-110 transition-transform"></i>
+                </button>
+
+                <!-- Language Switcher -->
+                <div class="hidden md:block">
+                    
+
+<!-- Language Switcher Component -->
+<div class="language-switcher">
+    <form action="/i18n/setlang/" method="post" id="languageForm">
+        <input type="hidden" name="csrfmiddlewaretoken" value="9hdJQk0dHhaA4SN6Ub35vqvWqzBqS6ZON3d712uebAceVVEJ8RZsq85pw1XgHh2g">
+        <input name="next" type="hidden" value="">
+        <select name="language" class="form-select form-select-sm" onchange="this.form.submit()" style="width: auto;">
+            
+            
+            
+                <option value="az" selected>
+                    
+                        <span class="fi fi-az"></span> AZ
+                    
+                </option>
+            
+                <option value="en" >
+                    
+                        <span class="fi fi-gb"></span> EN
+                    
+                </option>
+            
+        </select>
+    </form>
+</div>
+
+<style>
+.language-switcher {
+    display: inline-block;
+}
+.language-switcher select {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.language-switcher select:hover {
+    border-color: #0d6efd;
+}
+</style>
+
+                </div>
+
+                
+                <!-- Login Button for non-authenticated users -->
+                <a href="/accounts/login/" class="bg-white text-blue-600 hover:bg-blue-50 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg group">
+                    <i class="fas fa-sign-in-alt mr-1.5 group-hover:scale-110 transition-transform"></i>
+                    Login
+                </a>
+                
+
+                <!-- Mobile menu button -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-1.5 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 ml-1">
+                    <i class="fas fa-bars text-base transform transition-transform duration-200" :class="{ 'rotate-90': mobileMenuOpen }"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    
+</nav>
+
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Sidebar -->
+            
+
+            <!-- Main Content -->
+            <main class="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 transition-all duration-300" :class="sidebarOpen ? 'md:ml-64' : 'md:ml-20'">
+                <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                    <!-- Breadcrumb -->
+                    
+                    
+                    
+
+                    <!-- Messages -->
+                    
+
+                    <!-- Page Header -->
+                    
+                    
+                    
+
+                    <!-- Main Content -->
+                    <div class="animate-fade-in">
+                        
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center p-4">
+    <div class="max-w-2xl w-full">
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-500 to-indigo-500 px-8 py-6">
+                <div class="flex items-center justify-center">
+                    <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold text-white text-center mt-4">404</h1>
+                <p class="text-xl text-white text-center mt-2">Səhifə Tapılmadı</p>
+            </div>
+
+            <!-- Content -->
+            <div class="px-8 py-10">
+                <div class="text-center mb-8">
+                    <p class="text-lg text-gray-700 mb-4">
+                        Axtardığınız səhifə mövcud deyil və ya köçürülmüşdür.
+                    </p>
+                    <p class="text-gray-600">
+                        URL ünvanını yoxlayın və ya aşağıdakı keçidlərdən istifadə edin.
+                    </p>
+                </div>
+
+                <!-- Info boxes -->
+                <div class="grid md:grid-cols-2 gap-4 mb-8">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-500 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div>
+                                <h3 class="font-semibold text-blue-800 mb-1">Niyə bu baş verdi?</h3>
+                                <p class="text-sm text-blue-700">
+                                    Daxil etdiyiniz URL ünvanı yanlış ola bilər və ya bu səhifə artıq mövcud deyil.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-indigo-500 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                            </svg>
+                            <div>
+                                <h3 class="font-semibold text-indigo-800 mb-1">Nə edə bilərsiniz?</h3>
+                                <p class="text-sm text-indigo-700">
+                                    Ana səhifəyə qayıdın və ya axtarış funksiyasından istifadə edin.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/dashboard/" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 shadow-md hover:shadow-lg">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                        Ana Səhifə
+                    </a>
+                    <a href="javascript:history.back()" class="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-all duration-200">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        Geri Qayıt
+                    </a>
+                    <a href="/support/" class="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-all duration-200">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        Dəstək
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-gray-50 px-8 py-4 border-t">
+                <p class="text-sm text-gray-500 text-center">
+                    Problem davam edərsə, <a href="/support/" class="text-blue-600 hover:underline">dəstək sorğusu</a> göndərin.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        
+
+
+<footer class="bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-8">
+            <!-- Brand Section -->
+            <div class="lg:col-span-2">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-2 rounded-lg shadow-lg">
+                        <i class="fas fa-chart-pie text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Q360</h3>
+                        <p class="text-sm text-blue-600 dark:text-blue-400 font-medium">Performance Suite</p>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    Professional 360° Performance Evaluation System designed to help organizations achieve excellence through comprehensive talent management and development solutions.
+                </p>
+                <div class="flex space-x-3">
+                    <a href="https://www.linkedin.com/company/q360-performance" target="_blank" rel="noopener noreferrer" class="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400" title="LinkedIn">
+                        <i class="fab fa-linkedin text-sm"></i>
+                    </a>
+                    <a href="https://twitter.com/q360performance" target="_blank" rel="noopener noreferrer" class="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400" title="Twitter">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="https://www.facebook.com/q360performance" target="_blank" rel="noopener noreferrer" class="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400" title="Facebook">
+                        <i class="fab fa-facebook text-sm"></i>
+                    </a>
+                    <a href="https://github.com/q360-performance" target="_blank" rel="noopener noreferrer" class="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400" title="GitHub">
+                        <i class="fab fa-github text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Platform -->
+            <div class="lg:col-span-1">
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4 flex items-center">
+                    <i class="fas fa-cube mr-2 text-blue-500 text-xs"></i>
+                    Platforma
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="/dashboard/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Panel
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/evaluations/my-assignments/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Qiymətləndirmələr
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/competencies/my-skills/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Bacarıqlar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/training/my-trainings/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Təlim
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/engagement/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Engagement
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/wellness/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Wellness
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="lg:col-span-1">
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4 flex items-center">
+                    <i class="fas fa-book mr-2 text-green-500 text-xs"></i>
+                    Resurslar
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="/help/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Help Center
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/reports/my-reports/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Reports & Analytics
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/docs/" target="_blank" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            API Documentation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/help/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Support & Help
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="lg:col-span-1">
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4 flex items-center">
+                    <i class="fas fa-shield-alt mr-2 text-purple-500 text-xs"></i>
+                    Support
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="/privacy/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/terms/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Terms of Service
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/audit/security-dashboard/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Security & Compliance
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            System Status
+                            <span class="ml-2 px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs rounded-full">Active</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="lg:col-span-1">
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4 flex items-center">
+                    <i class="fas fa-envelope mr-2 text-red-500 text-xs"></i>
+                    Contact
+                </h4>
+                <div class="space-y-3">
+                    <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-envelope mr-2 text-blue-500"></i>
+                        <a href="mailto:support@q360.az" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                            support@q360.az
+                        </a>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-phone mr-2 text-green-500"></i>
+                        <span>+994 12 345 67 89</span>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-map-marker-alt mr-2 text-red-500"></i>
+                        <span>Baku, Azerbaijan</span>
+                    </div>
+                </div>
+                
+                <!-- Newsletter Signup -->
+                <div class="mt-4">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">Stay updated with our newsletter</p>
+                    <div class="flex space-x-2">
+                        <input type="email" placeholder="Your email" 
+                            class="flex-1 px-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <button class="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-lg transition-colors duration-200">
+                            <i class="fas fa-paper-plane text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+                <!-- Copyright -->
+                <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                    <span>© 2025 Q360 Performance Suite. All rights reserved.</span>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-globe text-xs"></i>
+                        <span>Made with ❤️ in Azerbaijan</span>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="flex items-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-code-branch text-xs"></i>
+                        <span>v2.0.0</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-rocket text-xs text-purple-500"></i>
+                        <span>Enhanced with Engagement</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-shield-check text-xs text-green-500"></i>
+                        <span>Secure & Reliable</span>
+                    </div>
+                    <button onclick="toggleDarkMode()" class="flex items-center space-x-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 group">
+                        <i class="fas fa-moon dark:hidden group-hover:scale-110 transition-transform"></i>
+                        <i class="fas fa-sun hidden dark:inline group-hover:scale-110 transition-transform"></i>
+                        <span class="text-xs">Theme</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all duration-300 transform translate-y-16 opacity-0 no-print focus-ring z-40">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.style.colorScheme = 'light';
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                html.style.colorScheme = 'dark';
+                localStorage.theme = 'dark';
+            }
+        }
+
+        // Back to top functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('translate-y-16', 'opacity-0');
+                    backToTopButton.classList.add('translate-y-0', 'opacity-100');
+                } else {
+                    backToTopButton.classList.remove('translate-y-0', 'opacity-100');
+                    backToTopButton.classList.add('translate-y-16', 'opacity-0');
+                }
+            });
+
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Hide global loader
+            setTimeout(() => {
+                const loader = document.getElementById('global-loader');
+                if (loader) loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Error handling
+        window.addEventListener('error', function(e) {
+            console.error('Global error caught:', e.error);
+        });
+    </script>
+
+    <!-- Bootstrap 5 JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="/static/js/main.js"></script>
+
+    
+
+    <!-- Analytics (optional) -->
+    <script>
+        // Example analytics - replace with your preferred analytics service
+        if (window.location.hostname !== 'localhost') {
+            // Your analytics code here
+        }
+    </script>
+</body>
+</html>

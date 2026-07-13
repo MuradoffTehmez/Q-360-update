@@ -1,0 +1,850 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Q360 — 360° HR Qiymətləndirmə Platforması{% endblock %}
+{% block meta_description %}Q360 — dövlət və özəl sektor üçün 360° performans qiymətləndirmə, səriştə çərçivəsi, 9-Box Grid, OKR və HR analitika platforması. 20+ HR modulu.{% endblock %}
+{% block og_title %}Q360 — 360° HR Qiymətləndirmə Platforması{% endblock %}
+
+{% block breadcrumb_schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Ana Səhifə", "item": "{{ SITE_URL }}/"}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Q360 nədir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Q360, Django və Django REST Framework əsaslı tam funksional HR/ERP platformasıdır. 360° performans qiymətləndirmə, səriştə çərçivəsi, 9-Box Grid, OKR və 20+ HR modulunu vahid sistemdə birləşdirir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Q360 hansı HR proseslərini avtomatlaşdırır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Q360 aşağıdakı HR proseslərini avtomatlaşdırır: 360° qiymətləndirmə, səriştə çərçivəsi, performans icmalları, 9-Box Grid, xələflik planlaması, OKR, inkişaf planları, təlim idarəetməsi, işə qəbul, kompensasiya, icazə idarəetməsi, əlaqə sorğuları, davamlı əks-əlaqə və iş qüvvəsi planlaması."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Keyframe Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(60px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+
+    @keyframes shimmer {
+        0% { background-position: -1000px 0; }
+        100% { background-position: 1000px 0; }
+    }
+
+    /* Hero Section */
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 100px 0 80px;
+        margin-bottom: 60px;
+        border-radius: 0 0 50px 50px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        animation: shimmer 20s linear infinite;
+        opacity: 0.3;
+    }
+
+    .hero-section::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+        animation: pulse 4s ease-in-out infinite;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.95;
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    }
+
+    .hero-buttons .btn {
+        padding: 15px 40px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        border: none;
+    }
+
+    .hero-buttons .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .hero-buttons .btn-light:hover {
+        background: #fff;
+        color: #667eea;
+    }
+
+    .hero-buttons .btn-outline-light {
+        border: 2px solid white;
+        background: transparent;
+    }
+
+    .hero-buttons .btn-outline-light:hover {
+        background: white;
+        color: #667eea;
+    }
+
+    .hero-icon {
+        animation: float 6s ease-in-out infinite;
+        opacity: 0.15;
+    }
+
+    /* Stats Section */
+    .stats-section {
+        margin-top: -80px;
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .stat-card {
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        background: white;
+        overflow: hidden;
+        position: relative;
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stat-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+    }
+
+    .stat-card i {
+        font-size: 2.8rem;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stat-card:hover i {
+        transform: scale(1.2) rotate(5deg);
+    }
+
+    .stats-number {
+        font-size: 3rem;
+        font-weight: bold;
+        line-height: 1;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover .stats-number {
+        transform: scale(1.1);
+    }
+
+    /* Campaign Cards */
+    .campaign-card {
+        border-left: 5px solid #0d6efd;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        border-radius: 12px;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        opacity: 0;
+        animation: slideInLeft 0.5s ease-out forwards;
+    }
+
+    .campaign-card:nth-child(1) { animation-delay: 0.1s; }
+    .campaign-card:nth-child(2) { animation-delay: 0.2s; }
+    .campaign-card:nth-child(3) { animation-delay: 0.3s; }
+
+    .campaign-card:hover {
+        box-shadow: 0 10px 30px rgba(13, 110, 253, 0.2);
+        transform: translateX(8px);
+        border-left-width: 8px;
+    }
+
+    /* Action Cards */
+    .action-card {
+        border: none;
+        border-radius: 25px;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .action-card:nth-child(1) {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        animation-delay: 0.2s;
+    }
+
+    .action-card:nth-child(2) {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        animation-delay: 0.3s;
+    }
+
+    .action-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+        transform: scale(0);
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .action-card:hover::before {
+        transform: scale(1);
+    }
+
+    .action-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .action-card i {
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .action-card:hover i {
+        transform: scale(1.15) rotate(10deg);
+    }
+
+    /* Feature Cards */
+    .features-section {
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 0.5s forwards;
+    }
+
+    .section-title {
+        font-size: 2.8rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 5px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 3px;
+    }
+
+    .feature-card {
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        background: white;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .feature-card:nth-child(1) { animation-delay: 0.1s; }
+    .feature-card:nth-child(2) { animation-delay: 0.2s; }
+    .feature-card:nth-child(3) { animation-delay: 0.3s; }
+    .feature-card:nth-child(4) { animation-delay: 0.4s; }
+    .feature-card:nth-child(5) { animation-delay: 0.5s; }
+    .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .feature-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .feature-card:hover::after {
+        opacity: 1;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+    }
+
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 35px;
+        margin: 0 auto 25px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        z-index: 1;
+    }
+
+    .feature-card:hover .feature-icon {
+        transform: scale(1.15) rotate(-5deg);
+    }
+
+    /* CTA Section */
+    .cta-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 30px;
+        position: relative;
+        overflow: hidden;
+        color: white;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease-out 0.6s forwards;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+        animation: pulse 4s ease-in-out infinite;
+    }
+
+    .cta-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .cta-section .btn {
+        padding: 15px 45px;
+        font-size: 1.15rem;
+        font-weight: 600;
+        border-radius: 50px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .cta-section .btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+    }
+
+    /* Progress Bar Animation */
+    .progress-bar {
+        transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Smooth Scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Custom Transitions */
+    * {
+        transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Hero Section -->
+    <div class="hero-section shadow-lg">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 hero-content">
+                    <h1 class="hero-title">
+                        360° Qiymətləndirmə Sistemi
+                    </h1>
+                    <p class="hero-subtitle">
+                        Dövlət qurumları üçün peşəkar və effektiv performans qiymətləndirmə platforması.
+                        İşçilərin inkişafını dəstəkləyin, güclü tərəfləri müəyyənləşdirin və komandanızı irəliyə aparın.
+                    </p>
+                    <div class="hero-buttons d-flex gap-3 flex-wrap">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'evaluations:my-assignments' %}" class="btn btn-light btn-lg">
+                                <i class="fas fa-clipboard-list me-2"></i> Qiymətləndirmələrim
+                            </a>
+                            <a href="{% url 'reports:my-reports' %}" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-chart-line me-2"></i> Hesabatlarım
+                            </a>
+                        {% else %}
+                            <a href="{% url 'accounts:login' %}" class="btn btn-light btn-lg">
+                                <i class="fas fa-sign-in-alt me-2"></i> Daxil Ol
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center d-none d-lg-block">
+                    <i class="fas fa-chart-line hero-icon" style="font-size: 220px;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+        <!-- Quick Stats -->
+        <div class="stats-section">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="card-body text-center py-4">
+                                <i class="fas fa-tasks text-primary mb-3"></i>
+                                <div class="stats-number text-primary">{{ pending_assignments|default:0 }}</div>
+                                <p class="text-muted mb-0 mt-2">Gözləyən Tapşırıq</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="card-body text-center py-4">
+                                <i class="fas fa-check-circle text-success mb-3"></i>
+                                <div class="stats-number text-success">{{ completed_assignments|default:0 }}</div>
+                                <p class="text-muted mb-0 mt-2">Tamamlanmış</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="card-body text-center py-4">
+                                <i class="fas fa-trophy text-warning mb-3"></i>
+                                <div class="stats-number text-warning">{{ active_campaigns|default:0 }}</div>
+                                <p class="text-muted mb-0 mt-2">Aktiv Kampaniya</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="card-body text-center py-4">
+                                <i class="fas fa-star text-info mb-3"></i>
+                                <div class="stats-number text-info">{{ average_score|default:"N/A" }}</div>
+                                <p class="text-muted mb-0 mt-2">Ortalama Bal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Campaigns -->
+        {% if campaigns %}
+        <div class="container mb-5">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-header bg-white border-0 rounded-top-4 pt-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="fas fa-bullhorn text-primary me-2"></i> Aktiv Kampaniyalar
+                        </h5>
+                        <a href="{% url 'evaluations:campaign-list' %}" class="btn btn-sm btn-outline-primary rounded-pill">
+                            Hamısını Gör <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body p-4">
+                    {% for campaign in campaigns %}
+                    <div class="campaign-card card mb-3 border-0">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h5 class="mb-2 fw-bold">{{ campaign.title }}</h5>
+                                    <p class="text-muted mb-2">{{ campaign.description|truncatewords:20 }}</p>
+                                    <div class="d-flex gap-3 flex-wrap">
+                                        <small class="text-muted">
+                                            <i class="far fa-calendar me-1"></i>
+                                            {{ campaign.start_date|date:"d.m.Y" }} - {{ campaign.end_date|date:"d.m.Y" }}
+                                        </small>
+                                        <small class="text-muted">
+                                            <i class="fas fa-users me-1"></i>
+                                            {{ campaign.assignments_count|default:0 }} iştirakçı
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-end mt-3 mt-md-0">
+                                    <div class="mb-3">
+                                        <div class="progress" style="height: 28px; border-radius: 14px;">
+                                            <div class="progress-bar bg-success" role="progressbar"
+                                                 style="width: {{ campaign.completion_rate|default:0 }}%; border-radius: 14px;">
+                                                <span class="fw-bold">{{ campaign.completion_rate|default:0|floatformat:0 }}%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'evaluations:campaign-detail' campaign.pk %}" class="btn btn-primary rounded-pill">
+                                        <i class="fas fa-eye me-1"></i> Detallar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Quick Actions -->
+        <div class="container mb-5">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="action-card text-white shadow-lg">
+                        <div class="card-body text-center py-5 px-4">
+                            <i class="fas fa-clipboard-check fa-4x mb-4"></i>
+                            <h4 class="mb-3 fw-bold">Qiymətləndirmə Başlat</h4>
+                            <p class="mb-4 opacity-90">Sizə təyin edilmiş qiymətləndirmələri tamamlayın</p>
+                            <a href="{% url 'evaluations:my-assignments' %}" class="btn btn-light btn-lg rounded-pill px-5">
+                                <i class="fas fa-arrow-right me-2"></i> Tapşırıqlara Get
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="action-card text-white shadow-lg">
+                        <div class="card-body text-center py-5 px-4">
+                            <i class="fas fa-bullseye fa-4x mb-4"></i>
+                            <h4 class="mb-3 fw-bold">İnkişaf Məqsədi Qoy</h4>
+                            <p class="mb-4 opacity-90">Karyera inkişafınız üçün yeni məqsədlər yaradın</p>
+                            <a href="{% url 'development-plans:goal-create' %}" class="btn btn-light btn-lg rounded-pill px-5">
+                                <i class="fas fa-plus me-2"></i> Məqsəd Yarat
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Features Section -->
+    <div class="features-section container mb-5">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Sistemin İmkanları</h2>
+            <p class="text-muted mt-4 fs-5">360° qiymətləndirmə sistemi ilə komandanızın potensialını üzə çıxarın</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary text-white">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h5 class="mb-3 fw-bold">360° Qiymətləndirmə</h5>
+                        <p class="text-muted mb-0">
+                            Özünüqiymətləndirmə, rəhbər, həmkar və tabelik qiymətləndirməsi ilə
+                            əhatəli performans analizi
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-success text-white">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h5 class="mb-3 fw-bold">Ətraflı Hesabatlar</h5>
+                        <p class="text-muted mb-0">
+                            Radar diaqramları, trend analizi və kateqoriya üzrə detallı
+                            statistika ilə vizual hesabatlar
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-info text-white">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h5 class="mb-3 fw-bold">İnkişaf Planları</h5>
+                        <p class="text-muted mb-0">
+                            Qiymətləndirmə nəticələrinə əsasən fərdi inkişaf məqsədləri
+                            və irəliləyiş izləmə
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-warning text-white">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h5 class="mb-3 fw-bold">Təşkilat Strukturu</h5>
+                        <p class="text-muted mb-0">
+                            Şöbə və departament strukturu ilə inteqrasiya,
+                            orqan sxemi və iyerarxiya idarəetməsi
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-danger text-white">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h5 class="mb-3 fw-bold">Bildirişlər</h5>
+                        <p class="text-muted mb-0">
+                            Email və sistem bildirişləri ilə avtomatik xatırlatmalar,
+                            deadline yaxınlaşdığında xəbərdarlıqlar
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-secondary text-white">
+                            <i class="fas fa-file-export"></i>
+                        </div>
+                        <h5 class="mb-3 fw-bold">Export Funksiyası</h5>
+                        <p class="text-muted mb-0">
+                            PDF və Excel formatında hesabat export, print-friendly
+                            dizayn və data arxivləşdirmə
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# ── AEO: Sual-Cavab Bölmələri ── #}
+    <div class="container mb-5">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Platforma Haqqında</h2>
+            <p class="text-muted mt-4 fs-5">Q360 haqqında ən çox verilən suallar</p>
+        </div>
+
+        <div class="row g-4">
+            {# Q360 nədir? #}
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <h3 class="fw-bold mb-3">Q360 nədir?</h3>
+                        <p class="text-muted">
+                            Q360, Django və Django REST Framework əsaslı tam funksional HR/ERP platformasıdır.
+                            360° performans qiymətləndirmə, səriştə çərçivəsi, xələflik planlaması, OKR idarəetməsi
+                            və 20-dən çox HR modulunu vahid sistemdə birləşdirir.
+                        </p>
+                        <p class="text-muted mb-0">
+                            Platforma Azərbaycan bazarına yönəlmiş olub, Azərbaycan və İngilis dillərini dəstəkləyir
+                            və enterprise-səviyyəli təhlükəsizlik standartlarına (2FA, RBAC, GDPR) əməl edir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {# Hansı proseslər? #}
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                        <h3 class="fw-bold mb-3">Q360 hansı HR proseslərini avtomatlaşdırır?</h3>
+                        <ul class="text-muted list-unstyled mb-0">
+                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>360° performans qiymətləndirmə</li>
+                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>Səriştə çərçivəsi (Competency Framework)</li>
+                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>9-Box Grid talent matrisi</li>
+                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>Xələflik planlaması (Succession Planning)</li>
+                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>OKR və inkişaf planları</li>
+                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>Təlim, işə qəbul, kompensasiya</li>
+                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>İcazə, davamiyyət, sağlamlıq</li>
+                            <li class="mb-0"><i class="fas fa-check text-success me-2"></i>Əlaqə sorğuları və analitika</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'faq' %}" class="btn btn-outline-primary rounded-pill px-4" style="color: #084298; border-color: #084298; font-weight: 600;">
+                <i class="fas fa-question-circle me-2"></i>Bütün Sualları Gör
+            </a>
+        </div>
+    </div>
+
+    {% if not user.is_authenticated %}
+    <!-- CTA Section -->
+    <div class="container mb-5">
+        <div class="cta-section shadow-lg">
+            <div class="cta-content card-body text-center py-5 px-4">
+                <h2 class="fw-bold mb-3 display-5">Hazırsınız?</h2>
+                <p class="lead mb-4 opacity-90">
+                    Sistemə daxil olaraq qiymətləndirmələrinizi tamamlayın və inkişaf yolunuza başlayın
+                </p>
+                <a href="{% url 'accounts:login' %}" class="btn btn-light btn-lg">
+                    <i class="fas fa-sign-in-alt me-2"></i> İndi Daxil Ol
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

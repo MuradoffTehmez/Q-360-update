@@ -1,0 +1,731 @@
+[
+  {
+    "id": "TC001",
+    "title": "Sign in and reach the dashboard",
+    "description": "Verifies that an authenticated user can log in successfully and land in the protected workspace.",
+    "category": "User Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the authenticated dashboard is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Log in and reach the dashboard",
+    "description": "Verifies an authenticated user can sign in and arrive at the main dashboard workspace.",
+    "category": "authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify protected workspace navigation is available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Create an evaluation campaign successfully",
+    "description": "Verifies an authenticated user can create a campaign with a valid name and date range and see it created afterward.",
+    "category": "Evaluation Campaign Creation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /evaluations/campaigns/create/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the campaign name field with a unique campaign name"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid start date"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid end date"
+      },
+      {
+        "type": "action",
+        "description": "Submit the campaign form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a campaign creation confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new campaign appears in the workspace"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Create a job vacancy successfully",
+    "description": "Verifies that an authenticated user can create a new recruitment job vacancy and see it saved successfully.",
+    "category": "Job Vacancy Creation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the job vacancy creation page"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the job title field with a valid job title"
+      },
+      {
+        "type": "action",
+        "description": "Select a department"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the job description field with a valid job description"
+      },
+      {
+        "type": "action",
+        "description": "Submit the job creation form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new job vacancy is created"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Assign one campaign to multiple users",
+    "description": "Verifies an authenticated user can select multiple users, choose a campaign, and complete a bulk assignment successfully.",
+    "category": "Bulk Evaluation Assignment",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /evaluations/bulk-assign/"
+      },
+      {
+        "type": "action",
+        "description": "Select multiple users from the user list"
+      },
+      {
+        "type": "action",
+        "description": "Select a campaign from the campaign dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Submit the assignment"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify assignment completion is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected users show the campaign assigned"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Bulk assign a campaign to multiple users",
+    "description": "Verifies that an authenticated user can select multiple users, complete a bulk assignment, and see the assignments confirmed.",
+    "category": "Bulk Evaluation Assignment",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the bulk assignment page"
+      },
+      {
+        "type": "action",
+        "description": "Select one evaluation campaign"
+      },
+      {
+        "type": "action",
+        "description": "Select multiple users"
+      },
+      {
+        "type": "action",
+        "description": "Submit the bulk assignment"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the assignment completion confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected users are assigned to the campaign"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Update a candidate status in the pipeline",
+    "description": "Verifies an authenticated user can open a candidate record in the pipeline and change its status successfully.",
+    "category": "candidate pipeline",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /recruitment/pipeline/"
+      },
+      {
+        "type": "action",
+        "description": "Open a candidate record"
+      },
+      {
+        "type": "action",
+        "description": "Change the candidate status"
+      },
+      {
+        "type": "action",
+        "description": "Submit the status update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a status update success notification is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the candidate shows the updated status"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC008",
+    "title": "Move a candidate to a new pipeline status",
+    "description": "Verifies that an authenticated user can open a candidate record, change its status, and see a success notification.",
+    "category": "Candidate Pipeline Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the candidate pipeline page"
+      },
+      {
+        "type": "action",
+        "description": "Open a candidate record"
+      },
+      {
+        "type": "action",
+        "description": "Change the candidate status"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success notification is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the candidate status has been updated"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC009",
+    "title": "Show the recruitment pipeline workspace",
+    "description": "Verifies that an authenticated user can reach the candidate pipeline and view candidates in the workspace.",
+    "category": "Candidate Pipeline Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the candidate pipeline page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the candidate pipeline is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify candidate records are visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC010",
+    "title": "Navigate from the dashboard into protected work areas",
+    "description": "Verifies an authenticated user can use dashboard navigation to reach recruitment and evaluations sections.",
+    "category": "dashboard navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /dashboard/"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation entry for recruitment"
+      },
+      {
+        "type": "action",
+        "description": "Verify the recruitment workspace is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation entry for evaluations"
+      },
+      {
+        "type": "action",
+        "description": "Verify the evaluations workspace is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC011",
+    "title": "Require job vacancy fields before submission",
+    "description": "Verifies that required job vacancy fields must be completed before a job can be created.",
+    "category": "Job Vacancy Creation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the job vacancy creation page"
+      },
+      {
+        "type": "action",
+        "description": "Submit the job creation form without filling the required fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify required-field validation is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC012",
+    "title": "Prevent bulk assignment when no users are selected",
+    "description": "Verifies the bulk assign form shows an empty-state or validation feedback when the user tries to assign without selecting any recipients.",
+    "category": "Bulk Evaluation Assignment",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /evaluations/bulk-assign/"
+      },
+      {
+        "type": "action",
+        "description": "Select a campaign from the campaign dropdown"
+      },
+      {
+        "type": "action",
+        "description": "Submit the assignment"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a user selection validation message is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no assignments are completed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC013",
+    "title": "Validate campaign dates before saving",
+    "description": "Verifies that a campaign cannot be saved when the selected date range is invalid.",
+    "category": "Evaluation Campaign Creation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the campaign creation page"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the campaign name field with a valid campaign name"
+      },
+      {
+        "type": "action",
+        "description": "Select an end date earlier than the start date"
+      },
+      {
+        "type": "action",
+        "description": "Submit the campaign form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify date-range validation is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC014",
+    "title": "Show an empty state when no bulk assign users are selected",
+    "description": "Verifies that the bulk assign workspace shows an empty-state or prompt when no users have been selected.",
+    "category": "Bulk Evaluation Assignment",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the bulk assignment page"
+      },
+      {
+        "type": "action",
+        "description": "Leave the user selection empty"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC015",
+    "title": "Prevent campaign creation with missing required details",
+    "description": "Verifies required campaign fields are validated and the campaign is not created when key details are omitted.",
+    "category": "Evaluation Campaign Creation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /evaluations/campaigns/create/"
+      },
+      {
+        "type": "action",
+        "description": "Submit the campaign form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify campaign validation errors are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the campaign is not created"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC016",
+    "title": "Show an error for invalid login credentials",
+    "description": "Verifies that entering invalid credentials keeps the user on the login page and shows a login error.",
+    "category": "User Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with invalid-user"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with invalid-password"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a login error message is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC017",
+    "title": "Prevent campaign creation with an invalid date range",
+    "description": "Verifies the campaign form rejects a date range where the end date is earlier than the start date.",
+    "category": "Evaluation Campaign Creation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /accounts/login/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /evaluations/campaigns/create/"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the campaign name field with a unique campaign name"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid start date"
+      },
+      {
+        "type": "action",
+        "description": "Select an earlier end date than the start date"
+      },
+      {
+        "type": "action",
+        "description": "Submit the campaign form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a date validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the campaign is not created"
+      }
+    ],
+    "priority": "Low"
+  }
+]

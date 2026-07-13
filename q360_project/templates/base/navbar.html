@@ -1,0 +1,303 @@
+{% load static %}
+{% load i18n %}
+<nav class="bg-white dark:bg-gray-900 shadow-lg border-b border-blue-500/30" x-data="{ mobileMenuOpen: false }">
+    <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <div class="flex items-center flex-shrink-0">
+                <a href="{% url 'dashboard' %}" aria-label="Ana səhifəyə keçid" class="flex items-center space-x-2 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                    <div class="bg-blue-50 dark:bg-gray-800 p-1.5 rounded-lg shadow-md group-hover:shadow-lg transition-all">
+                        <i class="fas fa-chart-pie text-blue-600 text-lg"></i>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="text-xl font-bold tracking-tight">Q360</span>
+                        <span class="text-xs text-gray-600 dark:text-gray-400 block -mt-0.5">Performance Suite</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            {% if user.is_authenticated %}
+            <div class="hidden md:flex md:items-center md:space-x-0 mx-4">
+                <a href="{% url 'dashboard' %}" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                    <i class="fas fa-home mr-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span>{% trans "Home" %}</span>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                </a>
+
+                <div class="relative" x-data="{ evalOpen: false }">
+                    <button @mouseover="evalOpen = true" @mouseleave="evalOpen = false" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                        <i class="fas fa-clipboard-list mr-1.5 group-hover:scale-110 transition-transform"></i>
+                        <span>{% trans "Evaluations" %}</span>
+                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                    </button>
+
+                    <div x-show="evalOpen" @mouseenter="evalOpen = true" @mouseleave="evalOpen = false" x-transition class="absolute left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200 dark:border-gray-700">
+                        <a href="{% url 'evaluations:my-assignments' %}" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-tasks w-4 mr-2 text-blue-500"></i>
+                            <span>{% trans "My Assignments" %}</span>
+                        </a>
+                        <a href="{% url 'feedback:360-feedback-request' %}" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-users-cog w-4 mr-2 text-purple-500"></i>
+                            <span>{% trans "360° Feedback" %}</span>
+                        </a>
+                        <a href="{% url 'feedback:analytics' %}" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-chart-line w-4 mr-2 text-green-500"></i>
+                            <span>{% trans "Analytics" %}</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="{% url 'competencies:my-skills' %}" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                    <i class="fas fa-star mr-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span>{% trans "Skills" %}</span>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                </a>
+
+                <a href="{% url 'training:my-trainings' %}" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                    <i class="fas fa-graduation-cap mr-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span>{% trans "Training" %}</span>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                </a>
+
+                <div class="relative" x-data="{ engageOpen: false }">
+                    <button @mouseover="engageOpen = true" @mouseleave="engageOpen = false" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                        <i class="fas fa-users-rays mr-1.5 group-hover:scale-110 transition-transform"></i>
+                        <span>{% trans "Engagement" %}</span>
+                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                    </button>
+
+                    <div x-show="engageOpen" @mouseenter="engageOpen = true" @mouseleave="engageOpen = false" x-transition class="absolute left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200 dark:border-gray-700">
+                        <a href="{% url 'engagement:engagement_dashboard' %}" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-chart-line w-4 mr-2 text-purple-500"></i>
+                            <span>{% trans "Dashboard" %}</span>
+                        </a>
+                        <a href="{% url 'engagement:pulse_surveys' %}" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-poll w-4 mr-2 text-blue-500"></i>
+                            <span>{% trans "Pulse Surveys" %}</span>
+                        </a>
+                        <a href="{% url 'engagement:recognition_wall' %}" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-hand-holding-heart w-4 mr-2 text-pink-500"></i>
+                            <span>{% trans "Recognition" %}</span>
+                        </a>
+                        <a href="{% url 'engagement:leaderboard' %}" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-trophy w-4 mr-2 text-yellow-500"></i>
+                            <span>{% trans "Leaderboard" %}</span>
+                        </a>
+                    </div>
+                </div>
+
+                {% if user.is_manager %}
+                <a href="{% url 'reports:my-reports' %}" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                    <i class="fas fa-chart-bar mr-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span>{% trans "Reports" %}</span>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- Right side items -->
+            <div class="flex items-center space-x-4">
+                <!-- Public Links (Desktop) -->
+                <div class="hidden lg:flex items-center space-x-4 mr-2 border-r dark:border-gray-700 pr-4">
+                    <a href="{% url 'haqqimizda' %}" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{% trans "Haqqımızda" %}</a>
+                    <a href="{% url 'faq' %}" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{% trans "FAQ" %}</a>
+                </div>
+
+                <!-- Quick Send Feedback Button -->
+                {% if user.is_authenticated %}
+                <a href="{% url 'feedback:send-feedback' %}" class="hidden md:flex items-center px-3 py-1.5 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-sm font-semibold group relative overflow-hidden mx-1">
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <i class="fas fa-paper-plane mr-1.5 group-hover:animate-pulse relative z-10"></i>
+                    <span class="relative z-10">{% trans "Rəy bildir" %}</span>
+                </a>
+                {% endif %}
+
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="p-1.5 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 group" title="Toggle Dark Mode">
+                    <i class="fas fa-moon dark:hidden text-base group-hover:scale-110 transition-transform"></i>
+                    <i class="fas fa-sun hidden dark:inline text-base group-hover:scale-110 transition-transform"></i>
+                </button>
+
+                <!-- Language Switcher -->
+                <div class="hidden md:block">
+                    {% include 'components/language_switcher.html' %}
+                </div>
+
+                {% if user.is_authenticated %}
+                <!-- Notifications -->
+                <div class="relative" x-data="{ notifOpen: false }">
+                    <button @click="notifOpen = !notifOpen" class="p-1.5 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg relative transition-all duration-200 group mx-1">
+                        <i class="fas fa-bell text-base group-hover:scale-110 transition-transform"></i>
+                        <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full animate-pulse" id="notificationCount">0</span>
+                    </button>
+
+                    <!-- Notification Dropdown -->
+                    <div x-show="notifOpen" @click.away="notifOpen = false" x-transition class="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200 dark:border-gray-700">
+                        <div class="p-3 border-b dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-base font-bold text-gray-900 dark:text-white flex items-center">
+                                    <i class="fas fa-bell mr-2 text-blue-500"></i>
+                                    {% trans "Notifications" %}
+                                </h3>
+                                <a href="{% url 'notifications:inbox' %}" class="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors">
+                                    {% trans "Hamısına Bax" %}
+                                </a>
+                            </div>
+                        </div>
+                        <div id="notificationItems" class="max-h-80 overflow-y-auto">
+                            <div class="p-4 text-center text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-bell-slash text-2xl mb-2 text-gray-300 dark:text-gray-600"></i>
+                                <p class="text-sm">{% trans "No notifications" %}</p>
+                                <p class="text-xs mt-1 text-gray-400 dark:text-gray-500">{% trans "You're all caught up!" %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Menu -->
+                <div class="relative" x-data="{ userMenuOpen: false }">
+                    <button @click="userMenuOpen = !userMenuOpen" class="flex items-center space-x-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1.5 rounded-lg transition-all duration-200 group">
+                        {% if user.profile_picture %}
+                            <img src="{{ user.profile_picture.url }}?v={{ user.profile.updated_at|date:'U' }}" alt="Profile" loading="lazy" decoding="async" class="w-7 h-7 rounded-full border-2 border-white group-hover:border-blue-200 transition-colors shadow-md">
+                        {% else %}
+                            <div class="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-semibold border-2 border-white group-hover:border-blue-200 transition-colors shadow-md text-sm">
+                                {{ user.first_name.0|default:user.username.0 }}
+                            </div>
+                        {% endif %}
+                        <div class="hidden lg:block text-left">
+                            <span class="text-sm font-semibold block leading-tight truncate max-w-[150px]" title="{{ user.get_full_name|default:user.username }}">{{ user.get_full_name|default:user.username }}</span>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">{{ user.get_role_display }}</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-xs transform transition-transform duration-200" :class="{ 'rotate-180': userMenuOpen }"></i>
+                    </button>
+
+                    <!-- User Dropdown -->
+                    <div x-show="userMenuOpen" @click.away="userMenuOpen = false" x-transition class="absolute right-0 mt-2 w-60 bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200 dark:border-gray-700">
+                        <!-- User Info -->
+                        <div class="p-3 border-b dark:border-gray-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800">
+                            <div class="flex items-center space-x-2">
+                                {% if user.profile_picture %}
+                                    <img src="{{ user.profile_picture.url }}?v={{ user.profile.updated_at|date:'U' }}" alt="Profile" loading="lazy" decoding="async" class="w-10 h-10 rounded-full border-2 border-blue-200 dark:border-gray-600 shadow-sm">
+                                {% else %}
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold border-2 border-blue-200 dark:border-gray-600 shadow-sm">
+                                        {{ user.first_name.0|default:user.username.0 }}
+                                    </div>
+                                {% endif %}
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-bold text-gray-900 dark:text-white truncate">
+                                        {{ user.get_full_name|default:user.username }}
+                                    </p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400 truncate">
+                                        {{ user.email }}
+                                    </p>
+                                    <p class="text-xs text-blue-600 dark:text-blue-400 font-medium mt-0.5">
+                                        {{ user.get_role_display }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu Items -->
+                        <div class="py-1">
+                            <a href="{% url 'accounts:profile' %}" class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors group">
+                                <i class="fas fa-user w-4 mr-2 text-blue-500 group-hover:scale-110 transition-transform"></i>
+                                <span>{% trans "Profile" %}</span>
+                            </a>
+                            <a href="{% url 'accounts:settings' %}" class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors group">
+                                <i class="fas fa-cog w-4 mr-2 text-gray-500 group-hover:scale-110 transition-transform"></i>
+                                <span>{% trans "Settings" %}</span>
+                            </a>
+                            <a href="{% url 'accounts:security' %}" class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors group">
+                                <i class="fas fa-shield-alt w-4 mr-2 text-green-500 group-hover:scale-110 transition-transform"></i>
+                                <span>{% trans "Security" %}</span>
+                            </a>
+                            
+                            {% if user.is_staff or user.is_superuser %}
+                            <div class="border-t dark:border-gray-700 my-1"></div>
+                            <a href="{% url 'admin:index' %}" class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors group">
+                                <i class="fas fa-tools w-4 mr-2 text-purple-500 group-hover:scale-110 transition-transform"></i>
+                                <span>{% trans "Admin Panel" %}</span>
+                            </a>
+                            {% endif %}
+                            
+                            <div class="border-t dark:border-gray-700 my-1"></div>
+                            <a href="{% url 'accounts:logout' %}" class="flex items-center px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors group">
+                                <i class="fas fa-sign-out-alt w-4 mr-2 group-hover:scale-110 transition-transform"></i>
+                                <span>{% trans "Logout" %}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <!-- Login Button for non-authenticated users -->
+                <a href="{% url 'accounts:login' %}" class="bg-white text-blue-600 hover:bg-blue-50 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg group">
+                    <i class="fas fa-sign-in-alt mr-1.5 group-hover:scale-110 transition-transform"></i>
+                    {% trans "Login" %}
+                </a>
+                {% endif %}
+
+                <!-- Mobile menu button -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Mobil menyunu aç və ya bağla" class="md:hidden p-1.5 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 ml-1">
+                    <i class="fas fa-bars text-base transform transition-transform duration-200" :class="{ 'rotate-90': mobileMenuOpen }"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div x-show="mobileMenuOpen" x-transition style="display: none;" class="md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-lg">
+        <div class="px-3 pt-2 pb-3 space-y-1">
+            {% if user.is_authenticated %}
+            <!-- Quick Send Feedback (Mobile) -->
+            <a href="{% url 'feedback:send-feedback' %}" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-center shadow-md mb-1 transition-all duration-200">
+                <i class="fas fa-paper-plane mr-1.5"></i> {% trans "Send Feedback" %}
+            </a>
+
+            <!-- Mobile Navigation Links -->
+            <div class="grid grid-cols-3 gap-1">
+                <a href="{% url 'dashboard' %}" class="flex flex-col items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200 group">
+                    <i class="fas fa-home text-blue-500 text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200">{% trans "Home" %}</span>
+                </a>
+                <a href="{% url 'evaluations:my-assignments' %}" class="flex flex-col items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200 group">
+                    <i class="fas fa-clipboard-list text-green-500 text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200">{% trans "Evaluations" %}</span>
+                </a>
+                <a href="{% url 'competencies:my-skills' %}" class="flex flex-col items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200 group">
+                    <i class="fas fa-star text-yellow-500 text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200">{% trans "Skills" %}</span>
+                </a>
+                <a href="{% url 'training:my-trainings' %}" class="flex flex-col items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200 group">
+                    <i class="fas fa-graduation-cap text-purple-500 text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200">{% trans "Training" %}</span>
+                </a>
+                {% if user.is_manager %}
+                <a href="{% url 'reports:my-reports' %}" class="flex flex-col items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200 group">
+                    <i class="fas fa-chart-bar text-red-500 text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200">{% trans "Reports" %}</span>
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- Public Mobile Links -->
+            <div class="flex flex-col space-y-2 py-2 {% if user.is_authenticated %}border-t dark:border-gray-700 mt-2{% endif %}">
+                <a href="{% url 'haqqimizda' %}" class="flex items-center px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-info-circle w-5 text-blue-500 mr-2 text-center"></i> {% trans "Haqqımızda" %}
+                </a>
+                <a href="{% url 'faq' %}" class="flex items-center px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-question-circle w-5 text-purple-500 mr-2 text-center"></i> {% trans "FAQ" %}
+                </a>
+            </div>
+
+            <!-- Mobile Language Switcher -->
+            <div class="pt-1 border-t dark:border-gray-700">
+                {% include 'components/language_switcher.html' %}
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,1916 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="az" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <meta name="csrf-token" content="qcDC5DBfVn0hpaOHffZo5iY2L6wEMgMVVDWQHqDLBhDtyPUMhZ2XiTZU2D1OnYfr">
+    <title>Kütləvi İstifadəçi İdxalı | Q360</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Q360 - Professional 360° Performance Evaluation System for comprehensive talent management and employee development.">
+    <meta name="keywords" content="performance evaluation, 360 feedback, talent management, HR software, employee development">
+    <meta name="author" content="Q360 Team">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/images/favicon.svg">
+    <link rel="shortcut icon" type="image/svg+xml" href="/static/images/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicon.svg">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6', // Corporate Blue
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            500: '#64748b', // Slate
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        success: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        },
+                        warning: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        },
+                        error: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.3s ease-in-out',
+                        'fade-in-up': 'fadeInUp 0.4s ease-out',
+                        'fade-in-down': 'fadeInDown 0.4s ease-out',
+                        'slide-in': 'slideIn 0.3s ease-out',
+                        'slide-in-right': 'slideInRight 0.3s ease-out',
+                        'bounce-in': 'bounceIn 0.4s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeInDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0)' },
+                        },
+                        bounceIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 10px rgba(0, 0, 0, 0.05)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'elevated': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            },
+            plugins: [
+                function({ addUtilities }) {
+                    addUtilities({
+                        '.text-shadow': {
+                            'text-shadow': '0 2px 4px rgba(0, 0, 0, 0.1)',
+                        },
+                        '.text-shadow-md': {
+                            'text-shadow': '0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08)',
+                        },
+                        '.text-shadow-lg': {
+                            'text-shadow': '0 15px 30px rgba(0, 0, 0, 0.11), 0 5px 15px rgba(0, 0, 0, 0.08)',
+                        },
+                    })
+                }
+            ]
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Alpine.js for interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Modern Thin Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Smooth transitions */
+        * {
+            transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 200ms;
+        }
+
+        /* Focus styles */
+        .focus-ring:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Loading animation */
+        @keyframes shimmer {
+            0% {
+                background-position: -468px 0;
+            }
+            100% {
+                background-position: 468px 0;
+            }
+        }
+
+        .shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+            background-size: 800px 104px;
+        }
+
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            
+            .print-break {
+                page-break-after: always;
+            }
+        }
+    </style>
+
+    
+
+    <!-- Dark Mode Script (must load before body) -->
+    <script>
+        // Check for saved theme preference or default to 'light'
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+        }
+
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    const perfEntries = performance.getEntriesByType('navigation');
+                    if (perfEntries.length > 0) {
+                        const navEntry = perfEntries[0];
+                        console.log('Page load time:', navEntry.loadEventEnd - navEntry.fetchStart, 'ms');
+                    }
+                }, 0);
+            });
+        }
+    </script>
+
+    <!-- Q360 API Utilities & Toast Notifications -->
+    <link rel="stylesheet" href="/static/css/toast.css?v=2">
+    <!-- IMPORTANT: auth-fix.js must load FIRST to save original Storage methods -->
+    <script src="/static/js/auth-fix.js?v=2"></script>
+    <script src="/static/js/api-utils.js?v=2"></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans antialiased">
+    <!-- Loading Spinner -->
+    <div id="global-loader" x-ref="globalLoader" class="fixed inset-0 bg-white dark:bg-gray-900 z-50 flex items-center justify-center transition-opacity duration-300" x-data="{ show: true }" x-show="show" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin-slow mx-auto mb-4"></div>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">Loading Q360...</p>
+        </div>
+    </div>
+
+    <div class="min-h-screen flex flex-col" x-data="{ sidebarOpen: window.innerWidth >= 768, darkMode: localStorage.theme === 'dark' }" x-init="if ($refs.globalLoader) { setTimeout(() => $refs.globalLoader.style.display = 'none', 500) }">
+        <!-- Navigation -->
+        
+
+<nav class="bg-white dark:bg-gray-900 shadow-lg border-b border-blue-500/30" x-data="{ mobileMenuOpen: false }">
+    <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo -->
+            <div class="flex items-center flex-shrink-0">
+                <a href="/dashboard/" class="flex items-center space-x-2 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                    <div class="bg-blue-50 dark:bg-gray-800 p-1.5 rounded-lg shadow-md group-hover:shadow-lg transition-all">
+                        <i class="fas fa-chart-pie text-blue-600 text-lg"></i>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="text-xl font-bold tracking-tight">Q360</span>
+                        <span class="text-xs text-gray-500 dark:text-gray-400 block -mt-0.5">Performance Suite</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            
+            <div class="hidden md:flex md:items-center md:space-x-0 mx-4">
+                <a href="/dashboard/" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                    <i class="fas fa-home mr-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span>Ana Səhifə</span>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                </a>
+
+                <div class="relative" x-data="{ evalOpen: false }">
+                    <button @mouseover="evalOpen = true" @mouseleave="evalOpen = false" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                        <i class="fas fa-clipboard-list mr-1.5 group-hover:scale-110 transition-transform"></i>
+                        <span>Qiymətləndirmələr</span>
+                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                    </button>
+
+                    <div x-show="evalOpen" @mouseenter="evalOpen = true" @mouseleave="evalOpen = false" x-transition class="absolute left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200 dark:border-gray-700">
+                        <a href="/evaluations/my-assignments/" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-tasks w-4 mr-2 text-blue-500"></i>
+                            <span>Tapşırıqlarım</span>
+                        </a>
+                        <a href="/feedback/360-feedback-request/" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-users-cog w-4 mr-2 text-purple-500"></i>
+                            <span>360° Feedback</span>
+                        </a>
+                        <a href="/feedback/analytics/" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-chart-line w-4 mr-2 text-green-500"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="/competencies/my-skills/" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                    <i class="fas fa-star mr-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span>Bacarıqlar</span>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                </a>
+
+                <a href="/training/my-trainings/" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                    <i class="fas fa-graduation-cap mr-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span>Təlim</span>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                </a>
+
+                <div class="relative" x-data="{ engageOpen: false }">
+                    <button @mouseover="engageOpen = true" @mouseleave="engageOpen = false" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                        <i class="fas fa-users-rays mr-1.5 group-hover:scale-110 transition-transform"></i>
+                        <span>Engagement</span>
+                        <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                    </button>
+
+                    <div x-show="engageOpen" @mouseenter="engageOpen = true" @mouseleave="engageOpen = false" x-transition class="absolute left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200 dark:border-gray-700">
+                        <a href="/engagement/" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-chart-line w-4 mr-2 text-purple-500"></i>
+                            <span>Panel</span>
+                        </a>
+                        <a href="/engagement/surveys/" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-poll w-4 mr-2 text-blue-500"></i>
+                            <span>Nəbz Sorğuları</span>
+                        </a>
+                        <a href="/engagement/recognition/" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-hand-holding-heart w-4 mr-2 text-pink-500"></i>
+                            <span>Recognition</span>
+                        </a>
+                        <a href="/engagement/leaderboard/" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-trophy w-4 mr-2 text-yellow-500"></i>
+                            <span>Leaderboard</span>
+                        </a>
+                    </div>
+                </div>
+
+                
+                <a href="/reports/my-reports/" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
+                    <i class="fas fa-chart-bar mr-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span>Hesabatlar</span>
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-0.5 bg-white rounded-full transition-all duration-300"></div>
+                </a>
+                
+            </div>
+            
+
+            <!-- Right side items -->
+            <div class="flex items-center space-x-4">
+                <!-- Quick Send Feedback Button -->
+                
+                <a href="/feedback/send/" class="hidden md:flex items-center px-3 py-1.5 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-sm font-semibold group relative overflow-hidden mx-1">
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <i class="fas fa-paper-plane mr-1.5 group-hover:animate-pulse relative z-10"></i>
+                    <span class="relative z-10">Rəy bildir</span>
+                </a>
+                
+
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="p-1.5 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 group" title="Toggle Dark Mode">
+                    <i class="fas fa-moon dark:hidden text-base group-hover:scale-110 transition-transform"></i>
+                    <i class="fas fa-sun hidden dark:inline text-base group-hover:scale-110 transition-transform"></i>
+                </button>
+
+                <!-- Language Switcher -->
+                <div class="hidden md:block">
+                    
+
+<!-- Language Switcher Component -->
+<div class="language-switcher">
+    <form action="/i18n/setlang/" method="post" id="languageForm">
+        <input type="hidden" name="csrfmiddlewaretoken" value="qcDC5DBfVn0hpaOHffZo5iY2L6wEMgMVVDWQHqDLBhDtyPUMhZ2XiTZU2D1OnYfr">
+        <input name="next" type="hidden" value="">
+        <select name="language" class="form-select form-select-sm" onchange="this.form.submit()" style="width: auto;">
+            
+            
+            
+                <option value="az" selected>
+                    
+                        <span class="fi fi-az"></span> AZ
+                    
+                </option>
+            
+                <option value="en" >
+                    
+                        <span class="fi fi-gb"></span> EN
+                    
+                </option>
+            
+        </select>
+    </form>
+</div>
+
+<style>
+.language-switcher {
+    display: inline-block;
+}
+.language-switcher select {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.language-switcher select:hover {
+    border-color: #0d6efd;
+}
+</style>
+
+                </div>
+
+                
+                <!-- Notifications -->
+                <div class="relative" x-data="{ notifOpen: false }">
+                    <button @click="notifOpen = !notifOpen" class="p-1.5 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg relative transition-all duration-200 group mx-1">
+                        <i class="fas fa-bell text-base group-hover:scale-110 transition-transform"></i>
+                        <span class="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full animate-pulse" id="notificationCount">0</span>
+                    </button>
+
+                    <!-- Notification Dropdown -->
+                    <div x-show="notifOpen" @click.away="notifOpen = false" x-transition class="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200 dark:border-gray-700">
+                        <div class="p-3 border-b dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-base font-bold text-gray-900 dark:text-white flex items-center">
+                                    <i class="fas fa-bell mr-2 text-blue-500"></i>
+                                    Notifications
+                                </h3>
+                                <a href="/notifications/inbox/" class="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors">
+                                    Hamısına Bax
+                                </a>
+                            </div>
+                        </div>
+                        <div id="notificationItems" class="max-h-80 overflow-y-auto">
+                            <div class="p-4 text-center text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-bell-slash text-2xl mb-2 text-gray-300 dark:text-gray-600"></i>
+                                <p class="text-sm">No notifications</p>
+                                <p class="text-xs mt-1 text-gray-400 dark:text-gray-500">You're all caught up!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Menu -->
+                <div class="relative" x-data="{ userMenuOpen: false }">
+                    <button @click="userMenuOpen = !userMenuOpen" class="flex items-center space-x-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-2 py-1.5 rounded-lg transition-all duration-200 group">
+                        
+                            <div class="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-semibold border-2 border-white group-hover:border-blue-200 transition-colors shadow-md text-sm">
+                                i
+                            </div>
+                        
+                        <div class="hidden lg:block text-left">
+                            <span class="text-sm font-semibold block leading-tight truncate max-w-[150px]" title="import_admin">import_admin</span>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">Super Administrator</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-xs transform transition-transform duration-200" :class="{ 'rotate-180': userMenuOpen }"></i>
+                    </button>
+
+                    <!-- User Dropdown -->
+                    <div x-show="userMenuOpen" @click.away="userMenuOpen = false" x-transition class="absolute right-0 mt-2 w-60 bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden z-50 border border-gray-200 dark:border-gray-700">
+                        <!-- User Info -->
+                        <div class="p-3 border-b dark:border-gray-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800">
+                            <div class="flex items-center space-x-2">
+                                
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold border-2 border-blue-200 dark:border-gray-600 shadow-sm">
+                                        i
+                                    </div>
+                                
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-bold text-gray-900 dark:text-white truncate">
+                                        import_admin
+                                    </p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400 truncate">
+                                        import_admin@example.com
+                                    </p>
+                                    <p class="text-xs text-blue-600 dark:text-blue-400 font-medium mt-0.5">
+                                        Super Administrator
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu Items -->
+                        <div class="py-1">
+                            <a href="/accounts/profile/" class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors group">
+                                <i class="fas fa-user w-4 mr-2 text-blue-500 group-hover:scale-110 transition-transform"></i>
+                                <span>Profile</span>
+                            </a>
+                            <a href="/accounts/settings/" class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors group">
+                                <i class="fas fa-cog w-4 mr-2 text-gray-500 group-hover:scale-110 transition-transform"></i>
+                                <span>Settings</span>
+                            </a>
+                            <a href="/accounts/security/" class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors group">
+                                <i class="fas fa-shield-alt w-4 mr-2 text-green-500 group-hover:scale-110 transition-transform"></i>
+                                <span>Security</span>
+                            </a>
+                            
+                            
+                            <div class="border-t dark:border-gray-700 my-1"></div>
+                            <a href="/admin/" class="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors group">
+                                <i class="fas fa-tools w-4 mr-2 text-purple-500 group-hover:scale-110 transition-transform"></i>
+                                <span>Admin Panel</span>
+                            </a>
+                            
+                            
+                            <div class="border-t dark:border-gray-700 my-1"></div>
+                            <a href="/accounts/logout/" class="flex items-center px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors group">
+                                <i class="fas fa-sign-out-alt w-4 mr-2 group-hover:scale-110 transition-transform"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- Mobile menu button -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-1.5 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 ml-1">
+                    <i class="fas fa-bars text-base transform transition-transform duration-200" :class="{ 'rotate-90': mobileMenuOpen }"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    
+    <div x-show="mobileMenuOpen" x-transition class="md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-lg">
+        <div class="px-3 pt-2 pb-3 space-y-1">
+            <!-- Quick Send Feedback (Mobile) -->
+            <a href="/feedback/send/" class="block px-3 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-center shadow-md mb-1 transition-all duration-200">
+                <i class="fas fa-paper-plane mr-1.5"></i> Send Feedback
+            </a>
+
+            <!-- Mobile Navigation Links -->
+            <div class="grid grid-cols-3 gap-1">
+                <a href="/dashboard/" class="flex flex-col items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200 group">
+                    <i class="fas fa-home text-blue-500 text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200">Ana Səhifə</span>
+                </a>
+                <a href="/evaluations/my-assignments/" class="flex flex-col items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200 group">
+                    <i class="fas fa-clipboard-list text-green-500 text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200">Qiymətləndirmələr</span>
+                </a>
+                <a href="/competencies/my-skills/" class="flex flex-col items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200 group">
+                    <i class="fas fa-star text-yellow-500 text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200">Bacarıqlar</span>
+                </a>
+                <a href="/training/my-trainings/" class="flex flex-col items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200 group">
+                    <i class="fas fa-graduation-cap text-purple-500 text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200">Təlim</span>
+                </a>
+                
+                <a href="/reports/my-reports/" class="flex flex-col items-center justify-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200 group">
+                    <i class="fas fa-chart-bar text-red-500 text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-200">Hesabatlar</span>
+                </a>
+                
+            </div>
+
+            <!-- Mobile Language Switcher -->
+            <div class="pt-1 border-t dark:border-gray-700">
+                
+
+<!-- Language Switcher Component -->
+<div class="language-switcher">
+    <form action="/i18n/setlang/" method="post" id="languageForm">
+        <input type="hidden" name="csrfmiddlewaretoken" value="qcDC5DBfVn0hpaOHffZo5iY2L6wEMgMVVDWQHqDLBhDtyPUMhZ2XiTZU2D1OnYfr">
+        <input name="next" type="hidden" value="">
+        <select name="language" class="form-select form-select-sm" onchange="this.form.submit()" style="width: auto;">
+            
+            
+            
+                <option value="az" selected>
+                    
+                        <span class="fi fi-az"></span> AZ
+                    
+                </option>
+            
+                <option value="en" >
+                    
+                        <span class="fi fi-gb"></span> EN
+                    
+                </option>
+            
+        </select>
+    </form>
+</div>
+
+<style>
+.language-switcher {
+    display: inline-block;
+}
+.language-switcher select {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.language-switcher select:hover {
+    border-color: #0d6efd;
+}
+</style>
+
+            </div>
+        </div>
+    </div>
+    
+</nav>
+
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Sidebar -->
+            
+                
+
+
+
+<!-- Sidebar for authenticated users -->
+<aside
+    :class="sidebarOpen ? 'w-64' : 'w-20'" class="bg-white dark:bg-gray-900 shadow-xl border-r border-gray-200 dark:border-gray-800 hidden md:block overflow-y-auto transition-all duration-300 z-40 fixed h-full"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="-translate-x-full"
+    x-transition:enter-end="translate-x-0">
+    <div class="flex flex-col h-full" x-data="{ activeAccordion: null }">
+        <!-- User Info Card -->
+        <div class="p-4 border-b border-gray-200 dark:border-gray-800 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
+            <div class="flex items-center space-x-3">
+                
+                <div
+                    class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg ring-2 ring-blue-500 dark:ring-blue-400 shadow-lg">
+                    i
+                </div>
+                
+                <div class="flex-1 min-w-0" x-show="sidebarOpen">
+                    <p
+                        class="text-sm font-semibold text-gray-900 dark:text-white truncate">
+                        import_admin
+                    </p>
+                    <p
+                        class="text-xs text-gray-600 font-medium dark:text-gray-300 truncate">
+                        Super Administrator
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex-1 px-3 py-4 space-y-4 overflow-y-auto">
+            <div class="space-y-1" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_2382' ? null : 'acc_2382'">
+                    <span class="flex items-center space-x-2">
+                        <i class="fas fa-chart-line w-6 text-center text-blue-500 text-lg group-hover:text-blue-600 transition-colors"></i>
+                        <span>Panel və Analitika</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_2382'" x-transition x-cloak class="mt-2 space-y-1">
+                    
+                    <a href="/dashboard/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-home w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Əsas Panel</span>
+                    </a>
+                    
+
+                    
+                    <a href="/dashboard/kpi/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-chart-pie w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">KPI Lövhəsi</span>
+                    </a>
+                    
+
+                    
+                    <a href="/dashboard/trend/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-wave-square w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Trend Analizi</span>
+                    </a>
+                    
+
+                    
+                    <a href="/dashboard/forecast/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-project-diagram w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Proqnozlaşdırma</span>
+                    </a>
+                    
+                    
+                    <a href="/dashboard/ai-management/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-brain w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">AI İdarəetmə</span>
+                    </a>
+                    
+                    <a href="/sentiment-analysis/dashboard/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-comment-dots w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Əhval-ruhiyyə Analizi</span>
+                    </a>
+                    
+                </div>
+            </div>
+
+            <div class="space-y-1" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_10084' ? null : 'acc_10084'">
+                    <span class="flex items-center space-x-2 w-full">
+                        <i class="fas fa-clipboard-check text-green-500 group-hover:text-green-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <span x-show="sidebarOpen" class="whitespace-normal leading-tight">Qiymətləndirmə və Rəylər</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_10084'" x-transition x-cloak class="mt-2 space-y-1">
+                    
+                    <a href="/evaluations/my-assignments/"
+                        class="flex items-center justify-between px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="flex items-center relative z-10"><i class="fas fa-tasks w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Tapşırıqlarım</span></div>
+                        <span id="pendingAssignmentsCount" class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-500 rounded-full relative z-10">0</span>
+                    </a>
+                    
+
+                    
+                    <a href="/evaluations/campaigns/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-calendar-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Kampaniyalar</span>
+                    </a>
+                    
+
+                    
+                    <a href="/feedback/send/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-paper-plane w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Əlaqə Göndər</span>
+                    </a>
+                    
+
+                    
+                    <a href="/feedback/my-feedback/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-comments w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Rəylərim</span>
+                    </a>
+
+
+                    <a href="/feedback/360-feedback-request/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-users-cog w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">360° Rəy Sorğusu</span>
+                    </a>
+
+
+                    <a href="/feedback/analytics/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-chart-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Rəy Analitikası</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="space-y-1" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_18096' ? null : 'acc_18096'">
+                    <span class="flex items-center space-x-2 w-full">
+                        <i class="fas fa-lightbulb text-yellow-500 group-hover:text-yellow-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <span x-show="sidebarOpen" class="whitespace-normal leading-tight">Kompetensiya və Təlim</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_18096'" x-transition x-cloak class="mt-2 space-y-1">
+                    
+                    <a href="/competencies/my-skills/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-user-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Bacarıqlarım</span>
+                    </a>
+                    
+
+                    
+                    <a href="/competencies/gap-analysis/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-balance-scale w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Bacarıq Boşluqları</span>
+                    </a>
+                    
+
+                    
+                    <a href="/competencies/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-list-ul w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Kompetensiya Siyahısı</span>
+                    </a>
+                    
+
+                    
+                    <a href="/competencies/manage/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-tools w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Kompetensiya İdarəsi</span>
+                    </a>
+                    
+
+                    
+                    <a href="/training/my-trainings/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-graduation-cap w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Təlimlərim</span>
+                    </a>
+                    
+
+                    
+                    <a href="/training/my-certificates/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-certificate w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Sertifikatlarım</span>
+                    </a>
+                    
+
+                    
+                    <a href="/training/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-book-open w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Təlim Kataloqu</span>
+                    </a>
+                    
+
+                    
+                    <a href="/training/manage/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-chalkboard-teacher w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Təlim İdarəsi</span>
+                    </a>
+
+
+                    <a href="/training/skill-matrix/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-th w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Bacarıq Matrisi</span>
+                    </a>
+
+
+                    <a href="/training/certifications/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-award w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Sertifikat İzlənməsi</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="space-y-1" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_30416' ? null : 'acc_30416'">
+                    <span class="flex items-center space-x-2 w-full">
+                        <i class="fas fa-route text-purple-500 group-hover:text-purple-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <span x-show="sidebarOpen" class="whitespace-normal leading-tight">İnkişaf və Strategiya</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_30416'" x-transition x-cloak class="mt-2 space-y-1">
+                    
+                    <a href="/development-plans/my-goals/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-bullseye w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Hədəflərim</span>
+                    </a>
+                    
+
+                    
+                    <a href="/development-plans/team-goals/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-users-cog w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Komanda Hədəfləri</span>
+                    </a>
+                    
+
+                    
+                    <a href="/development-plans/templates/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-copy w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Hədəf Şablonları</span>
+                    </a>
+                    
+
+                    
+                    <a href="/workforce-planning/my-gaps/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-user-chart w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Mənim Boşluqlarım</span>
+                    </a>
+                    
+
+                    
+                    <a href="/workforce-planning/talent-matrix/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-th-large w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">İstedad Matrisi</span>
+                    </a>
+                    
+
+                    
+                    <a href="/workforce-planning/succession-planning/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-sitemap w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Varis Planlaması</span>
+                    </a>
+                    
+
+                    
+                    <a href="/workforce-planning/gap-analysis/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-random w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Boşluq Analizi</span>
+                    </a>
+                    
+
+                    
+                    <a href="/okr/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-bullhorn w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">OKR Paneli</span>
+                    </a>
+                    
+
+                    
+                    <a href="/okr/objectives/create/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-plus-circle w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Yeni OKR</span>
+                    </a>
+                    
+
+                    
+                    <a href="/okr/objectives/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-stream w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">OKR Siyahısı</span>
+                    </a>
+                    
+
+                    
+                    <a href="/okr/kpi/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-chart-area w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">OKR KPI</span>
+                    </a>
+
+
+                    <a href="/development-plans/goal-cascade/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-stream w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Məqsəd Kaskadlaşması</span>
+                    </a>
+
+                </div>
+            </div>
+
+            
+            
+            <div class="space-y-1" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_45208' ? null : 'acc_45208'">
+                    <span class="flex items-center space-x-2 w-full">
+                        <i class="fas fa-building text-indigo-500 group-hover:text-indigo-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <span x-show="sidebarOpen" class="whitespace-normal leading-tight">HR İdarəetməsi</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_45208'" x-transition x-cloak class="mt-2 space-y-1">
+
+                    
+                    
+                    <a href="/accounts/users/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-users w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">İstifadəçi Siyahısı</span>
+                    </a>
+                    
+
+
+
+                    
+                    
+                    <a href="/departments/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-network-wired w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Departments</span>
+                    </a>
+                    
+                    
+
+                    
+                    <a href="/pfile/employees/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-id-card w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Əməkdaş Faylları</span>
+                    </a>
+                    
+
+                    
+                    <a href="/compensation/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-coins w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Əməkhaqqı Paneli</span>
+                    </a>
+                    
+
+                    
+                    <a href="/compensation/salaries/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-money-check-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Maaş Siyahısı</span>
+                    </a>
+                    
+
+
+
+                    
+                    
+                    <a href="/compensation/salaries/change/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-edit w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Maaş Dəyişiklikləri</span>
+                    </a>
+                    
+                    
+
+                    
+                    <a href="/compensation/bonuses/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-gift w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Bonuslar</span>
+                    </a>
+                    
+
+                    
+                    <a href="/compensation/history/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-history w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Kompensasiya Tarixi</span>
+                    </a>
+                    
+
+                    
+                    <a href="/leave/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-plane-departure w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Məzuniyyət Paneli</span>
+                    </a>
+                    
+
+                    
+                    <a href="/leave/request/create/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-plus-square w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Yeni Məzuniyyət</span>
+                    </a>
+                    
+
+                    
+                    <a href="/leave/requests/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-list w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Məzuniyyət Sorğuları</span>
+                    </a>
+                    
+
+                    
+                    <a href="/leave/attendance/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-calendar-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Yoxlama Təqvimi</span>
+                    </a>
+                    
+
+                    
+                    <a href="/leave/approvals/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-user-clock w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Gözləyən Təsdiqlər</span>
+                    </a>
+                    
+
+                    
+                    <a href="/leave/team-calendar/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-users-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Komanda Təqvimi</span>
+                    </a>
+                    
+
+                    
+                    <a href="/recruitment/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-briefcase w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">İşə Qəbul Paneli</span>
+                    </a>
+                    
+
+                    
+                    <a href="/recruitment/jobs/create/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-plus w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Vakansiya Yarat</span>
+                    </a>
+                    
+
+                    
+                    <a href="/recruitment/pipeline/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-columns w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Namizəd Boru Xətti</span>
+                    </a>
+                    
+
+                    
+                    <a href="/recruitment/jobs/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-clipboard-list w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Vakansiyalar</span>
+                    </a>
+                    
+
+                    
+                    <a href="/recruitment/interviews/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-calendar-day w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Müsahibə Təqvimi</span>
+                    </a>
+
+
+                    <a href="/recruitment/ai-screening/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-robot w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">AI CV Sınağı</span>
+                    </a>
+
+
+                    <a href="/recruitment/video-interview-schedule/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-video w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Video Müsahibə Planla</span>
+                    </a>
+
+
+                    <a href="/recruitment/candidate-experience/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-smile-beam w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Namizəd Təcrübəsi</span>
+                    </a>
+
+
+                    <a href="/compensation/market-benchmarking/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-chart-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Bazar Müqayisəsi</span>
+                    </a>
+
+
+                    <a href="/compensation/total-rewards/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-gift w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Total Rewards</span>
+                    </a>
+
+                </div>
+            </div>
+            
+
+            <div class="space-y-1" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_73884' ? null : 'acc_73884'">
+                    <span class="flex items-center space-x-2 w-full">
+                        <i class="fas fa-heartbeat text-red-500 group-hover:text-red-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <span x-show="sidebarOpen" class="whitespace-normal leading-tight">Sağlamlıq və Wellness</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_73884'" x-transition x-cloak class="mt-2 space-y-1">
+
+                    <a href="/wellness/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-tachometer-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Panel</span>
+                    </a>
+
+                    <a href="/wellness/checkups/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-stethoscope w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Tibbi Müayinələr</span>
+                    </a>
+
+                    <a href="/wellness/mental-health/survey/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-brain w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Mental Sağlamlıq</span>
+                    </a>
+
+                    <a href="/wellness/fitness/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-dumbbell w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Fitness Proqramları</span>
+                    </a>
+
+                    <a href="/wellness/claims/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-file-medical w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Tibbi Xərc Tələbləri</span>
+                    </a>
+
+                    <a href="/wellness/challenges/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-trophy w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Wellness Yarışları</span>
+                    </a>
+
+                    <a href="/wellness/steps/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-shoe-prints w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Addım İzləmə</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Employee Engagement Hub -->
+            <div class="space-y-1" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_82830' ? null : 'acc_82830'">
+                    <span class="flex items-center space-x-2 w-full">
+                        <i class="fas fa-users-rays text-purple-500 group-hover:text-purple-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <span x-show="sidebarOpen" class="whitespace-normal leading-tight">İşçi Mənsubiyyəti</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_82830'" x-transition x-cloak class="mt-2 space-y-1">
+
+                    <a href="/engagement/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-chart-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Panel</span>
+                    </a>
+
+                    <a href="/engagement/surveys/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-poll w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Pulse Sorğular</span>
+                    </a>
+
+                    <a href="/engagement/recognition/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-hand-holding-heart w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Recognition Wall</span>
+                    </a>
+
+                    <a href="/engagement/feedback/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-comment-dots w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Anonim Feedback</span>
+                    </a>
+
+                    <a href="/engagement/leaderboard/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-trophy w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Leaderboard</span>
+                    </a>
+
+                    <a href="/engagement/my-profile/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-user-circle w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Mənim Profilim</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="space-y-1" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_90547' ? null : 'acc_90547'">
+                    <span class="flex items-center space-x-2 w-full">
+                        <i class="fas fa-bell text-orange-500 group-hover:text-orange-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <span x-show="sidebarOpen" class="whitespace-normal leading-tight">Bildirişlər və Ünsiyyət</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_90547'" x-transition x-cloak class="mt-2 space-y-1">
+                    
+                    <a href="/notifications/inbox/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-inbox w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Bildiriş Qutusu</span>
+                    </a>
+                    
+
+                    
+                    <a href="/notifications/settings/dashboard/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-sliders-h w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Bildiriş Paneli</span>
+                    </a>
+                    
+
+                    
+                    <a href="/notifications/preferences/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-user-cog w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Bildiriş Seçimləri</span>
+                    </a>
+                    
+
+
+
+                    
+                    
+                    <a href="/notifications/sms/providers/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-sms w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">SMS Təchizatçıları</span>
+                    </a>
+                    
+
+
+
+                    
+                    
+                    <a href="/notifications/templates/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-file-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Bildiriş Şablonları</span>
+                    </a>
+                    
+
+
+
+                    
+                    
+                    <a href="/notifications/templates/emails/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-envelope w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Email Şablonları</span>
+                    </a>
+                    
+
+                    
+                    
+                    <a href="/notifications/delivery-logs/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-truck w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Göndəriş Logları</span>
+                    </a>
+                    
+                    
+                    </a>
+                    
+
+                    
+                    <a href="/notifications/test/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-vial w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Test Bildirişləri</span>
+                    </a>
+                    
+
+                    
+                    <a href="/notifications/bulk/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-bullhorn w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Kütləvi Bildirişlər</span>
+                    </a>
+                    
+                </div>
+            </div>
+
+           
+            <div class="space-y-1 pt-4 border-t border-gray-200 dark:border-gray-800" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_102519' ? null : 'acc_102519'">
+                    <span class="flex items-center space-x-2 w-full">
+                        <i class="fas fa-user-tie text-teal-500 group-hover:text-teal-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <span x-show="sidebarOpen" class="whitespace-normal leading-tight">Onboarding & Adaptasiya</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_102519'" x-transition x-cloak class="mt-2 space-y-1">
+                    
+                    <a href="/onboarding/dashboard/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-rocket w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Onboarding paneli</span>
+                    </a>
+                    
+
+                    
+                    <a href="/onboarding/processes/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-clipboard-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Proseslər</span>
+                    </a>
+                    
+
+                    
+                    <a href="/onboarding/templates/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-layer-group w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Şablon kitabxanası</span>
+                    </a>
+                    
+                </div>
+            </div>
+
+            <div class="space-y-1 pt-4 border-t border-gray-200 dark:border-gray-800" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_107087' ? null : 'acc_107087'">
+                    <span class="flex items-center space-x-2 w-full">
+                        <i class="fas fa-file-alt text-gray-600 group-hover:text-gray-700 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <span x-show="sidebarOpen" class="whitespace-normal leading-tight">Hesabat & Export</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_107087'" x-transition x-cloak class="mt-2 space-y-1">
+                    
+                    <a href="/reports/blueprints/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-diagram-project w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Şablonlar</span>
+                    </a>
+                    
+
+                    
+                    <a href="/reports/schedules/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-calendar-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Planlaşdırılmış exportlar</span>
+                    </a>
+                    
+                </div>
+            </div>
+
+            <div class="space-y-1 pt-4 border-t border-gray-200 dark:border-gray-800" >
+                <button type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
+                    @click="activeAccordion = activeAccordion === 'acc_110514' ? null : 'acc_110514'">
+                    <span class="flex items-center space-x-2 w-full">
+                        <i class="fas fa-user-shield text-red-500 group-hover:text-red-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <span x-show="sidebarOpen" class="whitespace-normal leading-tight">Təhlükəsizlik</span>
+                    </span>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                </button>
+                <div x-show="activeAccordion === 'acc_110514'" x-transition x-cloak class="mt-2 space-y-1">
+                    
+                    <a href="/accounts/security/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-lock w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Hesab təhlükəsizliyi</span>
+                    </a>
+                    
+
+                    
+                    <a href="/audit/security-dashboard/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-shield-virus w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Təhlükəsizlik Paneli</span>
+                    </a>
+                    
+
+                    
+                    <a href="/audit/log-search/"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-search w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Audit Log Axtarışı</span>
+                    </a>
+                    
+                </div>
+            </div>
+        </nav>
+        <!-- Profile & Logout Section -->
+        <div class="p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
+            <div class="space-y-2">
+                <a href="/accounts/profile/"
+                    class="flex items-center px-3 py-2 text-sm font-medium text-gray-900 font-bold dark:text-white rounded-lg transition-all duration-200 hover:bg-white dark:hover:bg-gray-800 hover:shadow-sm border border-transparent hover:border-gray-200 dark:hover:border-gray-700 group">
+                    <i
+                        class="fas fa-user-circle w-5 mr-3 text-blue-500 group-hover:text-blue-600 transition-colors"></i>
+                    <span>Profile</span>
+                </a>
+
+                <form method="post" action="/accounts/logout/"
+                    class="w-full">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="qcDC5DBfVn0hpaOHffZo5iY2L6wEMgMVVDWQHqDLBhDtyPUMhZ2XiTZU2D1OnYfr">
+                    <button type="submit"
+                        class="flex items-center w-full px-3 py-2 text-sm font-medium text-red-600 dark:text-red-400 rounded-lg transition-all duration-200 hover:bg-red-50 dark:hover:bg-red-900/20 hover:shadow-sm border border-transparent hover:border-red-200 dark:hover:border-red-800 group">
+                        <i
+                            class="fas fa-sign-out-alt w-5 mr-3 group-hover:text-red-700 dark:group-hover:text-red-300 transition-colors"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</aside>
+            
+
+            <!-- Main Content -->
+            <main class="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 transition-all duration-300" :class="sidebarOpen ? 'md:ml-64' : 'md:ml-20'">
+                <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                    <!-- Breadcrumb -->
+                    
+                    
+                    
+
+                    <!-- Messages -->
+                    
+
+                    <!-- Page Header -->
+                    
+                    
+                    
+
+                    <!-- Main Content -->
+                    <div class="animate-fade-in">
+                        
+<div class="container mx-auto px-4 py-8 max-w-3xl">
+    <div class="mb-8">
+        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">Kütləvi İstifadəçi İdxalı</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">CSV və ya Excel formatında fayl yükləyərək birdən çox istifadəçini sistemə əlavə edin.</p>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-none rounded-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
+        <div class="p-6 sm:p-8">
+            <form method="post" enctype="multipart/form-data" class="space-y-6">
+                <input type="hidden" name="csrfmiddlewaretoken" value="qcDC5DBfVn0hpaOHffZo5iY2L6wEMgMVVDWQHqDLBhDtyPUMhZ2XiTZU2D1OnYfr">
+
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">İdxal Faylı Seçin</label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-lg hover:border-indigo-500 transition-colors bg-gray-50 dark:bg-gray-700/50">
+                        <div class="space-y-1 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div class="flex text-sm text-gray-600 dark:text-gray-400 justify-center">
+                                <label for="import_file" class="relative cursor-pointer bg-white dark:bg-gray-800 rounded-md font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                    <span>Fayl Yüklə</span>
+                                    <input id="import_file" name="import_file" type="file" class="sr-only" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+                                </label>
+                                <p class="pl-1">və ya sürükləyib buraxın</p>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
+                                Dəstəklənən formatlar: .csv, .xlsx, .xls
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-100 dark:border-blue-800/50">
+                    <h4 class="text-sm font-medium text-blue-800 dark:text-blue-300 flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Fayl Formatı Tələbləri
+                    </h4>
+                    <ul class="mt-2 text-xs text-blue-700 dark:text-blue-400 list-disc list-inside space-y-1">
+                        <li>Faylda ən azı <code>email</code> sütunu olmalıdır.</li>
+                        <li>İstəyə bağlı sütunlar: <code>username</code>, <code>first_name</code>, <code>last_name</code>.</li>
+                        <li>Mövcud olan istifadəçi e-poçtları avtomatik olaraq buraxılacaqdır.</li>
+                        <li>Yaradılan istifadəçilər üçün standart şifrə: <code>Q360@Welcome2025!</code> təyin ediləcək.</li>
+                    </ul>
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-end">
+                    <button type="submit" class="inline-flex justify-center rounded-lg border border-transparent bg-indigo-600 py-2.5 px-6 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-800 transition-colors">
+                        İdxal Et
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        
+
+
+<footer class="bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-8">
+            <!-- Brand Section -->
+            <div class="lg:col-span-2">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-2 rounded-lg shadow-lg">
+                        <i class="fas fa-chart-pie text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Q360</h3>
+                        <p class="text-sm text-blue-600 dark:text-blue-400 font-medium">Performance Suite</p>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    Professional 360° Performance Evaluation System designed to help organizations achieve excellence through comprehensive talent management and development solutions.
+                </p>
+                <div class="flex space-x-3">
+                    <a href="https://www.linkedin.com/company/q360-performance" target="_blank" rel="noopener noreferrer" class="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400" title="LinkedIn">
+                        <i class="fab fa-linkedin text-sm"></i>
+                    </a>
+                    <a href="https://twitter.com/q360performance" target="_blank" rel="noopener noreferrer" class="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400" title="Twitter">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="https://www.facebook.com/q360performance" target="_blank" rel="noopener noreferrer" class="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400" title="Facebook">
+                        <i class="fab fa-facebook text-sm"></i>
+                    </a>
+                    <a href="https://github.com/q360-performance" target="_blank" rel="noopener noreferrer" class="p-2 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400" title="GitHub">
+                        <i class="fab fa-github text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Platform -->
+            <div class="lg:col-span-1">
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4 flex items-center">
+                    <i class="fas fa-cube mr-2 text-blue-500 text-xs"></i>
+                    Platforma
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="/dashboard/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Panel
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/evaluations/my-assignments/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Qiymətləndirmələr
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/competencies/my-skills/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Bacarıqlar
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/training/my-trainings/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Təlim
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/engagement/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Engagement
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/wellness/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Wellness
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="lg:col-span-1">
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4 flex items-center">
+                    <i class="fas fa-book mr-2 text-green-500 text-xs"></i>
+                    Resurslar
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="/help/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Help Center
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/reports/my-reports/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Reports & Analytics
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/docs/" target="_blank" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            API Documentation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/help/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Support & Help
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="lg:col-span-1">
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4 flex items-center">
+                    <i class="fas fa-shield-alt mr-2 text-purple-500 text-xs"></i>
+                    Support
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="/privacy/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/terms/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Terms of Service
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/audit/security-dashboard/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            Security & Compliance
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dashboard/" class="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 group">
+                            <i class="fas fa-chevron-right text-xs mr-2 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                            System Status
+                            <span class="ml-2 px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs rounded-full">Active</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="lg:col-span-1">
+                <h4 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4 flex items-center">
+                    <i class="fas fa-envelope mr-2 text-red-500 text-xs"></i>
+                    Contact
+                </h4>
+                <div class="space-y-3">
+                    <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-envelope mr-2 text-blue-500"></i>
+                        <a href="mailto:support@q360.az" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                            support@q360.az
+                        </a>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-phone mr-2 text-green-500"></i>
+                        <span>+994 12 345 67 89</span>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-map-marker-alt mr-2 text-red-500"></i>
+                        <span>Baku, Azerbaijan</span>
+                    </div>
+                </div>
+                
+                <!-- Newsletter Signup -->
+                <div class="mt-4">
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">Stay updated with our newsletter</p>
+                    <div class="flex space-x-2">
+                        <input type="email" placeholder="Your email" 
+                            class="flex-1 px-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <button class="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-lg transition-colors duration-200">
+                            <i class="fas fa-paper-plane text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+                <!-- Copyright -->
+                <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                    <span>© 2025 Q360 Performance Suite. All rights reserved.</span>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-globe text-xs"></i>
+                        <span>Made with ❤️ in Azerbaijan</span>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="flex items-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-code-branch text-xs"></i>
+                        <span>v2.0.0</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-rocket text-xs text-purple-500"></i>
+                        <span>Enhanced with Engagement</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-shield-check text-xs text-green-500"></i>
+                        <span>Secure & Reliable</span>
+                    </div>
+                    <button onclick="toggleDarkMode()" class="flex items-center space-x-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 group">
+                        <i class="fas fa-moon dark:hidden group-hover:scale-110 transition-transform"></i>
+                        <i class="fas fa-sun hidden dark:inline group-hover:scale-110 transition-transform"></i>
+                        <span class="text-xs">Theme</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all duration-300 transform translate-y-16 opacity-0 no-print focus-ring z-40">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.style.colorScheme = 'light';
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                html.style.colorScheme = 'dark';
+                localStorage.theme = 'dark';
+            }
+        }
+
+        // Back to top functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('translate-y-16', 'opacity-0');
+                    backToTopButton.classList.add('translate-y-0', 'opacity-100');
+                } else {
+                    backToTopButton.classList.remove('translate-y-0', 'opacity-100');
+                    backToTopButton.classList.add('translate-y-16', 'opacity-0');
+                }
+            });
+
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Hide global loader
+            setTimeout(() => {
+                const loader = document.getElementById('global-loader');
+                if (loader) loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Error handling
+        window.addEventListener('error', function(e) {
+            console.error('Global error caught:', e.error);
+        });
+    </script>
+
+    <!-- Bootstrap 5 JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="/static/js/main.js"></script>
+
+    
+
+    <!-- Analytics (optional) -->
+    <script>
+        // Example analytics - replace with your preferred analytics service
+        if (window.location.hostname !== 'localhost') {
+            // Your analytics code here
+        }
+    </script>
+</body>
+</html>

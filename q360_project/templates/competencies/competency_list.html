@@ -1,0 +1,353 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Competencies" %} - Q360{% endblock %}
+
+{% block page_header %}
+<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
+    <div>
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+            <i class="fas fa-lightbulb mr-3 text-indigo-500"></i>{% trans "Competencies" %}
+        </h1>
+        <p class="mt-1 text-gray-600 dark:text-gray-400">{% trans "Manage organizational capabilities and skill expectations" %}</p>
+    </div>
+    {% if user.is_admin %}
+    <button @click="openCreateModal" type="button" class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:shadow-indigo-500/40">
+        <i class="fas fa-plus mr-2"></i>{% trans "Create Competency" %}
+    </button>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="space-y-8" x-data="competencyPage()" x-init="init()">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <template x-if="statsLoading">
+            <div class="sm:col-span-2 xl:col-span-4 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                <template x-for="n in 4" :key="`stat-skeleton-${n}`">
+                    <div class="rounded-2xl border border-gray-200/60 bg-white p-5 shadow-sm dark:border-gray-700/60 dark:bg-gray-900/70">
+                        <div class="space-y-3 animate-pulse">
+                            <div class="h-3 w-24 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                            <div class="h-10 w-16 rounded-lg bg-gray-200 dark:bg-gray-700"></div>
+                            <div class="h-3 w-20 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template x-if="!statsLoading">
+            <div class="sm:col-span-2 xl:col-span-4 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                <div class="rounded-2xl border border-indigo-100 bg-indigo-50/70 p-5 shadow-sm dark:border-indigo-500/40 dark:bg-indigo-500/10">
+                    <p class="text-xs uppercase tracking-widest text-indigo-600 dark:text-indigo-300">{% trans "Total" %}</p>
+                    <p class="mt-2 text-3xl font-semibold text-indigo-700 dark:text-indigo-200" x-text="formatNumber(stats.total)">0</p>
+                    <p class="mt-1 text-xs text-indigo-500 dark:text-indigo-200/80">{% trans "Registered competencies" %}</p>
+                </div>
+                <div class="rounded-2xl border border-emerald-100 bg-emerald-50/70 p-5 shadow-sm dark:border-emerald-500/40 dark:bg-emerald-500/10">
+                    <p class="text-xs uppercase tracking-widest text-emerald-600 dark:text-emerald-300">{% trans "Active" %}</p>
+                    <p class="mt-2 text-3xl font-semibold text-emerald-700 dark:text-emerald-200" x-text="formatNumber(stats.active)">0</p>
+                    <p class="mt-1 text-xs text-emerald-500 dark:text-emerald-200/80">{% trans "Currently in use" %}</p>
+                </div>
+                <div class="rounded-2xl border border-purple-100 bg-purple-50/70 p-5 shadow-sm dark:border-purple-500/40 dark:bg-purple-500/10">
+                    <p class="text-xs uppercase tracking-widest text-purple-600 dark:text-purple-300">{% trans "Skills" %}</p>
+                    <p class="mt-2 text-3xl font-semibold text-purple-700 dark:text-purple-200" x-text="formatNumber(stats.skills)">0</p>
+                    <p class="mt-1 text-xs text-purple-500 dark:text-purple-200/80">{% trans "Linked skill definitions" %}</p>
+                </div>
+                <div class="rounded-2xl border border-amber-100 bg-amber-50/70 p-5 shadow-sm dark:border-amber-500/40 dark:bg-amber-500/10">
+                    <p class="text-xs uppercase tracking-widest text-amber-600 dark:text-amber-300">{% trans "Approvals" %}</p>
+                    <p class="mt-2 text-3xl font-semibold text-amber-700 dark:text-amber-200" x-text="formatNumber(stats.pending)">0</p>
+                    <p class="mt-1 text-xs text-amber-500 dark:text-amber-200/80">{% trans "Pending skill approvals" %}</p>
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <div class="rounded-3xl border border-gray-200/70 bg-white p-6 shadow-sm dark:border-gray-700/60 dark:bg-gray-900/80">
+        <form @submit.prevent="submitFilters" class="grid grid-cols-1 gap-4 md:grid-cols-5 md:items-end">
+            <div class="md:col-span-3">
+                <label for="competency-search" class="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">{% trans "Search" %}</label>
+                <div class="mt-2 relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input id="competency-search" type="text" x-model="filters.search" placeholder="{% trans 'Search by name or description...' %}"
+                           class="w-full rounded-2xl border border-gray-200 bg-gray-50 py-3 pl-12 pr-4 text-sm text-gray-900 placeholder-gray-400 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-500" />
+                </div>
+            </div>
+            <div>
+                <label for="competency-status" class="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">{% trans "Status" %}</label>
+                <select id="competency-status" x-model="filters.status"
+                        class="mt-2 w-full rounded-2xl border border-gray-200 bg-gray-50 py-3 px-4 text-sm text-gray-900 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100">
+                    <option value="">{% trans "All" %}</option>
+                    <option value="true">{% trans "Active" %}</option>
+                    <option value="false">{% trans "Inactive" %}</option>
+                </select>
+            </div>
+            <div class="flex gap-3">
+                <button type="submit" class="flex-1 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:shadow-indigo-500/40">
+                    <i class="fas fa-filter mr-2"></i>{% trans "Apply" %}
+                </button>
+                <button type="button" @click="resetFilters" class="flex-1 rounded-2xl border border-gray-200 bg-white py-3 text-sm font-semibold text-gray-600 transition hover:border-gray-300 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-100">
+                    <i class="fas fa-undo mr-2"></i>{% trans "Reset" %}
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="rounded-3xl border border-gray-200/70 bg-white p-6 shadow-sm dark:border-gray-700/60 dark:bg-gray-900/80">
+        <div x-show="loading" class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3" role="status">
+            <template x-for="n in 6" :key="`competency-skeleton-${n}`">
+                <div class="rounded-2xl border border-gray-200/80 bg-gray-50 p-5 dark:border-gray-700/60 dark:bg-gray-800/70">
+                    <div class="space-y-4 animate-pulse">
+                        <div class="h-6 w-3/4 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                        <div class="h-4 w-full rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                        <div class="h-4 w-2/3 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                        <div class="h-10 w-full rounded-xl bg-gray-200 dark:bg-gray-700"></div>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <div x-show="!loading" x-transition.opacity style="display:none;" class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            <template x-for="competency in competencies" :key="competency.id">
+                <article class="relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-indigo-300 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800/80">
+                    <div class="absolute right-4 top-4">
+                        <span :class="statusBadgeClasses(competency.is_active)" class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold">
+                            <i class="fas" :class="competency.is_active ? 'fa-check-circle mr-2' : 'fa-pause-circle mr-2'"></i>
+                            <span x-text="statusLabel(competency.is_active)">{% trans "Status" %}</span>
+                        </span>
+                    </div>
+                    <div class="pr-16">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white" x-text="competency.name"></h3>
+                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400" x-text="competency.description || '{% trans "No description" %}'"></p>
+                    </div>
+                    <dl class="mt-5 grid grid-cols-2 gap-3 text-sm">
+                        <div class="rounded-xl bg-indigo-50/80 p-3 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-200">
+                            <dt class="text-xs font-semibold uppercase tracking-widest">{% trans "Positions" %}</dt>
+                            <dd class="mt-1 text-lg font-semibold" x-text="formatNumber(competency.active_positions_count || 0)"></dd>
+                        </div>
+                        <div class="rounded-xl bg-purple-50/80 p-3 text-purple-700 dark:bg-purple-500/10 dark:text-purple-200">
+                            <dt class="text-xs font-semibold uppercase tracking-widest">{% trans "Professionals" %}</dt>
+                            <dd class="mt-1 text-lg font-semibold" x-text="formatNumber(competency.total_users_with_skill || 0)"></dd>
+                        </div>
+                    </dl>
+                    <div class="mt-6 flex items-center justify-between">
+                        <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-clock"></i>
+                            <span x-text="competency.updated_at ? new Date(competency.updated_at).toLocaleDateString() : '{% trans "Recently updated" %}'"></span>
+                        </div>
+                        <a :href="detailUrl(competency.id)" class="inline-flex items-center rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 text-sm font-semibold text-white shadow-indigo-500/30 transition hover:shadow-indigo-500/50">
+                            <i class="fas fa-arrow-right mr-2"></i>{% trans "Open" %}
+                        </a>
+                    </div>
+                </article>
+            </template>
+        </div>
+
+        <div x-show="!loading && competencies.length === 0" x-transition.opacity style="display:none;" class="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 bg-gray-50 px-6 py-12 text-center dark:border-gray-700 dark:bg-gray-800/60">
+            <i class="fas fa-search text-3xl text-gray-400 dark:text-gray-500"></i>
+            <p class="mt-4 text-sm font-semibold text-gray-900 dark:text-white">{% trans "No competencies found" %}</p>
+            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{% trans "Try adjusting filters or create a new competency." %}</p>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-gray-500 dark:text-gray-400" x-show="!loading">
+            <span x-text="formatNumber(competencies.length)"></span>
+            {% trans "results on this page" %}
+        </p>
+        <div class="flex items-center gap-3">
+            <button type="button" @click="goTo('prev')" :disabled="!pagination.previous"
+                    class="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-gray-600 transition hover:border-gray-300 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-100">
+                <i class="fas fa-chevron-left mr-2"></i>{% trans "Previous" %}
+            </button>
+            <button type="button" @click="goTo('next')" :disabled="!pagination.next"
+                    class="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-gray-600 transition hover:border-gray-300 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-100">
+                {% trans "Next" %}<i class="fas fa-chevron-right ml-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Create Competency Modal -->
+    <div x-show="showCreateModal" x-cloak class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
+        <div class="flex min-h-screen items-center justify-center p-4">
+            <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" @click="showCreateModal = false"></div>
+            <div class="relative w-full max-w-2xl rounded-3xl bg-white p-8 shadow-2xl dark:bg-gray-800">
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">{% trans "Create New Competency" %}</h3>
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{% trans "Define a new competency for organizational use" %}</p>
+                </div>
+                <form @submit.prevent="submitCreateCompetency">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300">{% trans "Name" %} *</label>
+                            <input type="text" x-model="newCompetency.name" required
+                                   class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" />
+                        </div>
+                        <div>
+                            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300">{% trans "Description" %}</label>
+                            <textarea x-model="newCompetency.description" rows="3"
+                                      class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-200 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100"></textarea>
+                        </div>
+                        <div>
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" x-model="newCompetency.is_active" class="rounded border-gray-300 text-indigo-500 focus:ring-indigo-200" />
+                                <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">{% trans "Active" %}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex gap-3">
+                        <button type="button" @click="showCreateModal = false"
+                                class="flex-1 rounded-xl border border-gray-200 py-3 text-sm font-semibold text-gray-600 transition hover:border-gray-300 hover:text-gray-800 dark:border-gray-700 dark:text-gray-300">
+                            {% trans "Cancel" %}
+                        </button>
+                        <button type="submit" :disabled="creatingCompetency"
+                                class="flex-1 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:shadow-indigo-500/40 disabled:opacity-50">
+                            <span x-show="!creatingCompetency">{% trans "Create" %}</span>
+                            <span x-show="creatingCompetency"><i class="fas fa-spinner fa-spin mr-2"></i>{% trans "Creating..." %}</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function competencyPage() {
+    return {
+        loading: true,
+        statsLoading: true,
+        competencies: [],
+        stats: { total: 0, active: 0, skills: 0, pending: 0 },
+        filters: { search: '', status: '' },
+        pagination: { current: 1, next: null, previous: null },
+        formatter: new Intl.NumberFormat('az-AZ'),
+        showCreateModal: false,
+        creatingCompetency: false,
+        newCompetency: { name: '', description: '', is_active: true },
+        init() {
+            this.fetchStats();
+            this.fetchCompetencies();
+        },
+        openCreateModal() {
+            this.newCompetency = { name: '', description: '', is_active: true };
+            this.showCreateModal = true;
+        },
+        async submitCreateCompetency() {
+            this.creatingCompetency = true;
+            try {
+                const response = await fetch('/api/v1/competencies/competencies/', {
+                    method: 'POST',
+                    headers: {
+                        ...this.authHeaders(),
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': this.getCsrfToken()
+                    },
+                    body: JSON.stringify(this.newCompetency)
+                });
+
+                if (response.ok) {
+                    this.showCreateModal = false;
+                    await this.fetchCompetencies(1);
+                    await this.fetchStats();
+                    alert('{% trans "Competency created successfully" %}');
+                } else {
+                    const error = await response.json();
+                    alert('{% trans "Error" %}: ' + (error.detail || '{% trans "Could not create competency" %}'));
+                }
+            } catch (error) {
+                console.error(error);
+                alert('{% trans "Network error occurred" %}');
+            } finally {
+                this.creatingCompetency = false;
+            }
+        },
+        getCsrfToken() {
+            const cookieValue = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('csrftoken='));
+            return cookieValue ? cookieValue.split('=')[1] : '';
+        },
+        formatNumber(value) {
+            return this.formatter.format(value || 0);
+        },
+        statusLabel(isActive) {
+            return isActive ? '{% trans "Active" %}' : '{% trans "Inactive" %}';
+        },
+        statusBadgeClasses(isActive) {
+            return isActive
+                ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-200'
+                : 'bg-gray-100 text-gray-600 dark:bg-gray-700/60 dark:text-gray-300';
+        },
+        detailUrl(id) {
+            return `/competencies/${id}/`;
+        },
+        authHeaders() {
+            // Use global getAccessToken from api-utils.js (supports both cookie and localStorage)
+            const token = window.getAccessToken ? window.getAccessToken() : null;
+            return token ? { 'Authorization': `Bearer ${token}` } : {};
+        },
+        async fetchStats() {
+            this.statsLoading = true;
+            try {
+                // Use global apiGet from api-utils.js (handles auth, errors, toast notifications)
+                const data = await window.apiGet('/api/v1/competencies/competencies/statistics/');
+                this.stats.total = data.total_competencies || 0;
+                this.stats.active = data.active_competencies || data.total_active || 0;
+                this.stats.skills = data.total_skills || 0;
+                this.stats.pending = data.pending_approvals || 0;
+            } catch (error) {
+                console.warn('Unable to load competency statistics', error);
+            } finally {
+                this.statsLoading = false;
+            }
+        },
+        async fetchCompetencies(page = 1) {
+            this.loading = true;
+            const params = new URLSearchParams();
+            params.set('page', page);
+            if (this.filters.search) {
+                params.set('search', this.filters.search);
+            }
+            if (this.filters.status) {
+                params.set('is_active', this.filters.status);
+            }
+            try {
+                // Use global apiGet from api-utils.js
+                const data = await window.apiGet(`/api/v1/competencies/competencies/?${params.toString()}`);
+                this.competencies = apiData.results || [];
+                this.pagination.next = data.next;
+                this.pagination.previous = data.previous;
+                this.pagination.current = page;
+            } catch (error) {
+                console.error(error);
+                this.competencies = [];
+                this.pagination.next = null;
+                this.pagination.previous = null;
+            } finally {
+                this.loading = false;
+            }
+        },
+        submitFilters() {
+            this.fetchCompetencies(1);
+        },
+        resetFilters() {
+            this.filters.search = '';
+            this.filters.status = '';
+            this.fetchCompetencies(1);
+        },
+        goTo(direction) {
+            if (direction === 'prev' && this.pagination.previous) {
+                this.fetchCompetencies(Math.max(1, this.pagination.current - 1));
+            } else if (direction === 'next' && this.pagination.next) {
+                this.fetchCompetencies(this.pagination.current + 1);
+            }
+        }
+    };
+}
+
+document.addEventListener('alpine:init', () => {
+    Alpine.data('competencyPage', competencyPage);
+});
+</script>
+{% endblock %}

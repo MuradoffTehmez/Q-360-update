@@ -1,0 +1,488 @@
+{% extends 'base/base.html' %}
+{% load i18n static %}
+
+{% block title %}{{ employee.get_full_name }} - Redaktə Et{% endblock %}
+
+{% block extra_css %}
+<style>
+    .profile-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 10px 10px 0 0;
+        margin-bottom: 0;
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 4px solid white;
+        object-fit: cover;
+    }
+
+    .info-card {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-tabs {
+        border-bottom: 2px solid #e9ecef;
+    }
+
+    .nav-tabs .nav-link {
+        border: none;
+        color: #6c757d;
+        padding: 1rem 1.5rem;
+        font-weight: 500;
+    }
+
+    .nav-tabs .nav-link:hover {
+        border: none;
+        color: #667eea;
+    }
+
+    .nav-tabs .nav-link.active {
+        color: #667eea;
+        border: none;
+        border-bottom: 3px solid #667eea;
+        background: transparent;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 0.5rem;
+    }
+
+    .btn-action {
+        padding: 0.5rem 1.5rem;
+        border-radius: 5px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #e9ecef;
+    }
+
+    .timeline-item {
+        position: relative;
+        padding-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -35px;
+        top: 0;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #667eea;
+        border: 3px solid white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <div class="position-relative">
+                    {% if employee.profile_picture %}
+                        <img src="{{ employee.profile_picture.url }}" alt="{{ employee.get_full_name }}" class="profile-avatar" id="profilePicturePreview">
+                    {% else %}
+                        <div class="profile-avatar d-flex align-items-center justify-content-center" style="background: rgba(255,255,255,0.2);" id="profilePicturePreview">
+                            <i class="fas fa-user fa-3x"></i>
+                        </div>
+                    {% endif %}
+                    <button type="button" class="btn btn-sm btn-light position-absolute" style="bottom: 0; right: 0; border-radius: 50%;" onclick="document.getElementById('profilePictureInput').click()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                <input type="file" id="profilePictureInput" accept="image/*" style="display: none;" onchange="uploadProfilePicture(this)">
+            </div>
+            <div class="col">
+                <h2 class="mb-2">{{ employee.get_full_name }}</h2>
+                <p class="mb-1">
+                    <i class="fas fa-briefcase mr-2"></i>{{ employee.position|default:"N/A" }}
+                </p>
+                <p class="mb-0">
+                    <i class="fas fa-building mr-2"></i>{{ employee.department.name|default:"N/A" }}
+                </p>
+            </div>
+            <div class="col-auto">
+                <a href="{% url 'pfile:employee_detail' employee.pk %}" class="btn btn-light">
+                    <i class="fas fa-eye mr-2"></i>{% trans "Baxış Rejimi" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab" aria-controls="personal" aria-selected="true">
+                <i class="fas fa-user mr-1"></i>{% trans "Şəxsi Məlumat" %}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="professional-tab" data-bs-toggle="tab" data-bs-target="#professional" type="button" role="tab" aria-controls="professional" aria-selected="false">
+                <i class="fas fa-briefcase mr-1"></i>{% trans "Peşəkar Məlumat" %}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="documents-tab" data-bs-toggle="tab" data-bs-target="#documents" type="button" role="tab" aria-controls="documents" aria-selected="false">
+                <i class="fas fa-folder mr-1"></i>{% trans "Sənədlər" %}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab" aria-controls="history" aria-selected="false">
+                <i class="fas fa-history mr-1"></i>{% trans "İş Tarixçəsi" %}
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="profileTabsContent">
+        <!-- Personal Information Tab -->
+        <div class="tab-pane fade show active" id="personal" role="tabpanel">
+            {% include 'accounts/pfile/_personal_tab.html' %}
+        </div>
+
+        <!-- Professional Information Tab -->
+        <div class="tab-pane fade" id="professional" role="tabpanel">
+            {% include 'accounts/pfile/_professional_tab.html' %}
+        </div>
+
+        <!-- Documents Tab -->
+        <div class="tab-pane fade" id="documents" role="tabpanel">
+            {% include 'accounts/pfile/_documents_tab.html' %}
+        </div>
+
+        <!-- Work History Tab -->
+        <div class="tab-pane fade" id="history" role="tabpanel">
+            {% include 'accounts/pfile/_history_tab.html' %}
+        </div>
+    </div>
+</div>
+
+<!-- Add Document Modal -->
+<div class="modal fade" id="addDocumentModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans "Yeni Sənəd Əlavə Et" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="addDocumentForm" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label>{% trans "Sənəd Növü" %}</label>
+                        <select class="form-control" name="document_type" required>
+                            <option value="">{% trans "Seçin" %}</option>
+                            <option value="id_card">{% trans "Şəxsiyyət Vəsiqəsi" %}</option>
+                            <option value="passport">{% trans "Pasport" %}</option>
+                            <option value="resume">{% trans "CV/Rezume" %}</option>
+                            <option value="diploma">{% trans "Diplom" %}</option>
+                            <option value="certificate">{% trans "Sertifikat" %}</option>
+                            <option value="contract">{% trans "Əmək Müqaviləsi" %}</option>
+                            <option value="other">{% trans "Digər" %}</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>{% trans "Başlıq" %}</label>
+                        <input type="text" class="form-control" name="title" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>{% trans "Təsvir" %}</label>
+                        <textarea class="form-control" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label>{% trans "Verilmə Tarixi" %}</label>
+                                <input type="date" class="form-control" name="issue_date">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label>{% trans "Bitmə Tarixi" %}</label>
+                                <input type="date" class="form-control" name="expiry_date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>{% trans "Fayl" %}</label>
+                        <input type="file" class="form-control" name="file">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Ləğv Et" %}</button>
+                    <button type="submit" class="btn btn-primary">{% trans "Əlavə Et" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Work History Modal -->
+<div class="modal fade" id="addHistoryModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans "Yeni Tarixçə Qeydi" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="addHistoryForm" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label>{% trans "Dəyişiklik Növü" %}</label>
+                        <select class="form-control" name="change_type" required>
+                            <option value="">{% trans "Seçin" %}</option>
+                            <option value="promotion">{% trans "Tərf" %}</option>
+                            <option value="transfer">{% trans "Transfer" %}</option>
+                            <option value="demotion">{% trans "Təqdir edilmə" %}</option>
+                            <option value="termination">{% trans "İşdən Çıxma" %}</option>
+                            <option value="other">{% trans "Digər" %}</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>{% trans "Qüvvəyə Minmə Tarixi" %}</label>
+                        <input type="date" class="form-control" name="effective_date" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>{% trans "Köhnə Vəzifə" %}</label>
+                        <input type="text" class="form-control" name="old_position">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>{% trans "Yeni Vəzifə" %}</label>
+                        <input type="text" class="form-control" name="new_position">
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Səbəb" %}</label>
+                        <textarea class="form-control" name="reason" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Ləğv Et" %}</button>
+                    <button type="submit" class="btn btn-primary">{% trans "Əlavə Et" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Tab navigation with hash support
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait for Bootstrap to load
+    const checkBootstrap = setInterval(function() {
+        if (typeof bootstrap !== 'undefined' && bootstrap.Tab) {
+            clearInterval(checkBootstrap);
+            initializeTabs();
+        }
+    }, 100);
+
+    function initializeTabs() {
+        const triggerTabList = document.querySelectorAll('[data-bs-toggle="tab"]');
+
+        // Listen to tab shown events to update URL hash
+        triggerTabList.forEach(function(triggerEl) {
+            triggerEl.addEventListener('shown.bs.tab', function(e) {
+                const target = e.target.getAttribute('data-bs-target') || e.target.getAttribute('aria-controls');
+                if (target) {
+                    const hash = target.startsWith('#') ? target : '#' + target;
+                    history.replaceState(null, null, hash);
+                }
+            });
+        });
+
+        // Function to activate tab from hash
+        function activateTabFromHash() {
+            let hash = window.location.hash || '#personal';
+            const tabId = hash.replace('#', '');
+            const tabElement = document.querySelector(`[data-bs-toggle="tab"][aria-controls="${tabId}"]`) ||
+                              document.querySelector(`[data-bs-toggle="tab"][data-bs-target="${hash}"]`);
+
+            if (tabElement) {
+                const tab = bootstrap.Tab.getInstance(tabElement) || new bootstrap.Tab(tabElement);
+                tab.show();
+            }
+        }
+
+        // Activate tab on page load
+        activateTabFromHash();
+
+        // Activate tab when hash changes
+        window.addEventListener('hashchange', function() {
+            activateTabFromHash();
+        });
+    }
+});
+
+// Upload Profile Picture
+function uploadProfilePicture(input) {
+    if (input.files && input.files[0]) {
+        const formData = new FormData();
+        formData.append('profile_picture', input.files[0]);
+        formData.append('csrfmiddlewaretoken', document.querySelector('[name=csrfmiddlewaretoken]').value);
+
+        fetch("{% url 'pfile:employee_edit' employee.id %}", {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                // Preview image
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('profilePicturePreview');
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Profile" class="profile-avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+
+                alert('Profil şəkli uğurla yeniləndi!');
+            } else {
+                alert('Xəta baş verdi!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Xəta baş verdi!');
+        });
+    }
+}
+
+// Add Document Form Submit
+document.getElementById('addDocumentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+
+    fetch("{% url 'pfile:document_create' employee.id %}", {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert('Xəta: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Xəta baş verdi!');
+    });
+});
+
+// Add History Form Submit
+document.getElementById('addHistoryForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+
+    fetch("{% url 'pfile:history_create' employee.id %}", {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert('Xəta: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Xəta baş verdi!');
+    });
+});
+
+// Delete Document
+function deleteDocument(id) {
+    if (confirm('Bu sənədi silmək istədiyinizdən əminsiniz?')) {
+        fetch(`/pfile/document/${id}/delete/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Xəta: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Xəta baş verdi!');
+        });
+    }
+}
+
+// Delete History
+function deleteHistory(id) {
+    if (confirm('Bu qeydi silmək istədiyinizdən əminsiniz?')) {
+        fetch(`/pfile/history/${id}/delete/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Xəta: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Xəta baş verdi!');
+        });
+    }
+}
+</script>
+{% endblock %}

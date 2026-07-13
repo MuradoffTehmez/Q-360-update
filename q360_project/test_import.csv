@@ -1,0 +1,6 @@
+first_name,last_name,email,role,department,position
+Valid,One,valid1@example.com,employee,IT,Developer
+Valid,Two,valid2@example.com,manager,HR,Manager
+Invalid,Email,invalid-email,employee,IT,Tester
+Missing,Role,missing_role@example.com,,IT,Support
+Valid,Three,valid3@example.com,hr,HR,Specialist

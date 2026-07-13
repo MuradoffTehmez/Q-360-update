@@ -1,0 +1,102 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{% if object %}Şöbəni Yenilə{% else %}Yeni Şöbə{% endif %} | Q360{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-3xl">
+    <div class="mb-8 flex items-center justify-between">
+        <div>
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">{% if object %}Şöbəni Yenilə{% else %}Yeni Şöbə{% endif %}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                {% if object %}{{ object.name }} məlumatlarını redaktə edin.{% else %}Təşkilata yeni şöbə əlavə edin.{% endif %}
+            </p>
+        </div>
+        <a href="{% url 'departments:department-list' %}" class="text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 flex items-center transition-colors">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Geriyə Qayıt
+        </a>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-none rounded-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
+        <div class="p-6 sm:p-8">
+            <form method="post" novalidate class="space-y-6">
+                {% csrf_token %}
+                
+                {% if form.non_field_errors %}
+                <div class="bg-red-50 text-red-600 p-4 rounded-lg text-sm border border-red-100">
+                    {{ form.non_field_errors }}
+                </div>
+                {% endif %}
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Şöbə Adı <span class="text-red-500">*</span></label>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                        <p class="mt-1 text-sm text-red-600">{{ form.name.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.code.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Şöbə Kodu</label>
+                        {{ form.code }}
+                        {% if form.code.errors %}
+                        <p class="mt-1 text-sm text-red-600">{{ form.code.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="{{ form.organization.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Təşkilat <span class="text-red-500">*</span></label>
+                        {{ form.organization }}
+                        {% if form.organization.errors %}
+                        <p class="mt-1 text-sm text-red-600">{{ form.organization.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.parent.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Üst Şöbə (Əgər varsa)</label>
+                        {{ form.parent }}
+                        {% if form.parent.errors %}
+                        <p class="mt-1 text-sm text-red-600">{{ form.parent.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div>
+                    <label for="{{ form.head.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Şöbə Rəhbəri</label>
+                    {{ form.head }}
+                    {% if form.head.errors %}
+                    <p class="mt-1 text-sm text-red-600">{{ form.head.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Təsvir</label>
+                    {{ form.description }}
+                    {% if form.description.errors %}
+                    <p class="mt-1 text-sm text-red-600">{{ form.description.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="flex items-center">
+                    <div class="flex items-center h-5">
+                        {{ form.is_active }}
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="{{ form.is_active.id_for_label }}" class="font-medium text-gray-700 dark:text-gray-300">Aktivdir</label>
+                        <p class="text-gray-500 dark:text-gray-400">Şöbənin sistemdə istifadə edilə biləcəyini göstərir.</p>
+                    </div>
+                </div>
+
+                <div class="pt-5 border-t border-gray-100 dark:border-gray-700 flex justify-end">
+                    <button type="submit" class="inline-flex justify-center rounded-lg border border-transparent bg-indigo-600 py-2.5 px-6 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-800 transition-colors">
+                        {% if object %}Yenilə{% else %}Yarat{% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

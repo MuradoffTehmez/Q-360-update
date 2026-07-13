@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Şöbəni Sil | Q360{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-2xl">
+    <div class="mb-8">
+        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">Şöbəni Sil</h1>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-none rounded-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
+        <div class="p-6 sm:p-8 flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            </div>
+            
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Təsdiq Gözlənilir</h3>
+            <p class="text-gray-500 dark:text-gray-400 mb-6">
+                <strong>"{{ object.name }}"</strong> şöbəsini silmək istədiyinizə əminsiniz? <br>
+                Bu əməliyyatı geri qaytarmaq mümkün deyil.
+            </p>
+
+            <form method="post" class="w-full flex justify-center space-x-4">
+                {% csrf_token %}
+                <a href="{% url 'departments:department-list' %}" class="inline-flex justify-center rounded-lg border border-gray-300 bg-white py-2.5 px-6 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:ring-gray-700 transition-colors">
+                    Ləğv et
+                </a>
+                <button type="submit" class="inline-flex justify-center rounded-lg border border-transparent bg-red-600 py-2.5 px-6 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800 transition-colors">
+                    Bəli, Sil
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

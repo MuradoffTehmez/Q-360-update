@@ -1,0 +1,47 @@
+User-agent: *
+# Public pages (allowed)
+Allow: /$
+Allow: /haqqimizda/
+Allow: /faq/
+Allow: /privacy/
+Allow: /terms/
+Allow: /help/
+Allow: /llms.txt
+
+# Authenticated / internal routes (disallowed)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /accounts/
+Disallow: /dashboard/
+Disallow: /evaluations/
+Disallow: /departments/
+Disallow: /reports/
+Disallow: /development-plans/
+Disallow: /notifications/
+Disallow: /competencies/
+Disallow: /training/
+Disallow: /audit/
+Disallow: /search/
+Disallow: /onboarding/
+Disallow: /workforce-planning/
+Disallow: /feedback/
+Disallow: /performance-reviews/
+Disallow: /workflow/
+Disallow: /approval/
+Disallow: /access-control/
+Disallow: /policy-engine/
+Disallow: /feature-flags/
+Disallow: /pfile/
+Disallow: /compensation/
+Disallow: /leave/
+Disallow: /okr/
+Disallow: /recruitment/
+Disallow: /sentiment-analysis/
+Disallow: /wellness/
+Disallow: /engagement/
+Disallow: /support/
+Disallow: /media/
+Disallow: /static/admin/
+
+# Sitemap
+Sitemap: {{ SITE_URL }}/sitemap.xml

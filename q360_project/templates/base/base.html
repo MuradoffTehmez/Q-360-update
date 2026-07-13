@@ -1,0 +1,422 @@
+{% load i18n %}
+{% load static %}
+{% load sidebar_filters %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>{% block title %}{{ SITE_NAME }} - {% trans "360° Performance Evaluation System" %}{% endblock %}</title>
+
+    {# ── SEO Core Meta ── #}
+    <meta name="description" content="{% block meta_description %}Q360 — Dövlət və özəl sektorda 360° performans qiymətləndirmə, kadr idarəetməsi və HR analitika platforması.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}360 qiymətləndirmə, performans qiymətləndirmə, HR proqram, kadr idarəetməsi, talent management, employee development, Azərbaycan{% endblock %}">
+    <meta name="author" content="Q360 Team">
+    <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+
+    {# ── Canonical URL ── #}
+    <link rel="canonical" href="{% block canonical_url %}{{ CANONICAL_URL }}{% endblock %}">
+
+    {# ── Open Graph / Facebook / LinkedIn ── #}
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{{ CANONICAL_URL }}">
+    <meta property="og:site_name" content="{{ SITE_NAME }}">
+    <meta property="og:title" content="{% block og_title %}{{ SITE_NAME }} — 360° HR Qiymətləndirmə Platforması{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Q360 — Dövlət və özəl sektorda 360° performans qiymətləndirmə, kadr idarəetməsi və HR analitika platforması.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ OG_IMAGE_URL }}{% endblock %}">
+    <meta property="og:locale" content="az_AZ">
+    <meta property="og:locale:alternate" content="en_US">
+
+    {# ── Twitter Card ── #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ SITE_NAME }} — 360° HR Qiymətləndirmə Platforması{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Q360 — Dövlət və özəl sektorda 360° performans qiymətləndirmə, kadr idarəetməsi və HR analitika platforması.{% endblock %}">
+    <meta name="twitter:image" content="{{ OG_IMAGE_URL }}">
+
+    {# ── GEO / International SEO ── #}
+    <link rel="alternate" hreflang="az" href="{{ SITE_URL }}{{ request.path }}">
+    <link rel="alternate" hreflang="en" href="{{ SITE_URL }}{{ request.path }}?lang=en">
+    <link rel="alternate" hreflang="x-default" href="{{ SITE_URL }}{{ request.path }}">
+    <meta name="geo.region" content="AZ">
+    <meta name="geo.placename" content="Baku">
+
+    {# ── Structured Data: Organization ── #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "{{ SITE_NAME }}",
+      "url": "{{ SITE_URL }}/",
+      "logo": "{{ OG_IMAGE_URL }}",
+      "description": "360° performans qiymətləndirmə və kadr idarəetməsi platforması",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bakı",
+        "addressCountry": "AZ"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@q360.gov.az",
+        "contactType": "customer service",
+        "availableLanguage": ["az", "en"]
+      }
+    }
+    </script>
+
+    {# ── Structured Data: WebSite + SearchAction ── #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{ SITE_NAME }}",
+      "url": "{{ SITE_URL }}/",
+      "inLanguage": ["az", "en"],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ SITE_URL }}/search/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    {# ── Structured Data: SoftwareApplication ── #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "{{ SITE_NAME }}",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Human Resource Management",
+      "operatingSystem": "Web",
+      "url": "{{ SITE_URL }}/",
+      "description": "Q360 — 360° performans qiymətləndirmə, səriştə çərçivəsi, 9-Box Grid, OKR, xələflik planlaması və iş qüvvəsi analitikası daxil tam HR/ERP platforması.",
+      "featureList": "360° Evaluation, Competency Framework, Performance Reviews, 9-Box Grid, Succession Planning, OKR, Development Plans, Training, Recruitment, Compensation, Leave Management, Engagement Surveys, Workforce Planning",
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ SITE_NAME }} Team"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "AZN"
+      }
+    }
+    </script>
+
+    {# ── Structured Data: BreadcrumbList (override in child templates) ── #}
+    {% block breadcrumb_schema %}{% endblock %}
+
+    {# ── Additional structured data slot for child templates ── #}
+    {% block structured_data %}{% endblock %}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="shortcut icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon.svg' %}">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    </noscript>
+
+    <!-- Tailwind CSS (Compiled) -->
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Alpine.js for interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Modern Thin Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Smooth transitions */
+        * {
+            transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 200ms;
+        }
+
+        /* Focus styles */
+        .focus-ring:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Loading animation */
+        @keyframes shimmer {
+            0% {
+                background-position: -468px 0;
+            }
+            100% {
+                background-position: 468px 0;
+            }
+        }
+
+        .shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+            background-size: 800px 104px;
+        }
+
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            
+            .print-break {
+                page-break-after: always;
+            }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+
+    <!-- Dark Mode Script (must load before body) -->
+    <script>
+        // Check for saved theme preference or default to 'light'
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+        }
+
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    const perfEntries = performance.getEntriesByType('navigation');
+                    if (perfEntries.length > 0) {
+                        const navEntry = perfEntries[0];
+                        console.log('Page load time:', navEntry.loadEventEnd - navEntry.fetchStart, 'ms');
+                    }
+                }, 0);
+            });
+        }
+    </script>
+
+    <!-- Q360 API Utilities & Toast Notifications -->
+    <link rel="stylesheet" href="{% static 'css/toast.css' %}?v=2">
+    <!-- IMPORTANT: auth-fix.js must load FIRST to save original Storage methods -->
+    <script src="{% static 'js/auth-fix.js' %}?v=2"></script>
+    <script src="{% static 'js/api-utils.js' %}?v=2"></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans antialiased">
+    {% if user.is_authenticated %}
+    <div id="notifications-data" data-user-id="{{ user.id }}" class="hidden d-none"></div>
+    {% endif %}
+    <!-- Loading Spinner -->
+    <div id="global-loader" x-ref="globalLoader" class="fixed inset-0 bg-white dark:bg-gray-900 z-50 flex items-center justify-center transition-opacity duration-300" x-data="{ show: true }" x-show="show" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin-slow mx-auto mb-4"></div>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">{% trans "Loading Q360..." %}</p>
+        </div>
+    </div>
+
+    <div class="min-h-screen flex flex-col" x-data="{ sidebarOpen: window.innerWidth >= 768, darkMode: localStorage.theme === 'dark' }" x-init="if ($refs.globalLoader) { setTimeout(() => $refs.globalLoader.style.display = 'none', 500) }">
+        <!-- Navigation -->
+        {% include 'base/navbar.html' %}
+
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Sidebar -->
+            {% if user.is_authenticated %}
+                {% include 'base/sidebar.html' %}
+            {% endif %}
+
+            <!-- Main Content -->
+            <main class="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 transition-all duration-300" :class="sidebarOpen ? 'md:ml-64' : 'md:ml-20'">
+                <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                    <!-- Breadcrumb -->
+                    {% block breadcrumb %}
+                    {% if breadcrumbs %}
+                    <nav class="flex mb-6 animate-fade-in-down" aria-label="Breadcrumb">
+                        <ol class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                            <li>
+                                <a href="{% url 'dashboard' %}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                            </li>
+                            {% for crumb in breadcrumbs %}
+                            <li class="flex items-center">
+                                <i class="fas fa-chevron-right text-xs mx-2"></i>
+                                {% if crumb.url %}
+                                <a href="{{ crumb.url }}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{{ crumb.name }}</a>
+                                {% else %}
+                                <span class="text-gray-900 dark:text-gray-100 font-medium">{{ crumb.name }}</span>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </nav>
+                    {% endif %}
+                    {% endblock %}
+
+                    <!-- Messages -->
+                    {% if messages %}
+                        <div class="space-y-3 mb-6 animate-fade-in-up">
+                            {% for message in messages %}
+                                <div class="flex items-center justify-between p-4 rounded-lg border shadow-sm animate-bounce-in"
+                                    :class="{
+                                        'bg-success-50 dark:bg-success-900 border-success-200 dark:border-success-800 text-success-800 dark:text-success-200': '{{ message.tags }}' === 'success',
+                                        'bg-warning-50 dark:bg-warning-900 border-warning-200 dark:border-warning-800 text-warning-800 dark:text-warning-200': '{{ message.tags }}' === 'warning',
+                                        'bg-error-50 dark:bg-error-900 border-error-200 dark:border-error-800 text-error-800 dark:text-error-200': '{{ message.tags }}' === 'error',
+                                        'bg-blue-50 dark:bg-blue-900 border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-200': '{{ message.tags }}' === 'info' || '{{ message.tags }}' === 'debug'
+                                    }"
+                                    role="alert" 
+                                    x-data="{ show: true }" 
+                                    x-show="show" 
+                                    x-transition:leave="transition ease-in duration-300"
+                                    x-transition:leave-start="opacity-100 transform scale-100"
+                                    x-transition:leave-end="opacity-0 transform scale-95">
+                                    
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas 
+                                            {% if message.tags == 'success' %}fa-check-circle text-success-600
+                                            {% elif message.tags == 'warning' %}fa-exclamation-triangle text-warning-600
+                                            {% elif message.tags == 'error' %}fa-exclamation-circle text-error-600
+                                            {% else %}fa-info-circle text-blue-600{% endif %} 
+                                            text-lg"></i>
+                                        <span class="font-medium">{{ message }}</span>
+                                    </div>
+                                    <button @click="show = false" class="ml-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors focus-ring rounded">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Page Header -->
+                    {% block page_header %}
+                    {% if page_title %}
+                    <div class="mb-6 animate-fade-in-down">
+                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">{{ page_title }}</h1>
+                        {% if page_description %}
+                        <p class="text-gray-600 dark:text-gray-400">{{ page_description }}</p>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endblock %}
+
+                    <!-- Main Content -->
+                    <div class="animate-fade-in">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        {% include 'base/footer.html' %}
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Səhifənin yuxarısına qayıt" class="fixed bottom-6 right-6 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all duration-300 transform translate-y-16 opacity-0 no-print focus-ring z-40">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.style.colorScheme = 'light';
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                html.style.colorScheme = 'dark';
+                localStorage.theme = 'dark';
+            }
+        }
+
+        // Back to top functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('translate-y-16', 'opacity-0');
+                    backToTopButton.classList.add('translate-y-0', 'opacity-100');
+                } else {
+                    backToTopButton.classList.remove('translate-y-0', 'opacity-100');
+                    backToTopButton.classList.add('translate-y-16', 'opacity-0');
+                }
+            });
+
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Hide global loader
+            setTimeout(() => {
+                const loader = document.getElementById('global-loader');
+                if (loader) loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Error handling
+        window.addEventListener('error', function(e) {
+            console.error('Global error caught:', e.error);
+        });
+    </script>
+
+    <!-- Bootstrap 5 JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+
+    <!-- Analytics (optional) -->
+    <script>
+        // Example analytics - replace with your preferred analytics service
+        if (window.location.hostname !== 'localhost') {
+            // Your analytics code here
+        }
+    </script>
+</body>
+</html>

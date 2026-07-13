@@ -1,0 +1,341 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ blueprint.title }} · {% trans "Hesabat Şablonu" %}{% endblock %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb" class="mt-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% trans "Əsas Səhifə" %}</a></li>
+        <li class="breadcrumb-item"><a href="#">{% trans "Şablonlar" %}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ blueprint.title }}</li>
+    </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4 align-items-start">
+        <div class="col-xl-8">
+            <h1 class="h3 mb-1">{{ blueprint.title }}</h1>
+            <p class="text-muted mb-3">{{ blueprint.description|default:_("Qısa təsvir əlavə olunmayıb.") }}</p>
+            <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-primary-subtle text-primary">
+                    <i class="fas fa-database me-1"></i>{{ blueprint.get_data_source_display }}
+                </span>
+                <span class="badge bg-secondary-subtle text-secondary">
+                    <i class="fas fa-file-export me-1"></i>{{ blueprint.get_default_export_format_display }}
+                </span>
+                {% if blueprint.is_global %}
+                <span class="badge bg-success">
+                    <i class="fas fa-globe me-1"></i>{% trans "Global" %}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xl-4 text-xl-end mt-3 mt-xl-0">
+            <a href="{% url 'reports:blueprint-export' blueprint.slug %}" id="exportBlueprintBtn" class="btn btn-outline-primary me-2">
+                <i class="fas fa-file-export me-1"></i>{% trans "Export et" %}
+            </a>
+            <a href="{% url 'reports:schedule-create' %}?blueprint={{ blueprint.id }}" class="btn btn-primary">
+                <i class="fas fa-calendar-plus me-1"></i>{% trans "Planlaşdır" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-1">{% trans "Vizualizasiyalar" %}</h5>
+                        <p class="text-muted small mb-0">
+                            {% trans "Şablonun çıxışına əlavə olunan vizual komponentlər." %}
+                        </p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addVisualizationModal">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="card-body">
+                    {% if visualizations %}
+                    <div class="row g-3">
+                        {% for visual in visualizations %}
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 h-100">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="mb-0">{{ visual.title }}</h6>
+                                    <span class="badge bg-light text-dark">{{ visual.get_chart_type_display }}</span>
+                                </div>
+                                <p class="text-muted small mb-3">{{ visual.configuration.summary|default:_("Vizualizasiyanın xülasəsi göstəriləcək.") }}</p>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="alert('Redaktə tezliklə aktiv olacaq');">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <form method="POST" action="{% url 'reports:blueprint-visualization-delete' blueprint.slug visual.pk %}" class="d-inline" x-data @submit.prevent="if(confirm('Silmək istədiyinizə əminsiniz?')) apiSubmit($el)">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5 text-muted border rounded">
+                        <i class="fas fa-chart-pie fa-2x mb-3"></i>
+                        <p class="mb-2">{% trans "Vizualizasiya əlavə olunmayıb." %}</p>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addVisualizationModal">
+                            {% trans "İlk vizualı yaradın" %}
+                        </button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0 mt-4">
+                <div class="card-header bg-transparent border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">{% trans "Sahələr və Aqreqasiyalar" %}</h5>
+                            <p class="text-muted small mb-0">
+                                {% trans "Datasetə daxil ediləcək sütunlar və hesablamalar." %}
+                            </p>
+                        </div>
+                        <a href="{% url 'reports:custom-builder' %}" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-columns me-1"></i>{% trans "Custom Builder-ə Keç" %}
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>{% trans "Sütun" %}</th>
+                                    <th>{% trans "Etiket" %}</th>
+                                    <th>{% trans "Aqreqasiya" %}</th>
+                                    <th>{% trans "Filtr" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for column in column_config %}
+                                <tr>
+                                    <td class="fw-semibold">{{ column.field }}</td>
+                                    <td>{{ column.label|default:column.field }}</td>
+                                    <td>{{ column.aggregate|default:_("Yoxdur") }}</td>
+                                    <td>{{ column.filter|default:_("Yoxdur") }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted">
+                                        {% trans "Sütun konfiqurasiyası hələ əlavə edilməyib." %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <h5 class="mb-2">{% trans "Parametrlər" %}</h5>
+                    <dl class="row small mb-0">
+                        <dt class="col-5 text-muted">{% trans "Mənbə" %}</dt>
+                        <dd class="col-7">{{ blueprint.get_data_source_display }}</dd>
+
+                        <dt class="col-5 text-muted">{% trans "Export default" %}</dt>
+                        <dd class="col-7">{{ blueprint.get_default_export_format_display }}</dd>
+
+                        <dt class="col-5 text-muted">{% trans "Defolt Filtrlər" %}</dt>
+                        <dd class="col-7">
+                            {% for key, value in blueprint.default_filters.items %}
+                            <span class="badge bg-light text-dark mb-1">{{ key }} = {{ value }}</span>
+                            {% empty %}
+                            <span class="text-muted">{% trans "Müəyyən edilməyib" %}</span>
+                            {% endfor %}
+                        </dd>
+
+                        <dt class="col-5 text-muted">{% trans "Yaradıcı" %}</dt>
+                        <dd class="col-7">{{ blueprint.owner.get_full_name|default:blueprint.owner.username }}</dd>
+
+                        <dt class="col-5 text-muted">{% trans "Son yenilənmə" %}</dt>
+                        <dd class="col-7">{{ blueprint.updated_at|date:"d.m.Y H:i" }}</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">{% trans "Planlaşdırılmış Exportun" %}</h5>
+                        <a href="#" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for schedule in schedules %}
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1">{{ schedule.get_frequency_display }}</h6>
+                                <p class="text-muted small mb-1">
+                                    {{ schedule.export_format|upper }} • {{ schedule.next_run|date:"d.m.Y H:i" }}
+                                </p>
+                                <small class="text-muted">
+                                    {% trans "Son status" %}: {{ schedule.get_last_status_display }}
+                                </small>
+                            </div>
+                            <div class="btn-group btn-group-sm">
+                                <a href="#" class="btn btn-outline-secondary">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-secondary">
+                                    <i class="fas {% if schedule.is_active %}fa-pause{% else %}fa-play{% endif %}"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item text-muted small text-center py-4">
+                            {% trans "Planlaşdırılmış export yoxdur." %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="mb-3">{% trans "Dataset Önizləmə" %}</h5>
+                    <div class="table-responsive rounded border shadow-sm mb-2">
+                        <table class="table table-hover table-striped align-middle mb-0">
+                            <thead class="table-dark">
+                                <tr>
+                                    {% for header in preview.headers %}
+                                    <th class="fw-medium">{{ header }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in preview.rows %}
+                                <tr>
+                                    {% for cell in row %}
+                                    <td>{{ cell }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="{{ preview.headers|length|default:1 }}" class="text-center text-muted py-4">
+                                        <i class="fas fa-folder-open fa-2x mb-3 text-secondary opacity-50"></i><br>
+                                        {% trans "Önizləmə üçün məlumat tapılmadı." %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <small class="text-muted">
+                        {% trans "Önizləmə maksimum 10 sətri əhatə edir." %}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Visualization Modal -->
+<div class="modal fade" id="addVisualizationModal" tabindex="-1" aria-labelledby="addVisualizationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="POST" id="addVisualizationForm" action="{% url 'reports:blueprint-visualization-add' blueprint.slug %}" class="modal-content" x-data @submit.prevent="apiSubmit($el)">
+            {% csrf_token %}
+            <div class="modal-header">
+                <h5 class="modal-title" id="addVisualizationModalLabel">{% trans "Yeni Vizualizasiya" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Bağla"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">{% trans "Başlıq" %}</label>
+                    <input type="text" name="title" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">{% trans "Diaqram Tipi" %}</label>
+                    <select name="chart_type" class="form-select" required>
+                        <option value="bar">{% trans "Sütun Diaqramı" %}</option>
+                        <option value="line">{% trans "Xətt Diaqramı" %}</option>
+                        <option value="pie">{% trans "Piroq Diaqramı" %}</option>
+                        <option value="table">{% trans "Cədvəl" %}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">{% trans "Xülasə (opsional)" %}</label>
+                    <textarea name="summary" class="form-control" rows="2"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "İmtina" %}</button>
+                <button type="submit" class="btn btn-primary">{% trans "Yadda saxla" %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const exportBtn = document.getElementById('exportBlueprintBtn');
+    if (exportBtn) {
+        exportBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const originalHtml = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Gözləyin...';
+            this.disabled = true;
+
+            fetch(this.href, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.redirect_url) {
+                    window.location.href = data.redirect_url;
+                    if(typeof showToast === 'function') showToast(data.message, 'success');
+                } else {
+                    if(typeof showToast === 'function') showToast(data.message || 'Xəta baş verdi', 'danger');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                if(typeof showToast === 'function') showToast('Sistem xətası', 'danger');
+            })
+            .finally(() => {
+                this.innerHTML = originalHtml;
+                this.disabled = false;
+            });
+        });
+    }
+
+    const addVisForm = document.getElementById('addVisualizationForm');
+    if (addVisForm) {
+        addVisForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (typeof apiSubmit === 'function') {
+                apiSubmit(this, () => {
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addVisualizationModal'));
+                    if (modal) modal.hide();
+                    setTimeout(() => location.reload(), 1000);
+                });
+            } else {
+                this.submit();
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

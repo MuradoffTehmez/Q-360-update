@@ -1,0 +1,551 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+{% if form.instance.pk %}Məqsədi Redaktə Et{% else %}Yeni İnkişaf Məqsədi{% endif %}
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .validation-icon {
+        transition: all 0.3s ease;
+    }
+    .character-counter {
+        font-size: 0.875rem;
+        transition: color 0.3s ease;
+    }
+    .character-counter.warning {
+        color: #f59e0b !important;
+    }
+    .character-counter.danger {
+        color: #ef4444 !important;
+    }
+    .progress-indicator {
+        height: 4px;
+        background: linear-gradient(90deg, #10b981 0%, #10b981 var(--progress), #e5e7eb var(--progress), #e5e7eb 100%);
+        transition: background 0.3s ease;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" x-data="goalFormValidator()">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Progress Bar -->
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="text-sm text-muted">Form Tamamlanması</span>
+                    <span class="text-sm font-weight-bold" :class="{
+                        'text-success': completionPercentage >= 80,
+                        'text-warning': completionPercentage >= 50 && completionPercentage < 80,
+                        'text-danger': completionPercentage < 50
+                    }" x-text="`${completionPercentage}%`"></span>
+                </div>
+                <div class="progress" style="height: 4px;">
+                    <div class="progress-bar" :class="{
+                        'bg-success': completionPercentage >= 80,
+                        'bg-warning': completionPercentage >= 50 && completionPercentage < 80,
+                        'bg-danger': completionPercentage < 50
+                    }" :style="`width: ${completionPercentage}%`"></div>
+                </div>
+            </div>
+
+            <!-- Header -->
+            <div class="mb-4">
+                <h1 class="h3 mb-1">
+                    {% if form.instance.pk %}
+                        <i class="fas fa-edit"></i> Məqsədi Redaktə Et
+                    {% else %}
+                        <i class="fas fa-plus-circle"></i> Yeni İnkişaf Məqsədi
+                    {% endif %}
+                </h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Ana Səhifə</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'development-plans:my-goals' %}">Məqsədlərim</a></li>
+                        <li class="breadcrumb-item active">
+                            {% if form.instance.pk %}Redaktə{% else %}Yeni{% endif %}
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Form Card -->
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <form method="post" id="goalForm" @submit="validateForm($event)">
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            {{ form.non_field_errors }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        {% endif %}
+
+                        <!-- SMART Goal Info -->
+                        <div class="alert alert-info mb-4">
+                            <h6 class="alert-heading">
+                                <i class="fas fa-lightbulb"></i> SMART Məqsəd Qoyun
+                            </h6>
+                            <p class="mb-0 small">
+                                <strong>S</strong>pecific (Konkret) •
+                                <strong>M</strong>easurable (Ölçülə bilən) •
+                                <strong>A</strong>chievable (Əldə edilə bilən) •
+                                <strong>R</strong>elevant (Uyğun) •
+                                <strong>T</strong>ime-bound (Vaxt çərçivəsi olan)
+                            </p>
+                        </div>
+
+                        <!-- Basic Information -->
+                        <div class="mb-4">
+                            <h5 class="border-bottom pb-2 mb-3">
+                                <i class="fas fa-info-circle text-primary"></i> Əsas Məlumatlar
+                            </h5>
+
+                            <!-- Title Field with Real-time Validation -->
+                            <div class="mb-3">
+                                <label for="{{ form.title.id_for_label }}" class="form-label d-flex justify-content-between">
+                                    <span>
+                                        Məqsəd Başlığı <span class="text-danger">*</span>
+                                    </span>
+                                    <span class="character-counter" :class="{
+                                        'text-muted': fields.title.length < 50,
+                                        'warning': fields.title.length >= 50 && fields.title.length < 100,
+                                        'danger': fields.title.length >= 100
+                                    }">
+                                        <span x-text="fields.title.length"></span>/100
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        id="{{ form.title.id_for_label }}"
+                                        x-model="fields.title"
+                                        @input="validateTitle()"
+                                        class="form-control"
+                                        :class="{
+                                            'is-valid': validation.title.isValid && fields.title.length > 0,
+                                            'is-invalid': !validation.title.isValid && fields.title.length > 0
+                                        }"
+                                        maxlength="100"
+                                        placeholder="Məsələn: Python proqramlaşdırma dilini 6 ay ərzində öyrənmək"
+                                        value="{{ form.title.value|default:'' }}"
+                                    >
+                                    <span class="input-group-text validation-icon">
+                                        <i class="fas" :class="{
+                                            'fa-check text-success': validation.title.isValid && fields.title.length > 0,
+                                            'fa-times text-danger': !validation.title.isValid && fields.title.length > 0,
+                                            'fa-pencil-alt text-muted': fields.title.length === 0
+                                        }"></i>
+                                    </span>
+                                </div>
+                                <!-- Validation Feedback -->
+                                <div x-show="!validation.title.isValid && fields.title.length > 0" class="invalid-feedback d-block" x-text="validation.title.message"></div>
+                                <div x-show="validation.title.isValid && fields.title.length > 0" class="valid-feedback d-block">
+                                    <i class="fas fa-check-circle"></i> Əla! Başlıq aydın və konkretdir
+                                </div>
+                                {% if form.title.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.title.errors }}</div>
+                                {% endif %}
+                                <small class="form-text text-muted">
+                                    Ən azı 10 simvol (tövsiyə olunan 20-60 simvol arası)
+                                </small>
+                            </div>
+
+                            <!-- Description Field with Real-time Validation -->
+                            <div class="mb-3">
+                                <label for="{{ form.description.id_for_label }}" class="form-label d-flex justify-content-between">
+                                    <span>
+                                        Ətraflı Təsvir <span class="text-danger">*</span>
+                                    </span>
+                                    <span class="character-counter" :class="{
+                                        'text-muted': fields.description.length < 500,
+                                        'warning': fields.description.length >= 500 && fields.description.length < 1000,
+                                        'danger': fields.description.length >= 1000
+                                    }">
+                                        <span x-text="fields.description.length"></span>/1000
+                                    </span>
+                                </label>
+                                <textarea
+                                    name="description"
+                                    id="{{ form.description.id_for_label }}"
+                                    x-model="fields.description"
+                                    @input="validateDescription()"
+                                    class="form-control"
+                                    :class="{
+                                        'is-valid': validation.description.isValid && fields.description.length > 0,
+                                        'is-invalid': !validation.description.isValid && fields.description.length > 0
+                                    }"
+                                    rows="5"
+                                    maxlength="1000"
+                                    placeholder="Məqsədinizi, nə üçün vacib olduğunu və necə nail olmağı planlaşdırdığınızı ətraflı izah edin..."
+                                >{{ form.description.value|default:'' }}</textarea>
+                                <!-- Validation Feedback -->
+                                <div x-show="!validation.description.isValid && fields.description.length > 0" class="invalid-feedback d-block" x-text="validation.description.message"></div>
+                                <div x-show="validation.description.isValid && fields.description.length > 0" class="valid-feedback d-block">
+                                    <i class="fas fa-check-circle"></i> Yaxşı! Təsvir kifayət qədər ətraflıdır
+                                </div>
+                                {% if form.description.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.description.errors }}</div>
+                                {% endif %}
+                                <small class="form-text text-muted">
+                                    Ən azı 30 simvol (tövsiyə olunan 100-500 simvol arası)
+                                </small>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="{{ form.category.id_for_label }}" class="form-label">
+                                        Kateqoriya <span class="text-danger">*</span>
+                                        <span x-show="fields.category" class="ms-2">
+                                            <i class="fas fa-check-circle text-success"></i>
+                                        </span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="category"
+                                        id="{{ form.category.id_for_label }}"
+                                        x-model="fields.category"
+                                        class="form-control"
+                                        :class="{'is-valid': fields.category.length > 0}"
+                                        list="categoryList"
+                                        placeholder="Kateqoriya seçin və ya daxil edin"
+                                        value="{{ form.category.value|default:'' }}"
+                                    >
+                                    <datalist id="categoryList">
+                                        <option value="Texniki Bacarıqlar">
+                                        <option value="Lidership">
+                                        <option value="Kommunikasiya">
+                                        <option value="Komanda İşi">
+                                        <option value="Problem Həlli">
+                                        <option value="Vaxt İdarəetməsi">
+                                        <option value="Layihə İdarəetməsi">
+                                    </datalist>
+                                    {% if form.category.errors %}
+                                        <div class="invalid-feedback d-block">{{ form.category.errors }}</div>
+                                    {% endif %}
+                                    <small class="form-text text-muted">
+                                        Siyahıdan seçin və ya öz kateqoriyanızı yazın
+                                    </small>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="{{ form.target_date.id_for_label }}" class="form-label">
+                                        Hədəf Tarix <span class="text-danger">*</span>
+                                        <span x-show="validation.targetDate.isValid" class="ms-2">
+                                            <i class="fas fa-check-circle text-success"></i>
+                                        </span>
+                                    </label>
+                                    <input
+                                        type="date"
+                                        name="target_date"
+                                        id="{{ form.target_date.id_for_label }}"
+                                        x-model="fields.targetDate"
+                                        @change="validateTargetDate()"
+                                        class="form-control"
+                                        :class="{
+                                            'is-valid': validation.targetDate.isValid && fields.targetDate,
+                                            'is-invalid': !validation.targetDate.isValid && fields.targetDate
+                                        }"
+                                        :min="minDate"
+                                        value="{{ form.target_date.value|default:'' }}"
+                                    >
+                                    <div x-show="!validation.targetDate.isValid && fields.targetDate" class="invalid-feedback d-block" x-text="validation.targetDate.message"></div>
+                                    <div x-show="validation.targetDate.isValid && fields.targetDate" class="valid-feedback d-block">
+                                        <i class="fas fa-calendar-check"></i> <span x-text="daysUntilTarget"></span> gün qalıb
+                                    </div>
+                                    {% if form.target_date.errors %}
+                                        <div class="invalid-feedback d-block">{{ form.target_date.errors }}</div>
+                                    {% endif %}
+                                    <small class="form-text text-muted">
+                                        Realist bir tarix seçin (3-12 ay arası tövsiyə olunur)
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ form.status.id_for_label }}" class="form-label">
+                                    Status <span class="text-danger">*</span>
+                                </label>
+                                {{ form.status }}
+                                {% if form.status.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.status.errors }}</div>
+                                {% endif %}
+                                <small class="form-text text-muted">
+                                    <strong>Layihə:</strong> Planlaşdırma mərhələsində |
+                                    <strong>Aktiv:</strong> Üzərində işləyirsiniz |
+                                    <strong>Tamamlandı:</strong> Məqsədə nail oldunuz
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Action Steps (Optional) -->
+                        <div class="mb-4">
+                            <h5 class="border-bottom pb-2 mb-3">
+                                <i class="fas fa-tasks text-primary"></i> Fəaliyyət Addımları
+                                <small class="text-muted">(İstəyə bağlı)</small>
+                            </h5>
+
+                            <div class="mb-3">
+                                <div id="actionSteps">
+                                    <template x-for="(step, index) in actionSteps" :key="index">
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text" x-text="index + 1"></span>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                x-model="step.text"
+                                                :placeholder="`Addım ${index + 1}: ...`"
+                                            >
+                                            <button class="btn btn-outline-danger" type="button" @click="removeStep(index)">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </template>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-primary" @click="addStep()">
+                                    <i class="fas fa-plus"></i> Addım əlavə et
+                                </button>
+                                <small class="form-text text-muted d-block mt-2">
+                                    Məqsədinizə nail olmaq üçün atmalı olduğunuz konkret addımları siyahıya alın
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                            <a href="{% url 'development-plans:my-goals' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-times"></i> Ləğv et
+                            </a>
+                            <button type="submit" class="btn btn-primary btn-lg" :disabled="!isFormValid">
+                                <i class="fas fa-save"></i>
+                                {% if form.instance.pk %}Yeniləmələri Saxla{% else %}Məqsəd Yarat{% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tips Card -->
+            <div class="card border-warning mt-4">
+                <div class="card-header bg-warning text-dark">
+                    <h6 class="mb-0">
+                        <i class="fas fa-lightbulb"></i> Effektiv Məqsəd Qoymaq Üçün Tövsiyələr
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li><strong>Konkret olun:</strong> "Bacarıqlarımı inkişaf etdirmək" əvəzinə "6 ay ərzində Python proqramlaşdırma dilində sertifikat almaq"</li>
+                        <li><strong>Ölçülə bilən olun:</strong> İrəliləyişi izləməyə imkan verən göstəricilər təyin edin</li>
+                        <li><strong>Realist olun:</strong> Mövcud imkan və resurslarınızı nəzərə alın</li>
+                        <li><strong>Vaxt çərçivəsi təyin edin:</strong> Konkret başlama və bitmə tarixləri müəyyənləşdirin</li>
+                        <li><strong>Karyeranızla əlaqələndirin:</strong> Məqsədlərinizin karyera planlarınızla uyğun olduğundan əmin olun</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<script>
+    function goalFormValidator() {
+        return {
+            // Form fields
+            fields: {
+                title: '{{ form.title.value|default:""|escapejs }}',
+                description: '{{ form.description.value|default:""|escapejs }}',
+                category: '{{ form.category.value|default:""|escapejs }}',
+                targetDate: '{{ form.target_date.value|default:""|escapejs }}'
+            },
+
+            // Action steps
+            actionSteps: [
+                { text: '' }
+            ],
+
+            // Validation states
+            validation: {
+                title: {
+                    isValid: false,
+                    message: ''
+                },
+                description: {
+                    isValid: false,
+                    message: ''
+                },
+                targetDate: {
+                    isValid: false,
+                    message: ''
+                }
+            },
+
+            // Computed properties
+            get minDate() {
+                const today = new Date();
+                return today.toISOString().split('T')[0];
+            },
+
+            get completionPercentage() {
+                let completed = 0;
+                let total = 4;
+
+                if (this.validation.title.isValid) completed++;
+                if (this.validation.description.isValid) completed++;
+                if (this.fields.category.length > 0) completed++;
+                if (this.validation.targetDate.isValid) completed++;
+
+                return Math.round((completed / total) * 100);
+            },
+
+            get isFormValid() {
+                return this.validation.title.isValid &&
+                       this.validation.description.isValid &&
+                       this.fields.category.length > 0 &&
+                       this.validation.targetDate.isValid;
+            },
+
+            get daysUntilTarget() {
+                if (!this.fields.targetDate) return 0;
+                const target = new Date(this.fields.targetDate);
+                const today = new Date();
+                const diff = target - today;
+                return Math.ceil(diff / (1000 * 60 * 60 * 24));
+            },
+
+            // Validation methods
+            validateTitle() {
+                const title = this.fields.title.trim();
+
+                if (title.length === 0) {
+                    this.validation.title.isValid = false;
+                    this.validation.title.message = '';
+                    return;
+                }
+
+                if (title.length < 10) {
+                    this.validation.title.isValid = false;
+                    this.validation.title.message = 'Başlıq ən azı 10 simvol olmalıdır';
+                    return;
+                }
+
+                if (title.length > 100) {
+                    this.validation.title.isValid = false;
+                    this.validation.title.message = 'Başlıq maksimum 100 simvol ola bilər';
+                    return;
+                }
+
+                // Check for meaningful content (not just spaces/numbers)
+                if (!/[a-zA-Zəçüöşıığ]{3,}/.test(title)) {
+                    this.validation.title.isValid = false;
+                    this.validation.title.message = 'Başlıq mənalı mətn olmalıdır';
+                    return;
+                }
+
+                this.validation.title.isValid = true;
+                this.validation.title.message = '';
+            },
+
+            validateDescription() {
+                const desc = this.fields.description.trim();
+
+                if (desc.length === 0) {
+                    this.validation.description.isValid = false;
+                    this.validation.description.message = '';
+                    return;
+                }
+
+                if (desc.length < 30) {
+                    this.validation.description.isValid = false;
+                    this.validation.description.message = 'Təsvir ən azı 30 simvol olmalıdır';
+                    return;
+                }
+
+                if (desc.length > 1000) {
+                    this.validation.description.isValid = false;
+                    this.validation.description.message = 'Təsvir maksimum 1000 simvol ola bilər';
+                    return;
+                }
+
+                // Check for meaningful content
+                if (!/[a-zA-Zəçüöşıığ]{10,}/.test(desc)) {
+                    this.validation.description.isValid = false;
+                    this.validation.description.message = 'Təsvir daha ətraflı olmalıdır';
+                    return;
+                }
+
+                this.validation.description.isValid = true;
+                this.validation.description.message = '';
+            },
+
+            validateTargetDate() {
+                if (!this.fields.targetDate) {
+                    this.validation.targetDate.isValid = false;
+                    this.validation.targetDate.message = '';
+                    return;
+                }
+
+                const target = new Date(this.fields.targetDate);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                if (target < today) {
+                    this.validation.targetDate.isValid = false;
+                    this.validation.targetDate.message = 'Hədəf tarix bugündən sonra olmalıdır';
+                    return;
+                }
+
+                // Check if date is too far in future (more than 3 years)
+                const threeYearsLater = new Date();
+                threeYearsLater.setFullYear(threeYearsLater.getFullYear() + 3);
+
+                if (target > threeYearsLater) {
+                    this.validation.targetDate.isValid = false;
+                    this.validation.targetDate.message = 'Hədəf tarix 3 ildən çox uzaqda ola bilməz';
+                    return;
+                }
+
+                this.validation.targetDate.isValid = true;
+                this.validation.targetDate.message = '';
+            },
+
+            // Action steps methods
+            addStep() {
+                this.actionSteps.push({ text: '' });
+            },
+
+            removeStep(index) {
+                this.actionSteps.splice(index, 1);
+            },
+
+            // Form validation on submit
+            validateForm(event) {
+                this.validateTitle();
+                this.validateDescription();
+                this.validateTargetDate();
+
+                if (!this.isFormValid) {
+                    event.preventDefault();
+                    alert('Zəhmət olmasa bütün məcburi sahələri düzgün doldurun!');
+                    return false;
+                }
+
+                return true;
+            },
+
+            // Initialize
+            init() {
+                // Run initial validations if editing existing goal
+                if (this.fields.title) this.validateTitle();
+                if (this.fields.description) this.validateDescription();
+                if (this.fields.targetDate) this.validateTargetDate();
+            }
+        }
+    }
+</script>
+{% endblock %}

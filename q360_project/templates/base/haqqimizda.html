@@ -1,0 +1,199 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Haqqımızda — {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}Q360 — dövlət və özəl sektor təşkilatları üçün 360° performans qiymətləndirmə və HR idarəetmə platforması. Missiyamız, komandamız və əlaqə məlumatlarımız.{% endblock %}
+{% block og_title %}Haqqımızda — {{ SITE_NAME }}{% endblock %}
+{% block og_description %}Q360 — dövlət və özəl sektor təşkilatları üçün 360° performans qiymətləndirmə və HR idarəetmə platforması.{% endblock %}
+
+{% block breadcrumb_schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Ana Səhifə", "item": "{{ SITE_URL }}/"},
+    {"@type": "ListItem", "position": 2, "name": "Haqqımızda", "item": "{{ SITE_URL }}/haqqimizda/"}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Q360 Haqqında",
+  "url": "{{ SITE_URL }}/haqqimizda/",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "{{ SITE_NAME }}",
+    "url": "{{ SITE_URL }}/",
+    "foundingDate": "2024",
+    "description": "Q360 — dövlət və özəl sektor təşkilatları üçün 360° performans qiymətləndirmə və HR idarəetmə platforması.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bakı",
+      "addressCountry": "AZ"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "info@q360.gov.az",
+      "contactType": "customer service",
+      "availableLanguage": ["az", "en"]
+    }
+  }
+}
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 0 0 50px 50px;
+    }
+    .value-card {
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        border-radius: 20px;
+    }
+    .value-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+    }
+    .module-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        background: rgba(102, 126, 234, 0.1);
+        color: #4338ca;
+        transition: all 0.3s;
+    }
+    .module-badge:hover {
+        background: rgba(102, 126, 234, 0.2);
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<article>
+    {# ── Hero Section ── #}
+    <header class="about-hero text-white py-16 mb-12 shadow-lg">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Q360 Haqqında</h1>
+            <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                Dövlət və özəl sektor təşkilatları üçün hazırlanmış peşəkar 360° performans
+                qiymətləndirmə və HR idarəetmə platforması.
+            </p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 max-w-5xl">
+
+        {# ── Q360 nədir? (AEO: birbaşa cavab) ── #}
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Q360 nədir?</h2>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                Q360, Django və Django REST Framework əsaslı tam funksional HR/ERP platformasıdır.
+                Platforma 360° performans qiymətləndirmə, səriştə çərçivəsi, xələflik planlaması,
+                OKR idarəetməsi, işə qəbul, kompensasiya və iş qüvvəsi analitikası daxil olmaqla
+                20-dən çox HR modulunu vahid sistemdə birləşdirir.
+            </p>
+            <p class="text-gray-700 dark:text-gray-400">
+                2024-cü ildən fəaliyyət göstərən Q360, Azərbaycan bazarına yönəlmiş ilk tam funksional
+                360° qiymətləndirmə sistemidir. Platforma Azərbaycan və İngilis dillərini dəstəkləyir,
+                GDPR-a uyğundur və müasir təhlükəsizlik standartlarına (2FA, RBAC, ABAC) əməl edir.
+            </p>
+        </section>
+
+        {# ── Missiya ── #}
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Missiyamız</h2>
+            <p class="text-lg text-gray-700 dark:text-gray-300">
+                İşçilərin potensialını üzə çıxarmaq, şəffaf qiymətləndirmə mühiti yaratmaq və
+                təşkilati performansı məlumat əsaslı qərarlarla artırmaq. Hər bir HR prosesini
+                rəqəmsallaşdıraraq idarəetməni sadələşdirmək və strateji resurs planlamasını
+                mümkün etmək.
+            </p>
+        </section>
+
+        {# ── Əsas dəyərlər ── #}
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Əsas Dəyərlərimiz</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="value-card bg-white dark:bg-gray-800 p-6 shadow-md">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Şəffaflıq</h3>
+                    <p class="text-gray-700 dark:text-gray-400">
+                        Bütün qiymətləndirmə prosesləri şəffaf və izlənilə bilən formada aparılır.
+                    </p>
+                </div>
+                <div class="value-card bg-white dark:bg-gray-800 p-6 shadow-md">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Məlumat Əsaslı</h3>
+                    <p class="text-gray-700 dark:text-gray-400">
+                        Bütün qərarlar real data və analitikaya əsaslanır. Subyektiv mülahizələr minimuma endirilir.
+                    </p>
+                </div>
+                <div class="value-card bg-white dark:bg-gray-800 p-6 shadow-md">
+                    <div class="text-4xl mb-4">🔒</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Təhlükəsizlik</h3>
+                    <p class="text-gray-700 dark:text-gray-400">
+                        2FA, RBAC, ABAC, HSTS və GDPR uyğunluğu ilə enterprise-səviyyəli təhlükəsizlik.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        {# ── Platforma modulları ── #}
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Platforma Modulları</h2>
+            <div class="flex flex-wrap gap-3">
+                <span class="module-badge"><i class="fas fa-users-cog"></i> 360° Qiymətləndirmə</span>
+                <span class="module-badge"><i class="fas fa-cubes"></i> Səriştə Çərçivəsi</span>
+                <span class="module-badge"><i class="fas fa-chart-line"></i> Performans İcmalları</span>
+                <span class="module-badge"><i class="fas fa-th"></i> 9-Box Grid</span>
+                <span class="module-badge"><i class="fas fa-route"></i> Xələflik Planlaması</span>
+                <span class="module-badge"><i class="fas fa-bullseye"></i> OKR</span>
+                <span class="module-badge"><i class="fas fa-graduation-cap"></i> Təlim İdarəetməsi</span>
+                <span class="module-badge"><i class="fas fa-user-plus"></i> İşə Qəbul</span>
+                <span class="module-badge"><i class="fas fa-coins"></i> Kompensasiya</span>
+                <span class="module-badge"><i class="fas fa-calendar-check"></i> İcazə və Davamiyyət</span>
+                <span class="module-badge"><i class="fas fa-comments"></i> Davamlı Əks-əlaqə</span>
+                <span class="module-badge"><i class="fas fa-poll"></i> Əlaqə Sorğuları</span>
+                <span class="module-badge"><i class="fas fa-heartbeat"></i> İşçi Sağlamlığı</span>
+                <span class="module-badge"><i class="fas fa-chart-area"></i> İş Qüvvəsi Planlaması</span>
+                <span class="module-badge"><i class="fas fa-file-export"></i> Hesabatlar və Analitika</span>
+            </div>
+        </section>
+
+        {# ── Əlaqə ── #}
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Əlaqə</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-md">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-bold text-gray-900 dark:text-white mb-2">
+                            <i class="fas fa-envelope text-blue-600 mr-2"></i> Email
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-400">info@q360.gov.az</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 dark:text-white mb-2">
+                            <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i> Ünvan
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-400">Bakı, Azərbaycan</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>
+{% endblock %}

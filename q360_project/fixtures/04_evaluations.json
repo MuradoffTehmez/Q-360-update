@@ -1,0 +1,516 @@
+[
+  {
+    "model": "evaluations.questioncategory",
+    "pk": 1,
+    "fields": {
+      "name": "Rəhbərlik və İdarəetmə",
+      "description": "Rəhbərlik, liderlik və komanda idarəetməsi bacarıqları",
+      "order": 1,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.questioncategory",
+    "pk": 2,
+    "fields": {
+      "name": "Texniki Kompetensiya",
+      "description": "Peşəkar və texniki bilik və bacarıqlar",
+      "order": 2,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.questioncategory",
+    "pk": 3,
+    "fields": {
+      "name": "Ünsiyyət və Əməkdaşlıq",
+      "description": "Ünsiyyət bacarıqları və komanda ilə əməkdaşlıq",
+      "order": 3,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.questioncategory",
+    "pk": 4,
+    "fields": {
+      "name": "İş Nəticələri və Performans",
+      "description": "İş nəticələri, keyfiyyət və effektivlik",
+      "order": 4,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.questioncategory",
+    "pk": 5,
+    "fields": {
+      "name": "Şəxsi İnkişaf",
+      "description": "Öz-özünə inkişaf, öyrənmə və adaptasiya",
+      "order": 5,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "text": "İşçi komandaya effektiv rəhbərlik edir və komanda üzvlərini motivasiya edir",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 1,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 2,
+    "fields": {
+      "category": 1,
+      "text": "Qərar qəbul edərkən strategik düşünür və uzunmüddətli nəticələri nəzərə alır",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 2,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 3,
+    "fields": {
+      "category": 1,
+      "text": "Mürəkkəb vəziyyətlərdə problem həll etmək və qərar qəbul etmək bacarığı",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 3,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 4,
+    "fields": {
+      "category": 2,
+      "text": "Öz sahəsində lazımi texniki bilik və bacarıqlara malikdir",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 1,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 5,
+    "fields": {
+      "category": 2,
+      "text": "Yeni texnologiya və metodlarla tanış olur və tətbiq edir",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 2,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 6,
+    "fields": {
+      "category": 2,
+      "text": "Mürəkkəb texniki problemləri müstəqil həll edə bilir",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 3,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 7,
+    "fields": {
+      "category": 3,
+      "text": "Digər işçilərlə effektiv ünsiyyət qurur və əməkdaşlıq edir",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 1,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 8,
+    "fields": {
+      "category": 3,
+      "text": "Fikirlərini aydın və başadüşülən şəkildə ifadə edir",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 2,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 9,
+    "fields": {
+      "category": 3,
+      "text": "Digərlərinin fikirlərini dinləyir və nəzərə alır",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 3,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 10,
+    "fields": {
+      "category": 4,
+      "text": "Tapşırıqları vaxtında və keyfiyyətlə yerinə yetirir",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 1,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 11,
+    "fields": {
+      "category": 4,
+      "text": "Müəyyən edilmiş hədəflərə nail olur",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 2,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 12,
+    "fields": {
+      "category": 4,
+      "text": "İşində yüksək keyfiyyət standartlarını saxlayır",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 3,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 13,
+    "fields": {
+      "category": 5,
+      "text": "Yeni bilik və bacarıqlar öyrənməyə açıqdır",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 1,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 14,
+    "fields": {
+      "category": 5,
+      "text": "Dəyişən şəraitə tez uyğunlaşır",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 2,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 15,
+    "fields": {
+      "category": 5,
+      "text": "İnkişafı üçün özü təşəbbüs göstərir",
+      "question_type": "scale",
+      "max_score": 5,
+      "is_required": true,
+      "order": 3,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 16,
+    "fields": {
+      "category": 3,
+      "text": "Bu işçinin ən güclü tərəflərini qeyd edin",
+      "question_type": "text",
+      "max_score": 5,
+      "is_required": false,
+      "order": 4,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.question",
+    "pk": 17,
+    "fields": {
+      "category": 5,
+      "text": "İnkişaf üçün tövsiyələriniz",
+      "question_type": "text",
+      "max_score": 5,
+      "is_required": false,
+      "order": 4,
+      "is_active": true,
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.evaluationcampaign",
+    "pk": 1,
+    "fields": {
+      "title": "2024 İllik Performans Qiymətləndirməsi",
+      "description": "2024-cü il üçün illik 360 dərəcə performans qiymətləndirməsi",
+      "start_date": "2024-01-15",
+      "end_date": "2024-02-15",
+      "status": "completed",
+      "is_anonymous": true,
+      "allow_self_evaluation": true,
+      "created_by": 9,
+      "target_departments": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "target_users": [],
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.evaluationcampaign",
+    "pk": 2,
+    "fields": {
+      "title": "2024 Q2 Ara Qiymətləndirmə",
+      "description": "2024-cü il 2-ci rüb ara qiymətləndirməsi",
+      "start_date": "2024-04-01",
+      "end_date": "2024-04-30",
+      "status": "active",
+      "is_anonymous": false,
+      "allow_self_evaluation": true,
+      "created_by": 9,
+      "target_departments": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "target_users": [],
+      "created_at": "2025-10-24T12:18:27.435578",
+      "updated_at": "2025-10-24T12:18:27.435578"
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 1,
+    "fields": {
+      "campaign": 1,
+      "question": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 2,
+    "fields": {
+      "campaign": 1,
+      "question": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 3,
+    "fields": {
+      "campaign": 1,
+      "question": 3,
+      "order": 3
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 4,
+    "fields": {
+      "campaign": 1,
+      "question": 4,
+      "order": 4
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 5,
+    "fields": {
+      "campaign": 1,
+      "question": 5,
+      "order": 5
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 6,
+    "fields": {
+      "campaign": 1,
+      "question": 6,
+      "order": 6
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 7,
+    "fields": {
+      "campaign": 1,
+      "question": 7,
+      "order": 7
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 8,
+    "fields": {
+      "campaign": 1,
+      "question": 8,
+      "order": 8
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 9,
+    "fields": {
+      "campaign": 1,
+      "question": 9,
+      "order": 9
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 10,
+    "fields": {
+      "campaign": 1,
+      "question": 10,
+      "order": 10
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 11,
+    "fields": {
+      "campaign": 1,
+      "question": 11,
+      "order": 11
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 12,
+    "fields": {
+      "campaign": 1,
+      "question": 12,
+      "order": 12
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 13,
+    "fields": {
+      "campaign": 1,
+      "question": 13,
+      "order": 13
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 14,
+    "fields": {
+      "campaign": 1,
+      "question": 14,
+      "order": 14
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 15,
+    "fields": {
+      "campaign": 1,
+      "question": 15,
+      "order": 15
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 16,
+    "fields": {
+      "campaign": 1,
+      "question": 16,
+      "order": 16
+    }
+  },
+  {
+    "model": "evaluations.campaignquestion",
+    "pk": 17,
+    "fields": {
+      "campaign": 1,
+      "question": 17,
+      "order": 17
+    }
+  }
+]

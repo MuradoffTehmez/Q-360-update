@@ -1,0 +1,82 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Şöbələr | Q360{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-7xl">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">Şöbələr</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Təşkilat strukturunun və şöbələrin idarə edilməsi</p>
+        </div>
+        <a href="{% url 'departments:department-create' %}" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors focus:ring-4 focus:ring-indigo-300 dark:focus:ring-indigo-800 shadow-sm hover:shadow-md">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+            Yeni Şöbə
+        </a>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-none rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b border-gray-100 dark:border-gray-600">
+                    <tr>
+                        <th scope="col" class="px-6 py-4 font-semibold">Ad</th>
+                        <th scope="col" class="px-6 py-4 font-semibold">Kod</th>
+                        <th scope="col" class="px-6 py-4 font-semibold">Təşkilat</th>
+                        <th scope="col" class="px-6 py-4 font-semibold">Rəhbər</th>
+                        <th scope="col" class="px-6 py-4 text-right font-semibold">Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+                    {% for department in departments %}
+                    <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
+                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-white flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3 font-bold text-xs">
+                                {{ department.name|slice:":2"|upper }}
+                            </div>
+                            <a href="{% url 'departments:department-detail' department.id %}" class="hover:text-indigo-600 transition-colors">{{ department.name }}</a>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2.5 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-md dark:bg-gray-700 dark:text-gray-300">
+                                {{ department.code|default:"-" }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">{{ department.organization.name|default:"-" }}</td>
+                        <td class="px-6 py-4">
+                            {% if department.head %}
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-2 text-xs">
+                                    {{ department.head.get_full_name|slice:":1"|upper }}
+                                </div>
+                                {{ department.head.get_full_name }}
+                            </div>
+                            {% else %}
+                            <span class="text-gray-400 italic">Təyin edilməyib</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 text-right space-x-2">
+                            <a href="{% url 'departments:department-update' department.id %}" class="inline-flex items-center p-2 text-sm font-medium text-blue-600 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors focus:ring-4 focus:outline-none focus:ring-blue-300 opacity-0 group-hover:opacity-100">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                            </a>
+                            <a href="{% url 'departments:department-delete' department.id %}" class="inline-flex items-center p-2 text-sm font-medium text-red-600 rounded-lg hover:bg-red-50 dark:hover:bg-gray-700 transition-colors focus:ring-4 focus:outline-none focus:ring-red-300 opacity-0 group-hover:opacity-100">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+                            <div class="flex flex-col items-center justify-center">
+                                <svg class="w-12 h-12 text-gray-300 dark:text-gray-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                <p class="text-lg font-medium">Heç bir şöbə tapılmadı</p>
+                                <p class="text-sm mt-1">Sistemdə aktiv şöbə yoxdur.</p>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

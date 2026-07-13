@@ -1,0 +1,402 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Help and Support - Q360" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumb -->
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+            <li>
+                <a href="{% url 'dashboard' %}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li class="flex items-center">
+                <i class="fas fa-chevron-right text-xs mx-2"></i>
+                <span class="text-gray-900 dark:text-gray-100 font-medium">{% trans "Help Center" %}</span>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl shadow-xl overflow-hidden mb-8">
+        <div class="px-8 py-12 text-center text-white">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-sm rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-life-ring text-3xl"></i>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">{% trans "Help Center" %}</h1>
+                <p class="text-xl text-blue-100 mb-8">
+                    {% trans "Everything you need to know about Q360 - 360° Performance Evaluation System" %}
+                </p>
+                <div class="max-w-2xl mx-auto">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            placeholder="{% trans 'Search for help...' %}" 
+                            class="w-full px-6 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/30 transition-all"
+                            id="searchInput"
+                        >
+                        <i class="fas fa-search absolute right-6 top-1/2 transform -translate-y-1/2 text-blue-200"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <a href="#userguide" class="group">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center group-hover:transform group-hover:-translate-y-2 border border-gray-200 dark:border-gray-700">
+                <div class="bg-blue-100 dark:bg-blue-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-book text-blue-600 dark:text-blue-400 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "User Guide" %}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">{% trans "Learn how to use the system" %}</p>
+            </div>
+        </a>
+
+        <a href="#videos" class="group">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center group-hover:transform group-hover:-translate-y-2 border border-gray-200 dark:border-gray-700">
+                <div class="bg-green-100 dark:bg-green-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-video text-green-600 dark:text-green-400 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Video Tutorials" %}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">{% trans "Watch step-by-step guides" %}</p>
+            </div>
+        </a>
+
+        <a href="#faq" class="group">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center group-hover:transform group-hover:-translate-y-2 border border-gray-200 dark:border-gray-700">
+                <div class="bg-purple-100 dark:bg-purple-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-question-circle text-purple-600 dark:text-purple-400 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "FAQ" %}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">{% trans "Frequently asked questions" %}</p>
+            </div>
+        </a>
+
+        <a href="#contact" class="group">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center group-hover:transform group-hover:-translate-y-2 border border-gray-200 dark:border-gray-700">
+                <div class="bg-orange-100 dark:bg-orange-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-headset text-orange-600 dark:text-orange-400 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Technical Support" %}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">{% trans "Get help from our team" %}</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- User Guide Section -->
+    <div id="userguide" class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg mb-12 overflow-hidden border border-gray-200 dark:border-gray-700">
+        <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white/20 rounded-lg p-2">
+                    <i class="fas fa-book-open text-white text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">{% trans "User Guide" %}</h2>
+                    <p class="text-blue-100">{% trans "Step-by-step instructions for using Q360" %}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-100 dark:bg-blue-900/30 rounded-lg p-3">
+                            <i class="fas fa-sign-in-alt text-blue-600 dark:text-blue-400 text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "System Login" %}</h3>
+                            <ol class="text-gray-600 dark:text-gray-400 space-y-1 text-sm">
+                                <li>1. {% trans "Enter your username and password" %}</li>
+                                <li>2. {% trans "Change your password on first login (recommended)" %}</li>
+                                <li>3. {% trans "You will be redirected to the dashboard" %}</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-green-100 dark:bg-green-900/30 rounded-lg p-3">
+                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Viewing Reports" %}</h3>
+                            <ol class="text-gray-600 dark:text-gray-400 space-y-1 text-sm">
+                                <li>1. {% trans "Go to Reports menu" %}</li>
+                                <li>2. {% trans "Open 'My Reports' section" %}</li>
+                                <li>3. {% trans "Select desired campaign" %}</li>
+                                <li>4. {% trans "View detailed reports and charts" %}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-purple-100 dark:bg-purple-900/30 rounded-lg p-3">
+                            <i class="fas fa-clipboard-check text-purple-600 dark:text-purple-400 text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Completing Evaluations" %}</h3>
+                            <ol class="text-gray-600 dark:text-gray-400 space-y-1 text-sm">
+                                <li>1. {% trans "Go to 'My Assignments' section" %}</li>
+                                <li>2. {% trans "Select incomplete evaluation" %}</li>
+                                <li>3. {% trans "Answer all questions carefully" %}</li>
+                                <li>4. {% trans "Click 'Submit' button" %}</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-orange-100 dark:bg-orange-900/30 rounded-lg p-3">
+                            <i class="fas fa-bullseye text-orange-600 dark:text-orange-400 text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Setting Development Goals" %}</h3>
+                            <ol class="text-gray-600 dark:text-gray-400 space-y-1 text-sm">
+                                <li>1. {% trans "Go to 'My Goals' page" %}</li>
+                                <li>2. {% trans "Click 'New Goal' button" %}</li>
+                                <li>3. {% trans "Enter goal details and timeline" %}</li>
+                                <li>4. {% trans "Track progress regularly" %}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+                <div class="flex items-start space-x-3">
+                    <i class="fas fa-lightbulb text-blue-500 text-lg mt-1"></i>
+                    <div>
+                        <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-2">{% trans "Pro Tip" %}</h4>
+                        <p class="text-blue-700 dark:text-blue-300 text-sm">
+                            {% trans "Look for the '?' icon in each section for additional help and tooltips throughout the system." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div id="faq" class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg mb-12 overflow-hidden border border-gray-200 dark:border-gray-700">
+        <div class="bg-gradient-to-r from-purple-600 to-purple-700 px-8 py-6">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white/20 rounded-lg p-2">
+                    <i class="fas fa-question-circle text-white text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">{% trans "Frequently Asked Questions" %}</h2>
+                    <p class="text-purple-100">{% trans "Quick answers to common questions" %}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-8">
+            <!-- Evaluation Questions -->
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
+                    <i class="fas fa-clipboard-list text-blue-500 mr-3"></i>
+                    {% trans "Evaluation Questions" %}
+                </h3>
+                <div class="space-y-4">
+                    {% include 'help/faq_item.html' with 
+                        id="faq1" 
+                        question="How do I complete an evaluation?" 
+                        answer="<strong>Step 1:</strong> Go to 'My Assignments' from the left menu.<br>
+                               <strong>Step 2:</strong> Select the active evaluation and click 'Start'.<br>
+                               <strong>Step 3:</strong> Read and answer all questions carefully.<br>
+                               <strong>Step 4:</strong> Use 'Save' for draft or 'Submit' to complete."
+                    %}
+
+                    {% include 'help/faq_item.html' with 
+                        id="faq2" 
+                        question="Can I change my evaluation after submitting?" 
+                        answer="No, you cannot change an evaluation after submission. Please review all answers before submitting. You can make unlimited changes while in draft mode."
+                    %}
+                </div>
+            </div>
+
+            <!-- Report Questions -->
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
+                    <i class="fas fa-chart-bar text-green-500 mr-3"></i>
+                    {% trans "Report Questions" %}
+                </h3>
+                <div class="space-y-4">
+                    {% include 'help/faq_item.html' with 
+                        id="faq3" 
+                        question="How can I view my reports?" 
+                        answer="Go to the Reports section from the top menu and select 'My Reports'. Here you can see results from all your campaigns and performance trends."
+                    %}
+
+                    {% include 'help/faq_item.html' with 
+                        id="faq4" 
+                        question="Can I export reports to PDF or Excel?" 
+                        answer="Yes, there is an 'Export' button in the top right corner of the report page. You can download your report in PDF or Excel format."
+                    %}
+                </div>
+            </div>
+
+            <!-- Technical Questions -->
+            <div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
+                    <i class="fas fa-cog text-orange-500 mr-3"></i>
+                    {% trans "Technical Questions" %}
+                </h3>
+                <div class="space-y-4">
+                    {% include 'help/faq_item.html' with 
+                        id="faq5" 
+                        question="How do I change my password?" 
+                        answer="Go to 'Security' section from your profile menu and fill out the 'Change Password' form. Enter your current password and new password (twice), then click 'Save'."
+                    %}
+
+                    {% include 'help/faq_item.html' with 
+                        id="faq6" 
+                        question="I forgot my password, what should I do?" 
+                        answer="Contact the Human Resources department or technical support team. They will provide you with a new password. Email: support@q360.az"
+                    %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+        <div class="bg-gradient-to-r from-green-600 to-green-700 px-8 py-6">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white/20 rounded-lg p-2">
+                    <i class="fas fa-envelope text-white text-xl"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">{% trans "Contact Support" %}</h2>
+                    <p class="text-green-100">{% trans "Get help from our support team" %}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="text-center">
+                    <div class="bg-green-100 dark:bg-green-900/30 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-green-600 dark:text-green-400 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">{% trans "Email Support" %}</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">{% trans "For general questions and support" %}</p>
+                    <a href="mailto:support@q360.az" class="inline-flex items-center text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium">
+                        support@q360.az
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <div class="bg-blue-100 dark:bg-blue-900/30 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-phone text-blue-600 dark:text-blue-400 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">{% trans "Phone Support" %}</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">{% trans "Business days: 09:00 - 18:00" %}</p>
+                    <a href="tel:+994123456789" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
+                        +994 12 XXX XX XX
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <div class="bg-orange-100 dark:bg-orange-900/30 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-shield text-orange-600 dark:text-orange-400 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900 dark:text-white mb-2">{% trans "Administrator" %}</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">{% trans "Contact system administrator" %}</p>
+                    <a href="mailto:admin@q360.az" class="inline-flex items-center text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium">
+                        admin@q360.az
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t dark:border-gray-700 pt-8">
+                <h4 class="text-lg font-semibold text-gray-900 dark:text-white text-center mb-6">{% trans "Additional Resources" %}</h4>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="{% url 'privacy' %}" class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg text-gray-700 dark:text-gray-300 transition-colors">
+                        <i class="fas fa-shield-alt mr-2 text-blue-500"></i>
+                        {% trans "Privacy Policy" %}
+                    </a>
+                    <a href="{% url 'terms' %}" class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg text-gray-700 dark:text-gray-300 transition-colors">
+                        <i class="fas fa-file-contract mr-2 text-green-500"></i>
+                        {% trans "Terms of Service" %}
+                    </a>
+                    <a href="{% url 'dashboard' %}" class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg text-gray-700 dark:text-gray-300 transition-colors">
+                        <i class="fas fa-home mr-2 text-purple-500"></i>
+                        {% trans "Back to Dashboard" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .faq-item {
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+        border-color: #3b82f6;
+    }
+    
+    .dark .faq-item {
+        border-color: #374151;
+    }
+    
+    .dark .faq-item:hover {
+        border-color: #60a5fa;
+    }
+</style>
+
+<script>
+    // Search functionality
+    document.getElementById('searchInput')?.addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const faqItems = document.querySelectorAll('[data-faq-item]');
+        
+        faqItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(searchTerm)) {
+                item.style.display = 'block';
+                // Highlight matching text
+                const question = item.querySelector('[data-question]');
+                if (question) {
+                    const originalText = question.getAttribute('data-original-text') || question.textContent;
+                    question.setAttribute('data-original-text', originalText);
+                    const highlightedText = originalText.replace(
+                        new RegExp(searchTerm, 'gi'),
+                        match => `<mark class="bg-yellow-200 dark:bg-yellow-800">${match}</mark>`
+                    );
+                    question.innerHTML = highlightedText;
+                }
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

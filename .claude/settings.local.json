@@ -77,7 +77,8 @@
       "Bash(del bootstrap_fix.py)",
       "Bash(for app in accounts audit compensation competencies continuous_feedback dashboard departments development_plans engagement evaluations leave_attendance notifications onboarding recruitment reports search sentiment_analysis support training wellness workforce_planning)",
       "Bash(do echo \"=== $app ===\")",
-      "Bash(docker compose *)"
+      "Bash(docker compose *)",
+      "Bash(tee audit-before.log)"
     ],
     "deny": [],
     "ask": []

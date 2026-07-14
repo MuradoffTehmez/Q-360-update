@@ -35,4 +35,11 @@
 .language-switcher select:hover {
     border-color: #0d6efd;
 }
+/* iOS avtomatik zoom-un qarşısını almaq üçün mobil ekranlarda minimum 16px */
+@media (max-width: 767px) {
+    .language-switcher select {
+        font-size: 16px;
+        min-height: 44px;
+    }
+}
 </style>

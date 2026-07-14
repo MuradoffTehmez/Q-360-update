@@ -18,7 +18,8 @@
 
             <!-- Desktop Navigation -->
             {% if user.is_authenticated %}
-            <div class="hidden md:flex md:items-center md:space-x-0 mx-4">
+            {# xl breakpoint: tam üfüqi menyu yalnız geniş ekranlarda — dar ekranlarda hamburger işləyir (overflow qarşısı) #}
+            <div class="hidden xl:flex xl:items-center xl:space-x-0 mx-4">
                 <a href="{% url 'dashboard' %}" class="flex items-center px-3 py-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-sm font-medium transition-all duration-200 group relative mx-1">
                     <i class="fas fa-home mr-1.5 group-hover:scale-110 transition-transform"></i>
                     <span>{% trans "Home" %}</span>
@@ -102,7 +103,7 @@
             <!-- Right side items -->
             <div class="flex items-center space-x-4">
                 <!-- Public Links (Desktop) -->
-                <div class="hidden lg:flex items-center space-x-4 mr-2 border-r dark:border-gray-700 pr-4">
+                <div class="{% if user.is_authenticated %}hidden 2xl:flex{% else %}hidden lg:flex{% endif %} items-center space-x-4 mr-2 border-r dark:border-gray-700 pr-4">
                     <a href="{% url 'haqqimizda' %}" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{% trans "Haqqımızda" %}</a>
                     <a href="{% url 'faq' %}" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{% trans "FAQ" %}</a>
                 </div>
@@ -168,7 +169,7 @@
                                 {{ user.first_name.0|default:user.username.0 }}
                             </div>
                         {% endif %}
-                        <div class="hidden lg:block text-left">
+                        <div class="hidden 2xl:block text-left">
                             <span class="text-sm font-semibold block leading-tight truncate max-w-[150px]" title="{{ user.get_full_name|default:user.username }}">{{ user.get_full_name|default:user.username }}</span>
                             <span class="text-xs text-gray-500 dark:text-gray-400">{{ user.get_role_display }}</span>
                         </div>
@@ -241,7 +242,7 @@
                 {% endif %}
 
                 <!-- Mobile menu button -->
-                <button @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Mobil menyunu aç və ya bağla" class="md:hidden p-1.5 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 ml-1">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Mobil menyunu aç və ya bağla" class="{% if user.is_authenticated %}xl:hidden{% else %}md:hidden{% endif %} p-1.5 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 ml-1">
                     <i class="fas fa-bars text-base transform transition-transform duration-200" :class="{ 'rotate-90': mobileMenuOpen }"></i>
                 </button>
             </div>
@@ -249,7 +250,7 @@
     </div>
 
     <!-- Mobile menu -->
-    <div x-show="mobileMenuOpen" x-transition style="display: none;" class="md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-lg">
+    <div x-show="mobileMenuOpen" x-transition style="display: none;" class="{% if user.is_authenticated %}xl:hidden{% else %}md:hidden{% endif %} bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-lg">
         <div class="px-3 pt-2 pb-3 space-y-1">
             {% if user.is_authenticated %}
             <!-- Quick Send Feedback (Mobile) -->

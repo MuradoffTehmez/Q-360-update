@@ -87,14 +87,23 @@ function initializePopovers() {
  * Load Notifications
  */
 function loadNotifications() {
+    // Yalnız autentifikasiyalı istifadəçilər üçün (bu div base.html-də yalnız login zamanı render olunur)
+    if (!document.getElementById('notifications-data')) {
+        return;
+    }
     fetch('/api/notifications/?limit=5')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('HTTP ' + response.status);
+            }
+            return response.json();
+        })
         .then(data => {
             // It should use data.unread_count instead of data.count for the badge
             updateNotificationBadge(data.unread_count || 0);
             renderNotifications(data.results || []);
         })
-        .catch(error => console.error('Error loading notifications:', error));
+        .catch(error => console.warn('Bildirişlər yüklənmədi:', error.message || error));
 }
 
 /**

@@ -78,7 +78,8 @@
       "Bash(for app in accounts audit compensation competencies continuous_feedback dashboard departments development_plans engagement evaluations leave_attendance notifications onboarding recruitment reports search sentiment_analysis support training wellness workforce_planning)",
       "Bash(do echo \"=== $app ===\")",
       "Bash(docker compose *)",
-      "Bash(tee audit-before.log)"
+      "Bash(tee audit-before.log)",
+      "Bash(MSYS_NO_PATHCONV=1 docker compose exec -T web python show_dup_queries.py /pfile/employees/)"
     ],
     "deny": [],
     "ask": []

@@ -293,4 +293,19 @@ Qeyd: modal-daxili formaların əksəriyyəti (onboarding template create, OKR f
   - user-import 403 → indi istifadəçi dostu 403 səhifəsi ✅
 - **Skrinşot arxivi:** `screenshots/before/` və `screenshots/after/` (hər səhifə 375/768/1440px) — scratchpad-dən `q360_project/audit_artifacts/` qovluğuna köçürülüb.
 
-<!-- REGRESSIYA_NETICELERI -->
+### Yekun tam re-audit nəticələri (121 səhifə × 5 viewport = 605 yükləmə)
+
+| Meyar | Əvvəl (baseline) | Sonra (yekun) |
+|---|---|---|
+| Horizontal scroll olan səhifə/viewport kombinasiyası | 113 səhifə × 3 viewport (768/1024/1440) | **0** |
+| JS konsol xətası olan səhifə | 121 (qlobal SyntaxError) + 12 səhifə-spesifik | **0**¹ |
+| Sınıq şəbəkə sorğusu | chart.min.css (15 səhifə), 429 (10 səhifə), 500 (1 səhifə) | **0**¹ |
+| Sarğısız (overflow-suz) cədvəl @375px | 2 | **0** |
+| 16px-dən kiçik form sahəsi @375px | bütün səhifələrdə 3–7 | **0** |
+| 12px-dən kiçik mətn @375px | 3 səhifə | **0** |
+| HTTP status ≠ 200 | 2 (500 + 403) | 1 (yalnız RBAC-qorunan user-import 403)¹ |
+| TTFB (brauzer, median / p90 / max) | ~90ms / ~180ms / 4.5s | **83ms / 148ms / 308ms** |
+
+¹ `user-import` səhifəsinin 403 cavabı gözlənilən RBAC davranışıdır (`accounts.add_user` icazəsi tələb olunur); brauzerin resurs jurnalındakı yeganə qeyd bu HTTP statusudur, JS istisnası deyil. İndi istifadəçi dostu 403 səhifəsi göstərilir.
+
+**Nəticə:** 375–1440px aralığında bütün səhifələr horizontal scroll və layout sınması olmadan render olunur; `manage.py check` xətasızdır; konsolda JS xətası yoxdur; açıq səhifələrin Lighthouse Performance xalları baseline-dan aşağı deyil.

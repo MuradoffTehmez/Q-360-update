@@ -67,7 +67,8 @@
     .column-item .badge {
         background: rgba(79, 70, 229, 0.2);
         color: #312e81;
-        font-size: 0.7rem;
+        /* oxunaqlılıq: minimum 12px (0.7rem = 11.2px idi) */
+        font-size: max(0.7rem, 12px);
         letter-spacing: 0.04em;
         text-transform: uppercase;
     }

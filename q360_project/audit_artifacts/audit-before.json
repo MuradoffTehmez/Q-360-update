@@ -1,0 +1,7743 @@
+[
+ {
+  "name": "landing",
+  "url": "/",
+  "auth": false,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 52,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 51,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 74,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/:2654]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 63,
+  "finalUrl": "http://localhost:8000/"
+ },
+ {
+  "name": "help",
+  "url": "/help/",
+  "auth": false,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 91,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 50,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 49,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 51,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/help/:2284]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 91,
+  "finalUrl": "http://localhost:8000/help/"
+ },
+ {
+  "name": "privacy",
+  "url": "/privacy/",
+  "auth": false,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 81,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 84,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 62,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 60,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/privacy/:1986]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 81,
+  "finalUrl": "http://localhost:8000/privacy/"
+ },
+ {
+  "name": "terms",
+  "url": "/terms/",
+  "auth": false,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 71,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 90,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 54,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/terms/:2116]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 71,
+  "finalUrl": "http://localhost:8000/terms/"
+ },
+ {
+  "name": "haqqimizda",
+  "url": "/haqqimizda/",
+  "auth": false,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 74,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 55,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 68,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 54,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/haqqimizda/:2072]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 74,
+  "finalUrl": "http://localhost:8000/haqqimizda/"
+ },
+ {
+  "name": "faq",
+  "url": "/faq/",
+  "auth": false,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 57,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 39,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 73,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 47,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 73,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/faq/:2216]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 57,
+  "finalUrl": "http://localhost:8000/faq/"
+ },
+ {
+  "name": "login",
+  "url": "/accounts/login/",
+  "auth": false,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 115,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 116,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 144,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 180,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 198,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/dashboard/:2594]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 115,
+  "finalUrl": "http://localhost:8000/dashboard/"
+ },
+ {
+  "name": "password-reset",
+  "url": "/accounts/password-reset/",
+  "auth": false,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 77,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/accounts/password-reset/:2158]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 77,
+  "finalUrl": "http://localhost:8000/accounts/password-reset/"
+ },
+ {
+  "name": "dashboard-home",
+  "url": "/dashboard/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 123,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 157,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 174,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 146,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 126,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/dashboard/:2594]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 123,
+  "finalUrl": "http://localhost:8000/dashboard/"
+ },
+ {
+  "name": "dashboard-kpi",
+  "url": "/dashboard/kpi/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 143,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 85,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 78,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 103,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/dashboard/kpi/:2192]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   }
+  ],
+  "status": 200,
+  "ttfb": 143,
+  "finalUrl": "http://localhost:8000/dashboard/kpi/"
+ },
+ {
+  "name": "dashboard-trend",
+  "url": "/dashboard/trend/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 229,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 114,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 153,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 168,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 168,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/dashboard/trend/:2061]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   }
+  ],
+  "status": 200,
+  "ttfb": 229,
+  "finalUrl": "http://localhost:8000/dashboard/trend/"
+ },
+ {
+  "name": "dashboard-forecast",
+  "url": "/dashboard/forecast/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 200,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 250,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 250,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 303,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 312,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/dashboard/forecast/:2107]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   },
+   {
+    "url": "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css",
+    "reason": "net::ERR_BLOCKED_BY_ORB"
+   }
+  ],
+  "status": 200,
+  "ttfb": 200,
+  "finalUrl": "http://localhost:8000/dashboard/forecast/"
+ },
+ {
+  "name": "dashboard-ai",
+  "url": "/dashboard/ai-management/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 119,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 108,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 106,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 119,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 90,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "PAGEERROR: Unexpected token ','",
+   "Global error caught:  [/dashboard/ai-management/:2424]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 119,
+  "finalUrl": "http://localhost:8000/dashboard/ai-management/"
+ },
+ {
+  "name": "profile",
+  "url": "/accounts/profile/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 263,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 261,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 232,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 161,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 152,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/accounts/profile/:2165]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 263,
+  "finalUrl": "http://localhost:8000/accounts/profile/"
+ },
+ {
+  "name": "profile-edit",
+  "url": "/accounts/profile/edit/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 449,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 193,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 174,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/accounts/profile/edit/:2212]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 70,
+  "finalUrl": "http://localhost:8000/accounts/profile/edit/"
+ },
+ {
+  "name": "security-settings",
+  "url": "/accounts/security/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 391,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 106,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 191,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 220,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 124,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/accounts/security/:2523]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 391,
+  "finalUrl": "http://localhost:8000/accounts/security/"
+ },
+ {
+  "name": "change-password",
+  "url": "/accounts/change-password/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 139,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 118,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 127,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 102,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 224,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/accounts/change-password/:2523]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 139,
+  "finalUrl": "http://localhost:8000/accounts/change-password/"
+ },
+ {
+  "name": "users-list",
+  "url": "/accounts/users/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 103,
+    "tableCount": 2
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 150,
+    "tableCount": 2
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "table.w-full",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 140,
+    "tableCount": 2
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 100,
+    "tableCount": 2
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 164,
+    "tableCount": 2
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/accounts/users/:2723]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 103,
+  "finalUrl": "http://localhost:8000/accounts/users/"
+ },
+ {
+  "name": "user-create",
+  "url": "/accounts/users/create/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 131,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 95,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 99,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 116,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/accounts/users/create/:2096]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 131,
+  "finalUrl": "http://localhost:8000/accounts/users/create/"
+ },
+ {
+  "name": "user-import",
+  "url": "/accounts/users/import/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 0,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 108,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 0,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 57,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 0,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 49,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 0,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 0,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 53,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Failed to load resource: the server responded with a status of 403 (Forbidden) [/accounts/users/import/:undefined]"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [
+   {
+    "url": "http://localhost:8000/accounts/users/import/",
+    "status": 403
+   },
+   {
+    "url": "http://localhost:8000/accounts/users/import/",
+    "status": 403
+   },
+   {
+    "url": "http://localhost:8000/accounts/users/import/",
+    "status": 403
+   },
+   {
+    "url": "http://localhost:8000/accounts/users/import/",
+    "status": 403
+   },
+   {
+    "url": "http://localhost:8000/accounts/users/import/",
+    "status": 403
+   }
+  ],
+  "status": 403,
+  "ttfb": 108,
+  "finalUrl": "http://localhost:8000/accounts/users/import/"
+ },
+ {
+  "name": "rbac-matrix",
+  "url": "/accounts/rbac/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 110,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 168,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 205,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 113,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 113,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/dashboard/:2624]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 110,
+  "finalUrl": "http://localhost:8000/dashboard/"
+ },
+ {
+  "name": "campaigns-list",
+  "url": "/evaluations/campaigns/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 134,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 142,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 249,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 123,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 174,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/evaluations/campaigns/:2422]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 134,
+  "finalUrl": "http://localhost:8000/evaluations/campaigns/"
+ },
+ {
+  "name": "campaign-create",
+  "url": "/evaluations/campaigns/create/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 47,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 76,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 48,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 57,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/evaluations/campaigns/create/:2134]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 69,
+  "finalUrl": "http://localhost:8000/evaluations/campaigns/create/"
+ },
+ {
+  "name": "my-assignments",
+  "url": "/evaluations/my-assignments/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 64,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 75,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 97,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/evaluations/my-assignments/:2030]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 59,
+  "finalUrl": "http://localhost:8000/evaluations/my-assignments/"
+ },
+ {
+  "name": "bulk-assign",
+  "url": "/evaluations/bulk-assign/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 76,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 80,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/evaluations/bulk-assign/:2139]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 65,
+  "finalUrl": "http://localhost:8000/evaluations/bulk-assign/"
+ },
+ {
+  "name": "questions-list",
+  "url": "/evaluations/questions/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 92,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 68,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 110,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/evaluations/questions/:3168]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 65,
+  "finalUrl": "http://localhost:8000/evaluations/questions/"
+ },
+ {
+  "name": "question-create",
+  "url": "/evaluations/questions/create/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 57,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 64,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 52,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 79,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/evaluations/questions/create/:2254]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 63,
+  "finalUrl": "http://localhost:8000/evaluations/questions/create/"
+ },
+ {
+  "name": "categories-list",
+  "url": "/evaluations/categories/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 78,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 58,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 51,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 54,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/evaluations/categories/:2564]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 78,
+  "finalUrl": "http://localhost:8000/evaluations/categories/"
+ },
+ {
+  "name": "departments-list",
+  "url": "/departments/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 77,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 51,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 56,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 83,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/departments/:2211]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 77,
+  "finalUrl": "http://localhost:8000/departments/"
+ },
+ {
+  "name": "org-structure",
+  "url": "/departments/structure/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 126,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 118,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 115,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 87,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 90,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/departments/structure/:2429]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 126,
+  "finalUrl": "http://localhost:8000/departments/structure/"
+ },
+ {
+  "name": "dept-chart",
+  "url": "/departments/chart/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 103,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 80,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.chart-container",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 85,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 64,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/departments/chart/:2223]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 103,
+  "finalUrl": "http://localhost:8000/departments/chart/"
+ },
+ {
+  "name": "dept-create",
+  "url": "/departments/department/create/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 127,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 110,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 92,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 75,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 76,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/departments/department/create/:2066]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 127,
+  "finalUrl": "http://localhost:8000/departments/department/create/"
+ },
+ {
+  "name": "my-reports",
+  "url": "/reports/my-reports/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 58,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 51,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 60,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 55,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/reports/my-reports/:1935]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 69,
+  "finalUrl": "http://localhost:8000/reports/my-reports/"
+ },
+ {
+  "name": "team-reports",
+  "url": "/reports/team-reports/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 83,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 81,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 51,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 51,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 54,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/reports/team-reports/:2113]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 83,
+  "finalUrl": "http://localhost:8000/reports/team-reports/"
+ },
+ {
+  "name": "comparison-report",
+  "url": "/reports/comparison/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 42,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 62,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 43,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 57,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/reports/comparison/:1918]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 63,
+  "finalUrl": "http://localhost:8000/reports/comparison/"
+ },
+ {
+  "name": "analytics-dashboard",
+  "url": "/reports/analytics/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 175,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 135,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 121,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 135,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/reports/analytics/:2444]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 175,
+  "finalUrl": "http://localhost:8000/reports/analytics/"
+ },
+ {
+  "name": "blueprints",
+  "url": "/reports/blueprints/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 107,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 110,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 60,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/reports/blueprints/:2177]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 107,
+  "finalUrl": "http://localhost:8000/reports/blueprints/"
+ },
+ {
+  "name": "schedules",
+  "url": "/reports/schedules/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 108,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 162,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 87,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 101,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/reports/schedules/:2423]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 108,
+  "finalUrl": "http://localhost:8000/reports/schedules/"
+ },
+ {
+  "name": "custom-builder",
+  "url": "/reports/custom-builder/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 76,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 89,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 83,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 96,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught: JSHandle@error [/reports/custom-builder/:2380]",
+   "Global error: JSHandle@error [/static/js/main.js:489]",
+   "PAGEERROR: Unexpected token '<'",
+   "PAGEERROR: Sortable is not defined",
+   "Global error caught:  [/reports/custom-builder/:2380]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 76,
+  "finalUrl": "http://localhost:8000/reports/custom-builder/"
+ },
+ {
+  "name": "my-goals",
+  "url": "/development-plans/my-goals/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 64,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 83,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 84,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/development-plans/my-goals/:2025]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 64,
+  "finalUrl": "http://localhost:8000/development-plans/my-goals/"
+ },
+ {
+  "name": "goal-create",
+  "url": "/development-plans/goals/create/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 72,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 56,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/development-plans/goals/create/:2229]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 72,
+  "finalUrl": "http://localhost:8000/development-plans/goals/create/"
+ },
+ {
+  "name": "team-goals",
+  "url": "/development-plans/team-goals/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 121,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 127,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 205,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 200,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 150,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/development-plans/team-goals/:2604]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 121,
+  "finalUrl": "http://localhost:8000/development-plans/team-goals/"
+ },
+ {
+  "name": "goal-templates",
+  "url": "/development-plans/templates/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 58,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 76,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 79,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 48,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 49,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/development-plans/templates/:2190]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 58,
+  "finalUrl": "http://localhost:8000/development-plans/templates/"
+ },
+ {
+  "name": "goal-cascade",
+  "url": "/development-plans/goal-cascade/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 73,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 58,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 76,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 60,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/development-plans/goal-cascade/:2268]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 73,
+  "finalUrl": "http://localhost:8000/development-plans/goal-cascade/"
+ },
+ {
+  "name": "notifications-inbox",
+  "url": "/notifications/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 79,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 102,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 124,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 89,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/notifications/:2050]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 61,
+  "finalUrl": "http://localhost:8000/notifications/"
+ },
+ {
+  "name": "notification-settings",
+  "url": "/notifications/settings/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 133,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 53,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 60,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 43,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 43,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/notifications/settings/:2225]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 133,
+  "finalUrl": "http://localhost:8000/notifications/settings/"
+ },
+ {
+  "name": "email-templates",
+  "url": "/notifications/templates/emails/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 54,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 54,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 44,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 50,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 62,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/notifications/templates/emails/:2050]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 54,
+  "finalUrl": "http://localhost:8000/notifications/templates/emails/"
+ },
+ {
+  "name": "notification-stats",
+  "url": "/notifications/statistics/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 140,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 96,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 119,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 105,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 84,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/notifications/statistics/:1927]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 140,
+  "finalUrl": "http://localhost:8000/notifications/statistics/"
+ },
+ {
+  "name": "competency-list",
+  "url": "/competencies/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 7,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 81,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 7,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 75,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 7,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 96,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 7,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 55,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 7,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/competencies/:2090]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token",
+   "JSHandle@error [/competencies/:2212]"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 81,
+  "finalUrl": "http://localhost:8000/competencies/"
+ },
+ {
+  "name": "my-skills",
+  "url": "/competencies/my-skills/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 1,
+    "ttfb": 69,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 1,
+    "ttfb": 52,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 1,
+    "ttfb": 64,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 1,
+    "ttfb": 45,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 1,
+    "ttfb": 64,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/competencies/my-skills/:1976]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 69,
+  "finalUrl": "http://localhost:8000/competencies/my-skills/"
+ },
+ {
+  "name": "skill-gap-analysis",
+  "url": "/competencies/gap-analysis/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 79,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 43,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 90,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 47,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/competencies/gap-analysis/:1931]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 79,
+  "finalUrl": "http://localhost:8000/competencies/gap-analysis/"
+ },
+ {
+  "name": "competency-manage",
+  "url": "/competencies/manage/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 7,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 68,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 7,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 52,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 7,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 93,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 7,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 68,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 7,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 60,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/competencies/manage/:2090]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token",
+   "JSHandle@error [/competencies/manage/:2212]"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 68,
+  "finalUrl": "http://localhost:8000/competencies/manage/"
+ },
+ {
+  "name": "training-catalog",
+  "url": "/training/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 6,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 6,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 43,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 6,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 6,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 62,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 6,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 47,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/training/:2001]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'id')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'type')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'title')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'description')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'difficulty_level')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'duration_hours')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'language')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'cost')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'provider')"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 70,
+  "finalUrl": "http://localhost:8000/training/"
+ },
+ {
+  "name": "my-trainings",
+  "url": "/training/my-trainings/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 62,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 101,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 81,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 5,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 55,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/training/my-trainings/:2029]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'id')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'status')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'resource_title')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'due_date')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'progress_percentage')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'trainer_name')",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Status) [/api/training/user-trainings/my_completed/:undefined]",
+   "JSHandle@error [/training/my-trainings/:2082]",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Status) [/api/training/user-trainings/my_in_progress/:undefined]",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Status) [/api/training/user-trainings/my_pending/:undefined]"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_completed/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_in_progress/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_pending/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_completed/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_in_progress/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_pending/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_in_progress/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_completed/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_pending/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_in_progress/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_completed/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_in_progress/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_completed/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_pending/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_in_progress/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_completed/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_pending/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_completed/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_in_progress/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_pending/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_completed/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_in_progress/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_pending/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_pending/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_completed/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_in_progress/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_pending/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_completed/",
+    "status": 429
+   },
+   {
+    "url": "http://localhost:8000/api/training/user-trainings/my_in_progress/",
+    "status": 429
+   }
+  ],
+  "status": 200,
+  "ttfb": 62,
+  "finalUrl": "http://localhost:8000/training/my-trainings/"
+ },
+ {
+  "name": "my-certificates",
+  "url": "/training/my-certificates/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 62,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 81,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 82,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/training/my-certificates/:2049]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 67,
+  "finalUrl": "http://localhost:8000/training/my-certificates/"
+ },
+ {
+  "name": "training-manage",
+  "url": "/training/manage/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 6,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 6,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 44,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 6,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 6,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 135,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 6,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 68,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/training/manage/:2001]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'id')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'type')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'title')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'description')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'difficulty_level')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'duration_hours')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'language')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'cost')",
+   "PAGEERROR: Uncaught TypeError: Cannot read properties of null (reading 'provider')"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 69,
+  "finalUrl": "http://localhost:8000/training/manage/"
+ },
+ {
+  "name": "skill-matrix",
+  "url": "/training/skill-matrix/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 82,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 106,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 82,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "PAGEERROR: Vue is not defined",
+   "Global error caught:  [/training/skill-matrix/:2222]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 82,
+  "finalUrl": "http://localhost:8000/training/skill-matrix/"
+ },
+ {
+  "name": "certifications",
+  "url": "/training/certifications/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 104,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 60,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 88,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/training/certifications/:2215]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 104,
+  "finalUrl": "http://localhost:8000/training/certifications/"
+ },
+ {
+  "name": "security-dashboard",
+  "url": "/audit/security-dashboard/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 99,
+    "tableCount": 4
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 72,
+    "tableCount": 4
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 127,
+    "tableCount": 4
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 4
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 153,
+    "tableCount": 4
+   }
+  },
+  "consoleErrors": [
+   "PAGEERROR: $ is not defined",
+   "Global error caught:  [/audit/security-dashboard/:2753]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 99,
+  "finalUrl": "http://localhost:8000/audit/security-dashboard/"
+ },
+ {
+  "name": "log-search",
+  "url": "/audit/log-search/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 138,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 132,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 166,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 154,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 203,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/audit/log-search/:3059]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 138,
+  "finalUrl": "http://localhost:8000/audit/log-search/"
+ },
+ {
+  "name": "global-search",
+  "url": "/search/?q=test",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 4,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 93,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 4,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 87,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 4,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 100,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 4,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 4,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 62,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/search/?q=test:2001]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 93,
+  "finalUrl": "http://localhost:8000/search/?q=test"
+ },
+ {
+  "name": "onboarding-dashboard",
+  "url": "/onboarding/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 174,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 139,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 145,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 117,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 156,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/onboarding/:2533]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 174,
+  "finalUrl": "http://localhost:8000/onboarding/"
+ },
+ {
+  "name": "onboarding-processes",
+  "url": "/onboarding/processes/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 90,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 88,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 147,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 92,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 153,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/onboarding/processes/:2277]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 90,
+  "finalUrl": "http://localhost:8000/onboarding/processes/"
+ },
+ {
+  "name": "onboarding-process-new",
+  "url": "/onboarding/processes/new/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 168,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 109,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 90,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/onboarding/processes/new/:2071]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 86,
+  "finalUrl": "http://localhost:8000/onboarding/processes/new/"
+ },
+ {
+  "name": "onboarding-templates",
+  "url": "/onboarding/templates/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 95,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 81,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 78,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 57,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/onboarding/templates/:2067]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token",
+   "PAGEERROR: Uncaught ReferenceError: openModal is not defined"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 95,
+  "finalUrl": "http://localhost:8000/onboarding/templates/"
+ },
+ {
+  "name": "onboarding-template-new",
+  "url": "/onboarding/templates/new/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 58,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 55,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 45,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/onboarding/templates/new/:1982]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 58,
+  "finalUrl": "http://localhost:8000/onboarding/templates/new/"
+ },
+ {
+  "name": "talent-matrix-9box",
+  "url": "/workforce-planning/talent-matrix/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 96,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 120,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 135,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 105,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 140,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/workforce-planning/talent-matrix/:2078]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 96,
+  "finalUrl": "http://localhost:8000/workforce-planning/talent-matrix/"
+ },
+ {
+  "name": "succession-planning",
+  "url": "/workforce-planning/succession-planning/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 107,
+    "tableCount": 2
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 116,
+    "tableCount": 2
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 105,
+    "tableCount": 2
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 101,
+    "tableCount": 2
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 172,
+    "tableCount": 2
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/workforce-planning/succession-planning/:2142]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 107,
+  "finalUrl": "http://localhost:8000/workforce-planning/succession-planning/"
+ },
+ {
+  "name": "critical-roles",
+  "url": "/workforce-planning/critical-roles/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 108,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 99,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 93,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 82,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 83,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/workforce-planning/critical-roles/:2191]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 108,
+  "finalUrl": "http://localhost:8000/workforce-planning/critical-roles/"
+ },
+ {
+  "name": "wfp-gap-analysis",
+  "url": "/workforce-planning/gap-analysis/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 72,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 76,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 71,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/workforce-planning/gap-analysis/:2124]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 72,
+  "finalUrl": "http://localhost:8000/workforce-planning/gap-analysis/"
+ },
+ {
+  "name": "my-gaps",
+  "url": "/workforce-planning/my-gaps/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 77,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 71,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 106,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 127,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/workforce-planning/my-gaps/:1969]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 77,
+  "finalUrl": "http://localhost:8000/workforce-planning/my-gaps/"
+ },
+ {
+  "name": "feedback-send",
+  "url": "/feedback/send/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 172,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 129,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 189,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 169,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 120,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/feedback/send/:2075]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 172,
+  "finalUrl": "http://localhost:8000/feedback/send/"
+ },
+ {
+  "name": "my-feedback",
+  "url": "/feedback/my-feedback/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 87,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 235,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 98,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 94,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/feedback/my-feedback/:1927]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 87,
+  "finalUrl": "http://localhost:8000/feedback/my-feedback/"
+ },
+ {
+  "name": "received-feedback",
+  "url": "/feedback/received/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 71,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 74,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 74,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 72,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/feedback/received/:1924]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 71,
+  "finalUrl": "http://localhost:8000/feedback/received/"
+ },
+ {
+  "name": "feedback-bank",
+  "url": "/feedback/my-bank/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 260,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 99,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 117,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 112,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 109,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/feedback/my-bank/:1921]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 260,
+  "finalUrl": "http://localhost:8000/feedback/my-bank/"
+ },
+ {
+  "name": "recognition-feed",
+  "url": "/feedback/recognition-feed/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 82,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 136,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 87,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 96,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/feedback/recognition-feed/:2237]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 66,
+  "finalUrl": "http://localhost:8000/feedback/recognition-feed/"
+ },
+ {
+  "name": "feedback-360-request",
+  "url": "/feedback/360-feedback-request/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 74,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 74,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 84,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 52,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/feedback/360-feedback-request/:2103]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 74,
+  "finalUrl": "http://localhost:8000/feedback/360-feedback-request/"
+ },
+ {
+  "name": "feedback-analytics",
+  "url": "/feedback/analytics/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 110,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 137,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 201,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 100,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 133,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/feedback/analytics/:2210]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 110,
+  "finalUrl": "http://localhost:8000/feedback/analytics/"
+ },
+ {
+  "name": "workflow-dashboard",
+  "url": "/workflow/dashboard/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 166,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 150,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 62,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/workflow/dashboard/:1943]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 166,
+  "finalUrl": "http://localhost:8000/workflow/dashboard/"
+ },
+ {
+  "name": "approval-dashboard",
+  "url": "/approval/dashboard/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 81,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 47,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 43,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 44,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 68,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/approval/dashboard/:1943]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 81,
+  "finalUrl": "http://localhost:8000/approval/dashboard/"
+ },
+ {
+  "name": "access-control-dashboard",
+  "url": "/access-control/dashboard/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 51,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 68,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 78,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 53,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/access-control/dashboard/:1940]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 51,
+  "finalUrl": "http://localhost:8000/access-control/dashboard/"
+ },
+ {
+  "name": "policy-dashboard",
+  "url": "/policy-engine/dashboard/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 60,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 49,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 75,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/policy-engine/dashboard/:1935]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 67,
+  "finalUrl": "http://localhost:8000/policy-engine/dashboard/"
+ },
+ {
+  "name": "feature-flags-dashboard",
+  "url": "/feature-flags/dashboard/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 64,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 71,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 45,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 58,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/feature-flags/dashboard/:1964]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 64,
+  "finalUrl": "http://localhost:8000/feature-flags/dashboard/"
+ },
+ {
+  "name": "pfile-employees",
+  "url": "/pfile/employees/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 120,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 115,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 170,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 128,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 99,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/pfile/employees/:2519]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 120,
+  "finalUrl": "http://localhost:8000/pfile/employees/"
+ },
+ {
+  "name": "compensation-dashboard",
+  "url": "/compensation/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 82,
+    "tableCount": 3
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 64,
+    "tableCount": 3
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 3
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 57,
+    "tableCount": 3
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 3
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/compensation/:2014]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 82,
+  "finalUrl": "http://localhost:8000/compensation/"
+ },
+ {
+  "name": "salaries",
+  "url": "/compensation/salaries/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 72,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 112,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 81,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 84,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/compensation/salaries/:2057]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 72,
+  "finalUrl": "http://localhost:8000/compensation/salaries/"
+ },
+ {
+  "name": "bonuses",
+  "url": "/compensation/bonuses/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 58,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 77,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 82,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 58,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 51,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/compensation/bonuses/:2012]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 58,
+  "finalUrl": "http://localhost:8000/compensation/bonuses/"
+ },
+ {
+  "name": "compensation-history",
+  "url": "/compensation/history/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 54,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 75,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 75,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/compensation/history/:1990]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 70,
+  "finalUrl": "http://localhost:8000/compensation/history/"
+ },
+ {
+  "name": "market-benchmarking",
+  "url": "/compensation/market-benchmarking/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 72,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 80,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 78,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 64,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "PAGEERROR: Unexpected token ','",
+   "Global error caught:  [/compensation/market-benchmarking/:2253]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 72,
+  "finalUrl": "http://localhost:8000/compensation/market-benchmarking/"
+ },
+ {
+  "name": "total-rewards",
+  "url": "/compensation/total-rewards/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 113,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 135,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 216,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 107,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 149,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/compensation/total-rewards/:2188]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 113,
+  "finalUrl": "http://localhost:8000/compensation/total-rewards/"
+ },
+ {
+  "name": "leave-dashboard",
+  "url": "/leave/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 78,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 60,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 80,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/leave/:1978]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 70,
+  "finalUrl": "http://localhost:8000/leave/"
+ },
+ {
+  "name": "leave-request-create",
+  "url": "/leave/request/create/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 91,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 84,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 49,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/leave/request/create/:2023]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 86,
+  "finalUrl": "http://localhost:8000/leave/request/create/"
+ },
+ {
+  "name": "leave-requests",
+  "url": "/leave/requests/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 62,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 68,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 97,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 121,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/leave/requests/:2038]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 62,
+  "finalUrl": "http://localhost:8000/leave/requests/"
+ },
+ {
+  "name": "attendance-calendar",
+  "url": "/leave/attendance/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 5,
+    "unwrappedTables": 1,
+    "ttfb": 64,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 5,
+    "unwrappedTables": 1,
+    "ttfb": 58,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 5,
+    "unwrappedTables": 1,
+    "ttfb": 121,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 5,
+    "unwrappedTables": 1,
+    "ttfb": 65,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 5,
+    "unwrappedTables": 1,
+    "ttfb": 90,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/leave/attendance/:2095]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 64,
+  "finalUrl": "http://localhost:8000/leave/attendance/"
+ },
+ {
+  "name": "team-leave-calendar",
+  "url": "/leave/team-calendar/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 62,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 85,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 126,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 55,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/leave/team-calendar/:2010]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 62,
+  "finalUrl": "http://localhost:8000/leave/team-calendar/"
+ },
+ {
+  "name": "leave-approvals",
+  "url": "/leave/approvals/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 88,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 54,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/leave/approvals/:1995]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 69,
+  "finalUrl": "http://localhost:8000/leave/approvals/"
+ },
+ {
+  "name": "okr-dashboard",
+  "url": "/okr/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 110,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 63,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 79,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 83,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 73,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/okr/:2035]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 110,
+  "finalUrl": "http://localhost:8000/okr/"
+ },
+ {
+  "name": "okr-objectives",
+  "url": "/okr/objectives/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 5,
+    "unwrappedTables": 0,
+    "ttfb": 533,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 5,
+    "unwrappedTables": 0,
+    "ttfb": 206,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 5,
+    "unwrappedTables": 0,
+    "ttfb": 244,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 5,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 5,
+    "unwrappedTables": 0,
+    "ttfb": 71,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/okr/objectives/:2228]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 533,
+  "finalUrl": "http://localhost:8000/okr/objectives/"
+ },
+ {
+  "name": "okr-objective-create",
+  "url": "/okr/objectives/create/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 45,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 76,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 48,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/okr/objectives/create/:1981]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 61,
+  "finalUrl": "http://localhost:8000/okr/objectives/create/"
+ },
+ {
+  "name": "okr-kpi",
+  "url": "/okr/kpi/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 123,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 69,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/okr/kpi/:1927]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 123,
+  "finalUrl": "http://localhost:8000/okr/kpi/"
+ },
+ {
+  "name": "recruitment-dashboard",
+  "url": "/recruitment/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 68,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 115,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 82,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 60,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 71,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/recruitment/:2068]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 68,
+  "finalUrl": "http://localhost:8000/recruitment/"
+ },
+ {
+  "name": "job-postings",
+  "url": "/recruitment/jobs/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 88,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 134,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 245,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 92,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 92,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/recruitment/jobs/:2322]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 88,
+  "finalUrl": "http://localhost:8000/recruitment/jobs/"
+ },
+ {
+  "name": "job-create",
+  "url": "/recruitment/jobs/create/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 98,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 64,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 51,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 55,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/recruitment/jobs/create/:2001]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 98,
+  "finalUrl": "http://localhost:8000/recruitment/jobs/create/"
+ },
+ {
+  "name": "interview-calendar",
+  "url": "/recruitment/interviews/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 136,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 111,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 80,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 73,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/recruitment/interviews/:2006]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 136,
+  "finalUrl": "http://localhost:8000/recruitment/interviews/"
+ },
+ {
+  "name": "candidate-pipeline",
+  "url": "/recruitment/pipeline/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 71,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 148,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.pipeline-column",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 91,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.pipeline-column",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 72,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.pipeline-column",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 165,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/recruitment/pipeline/:2093]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 71,
+  "finalUrl": "http://localhost:8000/recruitment/pipeline/"
+ },
+ {
+  "name": "ai-screening",
+  "url": "/recruitment/ai-screening/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 76,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 94,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 56,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 293,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/recruitment/ai-screening/:2206]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 76,
+  "finalUrl": "http://localhost:8000/recruitment/ai-screening/"
+ },
+ {
+  "name": "candidate-experience",
+  "url": "/recruitment/candidate-experience/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 88,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 104,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 94,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 172,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "PAGEERROR: Unexpected token ','",
+   "Global error caught:  [/recruitment/candidate-experience/:2163]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 88,
+  "finalUrl": "http://localhost:8000/recruitment/candidate-experience/"
+ },
+ {
+  "name": "sentiment-dashboard",
+  "url": "/sentiment-analysis/dashboard/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 119,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 337,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 325,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 204,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 248,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/sentiment-analysis/dashboard/:1951]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 119,
+  "finalUrl": "http://localhost:8000/sentiment-analysis/dashboard/"
+ },
+ {
+  "name": "wellness-dashboard",
+  "url": "/wellness/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 147,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 107,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 95,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 101,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/wellness/:2050]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 86,
+  "finalUrl": "http://localhost:8000/wellness/"
+ },
+ {
+  "name": "checkups",
+  "url": "/wellness/checkups/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 54,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 46,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 73,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 75,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 59,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/wellness/checkups/:1945]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 54,
+  "finalUrl": "http://localhost:8000/wellness/checkups/"
+ },
+ {
+  "name": "mental-health-survey",
+  "url": "/wellness/mental-health/survey/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 105,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 49,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 56,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 54,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 100,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/wellness/mental-health/survey/:2064]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 105,
+  "finalUrl": "http://localhost:8000/wellness/mental-health/survey/"
+ },
+ {
+  "name": "fitness-programs",
+  "url": "/wellness/fitness/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 230,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 75,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 553,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 85,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 57,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/wellness/fitness/:1909]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 230,
+  "finalUrl": "http://localhost:8000/wellness/fitness/"
+ },
+ {
+  "name": "medical-claims",
+  "url": "/wellness/claims/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 72,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 143,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 56,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 52,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/wellness/claims/:1957]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 61,
+  "finalUrl": "http://localhost:8000/wellness/claims/"
+ },
+ {
+  "name": "wellness-challenges",
+  "url": "/wellness/challenges/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 64,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 91,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 139,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 86,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/wellness/challenges/:1914]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 64,
+  "finalUrl": "http://localhost:8000/wellness/challenges/"
+ },
+ {
+  "name": "step-tracking",
+  "url": "/wellness/steps/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 105,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 124,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 125,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 73,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 156,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/wellness/steps/:2008]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 105,
+  "finalUrl": "http://localhost:8000/wellness/steps/"
+ },
+ {
+  "name": "engagement-dashboard",
+  "url": "/engagement/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 95,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 116,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 162,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 163,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 251,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/engagement/:2059]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 95,
+  "finalUrl": "http://localhost:8000/engagement/"
+ },
+ {
+  "name": "pulse-surveys",
+  "url": "/engagement/surveys/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 83,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 82,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/engagement/surveys/:1917]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 83,
+  "finalUrl": "http://localhost:8000/engagement/surveys/"
+ },
+ {
+  "name": "recognition-wall",
+  "url": "/engagement/recognition/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 81,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 102,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 65,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 58,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/engagement/recognition/:2104]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 81,
+  "finalUrl": "http://localhost:8000/engagement/recognition/"
+ },
+ {
+  "name": "leaderboard",
+  "url": "/engagement/leaderboard/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 71,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 76,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 81,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 70,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 88,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/engagement/leaderboard/:2022]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 71,
+  "finalUrl": "http://localhost:8000/engagement/leaderboard/"
+ },
+ {
+  "name": "support-dashboard",
+  "url": "/support/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 84,
+    "tableCount": 1
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 93,
+    "tableCount": 1
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 145,
+    "tableCount": 1
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 71,
+    "tableCount": 1
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 67,
+    "tableCount": 1
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/support/:2209]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 84,
+  "finalUrl": "http://localhost:8000/support/"
+ },
+ {
+  "name": "ticket-create",
+  "url": "/support/create/",
+  "auth": true,
+  "viewports": {
+   "375": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 61,
+    "tableCount": 0
+   },
+   "390": {
+    "hScroll": 0,
+    "worst": null,
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 66,
+    "tableCount": 0
+   },
+   "768": {
+    "hScroll": 512,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 95,
+    "tableCount": 0
+   },
+   "1024": {
+    "hScroll": 487,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 58,
+    "tableCount": 0
+   },
+   "1440": {
+    "hScroll": 71,
+    "worst": "div.flex.items-center.space-x-4",
+    "smallInputs": 3,
+    "tinyText": 0,
+    "unwrappedTables": 0,
+    "ttfb": 56,
+    "tableCount": 0
+   }
+  },
+  "consoleErrors": [
+   "Global error caught:  [/support/create/:2019]",
+   "Global error:  [/static/js/main.js:489]",
+   "PAGEERROR: Uncaught SyntaxError: Invalid or unexpected token"
+  ],
+  "consoleWarnings": [],
+  "failedRequests": [],
+  "status": 200,
+  "ttfb": 61,
+  "finalUrl": "http://localhost:8000/support/create/"
+ }
+]

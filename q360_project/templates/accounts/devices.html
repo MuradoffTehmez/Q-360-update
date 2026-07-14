@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Cihazlarım" %} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            <i class="fas fa-mobile-screen mr-2 text-blue-600"></i>{% trans "Cihazlarım" %}
+        </h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Push bildirişləri üçün qeydiyyatdan keçmiş cihazlar" %}</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for d in devices %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5">
+            <div class="flex items-center justify-between mb-3">
+                <div class="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center">
+                    <i class="fas {% if d.device_type == 'ios' %}fa-apple{% elif d.device_type == 'android' %}fa-android{% else %}fa-desktop{% endif %} text-blue-600 dark:text-blue-400"></i>
+                </div>
+                {% if d.is_active %}
+                <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">{% trans "Aktiv" %}</span>
+                {% else %}
+                <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">{% trans "Passiv" %}</span>
+                {% endif %}
+            </div>
+            <h2 class="text-base font-semibold text-gray-900 dark:text-white">{{ d.device_name|default:d.device_type|default:"Cihaz" }}</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Qeydiyyat" %}: {{ d.created_at|date:"d.m.Y H:i" }}</p>
+        </div>
+        {% empty %}
+        <div class="col-span-full bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-10 text-center text-gray-500 dark:text-gray-400">
+            <i class="fas fa-mobile-screen text-3xl mb-2 block opacity-40"></i>{% trans "Qeydiyyatlı cihaz yoxdur" %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block chartjs %}{% endblock %}

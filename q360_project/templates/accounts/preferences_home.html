@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Seçimlər" %} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            <i class="fas fa-user-gear mr-2 text-blue-600"></i>{% trans "Seçimlər" %}
+        </h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Şəxsi interfeys və bildiriş parametrləriniz" %}</p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-6">
+        <a href="{% url 'accounts:preferences' %}" class="px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 text-white">{% trans "Ümumi" %}</a>
+        <a href="{% url 'accounts:preferences-appearance' %}" class="px-4 py-2 text-sm font-semibold rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">{% trans "Görünüş" %}</a>
+        <a href="{% url 'accounts:preferences-notifications' %}" class="px-4 py-2 text-sm font-semibold rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">{% trans "Bildirişlər" %}</a>
+    </div>
+
+    <form method="post" class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 max-w-2xl space-y-5">
+        {% csrf_token %}
+        <div>
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1" for="language">{% trans "Dil" %}</label>
+            <select name="language" id="language" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white">
+                <option value="az" {% if prefs.language == 'az' %}selected{% endif %}>Azərbaycan</option>
+                <option value="en" {% if prefs.language == 'en' %}selected{% endif %}>English</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1" for="timezone_name">{% trans "Saat qurşağı" %}</label>
+            <select name="timezone_name" id="timezone_name" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white">
+                <option value="Asia/Baku" {% if prefs.timezone_name == 'Asia/Baku' %}selected{% endif %}>Asia/Baku (UTC+4)</option>
+                <option value="Europe/Istanbul" {% if prefs.timezone_name == 'Europe/Istanbul' %}selected{% endif %}>Europe/Istanbul (UTC+3)</option>
+                <option value="UTC" {% if prefs.timezone_name == 'UTC' %}selected{% endif %}>UTC</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1" for="digest_frequency">{% trans "E-poçt xülasəsi" %}</label>
+            <select name="digest_frequency" id="digest_frequency" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white">
+                <option value="none" {% if prefs.digest_frequency == 'none' %}selected{% endif %}>{% trans "Heç vaxt" %}</option>
+                <option value="daily" {% if prefs.digest_frequency == 'daily' %}selected{% endif %}>{% trans "Günlük" %}</option>
+                <option value="weekly" {% if prefs.digest_frequency == 'weekly' %}selected{% endif %}>{% trans "Həftəlik" %}</option>
+            </select>
+        </div>
+        <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow transition-colors">
+            <i class="fas fa-save mr-2"></i>{% trans "Yadda saxla" %}
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block chartjs %}{% endblock %}

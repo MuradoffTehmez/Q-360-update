@@ -1,0 +1,56 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Aktiv Sessiyalar" %} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+                <i class="fas fa-desktop mr-2 text-blue-600"></i>{% trans "Aktiv Sessiyalar" %}
+            </h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Hesabınıza daxil olmuş cihaz və brauzerlər" %}</p>
+        </div>
+        <form method="post" action="{% url 'accounts:sessions-terminate-all' %}">
+            {% csrf_token %}
+            <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold rounded-lg shadow transition-colors">
+                <i class="fas fa-power-off mr-2"></i>{% trans "Bütün sessiyaları bağla" %}
+            </button>
+        </form>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-50 dark:bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Sessiya" %}</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "IP ünvanı" %}</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Cihaz" %}</th>
+                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Bitmə vaxtı" %}</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                    {% for s in sessions %}
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300 font-mono">{{ s.session_key|default:s.key|truncatechars:14 }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">{{ s.ip_address|default:"—" }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">{{ s.user_agent|default:"—"|truncatechars:60 }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">{{ s.expire_date|default:"—" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="px-4 py-10 text-center text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-inbox text-3xl mb-2 block opacity-40"></i>{% trans "Aktiv sessiya tapılmadı" %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block chartjs %}{% endblock %}

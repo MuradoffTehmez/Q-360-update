@@ -1,0 +1,52 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Görünüş Seçimləri" %} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            <i class="fas fa-palette mr-2 text-blue-600"></i>{% trans "Görünüş" %}
+        </h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Tema və interfeys sıxlığı" %}</p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-6">
+        <a href="{% url 'accounts:preferences' %}" class="px-4 py-2 text-sm font-semibold rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">{% trans "Ümumi" %}</a>
+        <a href="{% url 'accounts:preferences-appearance' %}" class="px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 text-white">{% trans "Görünüş" %}</a>
+        <a href="{% url 'accounts:preferences-notifications' %}" class="px-4 py-2 text-sm font-semibold rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">{% trans "Bildirişlər" %}</a>
+    </div>
+
+    <form method="post" class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 max-w-2xl space-y-6">
+        {% csrf_token %}
+        <div>
+            <span class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{% trans "Tema" %}</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {% for value, label in prefs.THEME_CHOICES %}
+                <label class="flex items-center gap-2 p-3 rounded-lg border cursor-pointer transition-colors {% if prefs.theme == value %}border-blue-500 bg-blue-50 dark:bg-blue-900/20{% else %}border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700{% endif %}">
+                    <input type="radio" name="theme" value="{{ value }}" {% if prefs.theme == value %}checked{% endif %} class="text-blue-600 focus:ring-blue-500">
+                    <span class="text-sm text-gray-800 dark:text-gray-200">{{ label }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        <div>
+            <span class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{% trans "Sıxlıq" %}</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {% for value, label in prefs.DENSITY_CHOICES %}
+                <label class="flex items-center gap-2 p-3 rounded-lg border cursor-pointer transition-colors {% if prefs.density == value %}border-blue-500 bg-blue-50 dark:bg-blue-900/20{% else %}border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700{% endif %}">
+                    <input type="radio" name="density" value="{{ value }}" {% if prefs.density == value %}checked{% endif %} class="text-blue-600 focus:ring-blue-500">
+                    <span class="text-sm text-gray-800 dark:text-gray-200">{{ label }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow transition-colors">
+            <i class="fas fa-save mr-2"></i>{% trans "Yadda saxla" %}
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block chartjs %}{% endblock %}

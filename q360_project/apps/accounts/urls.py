@@ -3,6 +3,7 @@ URL configuration for accounts app.
 """
 from django.urls import path
 from . import template_views, two_factor_views
+from . import views_account_extras
 
 app_name = 'accounts'
 
@@ -51,4 +52,14 @@ urlpatterns = [
     # Setup wizard
     path('setup-wizard/', template_views.setup_wizard_view, name='setup-wizard'),
     path('complete-setup/', template_views.complete_setup, name='complete-setup'),
+
+    
+    # Batch 2 — hesab əlavələri
+    path('sessions/', views_account_extras.user_sessions, name='sessions'),
+    path('devices/', views_account_extras.user_devices, name='devices'),
+    path('activity/', views_account_extras.user_activity, name='activity'),
+    path('api-tokens/', views_account_extras.api_tokens, name='api-tokens'),
+    path('preferences/', views_account_extras.preferences_home, name='preferences'),
+    path('preferences/appearance/', views_account_extras.preferences_appearance, name='preferences-appearance'),
+    path('preferences/notifications/', views_account_extras.preferences_notifications, name='preferences-notifications'),
 ]

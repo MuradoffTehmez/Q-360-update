@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Bildiriş Seçimləri" %} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            <i class="fas fa-bell mr-2 text-blue-600"></i>{% trans "Bildiriş Seçimləri" %}
+        </h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Hansı kanallarla bildiriş almaq istədiyinizi seçin" %}</p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-6">
+        <a href="{% url 'accounts:preferences' %}" class="px-4 py-2 text-sm font-semibold rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">{% trans "Ümumi" %}</a>
+        <a href="{% url 'accounts:preferences-appearance' %}" class="px-4 py-2 text-sm font-semibold rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">{% trans "Görünüş" %}</a>
+        <a href="{% url 'accounts:preferences-notifications' %}" class="px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 text-white">{% trans "Bildirişlər" %}</a>
+    </div>
+
+    <form method="post" class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700/60 max-w-2xl">
+        {% csrf_token %}
+        <label class="p-5 flex items-center justify-between cursor-pointer">
+            <span>
+                <span class="block text-sm font-semibold text-gray-900 dark:text-white"><i class="fas fa-envelope mr-2 text-blue-500"></i>{% trans "E-poçt bildirişləri" %}</span>
+                <span class="block text-xs text-gray-500 dark:text-gray-400 mt-0.5">{% trans "Qiymətləndirmə, təsdiq və xatırlatmalar e-poçtla" %}</span>
+            </span>
+            <input type="checkbox" name="notify_email" {% if prefs.notify_email %}checked{% endif %} class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+        </label>
+        <label class="p-5 flex items-center justify-between cursor-pointer">
+            <span>
+                <span class="block text-sm font-semibold text-gray-900 dark:text-white"><i class="fas fa-comment-sms mr-2 text-emerald-500"></i>{% trans "SMS bildirişləri" %}</span>
+                <span class="block text-xs text-gray-500 dark:text-gray-400 mt-0.5">{% trans "Təcili bildirişlər SMS ilə" %}</span>
+            </span>
+            <input type="checkbox" name="notify_sms" {% if prefs.notify_sms %}checked{% endif %} class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+        </label>
+        <label class="p-5 flex items-center justify-between cursor-pointer">
+            <span>
+                <span class="block text-sm font-semibold text-gray-900 dark:text-white"><i class="fas fa-bell mr-2 text-purple-500"></i>{% trans "Push bildirişləri" %}</span>
+                <span class="block text-xs text-gray-500 dark:text-gray-400 mt-0.5">{% trans "Brauzer/mobil push bildirişləri" %}</span>
+            </span>
+            <input type="checkbox" name="notify_push" {% if prefs.notify_push %}checked{% endif %} class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+        </label>
+        <div class="p-5">
+            <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow transition-colors">
+                <i class="fas fa-save mr-2"></i>{% trans "Yadda saxla" %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block chartjs %}{% endblock %}

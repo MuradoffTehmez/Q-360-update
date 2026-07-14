@@ -1,0 +1,84 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Audit qeydlərini CSV, Excel və ya PDF formatında ixrac edin." %}</p>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-6">
+        <form action="#" method="POST">
+            {% csrf_token %}
+            
+            <div class="space-y-6">
+                <!-- Date Range -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{% trans "Başlanğıc Tarixi" %}</label>
+                        <input type="date" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{% trans "Bitiş Tarixi" %}</label>
+                        <input type="date" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    </div>
+                </div>
+
+                <!-- Event Types -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{% trans "Hadisə Növləri" %}</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="form-checkbox text-blue-600 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700" checked>
+                            <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">{% trans "Giriş/Çıxış" %}</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="form-checkbox text-blue-600 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700" checked>
+                            <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">{% trans "Məlumat Dəyişikliyi (CRUD)" %}</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="form-checkbox text-blue-600 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700" checked>
+                            <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">{% trans "Sistem Ayarları" %}</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="form-checkbox text-blue-600 rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700" checked>
+                            <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">{% trans "Təhlükəsizlik (İnsidentlər)" %}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Format Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{% trans "İxrac Formatı" %}</label>
+                    <div class="flex gap-4">
+                        <label class="cursor-pointer border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex-1 flex flex-col items-center hover:bg-gray-50 dark:hover:bg-gray-750 transition has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50 dark:has-[:checked]:bg-blue-900/20">
+                            <input type="radio" name="format" value="csv" class="sr-only" checked>
+                            <i class="fas fa-file-csv text-3xl text-green-600 mb-2"></i>
+                            <span class="text-sm font-medium text-gray-900 dark:text-white">CSV</span>
+                        </label>
+                        <label class="cursor-pointer border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex-1 flex flex-col items-center hover:bg-gray-50 dark:hover:bg-gray-750 transition has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50 dark:has-[:checked]:bg-blue-900/20">
+                            <input type="radio" name="format" value="excel" class="sr-only">
+                            <i class="fas fa-file-excel text-3xl text-green-700 mb-2"></i>
+                            <span class="text-sm font-medium text-gray-900 dark:text-white">Excel (XLSX)</span>
+                        </label>
+                        <label class="cursor-pointer border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex-1 flex flex-col items-center hover:bg-gray-50 dark:hover:bg-gray-750 transition has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50 dark:has-[:checked]:bg-blue-900/20">
+                            <input type="radio" name="format" value="pdf" class="sr-only">
+                            <i class="fas fa-file-pdf text-3xl text-red-600 mb-2"></i>
+                            <span class="text-sm font-medium text-gray-900 dark:text-white">PDF</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-gray-200 dark:border-gray-700 flex justify-end">
+                    <button type="button" class="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium flex items-center">
+                        <i class="fas fa-download mr-2"></i> {% trans "İxracı Başlat" %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

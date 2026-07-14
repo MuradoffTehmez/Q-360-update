@@ -167,3 +167,52 @@ class BlockedIP(models.Model):
 
     def __str__(self):
         return self.ip_address
+
+
+class SecurityIncident(models.Model):
+    """Böyük təhlükəsizlik insidentlərinin qeydiyyatı və izlənməsi."""
+    STATUS_CHOICES = [
+        ('open', 'Açıq'),
+        ('investigating', 'Araşdırılır'),
+        ('resolved', 'Həll Edildi'),
+        ('closed', 'Bağlandı'),
+    ]
+    
+    title = models.CharField(max_length=200, verbose_name=_('İnsident Adı'))
+    description = models.TextField(verbose_name=_('Təsvir'))
+    severity = models.CharField(max_length=20, choices=AuditLog.SEVERITY_CHOICES, default='warning')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open')
+    related_logs = models.ManyToManyField(AuditLog, blank=True, verbose_name=_('Əlaqəli Qeydlər'))
+    assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_incidents')
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    resolved_at = models.DateTimeField(null=True, blank=True)
+    
+    class Meta:
+        verbose_name = _('Təhlükəsizlik İnsidenti')
+        verbose_name_plural = _('Təhlükəsizlik İnsidentləri')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.title
+
+
+class APIRequestLog(models.Model):
+    """API sorğularının auditi."""
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    endpoint = models.CharField(max_length=255)
+    method = models.CharField(max_length=10)
+    status_code = models.IntegerField()
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    response_time_ms = models.IntegerField(default=0)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('API Sorğu Qeydi')
+        verbose_name_plural = _('API Sorğu Qeydləri')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.method} {self.endpoint} - {self.status_code}"
+

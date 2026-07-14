@@ -1,0 +1,85 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Sistemdə baş verən böyük təhlükəsizlik insidentlərinin izlənməsi və idarə edilməsi." %}</p>
+        </div>
+        <div>
+            <button class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition text-sm font-medium">
+                <i class="fas fa-exclamation-triangle mr-2"></i>{% trans "Yeni İnsident Yarat" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6">
+        {% for incident in incidents %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-l-4 
+            {% if incident.severity == 'critical' %}border-l-red-600 dark:border-l-red-500
+            {% elif incident.severity == 'high' %}border-l-orange-500 dark:border-l-orange-400
+            {% elif incident.severity == 'medium' %}border-l-yellow-400 dark:border-l-yellow-300
+            {% else %}border-l-blue-500 dark:border-l-blue-400{% endif %} 
+            border-gray-200 dark:border-gray-700 p-5">
+            
+            <div class="flex justify-between items-start">
+                <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-2">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white">{{ incident.title }}</h3>
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-medium border
+                            {% if incident.status == 'open' %}bg-red-50 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800
+                            {% elif incident.status == 'investigating' %}bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800
+                            {% elif incident.status == 'resolved' %}bg-green-50 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800
+                            {% else %}bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700{% endif %}">
+                            {{ incident.get_status_display }}
+                        </span>
+                        <span class="text-xs font-bold uppercase tracking-wider
+                            {% if incident.severity == 'critical' %}text-red-600 dark:text-red-400
+                            {% elif incident.severity == 'high' %}text-orange-500 dark:text-orange-400
+                            {% elif incident.severity == 'medium' %}text-yellow-500 dark:text-yellow-400
+                            {% else %}text-blue-500 dark:text-blue-400{% endif %}">
+                            <i class="fas fa-shield-alt mr-1"></i> {{ incident.get_severity_display }}
+                        </span>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">{{ incident.description }}</p>
+                    
+                    <div class="flex items-center gap-6 text-xs text-gray-500 dark:text-gray-500">
+                        <div class="flex items-center gap-1.5">
+                            <i class="far fa-clock"></i>
+                            <span>{% trans "Açıldı" %}: {{ incident.created_at|date:"Y-m-d H:i" }}</span>
+                        </div>
+                        {% if incident.assigned_to %}
+                        <div class="flex items-center gap-1.5">
+                            <i class="far fa-user"></i>
+                            <span>{% trans "Təyin edilib" %}: {{ incident.assigned_to.get_full_name }}</span>
+                        </div>
+                        {% endif %}
+                        {% if incident.resolved_at %}
+                        <div class="flex items-center gap-1.5 text-green-600 dark:text-green-400">
+                            <i class="fas fa-check-circle"></i>
+                            <span>{% trans "Həll edildi" %}: {{ incident.resolved_at|date:"Y-m-d H:i" }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>
+                    <button class="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 transition">
+                        {% trans "Detallar" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="py-16 text-center text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-700">
+            <i class="fas fa-shield-check text-5xl mb-4 text-green-500 opacity-50"></i>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">{% trans "Sistem Təhlükəsizdir" %}</h3>
+            <p>{% trans "Hazırda heç bir təhlükəsizlik insidenti qeydə alınmayıb." %}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

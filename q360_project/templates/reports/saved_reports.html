@@ -1,0 +1,57 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Özünüzə məxsus konfiqurasiya etdiyiniz və yadda saxladığınız hesabatlar." %}</p>
+        </div>
+        <div>
+            <a href="{% url 'reports:custom-builder' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+                <i class="fas fa-plus mr-2"></i>{% trans "Yeni Hesabat Yarat" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for report in reports %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-5 flex flex-col h-full">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{{ report.name }}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 flex-grow">{{ report.description|default:"-" }}</p>
+            
+            <div class="flex items-center text-xs text-gray-500 mb-4 bg-gray-50 dark:bg-gray-750 p-2 rounded">
+                <i class="fas fa-layer-group mr-2 text-blue-500"></i>
+                {% trans "Əsas Şablon" %}: {{ report.blueprint.title|default:"Fərdi Tərif" }}
+            </div>
+            
+            <div class="border-t border-gray-100 dark:border-gray-700 pt-4 mt-auto flex justify-between items-center">
+                <span class="text-xs text-gray-400">
+                    <i class="far fa-clock mr-1"></i>
+                    {% if report.last_run_at %}
+                    {{ report.last_run_at|date:"d.m.Y H:i" }}
+                    {% else %}
+                    {% trans "Heç icra olunmayıb" %}
+                    {% endif %}
+                </span>
+                <div class="space-x-2">
+                    <button class="text-gray-500 hover:text-blue-600 transition"><i class="fas fa-edit"></i></button>
+                    <button class="text-gray-500 hover:text-red-600 transition"><i class="fas fa-trash"></i></button>
+                    <button class="px-3 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-800 text-xs font-semibold">{% trans "İcra Et" %}</button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-16 bg-white dark:bg-gray-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-700 text-center">
+            <div class="text-gray-400 mb-4 text-4xl"><i class="fas fa-save"></i></div>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">{% trans "Yadda saxlanılmış hesabat yoxdur" %}</h3>
+            <p class="text-gray-500 mb-4">{% trans "Fərdi hesabat qurucusundan istifadə edərək hesabat yaradın və burada yadda saxlayın." %}</p>
+            <a href="{% url 'reports:custom-builder' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">{% trans "Qurucuya Keç" %}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

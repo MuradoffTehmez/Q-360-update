@@ -1,6 +1,7 @@
 """URLs for OKR module."""
 from django.urls import path
 from . import views_okr
+from . import views_okr_extras
 
 app_name = 'okr'
 
@@ -21,4 +22,10 @@ urlpatterns = [
     path('objectives/<int:objective_id>/update/', views_okr.objective_update_create, name='objective_update_create'),
     path('kpi/', views_okr.kpi_dashboard, name='kpi_dashboard'),
     path('kpi/<int:kpi_id>/measurement/', views_okr.kpi_measurement_create, name='kpi_measurement_create'),
+
+    # Batch 22
+    path('key-results/', views_okr_extras.key_results_list, name='key_results'),
+    path('initiatives/', views_okr_extras.initiatives_list, name='initiatives'),
+    path('check-ins/', views_okr_extras.check_ins_list, name='check_ins'),
+    path('templates/', views_okr_extras.templates_list, name='templates'),
 ]

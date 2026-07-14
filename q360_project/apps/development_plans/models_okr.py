@@ -634,3 +634,42 @@ class ObjectiveUpdate(models.Model):
 
     def __str__(self):
         return f"{self.objective.title} - {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+
+
+class Initiative(models.Model):
+    """
+    Initiatives tied to Key Results or Objectives.
+    """
+    title = models.CharField(_('Adı'), max_length=255)
+    description = models.TextField(_('Təsvir'), blank=True)
+    objective = models.ForeignKey(StrategicObjective, on_delete=models.CASCADE, related_name='initiatives', null=True, blank=True)
+    key_result = models.ForeignKey(KeyResult, on_delete=models.CASCADE, related_name='initiatives', null=True, blank=True)
+    owner = models.ForeignKey('accounts.User', on_delete=models.SET_NULL, null=True, related_name='owned_initiatives')
+    start_date = models.DateField(_('Başlanğıc Tarixi'), null=True, blank=True)
+    end_date = models.DateField(_('Bitmə Tarixi'), null=True, blank=True)
+    status = models.CharField(_('Status'), max_length=20, choices=[('not_started', 'Başlamayıb'), ('in_progress', 'Davam edir'), ('completed', 'Tamamlandı'), ('cancelled', 'Ləğv edildi')], default='not_started')
+    
+    class Meta:
+        verbose_name = _('Təşəbbüs')
+        verbose_name_plural = _('Təşəbbüslər')
+
+    def __str__(self):
+        return self.title
+
+
+class OKRTemplate(models.Model):
+    """
+    Templates for quick OKR creation.
+    """
+    name = models.CharField(_('Şablon Adı'), max_length=255)
+    department = models.ForeignKey('departments.Department', on_delete=models.SET_NULL, null=True, blank=True)
+    objective_title = models.CharField(_('Məqsəd Adı'), max_length=255)
+    objective_description = models.TextField(_('Məqsəd Təsviri'), blank=True)
+    is_active = models.BooleanField(_('Aktiv'), default=True)
+
+    class Meta:
+        verbose_name = _('OKR Şablonu')
+        verbose_name_plural = _('OKR Şablonları')
+
+    def __str__(self):
+        return self.name

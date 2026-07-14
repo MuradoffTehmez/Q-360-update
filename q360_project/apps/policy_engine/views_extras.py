@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
+from apps.core.decorators import superuser_required
 from .models import Policy, PolicyVersion, PolicyRule, PolicyLog
 
-@login_required
+@superuser_required
 def policy_list(request):
     """
     Siyasətlərin siyahısı.
@@ -17,7 +17,7 @@ def policy_list(request):
     return render(request, 'policy_engine/policies.html', context)
 
 
-@login_required
+@superuser_required
 def policy_rules(request):
     """
     Siyasət qaydaları.
@@ -31,7 +31,7 @@ def policy_rules(request):
     return render(request, 'policy_engine/rules.html', context)
 
 
-@login_required
+@superuser_required
 def policy_simulator(request):
     """
     Simulyator səhifəsi. STUB formadadır.
@@ -42,7 +42,7 @@ def policy_simulator(request):
     return render(request, 'policy_engine/simulator.html', context)
 
 
-@login_required
+@superuser_required
 def policy_versions(request):
     """
     Siyasət versiyaları.
@@ -56,7 +56,7 @@ def policy_versions(request):
     return render(request, 'policy_engine/versions.html', context)
 
 
-@login_required
+@superuser_required
 def policy_logs(request):
     """
     Siyasət əməliyyat tarixçəsi.

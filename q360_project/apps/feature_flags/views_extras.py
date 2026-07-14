@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
+from apps.core.decorators import superuser_required
 from .models import FeatureFlag, Environment, RolloutStrategy, Experiment, FeatureFlagLog
 
-@login_required
+@superuser_required
 def flag_list(request):
     """
     Xüsusiyyət bayraqlarının siyahısı.
@@ -17,7 +17,7 @@ def flag_list(request):
     return render(request, 'feature_flags/flags.html', context)
 
 
-@login_required
+@superuser_required
 def flag_environments(request):
     """
     Mühitlər səhifəsi.
@@ -31,7 +31,7 @@ def flag_environments(request):
     return render(request, 'feature_flags/environments.html', context)
 
 
-@login_required
+@superuser_required
 def flag_rollouts(request):
     """
     Yayılma strategiyaları.
@@ -45,7 +45,7 @@ def flag_rollouts(request):
     return render(request, 'feature_flags/rollouts.html', context)
 
 
-@login_required
+@superuser_required
 def flag_experiments(request):
     """
     A/B Eksperimentləri.
@@ -59,7 +59,7 @@ def flag_experiments(request):
     return render(request, 'feature_flags/experiments.html', context)
 
 
-@login_required
+@superuser_required
 def flag_history(request):
     """
     Bayraq dəyişiklik tarixçəsi.

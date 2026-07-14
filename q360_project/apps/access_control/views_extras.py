@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
+from apps.core.decorators import superuser_required
 from .models import Role, Permission, AbacPolicy, UserGroup, AccessRequest, AccessHistory
 
-@login_required
+@superuser_required
 def access_roles(request):
     """
     Rolların siyahısı.
@@ -17,7 +17,7 @@ def access_roles(request):
     return render(request, 'access_control/roles.html', context)
 
 
-@login_required
+@superuser_required
 def access_permissions(request):
     """
     İcazələrin siyahısı.
@@ -31,7 +31,7 @@ def access_permissions(request):
     return render(request, 'access_control/permissions.html', context)
 
 
-@login_required
+@superuser_required
 def access_policies(request):
     """
     ABAC siyasətləri.
@@ -45,7 +45,7 @@ def access_policies(request):
     return render(request, 'access_control/policies.html', context)
 
 
-@login_required
+@superuser_required
 def access_groups(request):
     """
     İstifadəçi qrupları.
@@ -59,7 +59,7 @@ def access_groups(request):
     return render(request, 'access_control/groups.html', context)
 
 
-@login_required
+@superuser_required
 def access_requests(request):
     """
     İcazə tələbləri (queue).
@@ -74,7 +74,7 @@ def access_requests(request):
     return render(request, 'access_control/requests.html', context)
 
 
-@login_required
+@superuser_required
 def access_history(request):
     """
     Giriş tarixçəsi.

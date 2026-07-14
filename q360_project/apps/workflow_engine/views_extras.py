@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
+from apps.core.decorators import superuser_required
 from .models import WorkflowTemplate, WorkflowVersion, WorkflowHistory, WorkflowLog, WorkflowInstance
 
-@login_required
+@superuser_required
 def workflows_list(request):
     """
     Bütün iş axını şablonlarının siyahısı.
@@ -17,7 +17,7 @@ def workflows_list(request):
     return render(request, 'workflow_engine/workflows.html', context)
 
 
-@login_required
+@superuser_required
 def workflow_designer(request):
     """
     Vizual iş axını dizayneri.
@@ -28,7 +28,7 @@ def workflow_designer(request):
     return render(request, 'workflow_engine/designer.html', context)
 
 
-@login_required
+@superuser_required
 def workflow_versions(request):
     """
     İş axını versiyalarının idarə edilməsi.
@@ -42,7 +42,7 @@ def workflow_versions(request):
     return render(request, 'workflow_engine/versions.html', context)
 
 
-@login_required
+@superuser_required
 def workflow_history(request):
     """
     İş axını tarixçəsi.
@@ -56,7 +56,7 @@ def workflow_history(request):
     return render(request, 'workflow_engine/history.html', context)
 
 
-@login_required
+@superuser_required
 def workflow_logs(request):
     """
     Sistem loqları.
@@ -70,7 +70,7 @@ def workflow_logs(request):
     return render(request, 'workflow_engine/logs.html', context)
 
 
-@login_required
+@superuser_required
 def workflow_monitoring(request):
     """
     Aktiv instansiyaların monitorinqi.

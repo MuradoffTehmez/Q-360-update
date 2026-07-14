@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
+from apps.core.decorators import superuser_required
 from .models import ApprovalRule, ApprovalChain, ApprovalLog, ApprovalRequest, ApprovalDelegation
 
-@login_required
+@superuser_required
 def approval_rules(request):
     """
     Təsdiq qaydalarının siyahısı.
@@ -17,7 +17,7 @@ def approval_rules(request):
     return render(request, 'approval_engine/rules.html', context)
 
 
-@login_required
+@superuser_required
 def approval_chains(request):
     """
     Təsdiq zəncirləri səhifəsi.
@@ -31,7 +31,7 @@ def approval_chains(request):
     return render(request, 'approval_engine/chains.html', context)
 
 
-@login_required
+@superuser_required
 def approval_history(request):
     """
     Təsdiq tarixçəsi.
@@ -45,7 +45,7 @@ def approval_history(request):
     return render(request, 'approval_engine/history.html', context)
 
 
-@login_required
+@superuser_required
 def approval_queue(request):
     """
     İstifadəçinin təsdiq gözləyən işləri (queue).
@@ -60,7 +60,7 @@ def approval_queue(request):
     return render(request, 'approval_engine/queue.html', context)
 
 
-@login_required
+@superuser_required
 def approval_delegations(request):
     """
     Təsdiq səlahiyyətlərinin ötürülməsi (delegations).

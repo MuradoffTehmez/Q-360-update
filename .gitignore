@@ -212,3 +212,9 @@ crash.log
 *.suo
 *.userosscache
 *.sln.docstates
+*.png
+*.jpeg
+*.jpg
+*.gif
+*.svg
+*.webp

@@ -1,0 +1,47 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Ana səhifədə görünəcək widget-ləri idarə edin." %}</p>
+        </div>
+        <div>
+            <a href="{% url 'dashboard:dashboard_home' %}" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition text-sm">
+                <i class="fas fa-arrow-left mr-2"></i>{% trans "Dashboarda qayıt" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+            {% for data in widgets_data %}
+            <li class="p-4 sm:px-6 hover:bg-gray-50 dark:hover:bg-gray-750 transition flex justify-between items-center">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-900 dark:text-white">{{ data.widget.title }}</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{{ data.widget.description }}</p>
+                </div>
+                <div>
+                    <form method="post" class="flex items-center">
+                        {% csrf_token %}
+                        <input type="hidden" name="widget_id" value="{{ data.widget.id }}">
+                        <label class="inline-flex items-center cursor-pointer mr-4">
+                            <input type="checkbox" name="is_visible" class="sr-only peer" {% if data.is_visible %}checked{% endif %} onchange="this.form.submit()">
+                            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                        </label>
+                    </form>
+                </div>
+            </li>
+            {% empty %}
+            <li class="p-6 text-center text-gray-500 dark:text-gray-400">
+                {% trans "Sistemdə heç bir widget mövcud deyil." %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

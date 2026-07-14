@@ -12,6 +12,11 @@ urlpatterns = [
     path('kpi/', views.kpi_dashboard, name='kpi_dashboard'),
     path('trend/', views.trend_analysis, name='trend_analysis'),
     path('forecast/', views.forecasting_dashboard, name='forecasting_dashboard'),
+    
+    # Dashboard əlavələri (Batch 3)
+    path('widgets/', views.dashboard_widgets, name='widgets'),
+    path('settings/', views.dashboard_settings, name='settings'),
+    path('favorites/', views.dashboard_favorites, name='favorites'),
 
     # Export endpointləri
     path('export/analytics/excel/', export_views.export_analytics_excel, name='export_analytics_excel'),

@@ -196,3 +196,62 @@ class RealTimeStat(models.Model):
 
     def __str__(self):
         return f"{self.stat_type}: {self.current_value}{self.unit}"
+
+
+class UserDashboardWidget(models.Model):
+    """
+    User-specific widget instance on their dashboard
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='dashboard_widgets', verbose_name=_('User'))
+    widget = models.ForeignKey(DashboardWidget, on_delete=models.CASCADE, verbose_name=_('Widget'))
+    position_x = models.PositiveIntegerField(default=0, verbose_name=_('Position X'))
+    position_y = models.PositiveIntegerField(default=0, verbose_name=_('Position Y'))
+    width = models.PositiveIntegerField(default=1, verbose_name=_('Width'))
+    height = models.PositiveIntegerField(default=1, verbose_name=_('Height'))
+    is_visible = models.BooleanField(default=True, verbose_name=_('Is Visible'))
+    custom_config = models.JSONField(default=dict, blank=True, verbose_name=_('Custom Configuration'))
+
+    class Meta:
+        verbose_name = _('User Dashboard Widget')
+        verbose_name_plural = _('User Dashboard Widgets')
+        unique_together = ['user', 'widget']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.widget.name}"
+
+
+class DashboardSetting(models.Model):
+    """
+    User-specific dashboard general settings
+    """
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='dashboard_settings', verbose_name=_('User'))
+    default_view = models.CharField(max_length=50, default='overview', verbose_name=_('Default View'))
+    auto_refresh_interval = models.PositiveIntegerField(default=300, help_text=_('In seconds'), verbose_name=_('Auto Refresh Interval'))
+    theme_preference = models.CharField(max_length=20, default='system', choices=[('light', 'Light'), ('dark', 'Dark'), ('system', 'System')], verbose_name=_('Theme Preference'))
+
+    class Meta:
+        verbose_name = _('Dashboard Setting')
+        verbose_name_plural = _('Dashboard Settings')
+
+    def __str__(self):
+        return f"Settings for {self.user.username}"
+
+
+class FavoriteItem(models.Model):
+    """
+    User's favorited items (quick links to modules/pages)
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favorites', verbose_name=_('User'))
+    title = models.CharField(max_length=200, verbose_name=_('Title'))
+    url = models.CharField(max_length=500, verbose_name=_('URL'))
+    icon = models.CharField(max_length=50, default='fa-star', verbose_name=_('Icon Class'))
+    order = models.PositiveIntegerField(default=0, verbose_name=_('Order'))
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Favorite Item')
+        verbose_name_plural = _('Favorite Items')
+        ordering = ['order', '-created_at']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.title}"

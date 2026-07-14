@@ -788,3 +788,120 @@ def export_model(request):
     )
     response['Content-Disposition'] = f'attachment; filename="q360_ai_model_export_{timezone.now().strftime("%Y%m%d")}.json"'
     return response
+
+
+@login_required
+def dashboard_widgets(request):
+    """
+    İstifadəçi üçün dashboard widget-lərinin idarə edilməsi səhifəsi
+    """
+    from .models import UserDashboardWidget, DashboardWidget
+    
+    if request.method == 'POST':
+        widget_id = request.POST.get('widget_id')
+        is_visible = request.POST.get('is_visible') == 'on'
+        
+        try:
+            widget = DashboardWidget.objects.get(id=widget_id)
+            user_widget, created = UserDashboardWidget.objects.get_or_create(
+                user=request.user,
+                widget=widget,
+                defaults={'is_visible': is_visible}
+            )
+            if not created:
+                user_widget.is_visible = is_visible
+                user_widget.save()
+                
+            messages.success(request, _('Widget parametrləri yadda saxlanıldı.'))
+        except DashboardWidget.DoesNotExist:
+            messages.error(request, _('Widget tapılmadı.'))
+            
+        return redirect('dashboard:widgets')
+        
+    all_widgets = DashboardWidget.objects.filter(is_active=True)
+    user_widgets = UserDashboardWidget.objects.filter(user=request.user)
+    
+    # Merge data for template
+    user_widget_dict = {uw.widget_id: uw for uw in user_widgets}
+    
+    widgets_data = []
+    for w in all_widgets:
+        uw = user_widget_dict.get(w.id)
+        widgets_data.append({
+            'widget': w,
+            'is_visible': uw.is_visible if uw else True,
+            'position_x': uw.position_x if uw else 0,
+            'position_y': uw.position_y if uw else 0,
+        })
+        
+    context = {
+        'title': _('Dashboard Widget-ləri'),
+        'widgets_data': widgets_data
+    }
+    return render(request, 'dashboard/widgets.html', context)
+
+
+@login_required
+def dashboard_settings(request):
+    """
+    Dashboard nizamlamaları səhifəsi
+    """
+    from .models import DashboardSetting
+    
+    settings, created = DashboardSetting.objects.get_or_create(user=request.user)
+    
+    if request.method == 'POST':
+        settings.default_view = request.POST.get('default_view', settings.default_view)
+        settings.auto_refresh_interval = request.POST.get('auto_refresh_interval', settings.auto_refresh_interval)
+        settings.theme_preference = request.POST.get('theme_preference', settings.theme_preference)
+        settings.save()
+        
+        messages.success(request, _('Dashboard nizamlamaları yadda saxlanıldı.'))
+        return redirect('dashboard:settings')
+        
+    context = {
+        'title': _('Dashboard Nizamlamaları'),
+        'settings': settings
+    }
+    return render(request, 'dashboard/settings.html', context)
+
+
+@login_required
+def dashboard_favorites(request):
+    """
+    Favorit səhifələrin idarə edilməsi
+    """
+    from .models import FavoriteItem
+    
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        
+        if action == 'add':
+            title = request.POST.get('title')
+            url = request.POST.get('url')
+            icon = request.POST.get('icon', 'fa-star')
+            
+            if title and url:
+                FavoriteItem.objects.create(
+                    user=request.user,
+                    title=title,
+                    url=url,
+                    icon=icon,
+                    order=FavoriteItem.objects.filter(user=request.user).count()
+                )
+                messages.success(request, _('Favoritlərə əlavə edildi.'))
+                
+        elif action == 'remove':
+            item_id = request.POST.get('item_id')
+            FavoriteItem.objects.filter(id=item_id, user=request.user).delete()
+            messages.success(request, _('Favoritlərdən silindi.'))
+            
+        return redirect('dashboard:favorites')
+        
+    favorites = FavoriteItem.objects.filter(user=request.user).order_by('order', '-created_at')
+    
+    context = {
+        'title': _('Favorit Səhifələr'),
+        'favorites': favorites
+    }
+    return render(request, 'dashboard/favorites.html', context)

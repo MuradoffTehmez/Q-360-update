@@ -440,3 +440,17 @@ class PointsTransaction(models.Model):
 
     def __str__(self):
         return f"{self.user.get_full_name()} - {self.transaction_type}: {self.points} points"
+
+
+class EngagementActionPlan(models.Model):
+    department = models.ForeignKey('departments.Department', on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(_('Fəaliyyət Planı'), max_length=200)
+    description = models.TextField(_('Təsvir'), blank=True)
+    start_date = models.DateField(_('Başlama Tarixi'))
+    end_date = models.DateField(_('Bitmə Tarixi'))
+    status = models.CharField(max_length=20, choices=[('planned', 'Planlaşdırılıb'), ('in_progress', 'Davam Edir'), ('completed', 'Tamamlandı')], default='planned')
+
+    class Meta:
+        verbose_name = _('Engagement Fəaliyyət Planı')
+        verbose_name_plural = _('Engagement Fəaliyyət Planları')
+

@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from . import views_extras
 
 app_name = 'engagement'
 
@@ -21,4 +22,9 @@ urlpatterns = [
     # Gamification & Leaderboard
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('my-profile/', views.my_profile, name='my_profile'),
+
+    # Batch 26
+    path('analytics/', views_extras.analytics_view, name='analytics'),
+    path('anonymous-feedback/', views_extras.anonymous_feedback_list, name='anonymous_feedback_list'),
+    path('action-plans/', views_extras.action_plans_list, name='action_plans'),
 ]

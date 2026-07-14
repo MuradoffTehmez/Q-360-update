@@ -1,0 +1,47 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Sistem daxilindəki bütün modul bazlı icazələr (permissions)." %}</p>
+        </div>
+        <div class="flex gap-2">
+            <button class="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-50 transition text-sm font-medium shadow-sm">
+                <i class="fas fa-sync-alt mr-2"></i>{% trans "Yenilə" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% regroup permissions by module as module_list %}
+        {% for module in module_list %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div class="bg-gray-50 dark:bg-gray-700/50 px-5 py-3 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-md font-bold text-gray-900 dark:text-white uppercase tracking-wider flex items-center">
+                    <i class="fas fa-cube text-blue-500 mr-2"></i> {{ module.grouper }}
+                </h3>
+            </div>
+            <ul class="divide-y divide-gray-100 dark:divide-gray-700 p-2">
+                {% for perm in module.list %}
+                <li class="p-3 hover:bg-gray-50 dark:hover:bg-gray-750 rounded-lg transition">
+                    <div class="font-mono text-sm font-bold text-gray-800 dark:text-gray-200">{{ perm.code }}</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ perm.description|default:"Açıqlama yoxdur" }}</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-16 text-center text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-700">
+            <i class="fas fa-key text-5xl mb-4 opacity-20"></i>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">{% trans "İcazə Yoxdur" %}</h3>
+            <p>{% trans "Sistemdə qeydiyyatdan keçmiş heç bir icazə tapılmadı." %}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

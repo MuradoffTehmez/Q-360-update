@@ -5,8 +5,12 @@
         <div class="flex items-center justify-between h-16 sm:h-20">
             <!-- Left: Logo & Mobile Toggle -->
             <div class="flex items-center flex-shrink-0">
-                <!-- Mobile toggle -->
+                <!-- Desktop toggle -->
                 <button @click="sidebarOpen = !sidebarOpen" class="hidden md:block mr-4 p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors focus-ring">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+                <!-- Mobile toggle -->
+                <button @click="mobileSidebarOpen = true" class="md:hidden mr-3 p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors focus-ring">
                     <i class="fas fa-bars text-lg"></i>
                 </button>
                 

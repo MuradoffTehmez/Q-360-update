@@ -279,18 +279,18 @@
         </div>
     </div>
 
-    <div class="min-h-screen flex flex-col" x-data="{ sidebarOpen: window.innerWidth >= 768, darkMode: localStorage.theme === 'dark' }" x-init="if ($refs.globalLoader) { setTimeout(() => $refs.globalLoader.style.display = 'none', 500) }">
+    <div class="min-h-screen flex flex-col" x-data="{ sidebarOpen: window.innerWidth >= 768, mobileSidebarOpen: false, darkMode: localStorage.theme === 'dark' }" x-init="if ($refs.globalLoader) { setTimeout(() => $refs.globalLoader.style.display = 'none', 500) }">
         <!-- Navigation -->
         {% include 'base/navbar.html' %}
 
-        <div class="flex flex-1 overflow-hidden">
+        <div class="flex flex-1 overflow-hidden relative">
             <!-- Sidebar -->
             {% if user.is_authenticated %}
                 {% include 'base/sidebar.html' %}
             {% endif %}
 
             <!-- Main Content -->
-            <main class="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 transition-all duration-300" :class="sidebarOpen ? 'md:ml-64' : 'md:ml-20'">
+            <main class="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 transition-all duration-300 relative w-full max-w-full">
                 <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <!-- Breadcrumb -->
                     {% block breadcrumb %}

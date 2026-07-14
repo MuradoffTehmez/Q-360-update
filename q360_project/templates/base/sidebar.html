@@ -1,16 +1,32 @@
 {% load static %}
 {% load i18n %}
+<!-- Mobile Backdrop Overlay -->
+<div x-show="mobileSidebarOpen" class="fixed inset-0 z-40 bg-gray-900/50 backdrop-blur-sm transition-opacity md:hidden" @click="mobileSidebarOpen = false" x-transition.opacity x-cloak></div>
+
 <!-- Sidebar for authenticated users -->
 <aside
-    :class="sidebarOpen ? 'w-64' : 'w-20'" class="bg-white dark:bg-gray-900 shadow-xl border-r border-gray-200 dark:border-gray-800 hidden md:flex flex-col transition-all duration-300 z-40 fixed top-16 sm:top-20 bottom-0"
-    x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="-translate-x-full"
-    x-transition:enter-end="translate-x-0">
+    :class="{
+        'w-64': sidebarOpen && window.innerWidth >= 768, 
+        'w-20': !sidebarOpen && window.innerWidth >= 768,
+        'translate-x-0': mobileSidebarOpen,
+        '-translate-x-full': !mobileSidebarOpen
+    }" 
+    class="bg-white dark:bg-gray-900 shadow-xl border-r border-gray-200 dark:border-gray-800 flex flex-col transition-all duration-300 z-50 fixed inset-y-0 left-0 md:relative md:translate-x-0 flex-shrink-0 w-64 md:w-auto overflow-hidden"
+    @keydown.escape.window="mobileSidebarOpen = false"
+    style="will-change: width, transform;">
     
-    <div class="flex flex-col h-full overflow-hidden" x-data="{ activeAccordion: localStorage.getItem('sidebarActive') || 'dashboards' }" x-init="$watch('activeAccordion', val => localStorage.setItem('sidebarActive', val))">
+    <!-- Mobile Header with Close Button -->
+    <div class="md:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 flex-shrink-0 bg-white dark:bg-gray-900 z-10 relative">
+        <span class="font-bold text-gray-900 dark:text-white text-lg">Q360 Menyu</span>
+        <button @click="mobileSidebarOpen = false" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 p-2 focus-ring rounded-lg">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+    </div>
+
+    <div class="flex flex-col h-full overflow-hidden bg-white dark:bg-gray-900" x-data="{ activeAccordion: localStorage.getItem('sidebarActive') || 'dashboards' }" x-init="$watch('activeAccordion', val => localStorage.setItem('sidebarActive', val))">
         
         <!-- Navigation Links -->
-        <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto custom-scrollbar">
+        <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto custom-scrollbar relative z-0">
 
             <div class="space-y-0.5">
                 <button type="button"
@@ -19,42 +35,42 @@
                     @click="activeAccordion = activeAccordion === 'dashboards' ? null : 'dashboards'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-home text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'dashboards' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Panel və Analitika" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Panel və Analitika" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'dashboards' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'dashboards' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'dashboards'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'dashboards'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "İcmal (Overview)" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "İcmal (Overview)" %}</span>
                         </a>
 
                         <a href="{% url 'dashboard:kpi_dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'kpi_dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "KPI Paneli" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "KPI Paneli" %}</span>
                         </a>
 
                         <a href="{% url 'dashboard:trend_analysis' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'trend_analysis' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Trend Analizi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Trend Analizi" %}</span>
                         </a>
 
                         <a href="{% url 'dashboard:forecasting_dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'forecasting_dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Proqnozlaşdırma" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Proqnozlaşdırma" %}</span>
                         </a>
 
                         <a href="{% url 'dashboard:ai_management' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'ai_management' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "AI İdarəetmə" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "AI İdarəetmə" %}</span>
                         </a>
 
                         <a href="{% url 'sentiment_analysis:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Əhval-ruhiyyə" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Əhval-ruhiyyə" %}</span>
                         </a>
 
                     </div>
@@ -68,57 +84,57 @@
                     @click="activeAccordion = activeAccordion === 'evaluations' ? null : 'evaluations'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-star-half-alt text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'evaluations' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Qiymətləndirmə və Rəylər" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Qiymətləndirmə və Rəylər" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'evaluations' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'evaluations' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'evaluations'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'evaluations'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'evaluations:review-cycles' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'review-cycles' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Qiymətləndirmə Dövrləri" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Qiymətləndirmə Dövrləri" %}</span>
                         </a>
 
                         <a href="{% url 'evaluations:campaign-list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'campaign-list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Kampaniyalar" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Kampaniyalar" %}</span>
                         </a>
 
                         <a href="{% url 'evaluations:my-assignments' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'my-assignments' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Tapşırıqlarım" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Tapşırıqlarım" %}</span>
                         </a>
 
                         <a href="{% url 'evaluations:templates' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'templates' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Şablonlar" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Şablonlar" %}</span>
                         </a>
 
                         <a href="{% url 'evaluations:question-list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'question-list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Suallar" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Suallar" %}</span>
                         </a>
 
                         <a href="{% url 'feedback:360-feedback-request' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == '360-feedback-request' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "360° Rəy Sorğusu" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "360° Rəy Sorğusu" %}</span>
                         </a>
 
                         <a href="{% url 'feedback:my-feedback' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'my-feedback' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Rəylərim" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Rəylərim" %}</span>
                         </a>
 
                         <a href="{% url 'feedback:analytics' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'analytics' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Rəy Analitikası" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Rəy Analitikası" %}</span>
                         </a>
 
                         <a href="{% url 'feedback:send-feedback' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'send-feedback' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Əlaqə Göndər" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Əlaqə Göndər" %}</span>
                         </a>
 
                     </div>
@@ -132,57 +148,57 @@
                     @click="activeAccordion = activeAccordion === 'learning' ? null : 'learning'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-graduation-cap text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'learning' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Kompetensiya və Təlim" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Kompetensiya və Təlim" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'learning' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'learning' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'learning'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'learning'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'competencies:competency-list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'competency-list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Kompetensiya Siyahısı" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Kompetensiya Siyahısı" %}</span>
                         </a>
 
                         <a href="{% url 'competencies:competency-manage' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'competency-manage' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Kompetensiya İdarəsi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Kompetensiya İdarəsi" %}</span>
                         </a>
 
                         <a href="{% url 'competencies:my-skills' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'my-skills' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Bacarıqlarım" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Bacarıqlarım" %}</span>
                         </a>
 
                         <a href="{% url 'competencies:gap-analysis' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'gap-analysis' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Bacarıq Boşluqları" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Bacarıq Boşluqları" %}</span>
                         </a>
 
                         <a href="{% url 'training:catalog' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'catalog' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Təlim Kataloqu" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Təlim Kataloqu" %}</span>
                         </a>
 
                         <a href="{% url 'training:my-trainings' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'my-trainings' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Təlimlərim" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Təlimlərim" %}</span>
                         </a>
 
                         <a href="{% url 'training:my-certificates' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'my-certificates' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Sertifikatlarım" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Sertifikatlarım" %}</span>
                         </a>
 
                         <a href="{% url 'training:training-manage' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'training-manage' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Təlim İdarəsi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Təlim İdarəsi" %}</span>
                         </a>
 
                         <a href="{% url 'training:skill-matrix' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'skill-matrix' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Bacarıq Matrisi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Bacarıq Matrisi" %}</span>
                         </a>
 
                     </div>
@@ -196,52 +212,52 @@
                     @click="activeAccordion = activeAccordion === 'development' ? null : 'development'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-rocket text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'development' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "İnkişaf və Strategiya" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "İnkişaf və Strategiya" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'development' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'development' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'development'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'development'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'okr:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "OKR Paneli" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "OKR Paneli" %}</span>
                         </a>
 
                         <a href="{% url 'okr:objective_list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'objective_list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "OKR Siyahısı" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "OKR Siyahısı" %}</span>
                         </a>
 
                         <a href="{% url 'okr:kpi_dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'kpi_dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "OKR KPI-lar" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "OKR KPI-lar" %}</span>
                         </a>
 
                         <a href="{% url 'development-plans:my-goals' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'my-goals' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Hədəflərim" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Hədəflərim" %}</span>
                         </a>
 
                         <a href="{% url 'development-plans:team-goals' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'team-goals' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Komanda Hədəfləri" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Komanda Hədəfləri" %}</span>
                         </a>
 
                         <a href="{% url 'development-plans:goal-cascade' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'goal-cascade' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Məqsəd Kaskadlaşması" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Məqsəd Kaskadlaşması" %}</span>
                         </a>
 
                         <a href="{% url 'workforce-planning:talent-matrix' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'talent-matrix' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "İstedad Matrisi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "İstedad Matrisi" %}</span>
                         </a>
 
                         <a href="{% url 'workforce-planning:succession-planning' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'succession-planning' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Varis Planlaması" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Varis Planlaması" %}</span>
                         </a>
 
                     </div>
@@ -255,72 +271,72 @@
                     @click="activeAccordion = activeAccordion === 'hr_core' ? null : 'hr_core'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-users text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'hr_core' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "HR İdarəetməsi" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "HR İdarəetməsi" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'hr_core' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'hr_core' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'hr_core'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'hr_core'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'pfile:employee_list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'employee_list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Əməkdaş Faylları" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Əməkdaş Faylları" %}</span>
                         </a>
 
                         <a href="{% url 'departments:department-list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'department-list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Şöbələr" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Şöbələr" %}</span>
                         </a>
 
                         <a href="{% url 'leave_attendance:leave_dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'leave_dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Məzuniyyət Paneli" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Məzuniyyət Paneli" %}</span>
                         </a>
 
                         <a href="{% url 'leave_attendance:leave_request_create' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'leave_request_create' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Yeni Məzuniyyət" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Yeni Məzuniyyət" %}</span>
                         </a>
 
                         <a href="{% url 'leave_attendance:leave_request_list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'leave_request_list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Məzuniyyət Sorğuları" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Məzuniyyət Sorğuları" %}</span>
                         </a>
 
                         <a href="{% url 'leave_attendance:attendance_calendar' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'attendance_calendar' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Davamiyyət Təqvimi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Davamiyyət Təqvimi" %}</span>
                         </a>
 
                         <a href="{% url 'leave_attendance:team_calendar' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'team_calendar' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Komanda Təqvimi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Komanda Təqvimi" %}</span>
                         </a>
 
                         <a href="{% url 'compensation:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Əməkhaqqı Paneli" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Əməkhaqqı Paneli" %}</span>
                         </a>
 
                         <a href="{% url 'compensation:salary_list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'salary_list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Maaş Siyahısı" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Maaş Siyahısı" %}</span>
                         </a>
 
                         <a href="{% url 'compensation:bonus_list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'bonus_list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Bonuslar" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Bonuslar" %}</span>
                         </a>
 
                         <a href="{% url 'compensation:history' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'history' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Kompensasiya Tarixi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Kompensasiya Tarixi" %}</span>
                         </a>
 
                         <a href="{% url 'compensation:market_benchmarking' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'market_benchmarking' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Bazar Müqayisəsi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Bazar Müqayisəsi" %}</span>
                         </a>
 
                     </div>
@@ -334,52 +350,52 @@
                     @click="activeAccordion = activeAccordion === 'recruitment' ? null : 'recruitment'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-briefcase text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'recruitment' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "İşə Qəbul (Recruitment)" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "İşə Qəbul (Recruitment)" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'recruitment' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'recruitment' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'recruitment'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'recruitment'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'recruitment:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "İşə Qəbul Paneli" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "İşə Qəbul Paneli" %}</span>
                         </a>
 
                         <a href="{% url 'recruitment:job_list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'job_list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Vakansiyalar" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Vakansiyalar" %}</span>
                         </a>
 
                         <a href="{% url 'recruitment:job_create' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'job_create' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Vakansiya Yarat" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Vakansiya Yarat" %}</span>
                         </a>
 
                         <a href="{% url 'recruitment:candidate_pipeline' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'candidate_pipeline' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Namizəd Boru Xətti" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Namizəd Boru Xətti" %}</span>
                         </a>
 
                         <a href="{% url 'recruitment:interview_calendar' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'interview_calendar' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Müsahibə Təqvimi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Müsahibə Təqvimi" %}</span>
                         </a>
 
                         <a href="{% url 'recruitment:ai_screening' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'ai_screening' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "AI CV Sınağı" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "AI CV Sınağı" %}</span>
                         </a>
 
                         <a href="{% url 'recruitment:video_interview_schedule' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'video_interview_schedule' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Video Müsahibə" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Video Müsahibə" %}</span>
                         </a>
 
                         <a href="{% url 'recruitment:candidate_experience' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'candidate_experience' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Namizəd Təcrübəsi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Namizəd Təcrübəsi" %}</span>
                         </a>
 
                     </div>
@@ -393,27 +409,27 @@
                     @click="activeAccordion = activeAccordion === 'onboarding' ? null : 'onboarding'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-shoe-prints text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'onboarding' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Onboarding & Adaptasiya" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Onboarding & Adaptasiya" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'onboarding' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'onboarding' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'onboarding'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'onboarding'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'onboarding:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Onboarding Paneli" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Onboarding Paneli" %}</span>
                         </a>
 
                         <a href="{% url 'onboarding:process-list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'process-list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Onboarding Prosesləri" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Onboarding Prosesləri" %}</span>
                         </a>
 
                         <a href="{% url 'onboarding:template-library' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'template-library' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Onboarding Şablonları" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Onboarding Şablonları" %}</span>
                         </a>
 
                     </div>
@@ -427,42 +443,42 @@
                     @click="activeAccordion = activeAccordion === 'wellness' ? null : 'wellness'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-heartbeat text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'wellness' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Sağlamlıq və Wellness" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Sağlamlıq və Wellness" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'wellness' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'wellness' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'wellness'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'wellness'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'wellness:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Wellness Paneli" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Wellness Paneli" %}</span>
                         </a>
 
                         <a href="{% url 'wellness:checkup_list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'checkup_list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Tibbi Müayinələr" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Tibbi Müayinələr" %}</span>
                         </a>
 
                         <a href="{% url 'wellness:mental_health_survey' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'mental_health_survey' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Mental Sağlamlıq" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Mental Sağlamlıq" %}</span>
                         </a>
 
                         <a href="{% url 'wellness:fitness_programs' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'fitness_programs' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Fitness Proqramları" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Fitness Proqramları" %}</span>
                         </a>
 
                         <a href="{% url 'wellness:challenges' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'challenges' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Wellness Yarışları" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Wellness Yarışları" %}</span>
                         </a>
 
                         <a href="{% url 'wellness:step_tracking' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'step_tracking' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Addım İzləmə" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Addım İzləmə" %}</span>
                         </a>
 
                     </div>
@@ -476,37 +492,37 @@
                     @click="activeAccordion = activeAccordion === 'engagement' ? null : 'engagement'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-hands-helping text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'engagement' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "İşçi Mənsubiyyəti" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "İşçi Mənsubiyyəti" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'engagement' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'engagement' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'engagement'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'engagement'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'engagement:engagement_dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'engagement_dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Məşğulluq Paneli" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Məşğulluq Paneli" %}</span>
                         </a>
 
                         <a href="{% url 'engagement:pulse_surveys' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'pulse_surveys' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Pulse Sorğular" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Pulse Sorğular" %}</span>
                         </a>
 
                         <a href="{% url 'engagement:recognition_wall' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'recognition_wall' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Recognition Wall" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Recognition Wall" %}</span>
                         </a>
 
                         <a href="{% url 'engagement:anonymous_feedback' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'anonymous_feedback' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Anonim Feedback" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Anonim Feedback" %}</span>
                         </a>
 
                         <a href="{% url 'engagement:leaderboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'leaderboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Leaderboard" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Leaderboard" %}</span>
                         </a>
 
                     </div>
@@ -520,32 +536,32 @@
                     @click="activeAccordion = activeAccordion === 'engines' ? null : 'engines'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-cogs text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'engines' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Sistem Mühərrikləri" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Sistem Mühərrikləri" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'engines' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'engines' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'engines'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'engines'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'policy_engine:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Policy Engine" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Policy Engine" %}</span>
                         </a>
 
                         <a href="{% url 'feature_flags:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Feature Flags" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Feature Flags" %}</span>
                         </a>
 
                         <a href="{% url 'workflow_engine:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Workflow Engine" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Workflow Engine" %}</span>
                         </a>
 
                         <a href="{% url 'approval_engine:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Approval Engine" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Approval Engine" %}</span>
                         </a>
 
                     </div>
@@ -559,27 +575,27 @@
                     @click="activeAccordion = activeAccordion === 'notifications' ? null : 'notifications'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-bell text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'notifications' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Bildirişlər və Ünsiyyət" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Bildirişlər və Ünsiyyət" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'notifications' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'notifications' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'notifications'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'notifications'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'notifications:settings-dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'settings-dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Bildiriş Tənzimləmələri" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Bildiriş Tənzimləmələri" %}</span>
                         </a>
 
                         <a href="{% url 'notifications:templates-list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'templates-list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Bildiriş Şablonları" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Bildiriş Şablonları" %}</span>
                         </a>
 
                         <a href="{% url 'notifications:delivery_logs' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'delivery_logs' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Göndəriş Logları" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Göndəriş Logları" %}</span>
                         </a>
 
                     </div>
@@ -593,22 +609,22 @@
                     @click="activeAccordion = activeAccordion === 'reports' ? null : 'reports'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-file-export text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'reports' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Hesabat & Export" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Hesabat & Export" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'reports' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'reports' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'reports'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'reports'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'reports:schedule-center' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'schedule-center' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Hesabatlar (Schedule)" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Hesabatlar (Schedule)" %}</span>
                         </a>
 
                         <a href="{% url 'reports:blueprint-list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'blueprint-list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Hesabat Şablonları" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Hesabat Şablonları" %}</span>
                         </a>
 
                     </div>
@@ -622,37 +638,37 @@
                     @click="activeAccordion = activeAccordion === 'security' ? null : 'security'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-shield-alt text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'security' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Təhlükəsizlik" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Təhlükəsizlik" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'security' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'security' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'security'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'security'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'accounts:user-list' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'user-list' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "İstifadəçi İdarəetməsi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "İstifadəçi İdarəetməsi" %}</span>
                         </a>
 
                         <a href="{% url 'accounts:security' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'security' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Hesab Təhlükəsizliyi" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Hesab Təhlükəsizliyi" %}</span>
                         </a>
 
                         <a href="{% url 'access_control:dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Access Control" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Access Control" %}</span>
                         </a>
 
                         <a href="{% url 'audit:security-dashboard' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'security-dashboard' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Təhlükəsizlik Paneli" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Təhlükəsizlik Paneli" %}</span>
                         </a>
 
                         <a href="{% url 'audit:log_search' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'log_search' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Audit Log Axtarışı" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Audit Log Axtarışı" %}</span>
                         </a>
 
                     </div>
@@ -666,22 +682,22 @@
                     @click="activeAccordion = activeAccordion === 'profile' ? null : 'profile'">
                     <span class="flex items-center space-x-3">
                         <i class="fas fa-user-circle text-[15px] w-5 text-center transition-colors" :class="activeAccordion === 'profile' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'"></i>
-                        <span x-show="sidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Profil" %}</span>
+                        <span x-show="sidebarOpen || mobileSidebarOpen" x-transition.opacity class="tracking-wide">{% trans "Profil" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen" :class="activeAccordion === 'profile' ? 'rotate-180' : ''"></i>
+                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 text-gray-400" x-show="sidebarOpen || mobileSidebarOpen" :class="activeAccordion === 'profile' ? 'rotate-180' : ''"></i>
                 </button>
                 
-                <div x-show="activeAccordion === 'profile'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen">
+                <div x-show="activeAccordion === 'profile'" x-collapse x-cloak class="overflow-hidden" x-show="sidebarOpen || mobileSidebarOpen">
                     <div class="pl-10 pr-2 py-1 mt-0.5 space-y-0.5">
 
                         <a href="{% url 'accounts:profile' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'profile' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Profilim" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Profilim" %}</span>
                         </a>
 
                         <a href="{% url 'accounts:security' %}"
                             class="flex items-center px-3 py-1.5 text-[13px] font-medium rounded-md transition-all duration-200 group {% if request.resolver_match.url_name == 'security' %}bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400{% else %}text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white{% endif %}">
-                            <span class="truncate" x-show="sidebarOpen">{% trans "Şifrə və Təhlükəsizlik" %}</span>
+                            <span class="truncate" x-show="sidebarOpen || mobileSidebarOpen">{% trans "Şifrə və Təhlükəsizlik" %}</span>
                         </a>
 
                     </div>
@@ -689,6 +705,28 @@
             </div>
 
         </nav>
+        
+        <!-- User Profile (Bottom) -->
+        <div class="p-3 border-t border-gray-200 dark:border-gray-800 flex-shrink-0 bg-white dark:bg-gray-900 z-10 relative">
+            <a href="{% url 'accounts:profile' %}" class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+                {% if user.profile_picture %}
+                <img src="{{ user.profile_picture.url }}" alt="Profile" class="w-8 h-8 rounded-full object-cover border border-gray-200 dark:border-gray-700">
+                {% else %}
+                <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:bg-blue-300 flex items-center justify-center font-bold text-sm">
+                    {{ user.username.0|upper }}
+                </div>
+                {% endif %}
+                <div x-show="sidebarOpen || mobileSidebarOpen" class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold text-gray-700 dark:text-gray-200 truncate">{{ user.get_full_name|default:user.username }}</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ user.get_role_display }}</p>
+                </div>
+            </a>
+            
+            <a href="{% url 'accounts:logout' %}" class="flex items-center space-x-3 px-3 py-2 mt-1 rounded-lg text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20 transition-colors group">
+                <i class="fas fa-sign-out-alt w-8 text-center text-lg"></i>
+                <span x-show="sidebarOpen || mobileSidebarOpen" class="text-sm font-medium">{% trans "Çıxış" %}</span>
+            </a>
+        </div>
     </div>
 </aside>
 

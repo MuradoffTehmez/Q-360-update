@@ -1,0 +1,46 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Fərdi inkişaf məqsədlərinizin zaman qrafiki (Gantt tərzi) üzərində vizualizasiyası." %}</p>
+        </div>
+        <div>
+            <a href="{% url 'development_plans:goal-create' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+                <i class="fas fa-plus mr-2"></i>{% trans "Yeni Məqsəd" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden p-6">
+        
+        <div class="space-y-6">
+            {% for goal in goals %}
+            <div class="relative">
+                <div class="flex justify-between items-end mb-2">
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-900 dark:text-white">{{ goal.title }}</h4>
+                        <p class="text-xs text-gray-500">{% trans "Hədəf" %}: {{ goal.target_date|date:"d M Y" }}</p>
+                    </div>
+                    <span class="text-xs font-medium text-gray-500">{{ goal.progress_percentage }}%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-4 dark:bg-gray-700 overflow-hidden flex">
+                    <div class="bg-blue-600 h-4 rounded-full transition-all duration-500" style="width: {{ goal.progress_percentage }}%"></div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center py-12 text-gray-500 dark:text-gray-400">
+                <i class="fas fa-map-signs text-4xl mb-3 opacity-20"></i>
+                <p>{% trans "Yol xəritəsində göstəriləcək aktiv məqsəd yoxdur." %}</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

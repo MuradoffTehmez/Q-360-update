@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import template_views
+from . import views_extras
 
 router = DefaultRouter()
 
@@ -23,6 +24,11 @@ urlpatterns = [
 
     # Goal Cascade
     path('goal-cascade/', template_views.goal_cascade, name='goal-cascade'),
+
+    # Batch 7 Extras
+    path('progress/', views_extras.progress_overview, name='progress-overview'),
+    path('roadmap/', views_extras.roadmap_view, name='roadmap-view'),
+    path('approvals/', views_extras.approvals_queue, name='approvals-queue'),
 
     # API
     path('api/', include(router.urls)),

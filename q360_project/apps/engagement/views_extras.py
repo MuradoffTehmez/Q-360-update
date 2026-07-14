@@ -11,7 +11,7 @@ def analytics_view(request):
 @login_required
 def anonymous_feedback_list(request):
     """Anonim rəylər."""
-    feedbacks = AnonymousFeedback.objects.order_by('-created_at')
+    feedbacks = AnonymousFeedback.objects.order_by('-submitted_at')
     return render(request, 'engagement/extras/anonymous_feedback.html', {'title': _('Anonim Rəylər'), 'feedbacks': feedbacks})
 
 @login_required

@@ -18,7 +18,7 @@ def initiatives_list(request):
 @login_required
 def check_ins_list(request):
     """Objective Updates / Check-ins."""
-    check_ins = ObjectiveUpdate.objects.select_related('objective', 'user').order_by('-created_at')
+    check_ins = ObjectiveUpdate.objects.select_related('objective', 'created_by').order_by('-created_at')
     return render(request, 'development_plans/okr_extras/check_ins.html', {'title': _('Yoxlamalar (Check-ins)'), 'check_ins': check_ins})
 
 @login_required

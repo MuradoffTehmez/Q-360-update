@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from .models import User, Profile, EmployeeDocument, WorkHistory
 from apps.departments.models import Department
 

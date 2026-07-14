@@ -100,13 +100,13 @@ def ticket_detail(request, pk):
         if comment_text:
             TicketComment.objects.create(
                 ticket=ticket,
-                user=request.user,
+                created_by=request.user,
                 comment=comment_text
             )
             messages.success(request, 'Şərh əlavə edildi.')
             return redirect('support:ticket_detail', pk=pk)
 
-    comments = ticket.comments.select_related('user').order_by('created_at')
+    comments = ticket.comments.select_related('created_by').order_by('created_at')
 
     return render(request, 'support/ticket_detail.html', {
         'ticket': ticket,

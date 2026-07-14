@@ -12,6 +12,7 @@ urlpatterns = [
 
     # Batch 27
     path('tickets/', views_extras.tickets_list, name='tickets'),
+    path('tickets/<int:pk>/', views.ticket_detail, name='tickets_detail'),
     path('knowledge-base/', views_extras.knowledge_base, name='knowledge_base'),
     path('categories/', views_extras.categories_list, name='categories'),
     path('sla/', views_extras.sla_list, name='sla'),

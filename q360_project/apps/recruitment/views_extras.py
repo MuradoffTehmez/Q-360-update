@@ -24,7 +24,7 @@ def talent_pool_list(request):
 @login_required
 def referrals_list(request):
     """Referrallar (Referrals)."""
-    referrals = Referral.objects.select_related('referred_by', 'job_posting').order_by('-created_at')
+    referrals = Referral.objects.select_related('referrer', 'job_posting').order_by('-created_at')
     return render(request, 'recruitment/extras/referrals.html', {'title': _('İstinadlar (Referrals)'), 'referrals': referrals})
 
 @login_required

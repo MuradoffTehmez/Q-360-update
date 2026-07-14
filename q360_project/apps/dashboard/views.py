@@ -771,7 +771,7 @@ def export_model(request):
         'confidence_level', 'explanation', 'created_at'
     ))
     trends = list(TrendData.objects.all().values(
-        'metric_name', 'date', 'value', 'trend_direction', 'created_at'
+        'data_type', 'period', 'value', 'created_at'
     ))
 
     export_data = {

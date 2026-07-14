@@ -83,11 +83,12 @@ def _create_overview_sheet(wb):
         cell.alignment = Alignment(horizontal='center', vertical='center')
 
     # Data
+    from django.db.models import Avg
     metrics = [
         ('İstifadəçi Sayı', User.objects.filter(is_active=True).count(), '+5%', '✓'),
         ('Aktiv Kampaniyalar', EvaluationCampaign.objects.filter(status='active').count(), '+2', '✓'),
-        ('Tamamlanmış Qiymətləndirmələr', EvaluationResult.objects.filter(status='completed').count(), '+15%', '✓'),
-        ('Ortalama Skor', round(EvaluationResult.objects.filter(status='completed').aggregate(avg=Avg('overall_score'))['avg'] or 0, 2), '+0.3', '✓'),
+        ('Tamamlanmış Qiymətləndirmələr', EvaluationResult.objects.filter(is_finalized=True).count(), '+15%', '✓'),
+        ('Ortalama Skor', round(EvaluationResult.objects.filter(is_finalized=True).aggregate(avg=Avg('overall_score'))['avg'] or 0, 2), '+0.3', '✓'),
     ]
 
     for row_idx, (metric, value, change, status) in enumerate(metrics, start=6):
@@ -118,7 +119,7 @@ def _create_evaluations_sheet(wb):
     thirty_days_ago = timezone.now() - timedelta(days=30)
     results = EvaluationResult.objects.filter(
         calculated_at__gte=thirty_days_ago,
-        status='completed'
+        is_finalized=True
     ).select_related('evaluatee', 'campaign')
 
     # Headers
@@ -163,15 +164,15 @@ def _create_departments_sheet(wb):
 
     # Get department stats
     departments = Department.objects.annotate(
-        employee_count=Count('user'),
-        avg_score=Avg('user__evaluation_results__overall_score')
+        employee_count=Count('users'),
+        avg_score=Avg('users__evaluation_results__overall_score')
     ).order_by('-avg_score')
 
     for row_idx, dept in enumerate(departments, start=4):
         ws.cell(row=row_idx, column=1, value=dept.name)
         ws.cell(row=row_idx, column=2, value=dept.employee_count)
         ws.cell(row=row_idx, column=3, value=round(dept.avg_score or 0, 2))
-        ws.cell(row=row_idx, column=4, value=dept.user.filter(evaluation_results__status='completed').count())
+        ws.cell(row=row_idx, column=4, value=dept.users.filter(evaluation_results__is_finalized=True).count())
 
         # Status based on avg score
         avg = dept.avg_score or 0
@@ -232,7 +233,7 @@ def _create_trends_sheet(wb):
     from django.db.models.functions import TruncMonth
 
     monthly_avg = EvaluationResult.objects.filter(
-        status='completed',
+        is_finalized=True,
         calculated_at__gte=timezone.now() - timedelta(days=180)
     ).annotate(
         month=TruncMonth('calculated_at')
@@ -331,8 +332,8 @@ def export_analytics_pdf(request):
         ['Metrik', 'Dəyər', 'Status'],
         ['İstifadəçi Sayı', str(User.objects.filter(is_active=True).count()), '✓'],
         ['Aktiv Kampaniyalar', str(EvaluationCampaign.objects.filter(status='active').count()), '✓'],
-        ['Tamamlanmış Qiymətləndirmələr', str(EvaluationResult.objects.filter(status='completed').count()), '✓'],
-        ['Ortalama Skor', str(round(EvaluationResult.objects.filter(status='completed').aggregate(avg=Avg('overall_score'))['avg'] or 0, 2)), '✓'],
+        ['Tamamlanmış Qiymətləndirmələr', str(EvaluationResult.objects.filter(is_finalized=True).count()), '✓'],
+        ['Ortalama Skor', str(round(EvaluationResult.objects.filter(is_finalized=True).aggregate(avg=Avg('overall_score'))['avg'] or 0, 2)), '✓'],
     ]
 
     metrics_table = Table(metrics_data, colWidths=[300, 150, 100])
@@ -356,8 +357,8 @@ def export_analytics_pdf(request):
     from django.db.models import Count
 
     departments = Department.objects.annotate(
-        employee_count=Count('user'),
-        avg_score=Avg('user__evaluation_results__overall_score')
+        employee_count=Count('users'),
+        avg_score=Avg('users__evaluation_results__overall_score')
     ).order_by('-avg_score')[:10]
 
     dept_data = [['Şöbə', 'İşçi Sayı', 'Ortalama Skor']]

@@ -817,7 +817,7 @@ def security_settings(request):
 
     return render(request, 'accounts/security.html', context)
 
-
+@login_required
 def mfa_verify(request):
     """Verify MFA code and enable/disable MFA."""
     from django.contrib import messages
@@ -876,7 +876,7 @@ def mfa_verify(request):
     
     return redirect('accounts:security')
 
-
+@login_required
 def mfa_initiate(request):
     """Initiate MFA setup process."""
     from django.shortcuts import render, redirect
@@ -928,7 +928,7 @@ def mfa_initiate(request):
 
     return render(request, 'accounts/mfa_initiate.html', context)
 
-
+@login_required
 def mfa_disable(request):
     """Disable MFA for the user."""
     from django.contrib import messages
@@ -946,7 +946,7 @@ def mfa_disable(request):
     
     return redirect('accounts:security')
 
-
+@login_required
 def mfa_backup_regenerate(request):
     """Regenerate MFA backup codes."""
     from django.contrib import messages
@@ -975,7 +975,7 @@ def mfa_backup_regenerate(request):
 
     return redirect('accounts:security')
 
-
+@login_required
 def mfa_reset(request):
     """Reset and reconfigure MFA with password verification."""
     from django.contrib import messages

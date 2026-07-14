@@ -453,16 +453,16 @@
 
 {% block page_header %}
 <div class="dashboard-header py-8 px-6 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl mb-8 shadow-lg relative overflow-hidden">
-    <div class="flex items-center justify-between">
+    <div class="relative z-10 w-full flex items-center justify-between">
         <div>
             <h1 class="text-4xl font-bold text-white">
-                {% trans "Welcome" %}, {{ user.get_full_name|default:user.username }}!
+                Xoş gəldiniz, {{ user.get_full_name|default:user.username }}!
             </h1>
-            <p class="text-white font-medium text-lg mt-2">{% trans "Here's what's happening today" %}</p>
+            <p class="text-white/90 font-medium text-lg mt-2">Bu gün olan yeniliklər</p>
         </div>
-        <button onclick="window.print()" class="hidden md:flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-xl hover:bg-white/30 transition-all border border-white/20">
+        <button onclick="window.print()" class="hidden md:flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white rounded-xl transition-all border border-white/30 shadow-sm ml-4 flex-shrink-0">
             <i class="fas fa-print mr-2"></i>
-            {% trans "Print" %}
+            Çap et
         </button>
     </div>
 </div>
@@ -475,15 +475,15 @@
     <div class="stat-card pending">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase font-bold tracking-wider">{% trans "Pending" %}</p>
+                <p class="text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider">GÖZLƏYƏN</p>
                 <p class="stat-number">{{ pending_evaluations_count|default:0 }}</p>
             </div>
-            <div class="stat-icon">
-                <i class="fas fa-clock"></i>
+            <div class="stat-icon flex-shrink-0">
+                <i class="fas fa-hourglass-half"></i>
             </div>
         </div>
         <div class="mt-4 px-2">
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                 <div class="bg-gradient-to-r from-fuchsia-400 to-pink-500 h-2 rounded-full" style="width: 65%"></div>
             </div>
         </div>
@@ -493,15 +493,15 @@
     <div class="stat-card completed">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase font-bold tracking-wider">{% trans "Completed" %}</p>
+                <p class="text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider">TAMAMLANAN</p>
                 <p class="stat-number">{{ completed_evaluations_count|default:0 }}</p>
             </div>
-            <div class="stat-icon">
-                <i class="fas fa-check-circle"></i>
+            <div class="stat-icon flex-shrink-0">
+                <i class="fas fa-check"></i>
             </div>
         </div>
         <div class="mt-4 px-2">
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                 <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full" style="width: 85%"></div>
             </div>
         </div>
@@ -511,15 +511,15 @@
     <div class="stat-card campaigns">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase font-bold tracking-wider">{% trans "Campaigns" %}</p>
+                <p class="text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider">KAMPANİYALAR</p>
                 <p class="stat-number">{{ active_campaigns_count|default:0 }}</p>
             </div>
-            <div class="stat-icon">
-                <i class="fas fa-calendar-alt"></i>
+            <div class="stat-icon flex-shrink-0">
+                <i class="fas fa-bullhorn"></i>
             </div>
         </div>
         <div class="mt-4 px-2">
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                 <div class="bg-gradient-to-r from-indigo-400 to-purple-500 h-2 rounded-full" style="width: 45%"></div>
             </div>
         </div>
@@ -529,15 +529,15 @@
     <div class="stat-card average">
         <div class="flex items-center justify-between">
             <div>
-                <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 uppercase font-bold tracking-wider">{% trans "Avg Score" %}</p>
-                <p class="stat-number">{{ average_score|default:"N/A" }}</p>
+                <p class="text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider">ORTALAMA BAL</p>
+                <p class="stat-number">{{ average_score|default:"0" }}</p>
             </div>
-            <div class="stat-icon">
+            <div class="stat-icon flex-shrink-0">
                 <i class="fas fa-star"></i>
             </div>
         </div>
         <div class="mt-4 px-2">
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                 {% if average_score and average_score != 'N/A' and average_score != '0' and average_score != 0 %}
                 <div class="bg-gradient-to-r from-teal-400 to-green-500 h-2 rounded-full" style="width: 78%"></div>
                 {% else %}
@@ -555,16 +555,16 @@
             <i class="fas fa-fire text-2xl text-white"></i>
         </div>
         <div>
-            <h2 class="text-2xl font-bold text-white">{% trans "My Active Tasks" %}</h2>
-            <p class="text-white/80">{% trans "Top 3 critical functions for your attention" %}</p>
+            <h2 class="text-2xl font-bold text-white">Aktiv Tapşırıqlarım</h2>
+            <p class="text-white/80">Diqqətiniz üçün ən vacib əməliyyatlar</p>
         </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
         <!-- Pending Evaluations -->
-        <div class="task-card pending-evaluations" onclick="window.location.href='{% url 'evaluations:my-assignments' %}'">
+        <div class="task-card pending-evaluations flex flex-col h-full" onclick="window.location.href='{% url 'evaluations:my-assignments' %}'">
             <div class="flex items-start justify-between mb-4">
-                <div class="task-icon">
+                <div class="task-icon flex-shrink-0">
                     <i class="fas fa-clipboard-list"></i>
                 </div>
                 {% if pending_evaluations_count > 0 %}
@@ -573,18 +573,20 @@
                 </span>
                 {% endif %}
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Pending Evaluations" %}</h3>
-            <p class="text-3xl font-bold text-red-300 dark:text-red-400 mb-3">{{ pending_evaluations_count|default:0 }}</p>
-            <p class="text-sm text-slate-300 flex items-center">
-                <span>{% trans "Awaiting your response" %}</span>
+            <div class="flex-grow">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Gözləyən Qiymətləndirmələr</h3>
+                <p class="text-3xl font-bold text-gray-800 dark:text-white mb-3">{{ pending_evaluations_count|default:0 }}</p>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 flex items-center mt-2">
+                <span>Cavabınız gözlənilir</span>
                 <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
             </p>
         </div>
 
         <!-- Upcoming Trainings -->
-        <div class="task-card upcoming-trainings" onclick="window.location.href='{% url 'training:my-trainings' %}'">
+        <div class="task-card upcoming-trainings flex flex-col h-full" onclick="window.location.href='{% url 'training:my-trainings' %}'">
             <div class="flex items-start justify-between mb-4">
-                <div class="task-icon">
+                <div class="task-icon flex-shrink-0">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
                 {% if upcoming_trainings_count > 0 %}
@@ -593,50 +595,56 @@
                 </span>
                 {% endif %}
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Upcoming Trainings" %}</h3>
-            <p class="text-3xl font-bold text-blue-300 dark:text-blue-400 mb-3">{{ upcoming_trainings_count|default:0 }}</p>
-            <p class="text-sm text-slate-300 flex items-center">
-                <span>{% trans "Due within 7 days" %}</span>
+            <div class="flex-grow">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Qarşıdan Gələn Təlimlər</h3>
+                <p class="text-3xl font-bold text-gray-800 dark:text-white mb-3">{{ upcoming_trainings_count|default:0 }}</p>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 flex items-center mt-2">
+                <span>7 gün ərzində</span>
                 <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
             </p>
         </div>
 
-        <!-- Skills Pending Approval / Active Goals -->
+        <!-- Role-based Task (Manager vs Employee) -->
         {% if user.role in 'admin,manager' or user.is_staff %}
-        <div class="task-card skills-pending" onclick="window.location.href='{% url 'competencies:my-skills' %}'">
+        <div class="task-card skills-pending flex flex-col h-full" onclick="window.location.href='{% url 'competencies:competency-list' %}'">
             <div class="flex items-start justify-between mb-4">
-                <div class="task-icon">
+                <div class="task-icon flex-shrink-0">
                     <i class="fas fa-user-check"></i>
                 </div>
                 {% if pending_skills_count > 0 %}
-                <span class="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
+                <span class="px-3 py-1 bg-purple-500 text-white text-xs font-bold rounded-full">
                     {{ pending_skills_count }}
                 </span>
                 {% endif %}
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Skills Pending Approval" %}</h3>
-            <p class="text-3xl font-bold text-purple-300 dark:text-purple-400 mb-3">{{ pending_skills_count|default:0 }}</p>
-            <p class="text-sm text-slate-300 flex items-center">
-                <span>{% trans "Requires your approval" %}</span>
+            <div class="flex-grow">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Təsdiq Gözləyən Bacarıqlar</h3>
+                <p class="text-3xl font-bold text-gray-800 dark:text-white mb-3">{{ pending_skills_count|default:0 }}</p>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 flex items-center mt-2">
+                <span>Təsdiqiniz tələb olunur</span>
                 <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
             </p>
         </div>
         {% else %}
-        <div class="task-card active-goals" onclick="window.location.href='{% url 'development-plans:my-goals' %}'">
+        <div class="task-card active-goals flex flex-col h-full" onclick="window.location.href='{% url 'development-plans:my-goals' %}'">
             <div class="flex items-start justify-between mb-4">
-                <div class="task-icon">
+                <div class="task-icon flex-shrink-0">
                     <i class="fas fa-bullseye"></i>
                 </div>
                 {% if active_goals_count > 0 %}
-                <span class="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">
+                <span class="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
                     {{ active_goals_count }}
                 </span>
                 {% endif %}
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Active Development Goals" %}</h3>
-            <p class="text-3xl font-bold text-green-500 mb-3">{{ active_goals_count|default:0 }}</p>
-            <p class="text-sm text-slate-300 flex items-center">
-                <span>{% trans "In progress" %}</span>
+            <div class="flex-grow">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Aktiv Hədəflər</h3>
+                <p class="text-3xl font-bold text-gray-800 dark:text-white mb-3">{{ active_goals_count|default:0 }}</p>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 flex items-center mt-2">
+                <span>İcra olunur</span>
                 <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
             </p>
         </div>

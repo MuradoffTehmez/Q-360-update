@@ -16,6 +16,7 @@ Müvafiq işi görərkən aşağıdakı faylları mütləq oxu:
 - Xəta axtararkən (debug): `.agents/skills/debug-fix/SKILL.md`
 - Frontend UI auditi edərkən: `.agents/skills/frontend-audit/SKILL.md`
 - Yeni batch modullarını tikərkən: `.agents/skills/batch-tikinti/SKILL.md`
+- Kodu yadda saxlayıb (commit/push) edərkən: `.agents/skills/git-commit-push/SKILL.md`
 - Ümumi layihə qaydaları üçün: `.agents/AGENTS.md`
 
 HƏR ZAMAN bu qaydalara bax və yalnız onlara uyğun kod yaz!

@@ -117,3 +117,35 @@ class WorkflowHistory(TimeStampedModel):
 
     def __str__(self):
         return f"{self.instance} - {self.action} ({self.actor})"
+
+
+class WorkflowVersion(TimeStampedModel):
+    template = models.ForeignKey(WorkflowTemplate, on_delete=models.CASCADE, related_name='versions', verbose_name='Şablon')
+    version_number = models.CharField('Versiya Nömrəsi', max_length=20)
+    schema_data = models.JSONField('Sxem (JSON)', default=dict)
+    is_published = models.BooleanField('Dərc edilib', default=False)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, verbose_name='Yaradıcı')
+
+    class Meta:
+        verbose_name = 'İş Axını Versiyası'
+        verbose_name_plural = 'İş Axını Versiyaları'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.template.name} - v{self.version_number}"
+
+
+class WorkflowLog(TimeStampedModel):
+    level = models.CharField('Səviyyə', max_length=20, choices=[('INFO', 'Məlumat'), ('WARNING', 'Xəbərdarlıq'), ('ERROR', 'Xəta')])
+    message = models.TextField('Mesaj')
+    instance = models.ForeignKey(WorkflowInstance, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='İnstansiya')
+    details = models.JSONField('Detallar', default=dict, blank=True)
+
+    class Meta:
+        verbose_name = 'İş Axını Loqu'
+        verbose_name_plural = 'İş Axını Loqları'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"[{self.level}] {self.message[:50]}"
+

@@ -1,0 +1,110 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="h-[calc(100vh-8rem)] flex flex-col">
+    <div class="mb-4 flex justify-between items-center">
+        <div>
+            <h1 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <i class="fas fa-sitemap text-blue-500"></i> {{ title }}
+            </h1>
+        </div>
+        <div class="flex gap-2">
+            <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition text-sm font-medium dark:bg-gray-700 dark:text-white">
+                <i class="fas fa-play mr-1.5"></i>{% trans "Test Et" %}
+            </button>
+            <button class="px-3 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium shadow-sm">
+                <i class="fas fa-save mr-1.5"></i>{% trans "Yadda Saxla" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="flex-1 bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 flex overflow-hidden">
+        <!-- Sidebar -->
+        <div class="w-64 border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 p-4 overflow-y-auto">
+            <h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Elementlər</h3>
+            
+            <div class="space-y-3">
+                <div class="p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-sm cursor-move flex items-center gap-3">
+                    <i class="fas fa-play-circle text-green-500"></i>
+                    <span class="text-sm font-medium dark:text-white">Başlanğıc</span>
+                </div>
+                
+                <div class="p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-sm cursor-move flex items-center gap-3">
+                    <i class="fas fa-user-check text-blue-500"></i>
+                    <span class="text-sm font-medium dark:text-white">Təsdiq Addımı</span>
+                </div>
+                
+                <div class="p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-sm cursor-move flex items-center gap-3">
+                    <i class="fas fa-code-branch text-purple-500"></i>
+                    <span class="text-sm font-medium dark:text-white">Şərt (Condition)</span>
+                </div>
+                
+                <div class="p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-sm cursor-move flex items-center gap-3">
+                    <i class="fas fa-envelope text-yellow-500"></i>
+                    <span class="text-sm font-medium dark:text-white">Bildiriş (Email)</span>
+                </div>
+                
+                <div class="p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-sm cursor-move flex items-center gap-3">
+                    <i class="fas fa-stop-circle text-red-500"></i>
+                    <span class="text-sm font-medium dark:text-white">Son</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Canvas -->
+        <div class="flex-1 bg-gray-100 dark:bg-gray-800 relative overflow-hidden" style="background-image: radial-gradient(#d1d5db 1px, transparent 1px); background-size: 20px 20px;">
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <span class="text-2xl font-bold text-gray-300 dark:text-gray-600 opacity-50">Sürüşdür və Burax Sahəsi</span>
+            </div>
+            
+            <!-- Dummy flow for visualization -->
+            <div class="absolute top-1/4 left-1/4 p-4 bg-white dark:bg-gray-800 border-2 border-green-500 rounded-lg shadow-lg w-48 text-center cursor-pointer">
+                <i class="fas fa-play-circle text-green-500 text-2xl mb-2"></i>
+                <div class="font-bold text-gray-900 dark:text-white">Müraciət</div>
+            </div>
+            
+            <div class="absolute top-1/4 left-1/2 p-4 bg-white dark:bg-gray-800 border-2 border-blue-500 rounded-lg shadow-lg w-48 text-center cursor-pointer">
+                <i class="fas fa-user-check text-blue-500 text-2xl mb-2"></i>
+                <div class="font-bold text-gray-900 dark:text-white">Menecer Təsdiqi</div>
+            </div>
+            
+            <!-- Dummy arrow -->
+            <svg class="absolute top-0 left-0 w-full h-full pointer-events-none">
+                <path d="M 330 250 L 450 250" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+        
+        <!-- Properties Panel -->
+        <div class="w-72 border-l border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900/50 p-4 overflow-y-auto">
+            <h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Xüsusiyyətlər</h3>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Addım Adı</label>
+                    <input type="text" value="Menecer Təsdiqi" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Təsdiqləyən</label>
+                    <select class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <option>Birbaşa Rəhbər</option>
+                        <option>HR Şöbəsi</option>
+                        <option>Xüsusi İstifadəçi</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Zaman Limiti (Saat)</label>
+                    <input type="number" value="48" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

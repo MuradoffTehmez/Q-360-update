@@ -314,3 +314,40 @@ class Position(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.code})"
+
+
+class JobTitle(models.Model):
+    """
+    Standardized job titles catalog across the organization.
+    """
+    name = models.CharField(
+        max_length=200,
+        unique=True,
+        verbose_name=_('Vəzifə Adı (Kataloq)')
+    )
+    description = models.TextField(
+        blank=True,
+        verbose_name=_('Təsvir')
+    )
+    grade = models.CharField(
+        max_length=50,
+        blank=True,
+        verbose_name=_('Dərəcə/Qreyd')
+    )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name=_('Aktiv')
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    history = HistoricalRecords()
+
+    class Meta:
+        verbose_name = _('Vəzifə Adı (Kataloq)')
+        verbose_name_plural = _('Vəzifə Adları (Kataloq)')
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name

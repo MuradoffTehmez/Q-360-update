@@ -45,14 +45,14 @@
                         <i class="fas fa-chart-line w-6 text-center text-blue-500 text-lg group-hover:text-blue-600 transition-colors"></i>
                         <span>{% trans "Panel və Analitika" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_2382'" x-transition x-cloak class="mt-2 space-y-1">
                     
                     <a href="{% url 'dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path == '/dashboard/' %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-home w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Əsas Panel" %}</span>
+                        <i class="fas fa-home w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Əsas Panel" %}</span>
                     </a>
                     
 
@@ -60,7 +60,7 @@
                     <a href="{% url 'dashboard:kpi_dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/dashboard/kpi/' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-chart-pie w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "KPI Lövhəsi" %}</span>
+                        <i class="fas fa-chart-pie w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "KPI Lövhəsi" %}</span>
                     </a>
                     
 
@@ -68,7 +68,7 @@
                     <a href="{% url 'dashboard:trend_analysis' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/dashboard/trend/' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-wave-square w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Trend Analizi" %}</span>
+                        <i class="fas fa-wave-square w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Trend Analizi" %}</span>
                     </a>
                     
 
@@ -76,20 +76,20 @@
                     <a href="{% url 'dashboard:forecasting_dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/dashboard/forecast/' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-project-diagram w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Proqnozlaşdırma" %}</span>
+                        <i class="fas fa-project-diagram w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Proqnozlaşdırma" %}</span>
                     </a>
                     
                     
                     <a href="{% url 'dashboard:ai_management' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/dashboard/ai-management/' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-brain w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "AI İdarəetmə" %}</span>
+                        <i class="fas fa-brain w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "AI İdarəetmə" %}</span>
                     </a>
                     
                     <a href="{% url 'sentiment_analysis:dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/sentiment-analysis/dashboard/' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-comment-dots w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Əhval-ruhiyyə Analizi" %}</span>
+                        <i class="fas fa-comment-dots w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Əhval-ruhiyyə Analizi" %}</span>
                     </a>
                     
                 </div>
@@ -100,17 +100,17 @@
                     class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
                     @click="activeAccordion = activeAccordion === 'acc_10084' ? null : 'acc_10084'">
                     <span class="flex items-center space-x-2 w-full">
-                        <i class="fas fa-clipboard-check text-green-500 group-hover:text-green-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <i class="fas fa-clipboard-check text-green-500 group-hover:text-green-600 transition-colors text-lg transition-all" :class="sidebarOpen ? 'w-4 mr-2' : 'mx-auto w-full text-center'"></i>
                         <span x-show="sidebarOpen" class="whitespace-normal leading-tight">{% trans "Qiymətləndirmə və Rəylər" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_10084'" x-transition x-cloak class="mt-2 space-y-1">
                     
                     <a href="{% url 'evaluations:my-assignments' %}"
                         class="flex items-center justify-between px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/my-assignments' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="flex items-center relative z-10"><i class="fas fa-tasks w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Tapşırıqlarım" %}</span></div>
+                        <div class="flex items-center relative z-10"><i class="fas fa-tasks w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Tapşırıqlarım" %}</span></div>
                         <span id="pendingAssignmentsCount" class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-500 rounded-full relative z-10">0</span>
                     </a>
                     
@@ -119,7 +119,7 @@
                     <a href="{% url 'evaluations:campaign-list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/campaign' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-calendar-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Kampaniyalar" %}</span>
+                        <i class="fas fa-calendar-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Kampaniyalar" %}</span>
                     </a>
                     
 
@@ -127,7 +127,7 @@
                     <a href="{% url 'feedback:send-feedback' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/feedback/send' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-paper-plane w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Əlaqə Göndər" %}</span>
+                        <i class="fas fa-paper-plane w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Əlaqə Göndər" %}</span>
                     </a>
                     
 
@@ -135,21 +135,21 @@
                     <a href="{% url 'feedback:my-feedback' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/feedback/my' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-comments w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Rəylərim" %}</span>
+                        <i class="fas fa-comments w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Rəylərim" %}</span>
                     </a>
 
 
                     <a href="{% url 'feedback:360-feedback-request' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/feedback/360-request' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-users-cog w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "360° Rəy Sorğusu" %}</span>
+                        <i class="fas fa-users-cog w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "360° Rəy Sorğusu" %}</span>
                     </a>
 
 
                     <a href="{% url 'feedback:analytics' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/feedback/analytics' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-chart-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Rəy Analitikası" %}</span>
+                        <i class="fas fa-chart-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Rəy Analitikası" %}</span>
                     </a>
 
                 </div>
@@ -160,17 +160,17 @@
                     class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
                     @click="activeAccordion = activeAccordion === 'acc_18096' ? null : 'acc_18096'">
                     <span class="flex items-center space-x-2 w-full">
-                        <i class="fas fa-lightbulb text-yellow-500 group-hover:text-yellow-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <i class="fas fa-lightbulb text-yellow-500 group-hover:text-yellow-600 transition-colors text-lg transition-all" :class="sidebarOpen ? 'w-4 mr-2' : 'mx-auto w-full text-center'"></i>
                         <span x-show="sidebarOpen" class="whitespace-normal leading-tight">{% trans "Kompetensiya və Təlim" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_18096'" x-transition x-cloak class="mt-2 space-y-1">
                     
                     <a href="{% url 'competencies:my-skills' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/competencies/my-skills' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-user-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bacarıqlarım" %}</span>
+                        <i class="fas fa-user-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bacarıqlarım" %}</span>
                     </a>
                     
 
@@ -178,7 +178,7 @@
                     <a href="{% url 'competencies:gap-analysis' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/competencies/gap' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-balance-scale w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bacarıq Boşluqları" %}</span>
+                        <i class="fas fa-balance-scale w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bacarıq Boşluqları" %}</span>
                     </a>
                     
 
@@ -186,7 +186,7 @@
                     <a href="{% url 'competencies:competency-list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/competencies/competency-list' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-list-ul w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Kompetensiya Siyahısı" %}</span>
+                        <i class="fas fa-list-ul w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Kompetensiya Siyahısı" %}</span>
                     </a>
                     
 
@@ -194,7 +194,7 @@
                     <a href="{% url 'competencies:competency-manage' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/competencies/manage' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-tools w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Kompetensiya İdarəsi" %}</span>
+                        <i class="fas fa-tools w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Kompetensiya İdarəsi" %}</span>
                     </a>
                     
 
@@ -202,7 +202,7 @@
                     <a href="{% url 'training:my-trainings' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/training/my-trainings' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-graduation-cap w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Təlimlərim" %}</span>
+                        <i class="fas fa-graduation-cap w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Təlimlərim" %}</span>
                     </a>
                     
 
@@ -210,7 +210,7 @@
                     <a href="{% url 'training:my-certificates' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/training/my-certificates' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-certificate w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Sertifikatlarım" %}</span>
+                        <i class="fas fa-certificate w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Sertifikatlarım" %}</span>
                     </a>
                     
 
@@ -218,7 +218,7 @@
                     <a href="{% url 'training:catalog' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/training/catalog' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-book-open w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Təlim Kataloqu" %}</span>
+                        <i class="fas fa-book-open w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Təlim Kataloqu" %}</span>
                     </a>
                     
 
@@ -226,21 +226,21 @@
                     <a href="{% url 'training:training-manage' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/training/manage' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-chalkboard-teacher w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Təlim İdarəsi" %}</span>
+                        <i class="fas fa-chalkboard-teacher w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Təlim İdarəsi" %}</span>
                     </a>
 
 
                     <a href="{% url 'training:skill-matrix' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/training/skill-matrix' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-th w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bacarıq Matrisi" %}</span>
+                        <i class="fas fa-th w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bacarıq Matrisi" %}</span>
                     </a>
 
 
                     <a href="{% url 'training:certifications' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/training/certifications' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-award w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Sertifikat İzlənməsi" %}</span>
+                        <i class="fas fa-award w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Sertifikat İzlənməsi" %}</span>
                     </a>
 
                 </div>
@@ -251,17 +251,17 @@
                     class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
                     @click="activeAccordion = activeAccordion === 'acc_30416' ? null : 'acc_30416'">
                     <span class="flex items-center space-x-2 w-full">
-                        <i class="fas fa-route text-purple-500 group-hover:text-purple-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <i class="fas fa-route text-purple-500 group-hover:text-purple-600 transition-colors text-lg transition-all" :class="sidebarOpen ? 'w-4 mr-2' : 'mx-auto w-full text-center'"></i>
                         <span x-show="sidebarOpen" class="whitespace-normal leading-tight">{% trans "İnkişaf və Strategiya" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_30416'" x-transition x-cloak class="mt-2 space-y-1">
                     
                     <a href="{% url 'development-plans:my-goals' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/development-plans/my-goals' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-bullseye w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Hədəflərim" %}</span>
+                        <i class="fas fa-bullseye w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Hədəflərim" %}</span>
                     </a>
                     
 
@@ -269,7 +269,7 @@
                     <a href="{% url 'development-plans:team-goals' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/development-plans/team-goals' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-users-cog w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Komanda Hədəfləri" %}</span>
+                        <i class="fas fa-users-cog w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Komanda Hədəfləri" %}</span>
                     </a>
                     
 
@@ -277,7 +277,7 @@
                     <a href="{% url 'development-plans:goal-templates' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/development-plans/goal-templates' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-copy w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Hədəf Şablonları" %}</span>
+                        <i class="fas fa-copy w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Hədəf Şablonları" %}</span>
                     </a>
                     
 
@@ -285,7 +285,7 @@
                     <a href="{% url 'workforce-planning:my-gaps' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/workforce-planning/my-gaps' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-user-chart w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Mənim Boşluqlarım" %}</span>
+                        <i class="fas fa-user-chart w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Mənim Boşluqlarım" %}</span>
                     </a>
                     
 
@@ -293,7 +293,7 @@
                     <a href="{% url 'workforce-planning:talent-matrix' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/workforce-planning/talent-matrix' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-th-large w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "İstedad Matrisi" %}</span>
+                        <i class="fas fa-th-large w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "İstedad Matrisi" %}</span>
                     </a>
                     
 
@@ -301,7 +301,7 @@
                     <a href="{% url 'workforce-planning:succession-planning' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/workforce-planning/succession-planning' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-sitemap w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Varis Planlaması" %}</span>
+                        <i class="fas fa-sitemap w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Varis Planlaması" %}</span>
                     </a>
                     
 
@@ -309,7 +309,7 @@
                     <a href="{% url 'workforce-planning:gap-analysis' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/workforce-planning/gap-analysis' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-random w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Boşluq Analizi" %}</span>
+                        <i class="fas fa-random w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Boşluq Analizi" %}</span>
                     </a>
                     
 
@@ -317,7 +317,7 @@
                     <a href="{% url 'okr:dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/okr/dashboard' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-bullhorn w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "OKR Paneli" %}</span>
+                        <i class="fas fa-bullhorn w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "OKR Paneli" %}</span>
                     </a>
                     
 
@@ -325,7 +325,7 @@
                     <a href="{% url 'okr:objective_create' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/okr/objective/create' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-plus-circle w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Yeni OKR" %}</span>
+                        <i class="fas fa-plus-circle w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Yeni OKR" %}</span>
                     </a>
                     
 
@@ -333,7 +333,7 @@
                     <a href="{% url 'okr:objective_list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/okr/objective/list' in request.path or '/okr/objective/' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-stream w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "OKR Siyahısı" %}</span>
+                        <i class="fas fa-stream w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "OKR Siyahısı" %}</span>
                     </a>
                     
 
@@ -341,14 +341,14 @@
                     <a href="{% url 'okr:kpi_dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/okr/kpi' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-chart-area w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "OKR KPI" %}</span>
+                        <i class="fas fa-chart-area w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "OKR KPI" %}</span>
                     </a>
 
 
                     <a href="{% url 'development-plans:goal-cascade' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/development-plans/goal-cascade' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-stream w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Məqsəd Kaskadlaşması" %}</span>
+                        <i class="fas fa-stream w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Məqsəd Kaskadlaşması" %}</span>
                     </a>
 
                 </div>
@@ -406,10 +406,10 @@
                     class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
                     @click="activeAccordion = activeAccordion === 'acc_45208' ? null : 'acc_45208'">
                     <span class="flex items-center space-x-2 w-full">
-                        <i class="fas fa-building text-indigo-500 group-hover:text-indigo-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <i class="fas fa-building text-indigo-500 group-hover:text-indigo-600 transition-colors text-lg transition-all" :class="sidebarOpen ? 'w-4 mr-2' : 'mx-auto w-full text-center'"></i>
                         <span x-show="sidebarOpen" class="whitespace-normal leading-tight">{% trans "HR İdarəetməsi" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_45208'" x-transition x-cloak class="mt-2 space-y-1">
 
@@ -418,7 +418,7 @@
                     <a href="{% url 'accounts:user-list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path|startswith:'/accounts/users' %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-users w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "İstifadəçi Siyahısı" %}</span>
+                        <i class="fas fa-users w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "İstifadəçi Siyahısı" %}</span>
                     </a>
                     {% endif %}
 
@@ -429,7 +429,7 @@
                     <a href="{% url 'departments:department-list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path|startswith:'/departments/' %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-network-wired w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Şöbələr" %}</span>
+                        <i class="fas fa-network-wired w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Şöbələr" %}</span>
                     </a>
                     {% endif %}
                     
@@ -438,7 +438,7 @@
                     <a href="{% url 'pfile:employee_list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path|startswith:'/pfile' %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-id-card w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Əməkdaş Faylları" %}</span>
+                        <i class="fas fa-id-card w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Əməkdaş Faylları" %}</span>
                     </a>
                     
 
@@ -446,7 +446,7 @@
                     <a href="{% url 'compensation:dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/compensation/' in request.path and 'change' not in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-coins w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Əməkhaqqı Paneli" %}</span>
+                        <i class="fas fa-coins w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Əməkhaqqı Paneli" %}</span>
                     </a>
                     
 
@@ -454,7 +454,7 @@
                     <a href="{% url 'compensation:salary_list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/compensation/salaries/' in request.path and 'change' not in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-money-check-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Maaş Siyahısı" %}</span>
+                        <i class="fas fa-money-check-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Maaş Siyahısı" %}</span>
                     </a>
                     
 
@@ -465,7 +465,7 @@
                     <a href="{% url 'compensation:salary_change' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/compensation/salaries/change' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-edit w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Maaş Dəyişiklikləri" %}</span>
+                        <i class="fas fa-edit w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Maaş Dəyişiklikləri" %}</span>
                     </a>
                     {% endif %}
                     
@@ -474,7 +474,7 @@
                     <a href="{% url 'compensation:bonus_list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/compensation/bonuses' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-gift w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bonuslar" %}</span>
+                        <i class="fas fa-gift w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bonuslar" %}</span>
                     </a>
                     
 
@@ -482,7 +482,7 @@
                     <a href="{% url 'compensation:history' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/compensation/history' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-history w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Kompensasiya Tarixi" %}</span>
+                        <i class="fas fa-history w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Kompensasiya Tarixi" %}</span>
                     </a>
                     
 
@@ -490,7 +490,7 @@
                     <a href="{% url 'leave_attendance:leave_dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/leave/' in request.path and 'request' not in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-plane-departure w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Məzuniyyət Paneli" %}</span>
+                        <i class="fas fa-plane-departure w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Məzuniyyət Paneli" %}</span>
                     </a>
                     
 
@@ -498,7 +498,7 @@
                     <a href="{% url 'leave_attendance:leave_request_create' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/leave/request/create' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-plus-square w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Yeni Məzuniyyət" %}</span>
+                        <i class="fas fa-plus-square w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Yeni Məzuniyyət" %}</span>
                     </a>
                     
 
@@ -506,7 +506,7 @@
                     <a href="{% url 'leave_attendance:leave_request_list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/leave/requests' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-list w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Məzuniyyət Sorğuları" %}</span>
+                        <i class="fas fa-list w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Məzuniyyət Sorğuları" %}</span>
                     </a>
                     
 
@@ -514,7 +514,7 @@
                     <a href="{% url 'leave_attendance:attendance_calendar' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/leave/attendance' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-calendar-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Yoxlama Təqvimi" %}</span>
+                        <i class="fas fa-calendar-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Yoxlama Təqvimi" %}</span>
                     </a>
                     
 
@@ -522,7 +522,7 @@
                     <a href="{% url 'leave_attendance:pending_approvals' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/leave/approvals' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-user-clock w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Gözləyən Təsdiqlər" %}</span>
+                        <i class="fas fa-user-clock w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Gözləyən Təsdiqlər" %}</span>
                     </a>
                     
 
@@ -530,7 +530,7 @@
                     <a href="{% url 'leave_attendance:team_calendar' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/leave/team' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-users-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Komanda Təqvimi" %}</span>
+                        <i class="fas fa-users-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Komanda Təqvimi" %}</span>
                     </a>
                     
 
@@ -538,7 +538,7 @@
                     <a href="{% url 'recruitment:dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/recruitment/' in request.path and '/jobs/' not in request.path and '/applications/' not in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-briefcase w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "İşə Qəbul Paneli" %}</span>
+                        <i class="fas fa-briefcase w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "İşə Qəbul Paneli" %}</span>
                     </a>
                     
 
@@ -546,7 +546,7 @@
                     <a href="{% url 'recruitment:job_create' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/recruitment/jobs/create' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-plus w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Vakansiya Yarat" %}</span>
+                        <i class="fas fa-plus w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Vakansiya Yarat" %}</span>
                     </a>
                     
 
@@ -554,7 +554,7 @@
                     <a href="{% url 'recruitment:candidate_pipeline' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/recruitment/pipeline' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-columns w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Namizəd Boru Xətti" %}</span>
+                        <i class="fas fa-columns w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Namizəd Boru Xətti" %}</span>
                     </a>
                     
 
@@ -562,7 +562,7 @@
                     <a href="{% url 'recruitment:job_list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/recruitment/jobs' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-clipboard-list w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Vakansiyalar" %}</span>
+                        <i class="fas fa-clipboard-list w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Vakansiyalar" %}</span>
                     </a>
                     
 
@@ -570,42 +570,42 @@
                     <a href="{% url 'recruitment:interview_calendar' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/recruitment/interviews' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-calendar-day w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Müsahibə Təqvimi" %}</span>
+                        <i class="fas fa-calendar-day w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Müsahibə Təqvimi" %}</span>
                     </a>
 
 
                     <a href="{% url 'recruitment:ai_screening' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/recruitment/ai-screening' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-robot w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "AI CV Sınağı" %}</span>
+                        <i class="fas fa-robot w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "AI CV Sınağı" %}</span>
                     </a>
 
 
                     <a href="{% url 'recruitment:video_interview_schedule' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/recruitment/video-interview/schedule' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-video w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Video Müsahibə Planla" %}</span>
+                        <i class="fas fa-video w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Video Müsahibə Planla" %}</span>
                     </a>
 
 
                     <a href="{% url 'recruitment:candidate_experience' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/recruitment/candidate-experience' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-smile-beam w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Namizəd Təcrübəsi" %}</span>
+                        <i class="fas fa-smile-beam w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Namizəd Təcrübəsi" %}</span>
                     </a>
 
 
                     <a href="{% url 'compensation:market_benchmarking' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/compensation/market-benchmarking' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-chart-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bazar Müqayisəsi" %}</span>
+                        <i class="fas fa-chart-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bazar Müqayisəsi" %}</span>
                     </a>
 
 
                     <a href="{% url 'compensation:total_rewards' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/compensation/total-rewards' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-gift w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Total Rewards" %}</span>
+                        <i class="fas fa-gift w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Total Rewards" %}</span>
                     </a>
 
                 </div>
@@ -617,53 +617,53 @@
                     class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
                     @click="activeAccordion = activeAccordion === 'acc_73884' ? null : 'acc_73884'">
                     <span class="flex items-center space-x-2 w-full">
-                        <i class="fas fa-heartbeat text-red-500 group-hover:text-red-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <i class="fas fa-heartbeat text-red-500 group-hover:text-red-600 transition-colors text-lg transition-all" :class="sidebarOpen ? 'w-4 mr-2' : 'mx-auto w-full text-center'"></i>
                         <span x-show="sidebarOpen" class="whitespace-normal leading-tight">{% trans "Sağlamlıq və Wellness" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_73884'" x-transition x-cloak class="mt-2 space-y-1">
 
                     <a href="{% url 'wellness:dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/wellness/' in request.path and 'checkups' not in request.path and 'fitness' not in request.path and 'claims' not in request.path and 'challenges' not in request.path and 'steps' not in request.path and 'mental-health' not in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-tachometer-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Dashboard" %}</span>
+                        <i class="fas fa-tachometer-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Dashboard" %}</span>
                     </a>
 
                     <a href="{% url 'wellness:checkup_list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/wellness/checkups' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-stethoscope w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Tibbi Müayinələr" %}</span>
+                        <i class="fas fa-stethoscope w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Tibbi Müayinələr" %}</span>
                     </a>
 
                     <a href="{% url 'wellness:mental_health_survey' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/wellness/mental-health' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-brain w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Mental Sağlamlıq" %}</span>
+                        <i class="fas fa-brain w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Mental Sağlamlıq" %}</span>
                     </a>
 
                     <a href="{% url 'wellness:fitness_programs' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/wellness/fitness' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-dumbbell w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Fitness Proqramları" %}</span>
+                        <i class="fas fa-dumbbell w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Fitness Proqramları" %}</span>
                     </a>
 
                     <a href="{% url 'wellness:medical_claims' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/wellness/claims' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-file-medical w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Tibbi Xərc Tələbləri" %}</span>
+                        <i class="fas fa-file-medical w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Tibbi Xərc Tələbləri" %}</span>
                     </a>
 
                     <a href="{% url 'wellness:challenges' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/wellness/challenges' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-trophy w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Wellness Yarışları" %}</span>
+                        <i class="fas fa-trophy w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Wellness Yarışları" %}</span>
                     </a>
 
                     <a href="{% url 'wellness:step_tracking' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/wellness/steps' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-shoe-prints w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Addım İzləmə" %}</span>
+                        <i class="fas fa-shoe-prints w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Addım İzləmə" %}</span>
                     </a>
 
                 </div>
@@ -675,47 +675,47 @@
                     class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
                     @click="activeAccordion = activeAccordion === 'acc_82830' ? null : 'acc_82830'">
                     <span class="flex items-center space-x-2 w-full">
-                        <i class="fas fa-users-rays text-purple-500 group-hover:text-purple-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <i class="fas fa-users-rays text-purple-500 group-hover:text-purple-600 transition-colors text-lg transition-all" :class="sidebarOpen ? 'w-4 mr-2' : 'mx-auto w-full text-center'"></i>
                         <span x-show="sidebarOpen" class="whitespace-normal leading-tight">{% trans "İşçi Mənsubiyyəti" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_82830'" x-transition x-cloak class="mt-2 space-y-1">
 
                     <a href="{% url 'engagement:engagement_dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path == '/engagement/' %}bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 text-purple-700 dark:text-purple-400 border-l-4 border-purple-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-chart-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Dashboard" %}</span>
+                        <i class="fas fa-chart-line w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Dashboard" %}</span>
                     </a>
 
                     <a href="{% url 'engagement:pulse_surveys' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/engagement/surveys' in request.path %}bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 text-purple-700 dark:text-purple-400 border-l-4 border-purple-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-poll w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Pulse Sorğular" %}</span>
+                        <i class="fas fa-poll w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Pulse Sorğular" %}</span>
                     </a>
 
                     <a href="{% url 'engagement:recognition_wall' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/engagement/recognition' in request.path %}bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 text-purple-700 dark:text-purple-400 border-l-4 border-purple-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-hand-holding-heart w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Recognition Wall" %}</span>
+                        <i class="fas fa-hand-holding-heart w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Recognition Wall" %}</span>
                     </a>
 
                     <a href="{% url 'engagement:anonymous_feedback' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/engagement/feedback' in request.path %}bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 text-purple-700 dark:text-purple-400 border-l-4 border-purple-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-comment-dots w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Anonim Feedback" %}</span>
+                        <i class="fas fa-comment-dots w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Anonim Feedback" %}</span>
                     </a>
 
                     <a href="{% url 'engagement:leaderboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/engagement/leaderboard' in request.path %}bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 text-purple-700 dark:text-purple-400 border-l-4 border-purple-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-trophy w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Leaderboard" %}</span>
+                        <i class="fas fa-trophy w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Leaderboard" %}</span>
                     </a>
 
                     <a href="{% url 'engagement:my_profile' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/engagement/my-profile' in request.path %}bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 text-purple-700 dark:text-purple-400 border-l-4 border-purple-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-user-circle w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Mənim Profilim" %}</span>
+                        <i class="fas fa-user-circle w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Mənim Profilim" %}</span>
                     </a>
 
                 </div>
@@ -726,17 +726,17 @@
                     class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
                     @click="activeAccordion = activeAccordion === 'acc_90547' ? null : 'acc_90547'">
                     <span class="flex items-center space-x-2 w-full">
-                        <i class="fas fa-bell text-orange-500 group-hover:text-orange-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <i class="fas fa-bell text-orange-500 group-hover:text-orange-600 transition-colors text-lg transition-all" :class="sidebarOpen ? 'w-4 mr-2' : 'mx-auto w-full text-center'"></i>
                         <span x-show="sidebarOpen" class="whitespace-normal leading-tight">{% trans "Bildirişlər və Ünsiyyət" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_90547'" x-transition x-cloak class="mt-2 space-y-1">
                     
                     <a href="{% url 'notifications:inbox' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/notifications/inbox' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-inbox w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bildiriş Qutusu" %}</span>
+                        <i class="fas fa-inbox w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bildiriş Qutusu" %}</span>
                     </a>
                     
 
@@ -744,7 +744,7 @@
                     <a href="{% url 'notifications:settings-dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/notifications/settings/dashboard' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-sliders-h w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bildiriş Paneli" %}</span>
+                        <i class="fas fa-sliders-h w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bildiriş Paneli" %}</span>
                     </a>
                     
 
@@ -752,7 +752,7 @@
                     <a href="{% url 'notifications:preferences' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/notifications/preferences' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-user-cog w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bildiriş Seçimləri" %}</span>
+                        <i class="fas fa-user-cog w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bildiriş Seçimləri" %}</span>
                     </a>
                     
 
@@ -763,7 +763,7 @@
                     <a href="{% url 'notifications:sms-providers-list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/notifications/sms/providers' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-sms w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "SMS Təchizatçıları" %}</span>
+                        <i class="fas fa-sms w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "SMS Təchizatçıları" %}</span>
                     </a>
                     {% endif %}
 
@@ -774,7 +774,7 @@
                     <a href="{% url 'notifications:templates-list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/notifications/templates' in request.path and '/emails' not in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-file-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bildiriş Şablonları" %}</span>
+                        <i class="fas fa-file-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Bildiriş Şablonları" %}</span>
                     </a>
                     {% endif %}
 
@@ -785,7 +785,7 @@
                     <a href="{% url 'notifications:email-templates' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/notifications/templates/emails' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-envelope w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Email Şablonları" %}</span>
+                        <i class="fas fa-envelope w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Email Şablonları" %}</span>
                     </a>
                     {% endif %}
 
@@ -794,7 +794,7 @@
                     <a href="{% url 'notifications:delivery_logs' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/notifications/delivery-logs/' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-truck w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Göndəriş Logları" %}</span>
+                        <i class="fas fa-truck w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Göndəriş Logları" %}</span>
                     </a>
                     {% endif %}
                     
@@ -805,7 +805,7 @@
                     <a href="{% url 'notifications:test' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/notifications/test' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-vial w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Test Bildirişləri" %}</span>
+                        <i class="fas fa-vial w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Test Bildirişləri" %}</span>
                     </a>
                     
 
@@ -813,7 +813,7 @@
                     <a href="{% url 'notifications:bulk-notification' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/notifications/bulk' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-bullhorn w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Kütləvi Bildirişlər" %}</span>
+                        <i class="fas fa-bullhorn w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Kütləvi Bildirişlər" %}</span>
                     </a>
                     
                 </div>
@@ -825,17 +825,17 @@
                     class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
                     @click="activeAccordion = activeAccordion === 'acc_102519' ? null : 'acc_102519'">
                     <span class="flex items-center space-x-2 w-full">
-                        <i class="fas fa-user-tie text-teal-500 group-hover:text-teal-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <i class="fas fa-user-tie text-teal-500 group-hover:text-teal-600 transition-colors text-lg transition-all" :class="sidebarOpen ? 'w-4 mr-2' : 'mx-auto w-full text-center'"></i>
                         <span x-show="sidebarOpen" class="whitespace-normal leading-tight">{% trans "Onboarding & Adaptasiya" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_102519'" x-transition x-cloak class="mt-2 space-y-1">
                     
                     <a href="{% url 'onboarding:dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path|startswith:'/onboarding/dashboard' %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-rocket w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Onboarding paneli" %}</span>
+                        <i class="fas fa-rocket w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Onboarding paneli" %}</span>
                     </a>
                     
 
@@ -843,7 +843,7 @@
                     <a href="{% url 'onboarding:process-list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path|startswith:'/onboarding/processes' %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-clipboard-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Proseslər" %}</span>
+                        <i class="fas fa-clipboard-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Proseslər" %}</span>
                     </a>
                     
 
@@ -851,7 +851,7 @@
                     <a href="{% url 'onboarding:template-library' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path|startswith:'/onboarding/templates' %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-layer-group w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Şablon kitabxanası" %}</span>
+                        <i class="fas fa-layer-group w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Şablon kitabxanası" %}</span>
                     </a>
                     
                 </div>
@@ -862,17 +862,17 @@
                     class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
                     @click="activeAccordion = activeAccordion === 'acc_107087' ? null : 'acc_107087'">
                     <span class="flex items-center space-x-2 w-full">
-                        <i class="fas fa-file-alt text-gray-600 group-hover:text-gray-700 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <i class="fas fa-file-alt text-gray-600 group-hover:text-gray-700 transition-colors text-lg transition-all" :class="sidebarOpen ? 'w-4 mr-2' : 'mx-auto w-full text-center'"></i>
                         <span x-show="sidebarOpen" class="whitespace-normal leading-tight">{% trans "Hesabat & Export" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_107087'" x-transition x-cloak class="mt-2 space-y-1">
                     
                     <a href="{% url 'reports:blueprint-list' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path|startswith:'/reports/blueprints' %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-diagram-project w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Şablonlar" %}</span>
+                        <i class="fas fa-diagram-project w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Şablonlar" %}</span>
                     </a>
                     
 
@@ -880,7 +880,7 @@
                     <a href="{% url 'reports:schedule-center' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path|startswith:'/reports/schedules' %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-calendar-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Planlaşdırılmış exportlar" %}</span>
+                        <i class="fas fa-calendar-check w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Planlaşdırılmış exportlar" %}</span>
                     </a>
                     
                 </div>
@@ -891,17 +891,17 @@
                     class="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-gray-900 font-bold dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 group"
                     @click="activeAccordion = activeAccordion === 'acc_110514' ? null : 'acc_110514'">
                     <span class="flex items-center space-x-2 w-full">
-                        <i class="fas fa-user-shield text-red-500 group-hover:text-red-600 transition-colors text-lg transition-all" :class="sidebarOpen ? \'w-4 mr-2\' : \'mx-auto w-full text-center\'"></i>
+                        <i class="fas fa-user-shield text-red-500 group-hover:text-red-600 transition-colors text-lg transition-all" :class="sidebarOpen ? 'w-4 mr-2' : 'mx-auto w-full text-center'"></i>
                         <span x-show="sidebarOpen" class="whitespace-normal leading-tight">{% trans "Təhlükəsizlik" %}</span>
                     </span>
-                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{\'rotate-180\': open}"></i>
+                    <i class="fas fa-chevron-down text-xs transition-transform duration-200 text-gray-500" x-show="sidebarOpen" :class="{'rotate-180': open}"></i>
                 </button>
                 <div x-show="activeAccordion === 'acc_110514'" x-transition x-cloak class="mt-2 space-y-1">
                     
                     <a href="{% url 'accounts:security' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if request.path|startswith:'/accounts/security' %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-lock w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Hesab təhlükəsizliyi" %}</span>
+                        <i class="fas fa-lock w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Hesab təhlükəsizliyi" %}</span>
                     </a>
                     
 
@@ -909,7 +909,7 @@
                     <a href="{% url 'audit:security-dashboard' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/audit/security' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-shield-virus w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Təhlükəsizlik Paneli" %}</span>
+                        <i class="fas fa-shield-virus w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Təhlükəsizlik Paneli" %}</span>
                     </a>
                     
 
@@ -917,7 +917,7 @@
                     <a href="{% url 'audit:log_search' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/audit/log-search/' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <i class="fas fa-search w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? \'mr-3\' : \'mx-auto text-xl\'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Audit Log Axtarışı" %}</span>
+                        <i class="fas fa-search w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">{% trans "Audit Log Axtarışı" %}</span>
                     </a>
                     
                 </div>

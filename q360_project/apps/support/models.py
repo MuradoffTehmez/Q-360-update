@@ -91,3 +91,36 @@ class TicketComment(models.Model):
 
     def __str__(self):
         return f"{self.ticket.title} - Şərh"
+
+
+class TicketCategory(models.Model):
+    name = models.CharField(_('Kateqoriya Adı'), max_length=100)
+    description = models.TextField(_('Təsvir'), blank=True)
+    is_active = models.BooleanField(_('Aktivdir'), default=True)
+
+    class Meta:
+        verbose_name = _('Bilet Kateqoriyası')
+        verbose_name_plural = _('Bilet Kateqoriyaları')
+
+class KnowledgeArticle(models.Model):
+    title = models.CharField(_('Məqalə Başlığı'), max_length=200)
+    content = models.TextField(_('Məzmun'))
+    category = models.ForeignKey(TicketCategory, on_delete=models.SET_NULL, null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='authored_articles')
+    created_at = models.DateTimeField(_('Yaradılma Tarixi'), auto_now_add=True)
+    views_count = models.IntegerField(_('Baxış Sayı'), default=0)
+
+    class Meta:
+        verbose_name = _('Bilik Məqaləsi')
+        verbose_name_plural = _('Bilik Məqalələri')
+
+class SLAPolicy(models.Model):
+    name = models.CharField(_('SLA Siyasəti'), max_length=100)
+    priority = models.CharField(max_length=20, choices=[('low', 'Aşağı'), ('medium', 'Orta'), ('high', 'Yüksək'), ('critical', 'Kritik')])
+    response_time_hours = models.IntegerField(_('Cavablandırma Müddəti (saat)'))
+    resolution_time_hours = models.IntegerField(_('Həll Müddəti (saat)'))
+
+    class Meta:
+        verbose_name = _('SLA Siyasəti')
+        verbose_name_plural = _('SLA Siyasətləri')
+

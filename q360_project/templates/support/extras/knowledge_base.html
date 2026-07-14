@@ -1,0 +1,39 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Tez-tez verilən suallar və faydalı məlumatlar." %}</p>
+        </div>
+        <div>
+            <div class="relative">
+                <input type="text" placeholder="Axtar..." class="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for article in articles %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition cursor-pointer">
+            <h3 class="text-lg font-bold text-blue-600 dark:text-blue-400 mb-2">{{ article.title }}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{{ article.content }}</p>
+            <div class="text-xs text-gray-500 dark:text-gray-400 flex justify-between items-center mt-4">
+                <span>{{ article.category.name|default:"Ümumi" }}</span>
+                <span><i class="fas fa-eye mr-1"></i> {{ article.views_count }}</span>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-12 text-center text-gray-500 dark:text-gray-400">
+            <i class="fas fa-book text-4xl mb-3 opacity-20"></i>
+            <p>{% trans "Bilik bazası məqaləsi tapılmadı." %}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

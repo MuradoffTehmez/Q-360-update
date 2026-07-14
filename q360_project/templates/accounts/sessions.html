@@ -34,7 +34,7 @@
                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                     {% for s in sessions %}
                     <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300 font-mono">{{ s.session_key|default:s.key|truncatechars:14 }}</td>
+                        <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300 font-mono">{{ s.session_key|truncatechars:14 }}</td>
                         <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">{{ s.ip_address|default:"—" }}</td>
                         <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">{{ s.user_agent|default:"—"|truncatechars:60 }}</td>
                         <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">{{ s.expire_date|default:"—" }}</td>

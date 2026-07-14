@@ -1,0 +1,7 @@
+/accounts/sessions/
+/accounts/devices/
+/accounts/activity/
+/accounts/api-tokens/
+/accounts/preferences/
+/accounts/preferences/appearance/
+/accounts/preferences/notifications/

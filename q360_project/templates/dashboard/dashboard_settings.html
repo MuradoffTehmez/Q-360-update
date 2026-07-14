@@ -1,0 +1,45 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Dashboard Parametrləri" %} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            <i class="fas fa-sliders mr-2 text-blue-600"></i>{% trans "Dashboard Parametrləri" %}
+        </h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Əsas panelin fərdi görünüş parametrləri" %}</p>
+    </div>
+
+    <form method="post" class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 max-w-2xl space-y-5">
+        {% csrf_token %}
+        <div>
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1" for="default_range">{% trans "Defolt vaxt aralığı" %}</label>
+            <select name="default_range" id="default_range" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white">
+                {% for value, label in setting.RANGE_CHOICES %}
+                <option value="{{ value }}" {% if setting.default_range == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <label class="flex items-center justify-between cursor-pointer">
+            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">{% trans "KPI kartlarını göstər" %}</span>
+            <input type="checkbox" name="show_kpi_cards" {% if setting.show_kpi_cards %}checked{% endif %} class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+        </label>
+        <label class="flex items-center justify-between cursor-pointer">
+            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">{% trans "Trend qrafikini göstər" %}</span>
+            <input type="checkbox" name="show_trend_chart" {% if setting.show_trend_chart %}checked{% endif %} class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+        </label>
+        <div>
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1" for="refresh_interval_sec">{% trans "Yenilənmə intervalı (saniyə)" %}</label>
+            <input type="number" min="30" step="30" name="refresh_interval_sec" id="refresh_interval_sec" value="{{ setting.refresh_interval_sec }}"
+                   class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white">
+        </div>
+        <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow transition-colors">
+            <i class="fas fa-save mr-2"></i>{% trans "Yadda saxla" %}
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block chartjs %}{% endblock %}

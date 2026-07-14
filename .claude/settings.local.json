@@ -79,7 +79,8 @@
       "Bash(do echo \"=== $app ===\")",
       "Bash(docker compose *)",
       "Bash(tee audit-before.log)",
-      "Bash(MSYS_NO_PATHCONV=1 docker compose exec -T web python show_dup_queries.py /pfile/employees/)"
+      "Bash(MSYS_NO_PATHCONV=1 docker compose exec -T web python show_dup_queries.py /pfile/employees/)",
+      "Bash(MSYS_NO_PATHCONV=1 python check_inline_js.py /dashboard/ai-management/ /compensation/market-benchmarking/ /recruitment/candidate-experience/ /reports/custom-builder/)"
     ],
     "deny": [],
     "ask": []

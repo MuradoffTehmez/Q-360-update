@@ -24,6 +24,134 @@ HƏR ZAMAN bu qaydalara bax və yalnız onlara uyğun kod yaz!
 
 ---
 
+
+## KRİTİK DOĞRULAMA: 161 Səhifə Hesabatının Real Vəziyyəti
+
+ƏVVƏLKİ "Yeni Modulların Yekun Hesabatı"nda 161 səhifənin tikildiyi 
+iddia olunub, AMMA HEÇ BİRİ saytda işləmir — bütün URL-lər mövcud deyil. 
+Bu, əvvəlki hesabatın faktiki icra olmadan (və ya yarımçıq icra ilə) 
+yazıldığını göstərir. Kök səbəbi TAM şəffaflıqla tap və faktiki 
+vəziyyəti doğrula. HEÇ NƏYİ gizlətmə, yumşaltma, ümumiləşdirmə — yalnız 
+əmrlərin əsl çıxışına əsaslan, nəsr izahatına yox.
+
+### FAZA 1 — KÖK SƏBƏB DİAQNOZU (hər addımın TAM çıxışını göstər)
+
+1. **FAYLLAR HƏQİQƏTƏN MÖVCUDDURMU?**
+   `find apps/ -maxdepth 1 -type d -newer manage.py`
+   Hesabatda adı çəkilən bütün yeni app qovluqlarının (system_settings, 
+   superuser_tools, workflow_engine, approval_engine, access_control, 
+   policy_engine, feature_flags və digərləri) fayl sistemində REAL 
+   mövcud olub-olmadığını tək-tək yoxla: `ls -la apps/<app_adı>/`
+
+2. **INSTALLED_APPS YOXLAMASI**
+   `config/settings.py`-da INSTALLED_APPS-ın tam siyahısını göstər. 
+   Yuxarıdakı bütün yeni app-ların bu siyahıda olub-olmadığını 
+   təsdiqlə. Yoxdursa, bu, əsas kök səbəb ola bilər.
+
+3. **URL QEYDİYYATI YOXLAMASI**
+   `config/urls.py`-nın TAM məzmununu göstər. Hər yeni app-ın urls.py-nin 
+   include() edilib-edilmədiyini təsdiqlə.
+   `python manage.py shell -c "from django.urls import get_resolver; [print(p) for p in get_resolver().url_patterns]"` 
+   ilə REAL qeydiyyatdan keçmiş bütün URL-ləri çıxar (django-extensions 
+   varsa `show_urls` istifadə et) və bunu 161-lik planla müqayisə et.
+
+4. **MİQRASİYA VƏZİYYƏTİ**
+   `python manage.py showmigrations` — bütün yeni app-lar üçün 
+   nəticəni göstər, [X] işarəli (tətbiq olunmuş) olub-olmadığını təsdiqlə.
+
+5. **KONTEYNER VƏZİYYƏTİ**
+   `docker compose exec web python -c "import apps.system_settings"` 
+   (hər yeni app üçün təkrarla) — ImportError verirsə, konteyner bu 
+   app-ı tanımır.
+   `docker compose exec web sh -c "find /app/apps -maxdepth 1 -type d"` 
+   ilə konteynerin İÇİNDƏ bu qovluqların olub-olmadığını yoxla (volume 
+   mapping problemi ola bilər).
+
+6. **SERVER XƏTALARI**
+   `docker compose logs web --tail=200 | grep -i "error\|traceback\|exception"` 
+   — server başlayanda import/migration xətası olub-olmadığını göstər.
+
+7. **GİT VƏZİYYƏTİ**
+   `git log --oneline -20` və `git status` — bu 161 səhifəyə aid 
+   fayllar HƏQİQƏTƏN commit edilib mi, lokal (uncommitted) qalıb, 
+   yoxsa heç yaradılmayıb. (Qeyd: repoya push əvvəlcədən istifadəçi 
+   tərəfindən edilib, bu addım yalnız NƏ-nin push edildiyini görmək 
+   üçündür.)
+
+### FAZA 2 — TAM DOĞRULAMA (planla faktiki vəziyyəti müqayisə et)
+
+1. **URL-BY-URL MÜQAYİSƏ:** CLAUDE.md-dəki 28 batch-lik tam planı 
+   (161 URL) götür, hər birini faktiki qeydiyyatdan keçmiş URL 
+   siyahısı ilə tək-tək müqayisə et. CƏDVƏL: URL | Planda var? | 
+   Faktiki mövcuddur? | Qeyd. Xüsusilə bu uyğunsuzluqları araşdır:
+   - Batch 3: `/dashboard/export/` itibmi?
+   - Batch 4: `forms/`, `calibration/`, `weights/` niyə yoxdur?
+   - Batch 13: `/feedback/` vs `/continuous-feedback/` namespace ziddiyyəti
+   - Batch 16: `access-requests` vs `requests`, `access-history` vs 
+     `history` adlandırma fərqi
+
+2. **TEST CLIENT İLƏ STATUS YOXLAMASI:** Bütün 161 URL-i Django test 
+   client (auth session ilə) vasitəsilə tək-tək sorğula, HƏR BİRİNİN 
+   status kodunu CƏDVƏL şəklində göstər (200/302/403/404/405/500). 
+   "95% uğurlu" kimi ümumiləşdirmə QADAĞANDIR — tam siyahı tələb olunur.
+
+3. **TƏHLÜKƏSİZLİK TESTİ (KRİTİK, prioritet #1):** Superuser-only 
+   işarələnən BÜTÜN `/files/`, `/ai/`, `/system/`, `/imports/`, 
+   `/exports/`, `/admin-panel/`, `/settings/*`, `/access-control/*`, 
+   `/policy-engine/*` səhifələrini ADİ (superuser olmayan) test 
+   istifadəçisi ilə sorğula. Hər biri 403 qaytarmalıdır. Əgər hər 
+   hansı biri 200 qaytarırsa (icazəsiz giriş mümkündürsə), bunu 
+   "🔴 KRİTİK TƏHLÜKƏSİZLİK PROBLEMİ" kimi hesabatın ƏN BAŞINDA, hər 
+   şeydən əvvəl bildir.
+
+4. `python manage.py check` və `python manage.py showmigrations --list` 
+   çıxışını TAM, kəsilmədən göstər.
+
+5. STUB kimi işarələnən səhifələrin UI-də istifadəçiyə real 
+   funksionallıq kimi deyil, "Tezliklə/Hazırlanır" statusu göstərdiyini 
+   hər biri üçün ekran görüntüsü ilə təsdiqlə (əgər səhifə ümumiyyətlə 
+   açılırsa).
+
+### NƏTİCƏ TƏLƏBLƏRİ
+- Yalnız FAZA 1 və 2-dəki əmrlərin ƏSL ÇIXIŞINA əsaslan — izahat/nəsr 
+  minimuma endirilsin, hər iddia bir əmr çıxışı ilə dəstəklənsin
+- Fayllar mövcud deyilsə: açıq şəkildə "ƏVVƏLKİ HESABAT YANLIŞ İDDİA 
+  EDİB, FAYLLAR YARADILMAYIB" yaz
+- Fayllar mövcuddur amma qoşulmayıbsa: dəqiq HANSI addımın 
+  (INSTALLED_APPS / urls.py include / migration / container restart) 
+  buraxıldığını göstər
+- Əvvəlki hesabatdakı HƏR bir iddia (hər batch üçün "✅ TAMAMLANDI" 
+  statusu daxil) bu doğrulama ilə təsdiqlənmirsə, "TƏSDİQLƏNMƏDİ" 
+  kimi açıq işarələ — batch-batch əsasında
+- Kök səbəb tam aydınlaşdıqdan SONRA, düzəliş planını təklif et 
+  (mətn şəklində, kod yazma, tətbiq etmə) — bu tapşırığın məqsədi 
+  YALNIZ diaqnoz və doğrulamadır, düzəliş deyil
+- Ümumiləşdirmə ifadələrindən ("uğurla tamamlandı", "əksəriyyəti 
+  işləyir" və s.) tamamilə çəkin — yalnız rəqəm və faktiki nəticə
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Yeni Modulların Tikilməsi (161 Səhifə) — Fazalı Plan
 
 Aşağıdakı 161 URL Q360-da hələ mövcud deyil, tikilməli olan yeni 

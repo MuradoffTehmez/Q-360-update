@@ -235,14 +235,15 @@ function userListPagination() {
 
                 const data = await response.json();
 
-                // Handle both DRF pagination formats
-                const results = data.results || data;
+                // Handle both DRF pagination formats ({status,data:{results}} sarğısı daxil)
+                const payload = data.data || data;
+                const results = (payload.results || payload || []).filter?.(Boolean) ?? [];
 
                 if (results && results.length > 0) {
                     this.users = [...this.users, ...results];
 
                     // Check if there are more pages
-                    if (data.next) {
+                    if (payload.next || data.next) {
                         this.hasMore = true;
                     } else {
                         // Alternative: check if we received less than page size

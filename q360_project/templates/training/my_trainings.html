@@ -165,7 +165,9 @@ function myTrainingsPage() {
                     throw new Error('Failed to load trainings');
                 }
                 const data = await response.json();
-                this.trainings[status] = data.results || data || [];
+                // API cavabı {status, data:{results}} sarğısı ilə gəlir
+                const payload = data.data || data;
+                this.trainings[status] = (payload.results || payload || []).filter(Boolean);
                 this.tabCounts[status] = this.trainings[status].length;
             } catch (error) {
                 console.error(error);

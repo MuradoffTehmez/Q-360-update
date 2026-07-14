@@ -164,10 +164,9 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- Create Template Modal -->
-<div x-show="openModal" class="modal fade show" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);" aria-modal="true" role="dialog" x-transition>
+<!-- Create Template Modal (x-data konteynerinin daxilində olmalıdır ki, openModal scope-da tapılsın) -->
+<div x-show="openModal" x-cloak class="modal fade show" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);" aria-modal="true" role="dialog" x-transition>
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -212,6 +211,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 
 <script>

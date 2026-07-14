@@ -444,6 +444,10 @@
     </div>
 </div>
 
+{% endblock %}
+
+{# jQuery base.html-in sonunda yüklənir — bu skript extra_js blokunda olmalıdır ki, $ mövcud olsun #}
+{% block extra_js %}
 <script>
 $(function() {
     // Chart data from Django backend

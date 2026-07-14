@@ -262,8 +262,10 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.UserRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '5/min',     # 5 requests per minute for anonymous users
-        'user': '60/min',    # 60 requests per minute for authenticated users
+        'anon': '30/min',    # anonim istifadəçilər üçün dəqiqədə 30 sorğu
+        # 60/min UI-nin öz API çağırışlarını (bildirişlər + səhifə məlumatları) bloklayıb
+        # 429 xətaları yaradırdı — hər səhifə yüklənməsi 2-4 API sorğusu edir
+        'user': '300/min',   # autentifikasiyalı istifadəçilər üçün dəqiqədə 300 sorğu
         'login': '5/min',    # 5 login attempts per minute (used for login endpoints)
     },
 }

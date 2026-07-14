@@ -173,7 +173,9 @@ function trainingCatalogPage() {
                     throw new Error('Failed to load trainings');
                 }
                 const data = await response.json();
-                this.trainings = data.results || data || [];
+                // API cavabı {status, data:{results}} sarğısı ilə gəlir
+                const payload = data.data || data;
+                this.trainings = (payload.results || payload || []).filter(Boolean);
             } catch (error) {
                 console.error(error);
                 this.trainings = [];

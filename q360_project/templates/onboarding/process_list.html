@@ -31,7 +31,7 @@
 
     <div class="card shadow-sm border-0">
         <div class="card-body">
-            <form method="get" class="row g-3 align-items-end mb-4">
+            <form method="get" class="row g-3 align-items-end mb-4" data-ajax-filter data-ajax-target="#process-results">
                 <div class="col-md-3">
                     <label class="form-label">{% trans "Status" %}</label>
                     <select class="form-select" name="status">
@@ -70,6 +70,7 @@
                 </div>
             </form>
 
+            <div id="process-results">
             <div class="table-responsive">
                 <table class="table align-middle">
                     <thead class="table-light">
@@ -144,6 +145,7 @@
                 </ul>
             </nav>
             {% endif %}
+            </div><!-- /#process-results -->
         </div>
     </div>
 </div>

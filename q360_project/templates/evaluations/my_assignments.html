@@ -68,7 +68,7 @@
 
 <!-- Filters -->
 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
-    <form method="get">
+    <form method="get" data-ajax-filter data-ajax-target="#assignment-results">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
                 <label for="statusFilter" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Status</label>
@@ -111,7 +111,7 @@
 </div>
 
 <!-- Assignments List -->
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700" id="assignment-results">
     <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
         <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
             <i class="fas fa-list mr-2 text-blue-600"></i>Qiymətləndirmə Tapşırıqları

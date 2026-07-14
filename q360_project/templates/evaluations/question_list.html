@@ -118,7 +118,7 @@
     <!-- Filters -->
     <div class="card filter-card shadow-lg mb-4">
         <div class="card-body">
-            <form method="get" id="filterForm">
+            <form method="get" id="filterForm" data-ajax-filter data-ajax-target="#question-results">
                 <div class="row align-items-end">
                     <div class="col-md-5 mb-3 mb-md-0">
                         <label class="form-label"><i class="fas fa-search me-2"></i>Axtar</label>
@@ -153,6 +153,7 @@
     </div>
 
     <!-- Questions List -->
+    <div id="question-results">
     <div class="row">
         {% for question in questions %}
         <div class="col-lg-6 mb-4">
@@ -293,6 +294,7 @@
         </ul>
     </nav>
     {% endif %}
+    </div><!-- /#question-results -->
 
     <!-- Quick Tips -->
     <div class="card shadow-sm mt-4 border-info">

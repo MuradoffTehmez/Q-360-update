@@ -53,7 +53,7 @@
 
     <!-- Filter Section -->
     <div class="filter-section">
-        <form method="get" class="form-row align-items-end">
+        <form method="get" class="form-row align-items-end" data-ajax-filter data-ajax-target="#request-results">
             <div class="col-md-3">
                 <label>{% trans "Status" %}</label>
                 <select name="status" class="form-control">
@@ -127,6 +127,7 @@
     </div>
 
     <!-- Leave Requests List -->
+    <div id="request-results">
     <div class="row">
         {% for request in requests %}
         <div class="col-md-6">
@@ -250,6 +251,7 @@
         </div>
     </div>
     {% endif %}
+    </div><!-- /#request-results -->
 </div>
 
 <!-- Details Modal -->

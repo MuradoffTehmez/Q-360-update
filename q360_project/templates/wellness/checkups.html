@@ -26,10 +26,11 @@
     <!-- Filters -->
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-body">
-            <form method="get" class="row g-3">
+            <form method="get" class="row g-3" data-ajax-filter data-ajax-target="#checkup-results">
                 <div class="col-md-4">
                     <label class="form-label">{% trans "Status" %}</label>
-                    <select name="status" class="form-select" onchange="this.form.submit()">
+                    {# requestSubmit() submit hadisəsini işə salır — AJAX intersepti üçün vacibdir #}
+                    <select name="status" class="form-select" onchange="this.form.requestSubmit()">
                         <option value="">{% trans "Hamısı" %}</option>
                         <option value="scheduled" {% if status_filter == 'scheduled' %}selected{% endif %}>{% trans "Planlaşdırılıb" %}</option>
                         <option value="completed" {% if status_filter == 'completed' %}selected{% endif %}>{% trans "Tamamlanıb" %}</option>
@@ -42,7 +43,7 @@
     </div>
 
     <!-- Checkups List -->
-    <div class="row">
+    <div class="row" id="checkup-results">
         {% if checkups %}
             {% for checkup in checkups %}
             <div class="col-md-6 col-lg-4 mb-4">

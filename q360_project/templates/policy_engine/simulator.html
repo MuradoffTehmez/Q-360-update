@@ -1,0 +1,57 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Siyasət qaydalarını test etmək üçün simulyasiya mühiti." %}</p>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-6">
+        <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+            <h3 class="text-blue-800 dark:text-blue-300 font-bold mb-2 flex items-center">
+                <i class="fas fa-info-circle mr-2"></i> STUB SƏHİFƏ
+            </h3>
+            <p class="text-sm text-blue-600 dark:text-blue-400">
+                Real simulyasiya mühərriki ayrıca spesifikasiya və frontend vizualizasiyası (məsələn, JSONLogic validatoru) tələb edir. Gələcək mərhələlərdə bu hissə tam funksional vizual redaktor və test aləti ilə əvəz olunacaqdır.
+            </p>
+        </div>
+
+        <form class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Test Ediləcək Siyasət</label>
+                <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <option>Siyasət Seçin...</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Giriş Məlumatları (JSON Formatında)</label>
+                <textarea rows="6" class="w-full font-mono text-sm rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder='{
+    "user_role": "employee",
+    "leave_days": 10,
+    "department": "IT"
+}'></textarea>
+            </div>
+
+            <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                <button type="button" class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded hover:bg-indigo-700 transition">
+                    <i class="fas fa-play mr-2"></i> Simulyasiyanı Başlat
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-8">
+            <h4 class="text-md font-bold text-gray-900 dark:text-white mb-3">Nəticə</h4>
+            <div class="bg-gray-900 text-green-400 font-mono text-sm p-4 rounded-lg min-h-[100px] flex items-center justify-center">
+                Simulyasiya hələ işə salınmayıb.
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

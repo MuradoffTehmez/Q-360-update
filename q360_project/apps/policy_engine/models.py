@@ -34,3 +34,37 @@ class PolicyVersion(TimeStampedModel):
 
     def __str__(self):
         return f"{self.policy.name} - v{self.version_number}"
+
+
+class PolicyRule(TimeStampedModel):
+    version = models.ForeignKey(PolicyVersion, on_delete=models.CASCADE, related_name='rules', verbose_name='Versiya')
+    name = models.CharField('Qayda adı', max_length=255)
+    description = models.TextField('Açıqlama', blank=True)
+    condition_json = models.JSONField('Şərt (JSON)', default=dict, blank=True)
+    action_json = models.JSONField('Nəticə (JSON)', default=dict, blank=True)
+    order = models.PositiveIntegerField('İcra sırası', default=0)
+
+    class Meta:
+        verbose_name = 'Siyasət Qaydası'
+        verbose_name_plural = 'Siyasət Qaydaları'
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.version} - {self.name}"
+
+
+class PolicyLog(TimeStampedModel):
+    policy = models.ForeignKey(Policy, on_delete=models.CASCADE, related_name='logs', verbose_name='Siyasət')
+    version = models.ForeignKey(PolicyVersion, on_delete=models.SET_NULL, null=True, verbose_name='Versiya')
+    action = models.CharField('Əməliyyat', max_length=100)
+    actor = models.CharField('İcraçı', max_length=100)
+    details = models.JSONField('Detallar', default=dict, blank=True)
+
+    class Meta:
+        verbose_name = 'Siyasət Jurnalı'
+        verbose_name_plural = 'Siyasət Jurnalları'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.policy.name} - {self.action}"
+

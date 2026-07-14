@@ -1,0 +1,63 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Gələcək vakansiyalar üçün potensial namizəd bazası." %}</p>
+        </div>
+        <div>
+            <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium shadow-sm">
+                <i class="fas fa-plus mr-2"></i>{% trans "Namizəd Əlavə Et" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead class="bg-gray-50 dark:bg-gray-700/50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Namizəd" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Bacarıqlar" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Mənbə" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Əlavə Edilib" %}</th>
+                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "İdarə Et" %}</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                {% for person in pool %}
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-750">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-bold text-gray-900 dark:text-white">{{ person.first_name }} {{ person.last_name }}</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400">{{ person.email }}</div>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        {{ person.skills|truncatechars:50|default:"-" }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {{ person.source|default:"-" }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {{ person.added_at|date:"d M Y" }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <button class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"><i class="fas fa-eye"></i></button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+                        <i class="fas fa-database text-4xl mb-3 opacity-20"></i>
+                        <p>{% trans "Talent Pool boşdur." %}</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1040,3 +1040,25 @@ class Referral(models.Model):
             self.reward_status = 'paid'
             self.reward_paid_date = payment_date or timezone.now().date()
             self.save()
+
+
+class TalentPool(models.Model):
+    """
+    Candidates stored in talent pool for future opportunities.
+    """
+    first_name = models.CharField(_('Ad'), max_length=100)
+    last_name = models.CharField(_('Soyad'), max_length=100)
+    email = models.EmailField(_('E-poçt'))
+    phone = models.CharField(_('Telefon'), max_length=20, blank=True)
+    skills = models.TextField(_('Bilik və Bacarıqlar'), blank=True)
+    resume = models.FileField(_('CV/Rezume'), upload_to='talent_pool/', null=True, blank=True)
+    source = models.CharField(_('Mənbə'), max_length=50, blank=True)
+    notes = models.TextField(_('Qeydlər'), blank=True)
+    added_at = models.DateTimeField(_('Əlavə Edilmə Tarixi'), auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Talent Pool Namizədi')
+        verbose_name_plural = _('Talent Pool')
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"

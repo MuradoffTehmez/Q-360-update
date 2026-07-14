@@ -1,6 +1,7 @@
 """URLs for Recruitment module."""
 from django.urls import path
 from . import views
+from . import views_extras
 
 app_name = 'recruitment'
 
@@ -28,4 +29,11 @@ urlpatterns = [
     path('ai-screening/', views.ai_screening, name='ai_screening'),
     path('video-interview-schedule/', views.video_interview_schedule, name='video_interview_schedule'),
     path('candidate-experience/', views.candidate_experience, name='candidate_experience'),
+
+    # Batch 23
+    path('candidates/', views_extras.candidates_list, name='candidates'),
+    path('offers/', views_extras.offers_list, name='offers'),
+    path('talent-pool/', views_extras.talent_pool_list, name='talent_pool'),
+    path('referrals/', views_extras.referrals_list, name='referrals'),
+    path('interview-feedback/', views_extras.interview_feedback_list, name='interview_feedback'),
 ]

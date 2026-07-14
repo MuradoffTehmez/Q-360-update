@@ -1,0 +1,69 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "İşçilərdən daxil olan sentiment rəylərinin tarixçəsi." %}</p>
+        </div>
+        <div>
+            <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium shadow-sm">
+                <i class="fas fa-filter mr-2"></i>{% trans "Filterlə" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead class="bg-gray-50 dark:bg-gray-700/50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "İşçi" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Kateqoriya" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Sentiment" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Tarix" %}</th>
+                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "İdarə Et" %}</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                {% for item in history %}
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-750">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-bold text-gray-900 dark:text-white">{{ item.user.get_full_name|default:"Anonim" }}</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400">{{ item.user.department.name|default:"-" }}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                        {{ item.get_category_display }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        {% if item.sentiment_score > 0.5 %}
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"><i class="fas fa-smile mr-1"></i> Pozitiv</span>
+                        {% elif item.sentiment_score < -0.5 %}
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"><i class="fas fa-frown mr-1"></i> Neqativ</span>
+                        {% else %}
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300"><i class="fas fa-meh mr-1"></i> Neytral</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {{ item.created_at|date:"d M Y, H:i" }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <button class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"><i class="fas fa-eye"></i></button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+                        <i class="fas fa-history text-4xl mb-3 opacity-20"></i>
+                        <p>{% trans "Hələ tarixçə yoxdur." %}</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

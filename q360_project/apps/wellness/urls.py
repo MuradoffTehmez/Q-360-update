@@ -1,6 +1,7 @@
 """URLs for Wellness module."""
 from django.urls import path
 from . import views
+from . import views_extras
 
 app_name = 'wellness'
 
@@ -35,4 +36,9 @@ urlpatterns = [
 
     # Health Score
     path('health-score/', views.health_score_history, name='health_score_history'),
+
+    # Batch 25
+    path('benefits/', views_extras.benefits_list, name='benefits'),
+    path('health-goals/', views_extras.health_goals_list, name='health_goals'),
+    path('vaccinations/', views_extras.vaccinations_list, name='vaccinations'),
 ]

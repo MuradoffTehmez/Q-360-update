@@ -713,3 +713,41 @@ class StepTracking(models.Model):
 
     def __str__(self):
         return f"{self.employee.get_full_name()} - {self.steps} addım ({self.tracking_date})"
+
+
+class Benefit(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wellness_benefits')
+    name = models.CharField(_('Müavinət/Sığorta Adı'), max_length=200)
+    provider = models.CharField(_('Təminatçı'), max_length=100)
+    coverage_details = models.TextField(_('Əhatə Dairəsi'), blank=True)
+    start_date = models.DateField(_('Başlanğıc Tarixi'))
+    end_date = models.DateField(_('Bitmə Tarixi'), null=True, blank=True)
+    is_active = models.BooleanField(_('Aktivdir'), default=True)
+
+    class Meta:
+        verbose_name = _('Müavinət/Sığorta')
+        verbose_name_plural = _('Müavinətlər')
+
+class HealthGoal(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='health_goals')
+    title = models.CharField(_('Hədəf Adı'), max_length=200)
+    description = models.TextField(_('Təsvir'), blank=True)
+    target_date = models.DateField(_('Hədəf Tarixi'))
+    status = models.CharField(max_length=20, choices=[('active', 'Aktiv'), ('completed', 'Tamamlandı'), ('abandoned', 'Dayandırıldı')], default='active')
+
+    class Meta:
+        verbose_name = _('Sağlamlıq Hədəfi')
+        verbose_name_plural = _('Sağlamlıq Hədəfləri')
+
+class VaccinationRecord(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='vaccinations')
+    vaccine_name = models.CharField(_('Peyvənd Adı'), max_length=100)
+    dose_number = models.IntegerField(_('Doza Nömrəsi'), default=1)
+    administered_date = models.DateField(_('Vurulma Tarixi'))
+    next_due_date = models.DateField(_('Növbəti Doza Tarixi'), null=True, blank=True)
+    notes = models.TextField(_('Qeydlər'), blank=True)
+
+    class Meta:
+        verbose_name = _('Peyvənd Qeydi')
+        verbose_name_plural = _('Peyvənd Qeydləri')
+

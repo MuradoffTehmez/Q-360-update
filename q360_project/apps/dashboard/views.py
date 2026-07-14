@@ -666,6 +666,7 @@ def ai_management(request):
     accuracy_data = []
     precision_data = []
     recall_data = []
+    requests_data = []  # ay üzrə proqnoz sorğularının sayı (chart-dakı "Sorğu Sayı")
 
     # Get last 6 months of performance trend data
     for i in range(5, -1, -1):
@@ -679,6 +680,8 @@ def ai_management(request):
             forecast_date__month=month_date.month,
             actual_value__isnull=False  # Only where we have actual data
         )
+
+        requests_data.append(month_forecasts.count())
 
         if month_forecasts.exists():
             # Calculate accuracy as % of forecasts within 10% of actual
@@ -709,6 +712,9 @@ def ai_management(request):
         'available_features': available_features,
         'training_history': training_history,
         'performance_labels': json.dumps(performance_labels),
+        # Template chart-ının gözlədiyi adlar (əvvəl çatışmırdı və JS SyntaxError verirdi)
+        'performance_accuracy': json.dumps(accuracy_data),
+        'performance_requests': json.dumps(requests_data),
         'accuracy_data': accuracy_data,
         'precision_data': precision_data,
         'recall_data': recall_data,

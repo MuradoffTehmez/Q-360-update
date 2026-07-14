@@ -49,7 +49,7 @@
 
     <!-- Filters -->
     <div class="filter-section">
-        <form method="get" class="form-inline">
+        <form method="get" class="form-inline" data-ajax-filter data-ajax-target="#employee-results">
             <div class="form-group mr-3 mb-2">
                 <input type="text" name="search" class="form-control" placeholder="{% trans 'Axtarış...' %}" value="{{ search_query }}">
             </div>
@@ -80,7 +80,7 @@
     </div>
 
     <!-- Employee List -->
-    <div class="row">
+    <div class="row" id="employee-results">
         {% for employee in employees %}
         <div class="col-md-6 col-lg-4">
             <div class="employee-card" onclick="window.location.href='{% url 'pfile:employee_detail' employee.id %}'">

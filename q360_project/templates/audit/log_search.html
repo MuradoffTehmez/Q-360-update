@@ -29,7 +29,7 @@
             </h5>
         </div>
         <div class="card-body">
-            <form method="get" id="searchForm">
+            <form method="get" id="searchForm" data-ajax-filter data-ajax-target="#log-results">
                 <div class="row g-3">
                     <!-- Search Query -->
                     <div class="col-md-6">
@@ -138,6 +138,7 @@
     </div>
 
     <!-- Results Stats -->
+    <div id="log-results">
     {% if logs %}
     <div class="row mb-4">
         <div class="col-md-3">
@@ -290,6 +291,7 @@
             {% endif %}
         </div>
     </div>
+    </div><!-- /#log-results -->
 </div>
 
 <!-- Log Details Modal -->

@@ -1,0 +1,1091 @@
+[
+ {
+  "name": "landing",
+  "url": "/",
+  "status": 200,
+  "ms": 2944.5,
+  "queries": 0,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "help",
+  "url": "/help/",
+  "status": 200,
+  "ms": 11.0,
+  "queries": 0,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "privacy",
+  "url": "/privacy/",
+  "status": 200,
+  "ms": 10.3,
+  "queries": 0,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "terms",
+  "url": "/terms/",
+  "status": 200,
+  "ms": 28.9,
+  "queries": 0,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "haqqimizda",
+  "url": "/haqqimizda/",
+  "status": 200,
+  "ms": 12.7,
+  "queries": 0,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "faq",
+  "url": "/faq/",
+  "status": 200,
+  "ms": 27.3,
+  "queries": 0,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "login",
+  "url": "/accounts/login/",
+  "status": 200,
+  "ms": 15.1,
+  "queries": 0,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "password-reset",
+  "url": "/accounts/password-reset/",
+  "status": 200,
+  "ms": 9.2,
+  "queries": 0,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "dashboard-home",
+  "url": "/dashboard/",
+  "status": 200,
+  "ms": 162.6,
+  "queries": 30,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "dashboard-kpi",
+  "url": "/dashboard/kpi/",
+  "status": 200,
+  "ms": 69.1,
+  "queries": 13,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "dashboard-trend",
+  "url": "/dashboard/trend/",
+  "status": 200,
+  "ms": 80.6,
+  "queries": 27,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "dashboard-forecast",
+  "url": "/dashboard/forecast/",
+  "status": 200,
+  "ms": 141.9,
+  "queries": 15,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "dashboard-ai",
+  "url": "/dashboard/ai-management/",
+  "status": 200,
+  "ms": 131.9,
+  "queries": 29,
+  "dup_queries": 1,
+  "redirect": ""
+ },
+ {
+  "name": "profile",
+  "url": "/accounts/profile/",
+  "status": 200,
+  "ms": 194.1,
+  "queries": 37,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "profile-edit",
+  "url": "/accounts/profile/edit/",
+  "status": 200,
+  "ms": 76.1,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "security-settings",
+  "url": "/accounts/security/",
+  "status": 200,
+  "ms": 107.5,
+  "queries": 24,
+  "dup_queries": 8,
+  "redirect": ""
+ },
+ {
+  "name": "change-password",
+  "url": "/accounts/change-password/",
+  "status": 200,
+  "ms": 106.9,
+  "queries": 26,
+  "dup_queries": 9,
+  "redirect": ""
+ },
+ {
+  "name": "users-list",
+  "url": "/accounts/users/",
+  "status": 200,
+  "ms": 47.1,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "user-create",
+  "url": "/accounts/users/create/",
+  "status": 200,
+  "ms": 158.8,
+  "queries": 18,
+  "dup_queries": 6,
+  "redirect": ""
+ },
+ {
+  "name": "user-import",
+  "url": "/accounts/users/import/",
+  "status": 403,
+  "ms": 68.6,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "rbac-matrix",
+  "url": "/accounts/rbac/",
+  "status": 302,
+  "ms": 21.5,
+  "queries": 7,
+  "dup_queries": 0,
+  "redirect": "/dashboard/"
+ },
+ {
+  "name": "campaigns-list",
+  "url": "/evaluations/campaigns/",
+  "status": 200,
+  "ms": 69.9,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "campaign-create",
+  "url": "/evaluations/campaigns/create/",
+  "status": 200,
+  "ms": 77.0,
+  "queries": 7,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "my-assignments",
+  "url": "/evaluations/my-assignments/",
+  "status": 200,
+  "ms": 37.6,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "bulk-assign",
+  "url": "/evaluations/bulk-assign/",
+  "status": 200,
+  "ms": 33.2,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "questions-list",
+  "url": "/evaluations/questions/",
+  "status": 200,
+  "ms": 56.9,
+  "queries": 12,
+  "dup_queries": 1,
+  "redirect": ""
+ },
+ {
+  "name": "question-create",
+  "url": "/evaluations/questions/create/",
+  "status": 200,
+  "ms": 39.9,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "categories-list",
+  "url": "/evaluations/categories/",
+  "status": 200,
+  "ms": 47.7,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "departments-list",
+  "url": "/departments/",
+  "status": 200,
+  "ms": 40.4,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "org-structure",
+  "url": "/departments/structure/",
+  "status": 200,
+  "ms": 70.5,
+  "queries": 23,
+  "dup_queries": 1,
+  "redirect": ""
+ },
+ {
+  "name": "dept-chart",
+  "url": "/departments/chart/",
+  "status": 200,
+  "ms": 52.1,
+  "queries": 17,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "dept-create",
+  "url": "/departments/department/create/",
+  "status": 200,
+  "ms": 84.7,
+  "queries": 20,
+  "dup_queries": 6,
+  "redirect": ""
+ },
+ {
+  "name": "my-reports",
+  "url": "/reports/my-reports/",
+  "status": 200,
+  "ms": 45.9,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "team-reports",
+  "url": "/reports/team-reports/",
+  "status": 200,
+  "ms": 41.0,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "comparison-report",
+  "url": "/reports/comparison/",
+  "status": 200,
+  "ms": 26.5,
+  "queries": 7,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "analytics-dashboard",
+  "url": "/reports/analytics/",
+  "status": 200,
+  "ms": 126.3,
+  "queries": 25,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "blueprints",
+  "url": "/reports/blueprints/",
+  "status": 200,
+  "ms": 58.3,
+  "queries": 11,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "schedules",
+  "url": "/reports/schedules/",
+  "status": 200,
+  "ms": 122.0,
+  "queries": 17,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "custom-builder",
+  "url": "/reports/custom-builder/",
+  "status": 200,
+  "ms": 41.2,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "my-goals",
+  "url": "/development-plans/my-goals/",
+  "status": 200,
+  "ms": 56.1,
+  "queries": 13,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "goal-create",
+  "url": "/development-plans/goals/create/",
+  "status": 200,
+  "ms": 33.6,
+  "queries": 7,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "team-goals",
+  "url": "/development-plans/team-goals/",
+  "status": 200,
+  "ms": 53.9,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "goal-templates",
+  "url": "/development-plans/templates/",
+  "status": 200,
+  "ms": 32.3,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "goal-cascade",
+  "url": "/development-plans/goal-cascade/",
+  "status": 200,
+  "ms": 51.8,
+  "queries": 13,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "notifications-inbox",
+  "url": "/notifications/",
+  "status": 200,
+  "ms": 70.9,
+  "queries": 12,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "notification-settings",
+  "url": "/notifications/settings/",
+  "status": 200,
+  "ms": 49.1,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "email-templates",
+  "url": "/notifications/templates/emails/",
+  "status": 200,
+  "ms": 52.8,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "notification-stats",
+  "url": "/notifications/statistics/",
+  "status": 200,
+  "ms": 94.5,
+  "queries": 39,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "competency-list",
+  "url": "/competencies/",
+  "status": 200,
+  "ms": 45.8,
+  "queries": 13,
+  "dup_queries": 1,
+  "redirect": ""
+ },
+ {
+  "name": "my-skills",
+  "url": "/competencies/my-skills/",
+  "status": 200,
+  "ms": 44.1,
+  "queries": 11,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "skill-gap-analysis",
+  "url": "/competencies/gap-analysis/",
+  "status": 200,
+  "ms": 34.8,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "competency-manage",
+  "url": "/competencies/manage/",
+  "status": 200,
+  "ms": 35.6,
+  "queries": 13,
+  "dup_queries": 1,
+  "redirect": ""
+ },
+ {
+  "name": "training-catalog",
+  "url": "/training/",
+  "status": 200,
+  "ms": 48.4,
+  "queries": 12,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "my-trainings",
+  "url": "/training/my-trainings/",
+  "status": 200,
+  "ms": 93.3,
+  "queries": 13,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "my-certificates",
+  "url": "/training/my-certificates/",
+  "status": 200,
+  "ms": 57.2,
+  "queries": 12,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "training-manage",
+  "url": "/training/manage/",
+  "status": 200,
+  "ms": 35.2,
+  "queries": 12,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "skill-matrix",
+  "url": "/training/skill-matrix/",
+  "status": 200,
+  "ms": 57.6,
+  "queries": 15,
+  "dup_queries": 2,
+  "redirect": ""
+ },
+ {
+  "name": "certifications",
+  "url": "/training/certifications/",
+  "status": 200,
+  "ms": 65.3,
+  "queries": 16,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "security-dashboard",
+  "url": "/audit/security-dashboard/",
+  "status": 200,
+  "ms": 119.7,
+  "queries": 20,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "log-search",
+  "url": "/audit/log-search/",
+  "status": 200,
+  "ms": 50.4,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "global-search",
+  "url": "/search/?q=test",
+  "status": 200,
+  "ms": 55.3,
+  "queries": 11,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "onboarding-dashboard",
+  "url": "/onboarding/",
+  "status": 200,
+  "ms": 92.3,
+  "queries": 18,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "onboarding-processes",
+  "url": "/onboarding/processes/",
+  "status": 200,
+  "ms": 51.7,
+  "queries": 11,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "onboarding-process-new",
+  "url": "/onboarding/processes/new/",
+  "status": 200,
+  "ms": 34.6,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "onboarding-templates",
+  "url": "/onboarding/templates/",
+  "status": 200,
+  "ms": 36.4,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "onboarding-template-new",
+  "url": "/onboarding/templates/new/",
+  "status": 200,
+  "ms": 30.3,
+  "queries": 7,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "talent-matrix-9box",
+  "url": "/workforce-planning/talent-matrix/",
+  "status": 200,
+  "ms": 70.2,
+  "queries": 21,
+  "dup_queries": 1,
+  "redirect": ""
+ },
+ {
+  "name": "succession-planning",
+  "url": "/workforce-planning/succession-planning/",
+  "status": 200,
+  "ms": 74.3,
+  "queries": 17,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "critical-roles",
+  "url": "/workforce-planning/critical-roles/",
+  "status": 200,
+  "ms": 62.1,
+  "queries": 14,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "wfp-gap-analysis",
+  "url": "/workforce-planning/gap-analysis/",
+  "status": 200,
+  "ms": 63.4,
+  "queries": 12,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "my-gaps",
+  "url": "/workforce-planning/my-gaps/",
+  "status": 200,
+  "ms": 56.0,
+  "queries": 14,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "feedback-send",
+  "url": "/feedback/send/",
+  "status": 200,
+  "ms": 106.3,
+  "queries": 34,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "my-feedback",
+  "url": "/feedback/my-feedback/",
+  "status": 200,
+  "ms": 48.1,
+  "queries": 12,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "received-feedback",
+  "url": "/feedback/received/",
+  "status": 200,
+  "ms": 61.4,
+  "queries": 13,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "feedback-bank",
+  "url": "/feedback/my-bank/",
+  "status": 200,
+  "ms": 75.5,
+  "queries": 17,
+  "dup_queries": 2,
+  "redirect": ""
+ },
+ {
+  "name": "recognition-feed",
+  "url": "/feedback/recognition-feed/",
+  "status": 200,
+  "ms": 109.5,
+  "queries": 13,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "feedback-360-request",
+  "url": "/feedback/360-feedback-request/",
+  "status": 200,
+  "ms": 37.0,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "feedback-analytics",
+  "url": "/feedback/analytics/",
+  "status": 200,
+  "ms": 72.0,
+  "queries": 23,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "workflow-dashboard",
+  "url": "/workflow/dashboard/",
+  "status": 200,
+  "ms": 38.1,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "approval-dashboard",
+  "url": "/approval/dashboard/",
+  "status": 200,
+  "ms": 44.5,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "access-control-dashboard",
+  "url": "/access-control/dashboard/",
+  "status": 200,
+  "ms": 38.2,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "policy-dashboard",
+  "url": "/policy-engine/dashboard/",
+  "status": 200,
+  "ms": 43.6,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "feature-flags-dashboard",
+  "url": "/feature-flags/dashboard/",
+  "status": 200,
+  "ms": 41.5,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "pfile-employees",
+  "url": "/pfile/employees/",
+  "status": 200,
+  "ms": 86.4,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "compensation-dashboard",
+  "url": "/compensation/",
+  "status": 200,
+  "ms": 49.5,
+  "queries": 11,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "salaries",
+  "url": "/compensation/salaries/",
+  "status": 200,
+  "ms": 80.4,
+  "queries": 13,
+  "dup_queries": 1,
+  "redirect": ""
+ },
+ {
+  "name": "bonuses",
+  "url": "/compensation/bonuses/",
+  "status": 200,
+  "ms": 45.1,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "compensation-history",
+  "url": "/compensation/history/",
+  "status": 200,
+  "ms": 40.7,
+  "queries": 7,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "market-benchmarking",
+  "url": "/compensation/market-benchmarking/",
+  "status": 200,
+  "ms": 54.7,
+  "queries": 13,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "total-rewards",
+  "url": "/compensation/total-rewards/",
+  "status": 200,
+  "ms": 226.7,
+  "queries": 30,
+  "dup_queries": 1,
+  "redirect": ""
+ },
+ {
+  "name": "leave-dashboard",
+  "url": "/leave/",
+  "status": 200,
+  "ms": 51.0,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "leave-request-create",
+  "url": "/leave/request/create/",
+  "status": 200,
+  "ms": 36.2,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "leave-requests",
+  "url": "/leave/requests/",
+  "status": 200,
+  "ms": 39.2,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "attendance-calendar",
+  "url": "/leave/attendance/",
+  "status": 200,
+  "ms": 39.2,
+  "queries": 7,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "team-leave-calendar",
+  "url": "/leave/team-calendar/",
+  "status": 200,
+  "ms": 41.7,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "leave-approvals",
+  "url": "/leave/approvals/",
+  "status": 200,
+  "ms": 38.1,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "okr-dashboard",
+  "url": "/okr/",
+  "status": 200,
+  "ms": 56.4,
+  "queries": 11,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "okr-objectives",
+  "url": "/okr/objectives/",
+  "status": 200,
+  "ms": 53.9,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "okr-objective-create",
+  "url": "/okr/objectives/create/",
+  "status": 200,
+  "ms": 30.8,
+  "queries": 7,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "okr-kpi",
+  "url": "/okr/kpi/",
+  "status": 200,
+  "ms": 42.5,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "recruitment-dashboard",
+  "url": "/recruitment/",
+  "status": 200,
+  "ms": 52.9,
+  "queries": 11,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "job-postings",
+  "url": "/recruitment/jobs/",
+  "status": 200,
+  "ms": 49.1,
+  "queries": 12,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "job-create",
+  "url": "/recruitment/jobs/create/",
+  "status": 200,
+  "ms": 32.8,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "interview-calendar",
+  "url": "/recruitment/interviews/",
+  "status": 200,
+  "ms": 50.2,
+  "queries": 11,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "candidate-pipeline",
+  "url": "/recruitment/pipeline/",
+  "status": 200,
+  "ms": 121.1,
+  "queries": 17,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "ai-screening",
+  "url": "/recruitment/ai-screening/",
+  "status": 200,
+  "ms": 35.7,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "candidate-experience",
+  "url": "/recruitment/candidate-experience/",
+  "status": 200,
+  "ms": 36.8,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "sentiment-dashboard",
+  "url": "/sentiment-analysis/dashboard/",
+  "status": 200,
+  "ms": 132.2,
+  "queries": 39,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "wellness-dashboard",
+  "url": "/wellness/",
+  "status": 200,
+  "ms": 60.6,
+  "queries": 15,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "checkups",
+  "url": "/wellness/checkups/",
+  "status": 200,
+  "ms": 33.6,
+  "queries": 8,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "mental-health-survey",
+  "url": "/wellness/mental-health/survey/",
+  "status": 200,
+  "ms": 28.7,
+  "queries": 7,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "fitness-programs",
+  "url": "/wellness/fitness/",
+  "status": 200,
+  "ms": 33.6,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "medical-claims",
+  "url": "/wellness/claims/",
+  "status": 200,
+  "ms": 41.3,
+  "queries": 11,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "wellness-challenges",
+  "url": "/wellness/challenges/",
+  "status": 200,
+  "ms": 42.3,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "step-tracking",
+  "url": "/wellness/steps/",
+  "status": 200,
+  "ms": 38.8,
+  "queries": 12,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "engagement-dashboard",
+  "url": "/engagement/",
+  "status": 200,
+  "ms": 72.4,
+  "queries": 15,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "pulse-surveys",
+  "url": "/engagement/surveys/",
+  "status": 200,
+  "ms": 49.3,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "recognition-wall",
+  "url": "/engagement/recognition/",
+  "status": 200,
+  "ms": 48.6,
+  "queries": 9,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "leaderboard",
+  "url": "/engagement/leaderboard/",
+  "status": 200,
+  "ms": 44.1,
+  "queries": 10,
+  "dup_queries": 0,
+  "redirect": ""
+ },
+ {
+  "name": "support-dashboard",
+  "url": "/support/",
+  "status": 200,
+  "ms": 52.6,
+  "queries": 13,
+  "dup_queries": 1,
+  "redirect": ""
+ },
+ {
+  "name": "ticket-create",
+  "url": "/support/create/",
+  "status": 200,
+  "ms": 35.5,
+  "queries": 7,
+  "dup_queries": 0,
+  "redirect": ""
+ }
+]

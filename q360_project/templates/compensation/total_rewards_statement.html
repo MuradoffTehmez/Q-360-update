@@ -430,7 +430,8 @@ new Chart(ctx, {
 });
 
 function downloadPDF() {
-    window.location.href = '{% url "compensation:total_rewards_pdf" user.id %}?year={{ fiscal_year }}';
+    // PDF endpoint mövcud deyil — brauzerin çap dialoqu ilə PDF yaradılır
+    window.print();
 }
 </script>
 {% endblock %}

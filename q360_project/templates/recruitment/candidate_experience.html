@@ -288,19 +288,9 @@ new Chart(touchpointCtx, {
         labels: {{ touchpoint_labels|safe }},
         datasets: [
             {
-                label: 'Məmnuniyyət',
-                data: {{ touchpoint_satisfaction_data|safe }},
+                label: 'Ortalama Qiymət',
+                data: {{ touchpoint_avg_data|safe }},
                 backgroundColor: 'rgba(54, 162, 235, 0.8)'
-            },
-            {
-                label: 'Kommunikasiya',
-                data: {{ touchpoint_communication_data|safe }},
-                backgroundColor: 'rgba(75, 192, 192, 0.8)'
-            },
-            {
-                label: 'Proses',
-                data: {{ touchpoint_process_data|safe }},
-                backgroundColor: 'rgba(153, 102, 255, 0.8)'
             }
         ]
     },

@@ -378,6 +378,16 @@ def market_benchmarking(request):
                 'message': 'Sizin maaşınız bazar ortalamasından yuxarıdır və rəqabətədavamlıdır.',
             })
 
+    # Chart-lar üçün məlumat (template bu adları gözləyir; əvvəl çatışmırdı və JS SyntaxError verirdi)
+    chart_labels = [b['category'] for b in benchmarks]
+    current_salaries = [b['current_salary'] for b in benchmarks]
+    market_medians = [b.get('p50', b['avg']) for b in benchmarks]
+    status_counts = {
+        'competitive_positions': sum(1 for b in benchmarks if b['competitive_status'] == 'competitive'),
+        'below_market_positions': sum(1 for b in benchmarks if b['competitive_status'] == 'below'),
+        'above_market_positions': sum(1 for b in benchmarks if b['competitive_status'] == 'above'),
+    }
+
     context = {
         'user_salary': user_salary,
         'benchmarks': benchmarks,
@@ -389,6 +399,10 @@ def market_benchmarking(request):
         },
         'history_dates': json.dumps(history_dates),
         'history_amounts': json.dumps(history_amounts),
+        'chart_labels': json.dumps(chart_labels),
+        'current_salaries': json.dumps(current_salaries),
+        'market_medians': json.dumps(market_medians),
+        'stats': status_counts,
         'recommendations': recommendations,
         'position': position,
         'department': department,

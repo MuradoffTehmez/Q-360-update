@@ -625,6 +625,19 @@ def candidate_experience(request):
             'response_rate': round((total_responses / recent_applications.count() * 100), 1) if recent_applications.count() > 0 else 0,
         },
         'touchpoint_data': touchpoint_data,
+        # Chart-lar üçün template-in gözlədiyi adlar (əvvəl çatışmırdı — JS SyntaxError)
+        'touchpoint_labels': json.dumps([
+            'Müraciət prosesi', 'Kommunikasiya', 'Müsahibə təcrübəsi',
+            'Rəyin vaxtında verilməsi', 'Ümumi təcrübə',
+        ]),
+        'touchpoint_avg_data': json.dumps([
+            touchpoint_data['application_process'],
+            touchpoint_data['communication'],
+            touchpoint_data['interview_experience'],
+            touchpoint_data['feedback_timeliness'],
+            touchpoint_data['overall_experience'],
+        ]),
+        'nps_distribution': json.dumps([promoters, passives, detractors]),
         'status_breakdown': list(status_breakdown),
         'months': json.dumps(months),
         'nps_trend': json.dumps(nps_trend),

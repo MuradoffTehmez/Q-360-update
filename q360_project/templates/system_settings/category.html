@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ meta.name }} — {% trans "Parametrlər" %} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <nav class="flex mb-4 text-sm text-gray-500 dark:text-gray-400" aria-label="Breadcrumb">
+        <a href="{% url 'system_settings:home' %}" class="hover:text-blue-600">{% trans "Parametrlər" %}</a>
+        <i class="fas fa-chevron-right text-xs mx-2 mt-1"></i>
+        <span class="text-gray-900 dark:text-gray-100 font-medium">{{ meta.name }}</span>
+    </nav>
+
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+            <i class="fas {{ meta.icon }} mr-2 text-blue-600"></i>{{ meta.name }}
+        </h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ meta.description }}</p>
+    </div>
+
+    <form method="post" class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700/60 max-w-3xl">
+        {% csrf_token %}
+        {% for setting in settings_list %}
+        <div class="p-5 flex flex-col sm:flex-row sm:items-center gap-3">
+            <div class="sm:w-1/2">
+                <label for="setting_{{ setting.id }}" class="block text-sm font-semibold text-gray-900 dark:text-white">{{ setting.key }}</label>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{{ setting.description }}</p>
+            </div>
+            <div class="sm:w-1/2">
+                {% if setting.value_type == 'bool' %}
+                <label class="inline-flex items-center cursor-pointer">
+                    <input type="checkbox" name="setting_{{ setting.id }}" id="setting_{{ setting.id }}"
+                           class="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                           {% if setting.value == 'true' %}checked{% endif %}>
+                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">{% trans "Aktiv" %}</span>
+                </label>
+                {% elif setting.value_type == 'int' %}
+                <input type="number" name="setting_{{ setting.id }}" id="setting_{{ setting.id }}" value="{{ setting.value }}"
+                       class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                {% else %}
+                <input type="{% if setting.is_sensitive %}password{% else %}text{% endif %}" name="setting_{{ setting.id }}" id="setting_{{ setting.id }}"
+                       value="{{ setting.display_value }}"
+                       class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="p-5 flex items-center gap-3">
+            <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow transition-colors">
+                <i class="fas fa-save mr-2"></i>{% trans "Yadda saxla" %}
+            </button>
+            <a href="{% url 'system_settings:home' %}" class="px-5 py-2.5 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 text-sm font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">{% trans "Geri" %}</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block chartjs %}{% endblock %}

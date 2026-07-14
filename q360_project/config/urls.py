@@ -148,6 +148,9 @@ urlpatterns = [
     path('policy-engine/', include('apps.policy_engine.ui_urls', namespace='policy_engine_ui')),
     path('feature-flags/', include('apps.feature_flags.ui_urls', namespace='feature_flags_ui')),
 
+    # Platform Settings (admin-only pages)
+    path('settings/', include('apps.system_settings.urls', namespace='system_settings')),
+
     # New HRIS Modules
     path('pfile/', include('apps.accounts.urls_pfile', namespace='pfile')),
     path('compensation/', include('apps.compensation.urls', namespace='compensation')),

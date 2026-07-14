@@ -116,6 +116,7 @@ INSTALLED_APPS = [
     'apps.onboarding',
     'apps.wellness',
     'apps.engagement',
+    'apps.system_settings',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

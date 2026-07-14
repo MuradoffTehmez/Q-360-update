@@ -666,3 +666,65 @@ class UserMFAConfig(models.Model):
 
 # Import extended models
 from .models_extended import EmployeeDocument, WorkHistory
+
+
+class APIToken(models.Model):
+    """Şəxsi API tokenləri (istifadəçi tərəfindən yaradılan)."""
+
+    user = models.ForeignKey(
+        'User',
+        on_delete=models.CASCADE,
+        related_name='api_tokens',
+        verbose_name=_('İstifadəçi')
+    )
+    name = models.CharField(max_length=100, verbose_name=_('Ad'))
+    token_prefix = models.CharField(max_length=12, verbose_name=_('Token prefiksi'))
+    token_hash = models.CharField(max_length=64, unique=True, verbose_name=_('Token hash'))
+    last_used_at = models.DateTimeField(null=True, blank=True, verbose_name=_('Son istifadə'))
+    expires_at = models.DateTimeField(null=True, blank=True, verbose_name=_('Bitmə tarixi'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Aktiv'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Yaradılma tarixi'))
+
+    class Meta:
+        verbose_name = _('API Token')
+        verbose_name_plural = _('API Tokenlər')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'{self.name} ({self.token_prefix}…)'
+
+
+class UserPreference(models.Model):
+    """İstifadəçi interfeys və bildiriş seçimləri."""
+
+    THEME_CHOICES = [('system', _('Sistem')), ('light', _('İşıqlı')), ('dark', _('Qaranlıq'))]
+    DENSITY_CHOICES = [('comfortable', _('Rahat')), ('compact', _('Yığcam'))]
+
+    user = models.OneToOneField(
+        'User',
+        on_delete=models.CASCADE,
+        related_name='ui_preferences',
+        verbose_name=_('İstifadəçi')
+    )
+    theme = models.CharField(max_length=10, choices=THEME_CHOICES, default='system', verbose_name=_('Tema'))
+    density = models.CharField(max_length=15, choices=DENSITY_CHOICES, default='comfortable', verbose_name=_('Sıxlıq'))
+    language = models.CharField(max_length=10, default='az', verbose_name=_('Dil'))
+    timezone_name = models.CharField(max_length=50, default='Asia/Baku', verbose_name=_('Saat qurşağı'))
+    notify_email = models.BooleanField(default=True, verbose_name=_('E-poçt bildirişləri'))
+    notify_sms = models.BooleanField(default=False, verbose_name=_('SMS bildirişləri'))
+    notify_push = models.BooleanField(default=True, verbose_name=_('Push bildirişləri'))
+    digest_frequency = models.CharField(
+        max_length=10,
+        choices=[('none', _('Heç vaxt')), ('daily', _('Günlük')), ('weekly', _('Həftəlik'))],
+        default='daily',
+        verbose_name=_('Xülasə tezliyi')
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Yaradılma tarixi'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Yenilənmə tarixi'))
+
+    class Meta:
+        verbose_name = _('İstifadəçi Seçimi')
+        verbose_name_plural = _('İstifadəçi Seçimləri')
+
+    def __str__(self):
+        return f'{self.user} seçimləri'

@@ -37,7 +37,13 @@ class CampaignListView(LoginRequiredMixin, ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        queryset = EvaluationCampaign.objects.all()
+        # created_by template-də oxunur; completion rate annotate ilə gəlir (N+1 qarşısı)
+        queryset = EvaluationCampaign.objects.select_related('created_by').annotate(
+            _total_assignments=Count('assignments', distinct=True),
+            _completed_assignments=Count(
+                'assignments', filter=Q(assignments__status='completed'), distinct=True
+            ),
+        )
 
         # Filter by status
         status = self.request.GET.get('status')
@@ -55,9 +61,15 @@ class CampaignListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['total_campaigns'] = EvaluationCampaign.objects.count()
-        context['active_campaigns'] = EvaluationCampaign.objects.filter(status='active').count()
-        context['draft_campaigns'] = EvaluationCampaign.objects.filter(status='draft').count()
+        # 3 ayrı count əvəzinə tək aggregate
+        stats = EvaluationCampaign.objects.aggregate(
+            total=Count('id'),
+            active=Count('id', filter=Q(status='active')),
+            draft=Count('id', filter=Q(status='draft')),
+        )
+        context['total_campaigns'] = stats['total']
+        context['active_campaigns'] = stats['active']
+        context['draft_campaigns'] = stats['draft']
         return context
 
 

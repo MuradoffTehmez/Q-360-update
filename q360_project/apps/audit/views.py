@@ -227,23 +227,30 @@ def log_search(request):
     if ip_filter:
         logs = logs.filter(ip_address__icontains=ip_filter)
     
-    # Order by latest first
-    logs = logs.order_by('-created_at')
-    
+    # Order by latest first; user hər sətirdə template-də oxunur (N+1 qarşısı)
+    logs = logs.select_related('user').order_by('-created_at')
+
     # Get distinct action types for filters
     action_types = AuditLog.objects.values_list('action', flat=True).distinct()
-    
+
     # Pagination
     from django.core.paginator import Paginator
     paginator = Paginator(logs, 25)  # Show 25 logs per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # Calculate statistics for the template
-    total_count = logs.count()
-    error_count = logs.filter(action__icontains='error').count()
-    critical_count = logs.filter(action__icontains='critical').count()
-    warning_count = logs.filter(action__icontains='warning').count()
+    # Calculate statistics for the template — 4 ayrı count əvəzinə tək aggregate
+    from django.db.models import Count, Q as _Q
+    stats = logs.aggregate(
+        total=Count('id'),
+        errors=Count('id', filter=_Q(action__icontains='error')),
+        criticals=Count('id', filter=_Q(action__icontains='critical')),
+        warnings=Count('id', filter=_Q(action__icontains='warning')),
+    )
+    total_count = stats['total']
+    error_count = stats['errors']
+    critical_count = stats['criticals']
+    warning_count = stats['warnings']
 
     context = {
         'logs': page_obj,

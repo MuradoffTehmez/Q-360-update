@@ -182,10 +182,15 @@ class EvaluationCampaign(models.Model):
 
     def get_completion_rate(self):
         """Calculate completion rate of the campaign."""
-        total_assignments = self.assignments.count()
-        if total_assignments == 0:
+        # Siyahı view-ları annotate(_total_assignments=..., _completed_assignments=...)
+        # verdikdə əlavə sorğu açılmır
+        total_assignments = getattr(self, '_total_assignments', None)
+        completed = getattr(self, '_completed_assignments', None)
+        if total_assignments is None or completed is None:
+            total_assignments = self.assignments.count()
+            completed = self.assignments.filter(status='completed').count()
+        if not total_assignments:
             return 0
-        completed = self.assignments.filter(status='completed').count()
         return (completed / total_assignments) * 100
 
 

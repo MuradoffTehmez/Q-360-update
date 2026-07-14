@@ -211,7 +211,8 @@ def team_goals(request):
             status='active'
         )
 
-    goals = goals.select_related('user').order_by('target_date')
+    # progress_logs template-də hər məqsəd üçün oxunur — prefetch N+1-in qarşısını alır
+    goals = goals.select_related('user').prefetch_related('progress_logs').order_by('target_date')
 
     context = {
         'goals': goals

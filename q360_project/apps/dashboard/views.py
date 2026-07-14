@@ -328,44 +328,49 @@ def forecasting_dashboard(request):
     latest_forecast_date = ForecastData.objects.aggregate(latest=Max('forecast_date'))['latest']
     next_12_months = []
     if latest_forecast_date:
-        # Sonrakı 12 ay üçün proqnoz məlumatları
-        for i in range(12):
-            month_date = latest_forecast_date + relativedelta(months=i+1)
+        # Sonrakı 12 ay üçün proqnoz məlumatları — tək sorğu ilə yığ, Python-da qruplaşdır
+        month_dates = [latest_forecast_date + relativedelta(months=i + 1) for i in range(12)]
+        future_by_key = {}
+        for f in ForecastData.objects.filter(forecast_date__in=month_dates,
+                                             forecast_type__in=['staffing', 'budget', 'hiring', 'performance']):
+            future_by_key.setdefault((f.forecast_type, f.forecast_date), f)
+        for month_date in month_dates:
             next_12_months.append({
                 'date': month_date,
-                'staffing': ForecastData.objects.filter(forecast_type='staffing', forecast_date=month_date).first(),
-                'budget': ForecastData.objects.filter(forecast_type='budget', forecast_date=month_date).first(),
-                'hiring': ForecastData.objects.filter(forecast_type='hiring', forecast_date=month_date).first(),
-                'performance': ForecastData.objects.filter(forecast_type='performance', forecast_date=month_date).first(),
+                'staffing': future_by_key.get(('staffing', month_date)),
+                'budget': future_by_key.get(('budget', month_date)),
+                'hiring': future_by_key.get(('hiring', month_date)),
+                'performance': future_by_key.get(('performance', month_date)),
             })
-    
-    # Departamentlər üzrə proqnozlar
+
+    # Departamentlər üzrə proqnozlar — bütün departament proqnozlarını tək sorğu ilə al
+    departments = list(Department.objects.all()[:5])  # Top 5 departments
+    dept_rows = ForecastData.objects.filter(
+        forecast_type__in=['staffing', 'budget'],
+        department__in=departments,
+    ).order_by('-forecast_date')
+    dept_grouped = {}
+    for f in dept_rows:
+        bucket = dept_grouped.setdefault(f.department_id, {'staffing': [], 'budget': []})
+        if len(bucket[f.forecast_type]) < 5:
+            bucket[f.forecast_type].append(f)
     department_forecasts = {}
-    for dept in Department.objects.all()[:5]:  # Top 5 departments
-        dept_staffing = ForecastData.objects.filter(
-            forecast_type='staffing', 
-            department=dept
-        ).order_by('-forecast_date')[:5]
-        
-        dept_budget = ForecastData.objects.filter(
-            forecast_type='budget', 
-            department=dept
-        ).order_by('-forecast_date')[:5]
-        
+    for dept in departments:
+        bucket = dept_grouped.get(dept.id, {'staffing': [], 'budget': []})
         department_forecasts[dept.name] = {
-            'staffing': dept_staffing,
-            'budget': dept_budget,
+            'staffing': bucket['staffing'],
+            'budget': bucket['budget'],
         }
-    
+
     # Proqnoz dəqiqliyi statistikası (həqiqi dəyərlərlə müqayisə)
     forecast_accuracy = {}
     for f_type in ['staffing', 'budget', 'hiring', 'performance']:
-        forecasts_with_actual = ForecastData.objects.filter(
+        forecasts_with_actual = list(ForecastData.objects.filter(
             forecast_type=f_type,
             actual_value__isnull=False
-        )[:20]  # Son 20 forecast
-        
-        if forecasts_with_actual.exists():
+        )[:20])  # Son 20 forecast
+
+        if forecasts_with_actual:
             errors = []
             for forecast in forecasts_with_actual:
                 error = abs(float(forecast.predicted_value) - float(forecast.actual_value)) / float(forecast.actual_value) * 100 if forecast.actual_value != 0 else float(forecast.predicted_value) * 100

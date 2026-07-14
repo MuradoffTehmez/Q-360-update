@@ -1,0 +1,60 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Sistem daxilində göndərilən avtomatik SMS mesajlarının şablonları." %}</p>
+        </div>
+        <div>
+            <a href="{% url 'notifications:template-create' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+                <i class="fas fa-plus mr-2"></i>{% trans "Yeni Şablon" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for template in templates %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
+            <div class="p-5 border-b border-gray-100 dark:border-gray-700 flex justify-between items-start">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">{{ template.name }}</h3>
+                    <span class="inline-flex mt-1 items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+                        {{ template.get_trigger_display }}
+                    </span>
+                </div>
+                {% if template.is_active %}
+                <span class="w-3 h-3 rounded-full bg-green-500" title="Aktiv"></span>
+                {% else %}
+                <span class="w-3 h-3 rounded-full bg-gray-400" title="Deaktiv"></span>
+                {% endif %}
+            </div>
+            
+            <div class="p-5 flex-grow">
+                <p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">{% trans "SMS Məzmunu" %}</p>
+                <div class="bg-gray-50 dark:bg-gray-900 p-3 rounded text-sm text-gray-700 dark:text-gray-300 font-mono">
+                    {{ template.sms_content }}
+                </div>
+                <div class="mt-2 text-right text-xs text-gray-400">
+                    {{ template.sms_content|length }} / 160 simvol
+                </div>
+            </div>
+            
+            <div class="px-5 py-3 bg-gray-50 dark:bg-gray-750 flex justify-end space-x-3">
+                <a href="{% url 'notifications:template-update' template.pk %}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-sm font-medium">{% trans "Düzəliş et" %}</a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-16 text-center text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-700">
+            <i class="fas fa-sms text-4xl mb-3 opacity-20"></i>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">{% trans "SMS Şablonu Yoxdur" %}</h3>
+            <p>{% trans "Hələ heç bir SMS şablonu yaradılmayıb." %}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

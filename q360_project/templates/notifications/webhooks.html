@@ -1,0 +1,38 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto text-center py-20">
+    <div class="w-24 h-24 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+        <i class="fas fa-network-wired text-4xl"></i>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">{% trans "Webhook İnteqrasiyaları" %}</h1>
+    <p class="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-8">
+        {% trans "Q360 sistemindəki hadisələri real vaxt rejimində digər daxili sistemlərinizə ötürmək üçün webhook konfiqurasiyaları bu bölmədə olacaq." %}
+    </p>
+    
+    <div class="inline-flex items-center px-4 py-2 bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-500 rounded-full font-medium">
+        <i class="fas fa-hammer mr-2"></i> {% trans "Tezliklə İstifadədə Olacaq" %}
+    </div>
+    
+    <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <i class="fas fa-bolt text-blue-500 text-2xl mb-4"></i>
+            <h3 class="font-bold text-gray-900 dark:text-white mb-2">{% trans "Real Vaxt Rejimi" %}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{% trans "İşçi dəyişiklikləri və ya qiymətləndirmə nəticələri anında digər sistemlərə göndəriləcək." %}</p>
+        </div>
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <i class="fas fa-shield-alt text-green-500 text-2xl mb-4"></i>
+            <h3 class="font-bold text-gray-900 dark:text-white mb-2">{% trans "Təhlükəsiz Məlumat Paylaşımı" %}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{% trans "Payload-lar imzalayaraq təhlükəsizlik təmin ediləcək və məlumat sızmasının qarşısı alınacaq." %}</p>
+        </div>
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+            <i class="fas fa-sync text-purple-500 text-2xl mb-4"></i>
+            <h3 class="font-bold text-gray-900 dark:text-white mb-2">{% trans "Yenidən Sınaq (Retry)" %}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{% trans "Əgər qarşı tərəf cavab verməzsə, sistem avtomatik olaraq təkrar cəhd edəcək." %}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

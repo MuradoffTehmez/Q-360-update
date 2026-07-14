@@ -2,6 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import template_views
 from . import views
+from . import views_extras
 
 router = DefaultRouter()
 
@@ -50,6 +51,12 @@ urlpatterns = [
     path('delivery-logs/', views.delivery_logs, name='delivery_logs'),
     path('api/recent/', template_views.get_recent_notifications, name='api-recent'),
     path('api/notifications/', template_views.get_recent_notifications, name='api-notifications-list'),
+
+    # Batch 8 Extras
+    path('templates/sms/', views_extras.sms_templates, name='sms-templates'),
+    path('templates/push/', views_extras.push_templates, name='push-templates'),
+    path('webhooks/', views_extras.webhooks_list, name='webhooks'),
+    path('queue/', views_extras.notification_queue, name='queue'),
 
     # API (Router-based endpoints)
     path('api/', include(router.urls)),

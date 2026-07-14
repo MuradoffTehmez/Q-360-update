@@ -666,7 +666,8 @@ def user_list_view(request):
         messages.error(request, 'Bu səhifəyə giriş icazəniz yoxdur.')
         return redirect('dashboard')
 
-    users = User.objects.select_related('department', 'profile').all()
+    # department__organization: Department.__str__ organization-a müraciət edir (N+1 qarşısı)
+    users = User.objects.select_related('department__organization', 'profile').all()
 
     # Apply filters
     role = request.GET.get('role')

@@ -207,10 +207,13 @@ class OnboardingProcess(models.Model):
         self.save(update_fields=["status", "updated_at"])
 
     def completion_rate(self) -> Decimal:
-        total = self.tasks.count()
+        # list(self.tasks.all()) prefetch_related keşindən istifadə edir —
+        # .filter(...) isə hər çağırışda yeni DB sorğusu açardı (N+1)
+        tasks = list(self.tasks.all())
+        total = len(tasks)
         if total == 0:
             return Decimal("0")
-        completed = self.tasks.filter(status="completed").count()
+        completed = sum(1 for task in tasks if task.status == "completed")
         return (Decimal(completed) / Decimal(total)) * Decimal("100")
 
 

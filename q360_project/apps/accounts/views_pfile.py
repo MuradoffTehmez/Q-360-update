@@ -12,7 +12,8 @@ from apps.departments.models import Department
 @login_required
 def employee_list(request):
     """List all employees with search and filter."""
-    employees = User.objects.select_related('profile', 'department', 'supervisor').filter(is_active=True)
+    # department__organization: Department.__str__ organization-a müraciət edir (N+1 qarşısı)
+    employees = User.objects.select_related('profile', 'department__organization', 'supervisor').filter(is_active=True)
 
     # Search
     search_query = request.GET.get('search', '')

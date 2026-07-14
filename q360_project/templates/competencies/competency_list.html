@@ -315,9 +315,11 @@ function competencyPage() {
             try {
                 // Use global apiGet from api-utils.js
                 const data = await window.apiGet(`/api/v1/competencies/competencies/?${params.toString()}`);
-                this.competencies = apiData.results || [];
-                this.pagination.next = data.next;
-                this.pagination.previous = data.previous;
+                // API cavabı {status, data:{results}} sarğısı ilə gələ bilər
+                const payload = data.data || data;
+                this.competencies = (payload.results || []).filter(Boolean);
+                this.pagination.next = payload.next;
+                this.pagination.previous = payload.previous;
                 this.pagination.current = page;
             } catch (error) {
                 console.error(error);

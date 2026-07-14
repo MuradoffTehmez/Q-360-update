@@ -1,0 +1,64 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "A/B testləri və xüsusiyyət yoxlanışları (Experiments)." %}</p>
+        </div>
+        <div>
+            <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium shadow-sm">
+                <i class="fas fa-flask mr-2"></i>{% trans "Yeni Eksperiment" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {% for exp in experiments %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md transition">
+            <div class="flex justify-between items-start mb-3">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">{{ exp.name }}</h3>
+                {% if exp.status == 'RUNNING' %}
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                    <span class="w-2 h-2 bg-green-500 rounded-full mr-1.5 animate-pulse"></span> Davam Edir
+                </span>
+                {% elif exp.status == 'PAUSED' %}
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">Dayandırılıb</span>
+                {% else %}
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">Bitdi</span>
+                {% endif %}
+            </div>
+            
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Bayraq: <span class="font-mono font-bold text-gray-800 dark:text-gray-200">{{ exp.flag.name }}</span>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-3 border border-gray-100 dark:border-gray-700 mb-4 flex gap-4 text-sm">
+                <div class="flex-1">
+                    <div class="text-xs text-gray-500 mb-1">Başlanğıc</div>
+                    <div class="font-medium text-gray-800 dark:text-gray-200">{{ exp.start_date|date:"d M Y, H:i" }}</div>
+                </div>
+                <div class="flex-1">
+                    <div class="text-xs text-gray-500 mb-1">Bitmə</div>
+                    <div class="font-medium text-gray-800 dark:text-gray-200">{{ exp.end_date|date:"d M Y, H:i"|default:"-" }}</div>
+                </div>
+            </div>
+            
+            <div class="flex justify-end pt-3 border-t border-gray-100 dark:border-gray-700 gap-2">
+                <button class="px-3 py-1.5 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded transition text-sm font-medium">Metriklərə Bax</button>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-16 text-center text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-700">
+            <i class="fas fa-vials text-5xl mb-4 opacity-20"></i>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">{% trans "Eksperiment Yoxdur" %}</h3>
+            <p>{% trans "Hələ heç bir A/B testi və ya eksperiment yaradılmayıb." %}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

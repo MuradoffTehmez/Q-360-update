@@ -1,3 +1,28 @@
+# Q360 — Claude System Instructions
+
+<claude-code-instructions>
+CRITICAL: Sən, Claude Code, bu layihədəki bütün əməliyyatları edərkən mütləq `.agents/skills/` qovluğundakı qaydalara əməl etməlisən!
+Oradakı hər bir `SKILL.md` faylı bu layihənin arxitektura standartlarını müəyyən edir.
+
+Müvafiq işi görərkən aşağıdakı faylları mütləq oxu:
+- Yeni səhifə/UI yaradarkən: `.agents/skills/sehife-yarat/SKILL.md`
+- Yeni Django modulu/app yaradarkən: `.agents/skills/django-modul-yarat/SKILL.md`
+- API endpoint yaradarkən: `.agents/skills/api-endpoint-yarat/SKILL.md`
+- Celery task yaradarkən: `.agents/skills/celery-task-yarat/SKILL.md`
+- Database/ORM kodu yazarkən: `.agents/skills/db-optimizasiya/SKILL.md`
+- Hesabat (PDF/Excel) yaradarkən: `.agents/skills/hesabat-yarat/SKILL.md`
+- Signal/Middleware yaradarkən: `.agents/skills/signal-middleware-yarat/SKILL.md`
+- Docker komandaları icra edərkən: `.agents/skills/docker-ops/SKILL.md`
+- Xəta axtararkən (debug): `.agents/skills/debug-fix/SKILL.md`
+- Frontend UI auditi edərkən: `.agents/skills/frontend-audit/SKILL.md`
+- Yeni batch modullarını tikərkən: `.agents/skills/batch-tikinti/SKILL.md`
+- Ümumi layihə qaydaları üçün: `.agents/AGENTS.md`
+
+HƏR ZAMAN bu qaydalara bax və yalnız onlara uyğun kod yaz!
+</claude-code-instructions>
+
+---
+
 ## Yeni Modulların Tikilməsi (161 Səhifə) — Fazalı Plan
 
 Aşağıdakı 161 URL Q360-da hələ mövcud deyil, tikilməli olan yeni 

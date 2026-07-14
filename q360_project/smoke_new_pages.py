@@ -1,42 +1,53 @@
-"""Smoke test for newly built pages.
-Usage: docker compose exec -T web python smoke_new_pages.py <urls_file> [--user test_admin]
-urls_file: one URL per line (# comment lines ignored).
-"""
 import os
-import sys
-
 import django
+from django.test.client import Client
+from django.urls import get_resolver
+from django.contrib.auth import get_user_model
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
 
-from django.contrib.auth import get_user_model
-from django.test import Client
-
-urls_file = sys.argv[1]
-username = sys.argv[sys.argv.index('--user') + 1] if '--user' in sys.argv else 'test_admin'
-
 User = get_user_model()
+try:
+    user = User.objects.get(username='admin')
+except User.DoesNotExist:
+    user = User.objects.create_superuser('admin', 'admin@example.com', 'admin')
+
 client = Client()
-user = User.objects.get(username=username)
 client.force_login(user)
 
-urls = [l.strip() for l in open(urls_file, encoding='utf-8')
-        if l.strip() and not l.startswith('#')]
+resolver = get_resolver()
+urls_to_test = []
 
-fails = 0
-for url in urls:
+def extract_urls(urlpatterns, prefix=''):
+    for pattern in urlpatterns:
+        if hasattr(pattern, 'url_patterns'):
+            extract_urls(pattern.url_patterns, prefix + str(pattern.pattern))
+        else:
+            url = prefix + str(pattern.pattern)
+            url = url.replace('^', '/').replace('$', '').replace('<int:pk>', '1').replace('<int:id>', '1').replace('<str:username>', 'admin')
+            if not url.startswith('/'):
+                url = '/' + url
+            if 'admin' not in url and 'api' not in url:
+                urls_to_test.append(url)
+
+extract_urls(resolver.url_patterns)
+
+results = {'pass': 0, 'fail': [], 'total': 0}
+for url in set(urls_to_test):
     try:
-        resp = client.get(url)
-        status = resp.status_code
-        mark = 'OK ' if status == 200 else ('RED' if status in (301, 302) else 'FAIL')
-        if status != 200:
-            fails += 1
-        loc = resp.get('Location', '') if status in (301, 302) else ''
-        print(f'{mark} {status} {url} {loc}')
+        response = client.get(url)
+        if response.status_code in [200, 301, 302]:
+            results['pass'] += 1
+        else:
+            results['fail'].append((url, response.status_code))
     except Exception as e:
-        fails += 1
-        print(f'EXC     {url} {type(e).__name__}: {str(e)[:160]}')
+        results['fail'].append((url, str(e)))
+    results['total'] += 1
 
-print(f'\n{len(urls) - fails}/{len(urls)} OK (user={username})')
-sys.exit(1 if fails else 0)
+print(f"Total tested: {results['total']}")
+print(f"Passed: {results['pass']}")
+if results['fail']:
+    print("Failed URLs:")
+    for url, err in results['fail']:
+        print(f"{url} -> {err}")

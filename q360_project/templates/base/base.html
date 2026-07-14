@@ -144,6 +144,27 @@
         /* Alpine.js x-cloak: Alpine yüklənənə qədər elementləri gizlət */
         [x-cloak] { display: none !important; }
 
+        /* Mobil oxunaqlılıq: mətn üçün minimum 12px döşəməsi */
+        @media (max-width: 767px) {
+            small, .small { font-size: max(0.875em, 12px); }
+            .badge { font-size: max(0.75em, 12px); }
+
+            /* iOS avtomatik zoom-un qarşısı: form sahələri minimum 16px */
+            input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+            select,
+            textarea {
+                font-size: 16px !important;
+            }
+
+            /* Toxunma hədəfi: düymə və linklər üçün minimum hündürlük */
+            .btn-sm, .btn-xs {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
         /* Modern Thin Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;

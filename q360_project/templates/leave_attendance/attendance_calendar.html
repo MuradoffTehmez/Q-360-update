@@ -18,6 +18,17 @@
         border-radius: 10px;
         padding: 1rem;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        /* 7 sütunlu təqvim dar ekranda kəsilməsin — üfüqi sürüşmə */
+        overflow-x: auto;
+    }
+    .calendar-container table {
+        min-width: 640px;
+    }
+    /* Mobil ekranda status yazısı minimum 12px olsun */
+    @media (max-width: 767px) {
+        .attendance-status {
+            font-size: 12px;
+        }
     }
     .day-cell {
         min-height: 100px;

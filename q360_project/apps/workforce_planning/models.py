@@ -2,6 +2,7 @@
 Workforce Planning models for talent matrix, succession planning, and gap analysis.
 """
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator, MaxValueValidator
 from apps.accounts.models import User
 from apps.departments.models import Position
@@ -296,3 +297,31 @@ class CompetencyGap(models.Model):
             self.gap_status = 'major_gap'
 
         super().save(*args, **kwargs)
+
+
+class RetirementForecast(models.Model):
+    """
+    İşçilərin təqaüd proqnozları.
+    """
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='retirement_forecast', verbose_name=_('İşçi'))
+    expected_retirement_date = models.DateField(verbose_name=_('Gözlənilən Təqaüd Tarixi'))
+    risk_level = models.CharField(
+        max_length=20, 
+        choices=[('low', 'Aşağı'), ('medium', 'Orta'), ('high', 'Yüksək'), ('critical', 'Kritik')],
+        default='low',
+        verbose_name=_('Risq Səviyyəsi')
+    )
+    succession_plan_ready = models.BooleanField(default=False, verbose_name=_('Varislik Planı Hazırdır'))
+    notes = models.TextField(blank=True, verbose_name=_('Qeydlər'))
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Təqaüd Proqnozu')
+        verbose_name_plural = _('Təqaüd Proqnozları')
+        ordering = ['expected_retirement_date']
+
+    def __str__(self):
+        return f"{self.user.get_full_name()} - {self.expected_retirement_date}"
+

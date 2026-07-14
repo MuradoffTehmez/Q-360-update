@@ -4,6 +4,7 @@ URL configuration for workforce planning app.
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import template_views
+from . import views_extras
 from .views import (
     TalentMatrixViewSet, CriticalRoleViewSet,
     SuccessionCandidateViewSet, CompetencyGapViewSet
@@ -29,6 +30,10 @@ urlpatterns = [
     # Gap Analysis
     path('gap-analysis/', template_views.gap_analysis_view, name='gap-analysis'),
     path('my-gaps/', template_views.my_gaps_view, name='my-gaps'),
+
+    # Batch 12
+    path('risk-heatmap/', views_extras.risk_heatmap, name='risk-heatmap'),
+    path('retirement-forecast/', views_extras.retirement_forecast, name='retirement-forecast'),
 
     # API URLs
     # path('', include(router.urls)), # Removed to consolidate to /api/v1/

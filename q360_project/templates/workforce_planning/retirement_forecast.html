@@ -1,0 +1,100 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Yaxın illərdə təqaüdə çıxması gözlənilən işçilər və varislik planlaması." %}</p>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm flex items-center">
+            <div class="p-3 rounded-full bg-red-100 text-red-600 dark:bg-red-900/50 dark:text-red-400 mr-4">
+                <i class="fas fa-calendar-times text-xl"></i>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">{% trans "Növbəti 1 ildə" %}</p>
+                <p class="text-2xl font-bold text-gray-900 dark:text-white">0</p>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm flex items-center">
+            <div class="p-3 rounded-full bg-yellow-100 text-yellow-600 dark:bg-yellow-900/50 dark:text-yellow-400 mr-4">
+                <i class="fas fa-calendar-alt text-xl"></i>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">{% trans "1-3 il ərzində" %}</p>
+                <p class="text-2xl font-bold text-gray-900 dark:text-white">0</p>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm flex items-center">
+            <div class="p-3 rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400 mr-4">
+                <i class="fas fa-calendar-check text-xl"></i>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">{% trans "3-5 il ərzində" %}</p>
+                <p class="text-2xl font-bold text-gray-900 dark:text-white">0</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forecast Table -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead class="bg-gray-50 dark:bg-gray-700/50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "İşçi" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Vəzifə" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Təqaüd Tarixi" %}</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Risk Səviyyəsi" %}</th>
+                    <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{% trans "Varislik Planı" %}</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                {% for forecast in forecasts %}
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-750">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="font-bold text-gray-900 dark:text-white">{{ forecast.user.get_full_name }}</div>
+                        <div class="text-xs text-gray-500">{{ forecast.user.email }}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {{ forecast.user.job_title|default:"-" }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {{ forecast.expected_retirement_date|date:"Y-m-d" }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium
+                            {% if forecast.risk_level == 'critical' %}bg-red-100 text-red-800
+                            {% elif forecast.risk_level == 'high' %}bg-orange-100 text-orange-800
+                            {% elif forecast.risk_level == 'medium' %}bg-yellow-100 text-yellow-800
+                            {% else %}bg-green-100 text-green-800{% endif %}">
+                            {{ forecast.get_risk_level_display }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                        {% if forecast.succession_plan_ready %}
+                        <i class="fas fa-check-circle text-green-500 text-xl" title="Hazırdır"></i>
+                        {% else %}
+                        <i class="fas fa-times-circle text-red-500 text-xl" title="Hazır deyil"></i>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+                        <i class="fas fa-hourglass-half text-4xl mb-3 opacity-20"></i>
+                        <p>{% trans "Hələ heç bir təqaüd proqnozu yaradılmayıb." %}</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

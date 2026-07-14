@@ -4,6 +4,7 @@ URL configuration for continuous feedback app.
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import template_views
+from . import views_extras
 from .views import (
     QuickFeedbackViewSet, FeedbackBankViewSet,
     PublicRecognitionViewSet, FeedbackTagViewSet,
@@ -38,6 +39,11 @@ urlpatterns = [
     # 360-Degree Feedback
     path('360-feedback-request/', template_views.feedback_360_request, name='360-feedback-request'),
     path('analytics/', template_views.feedback_analytics, name='analytics'),
+
+    # Batch 13
+    path('templates/', views_extras.feedback_templates, name='templates'),
+    path('requests/', views_extras.feedback_requests, name='requests'),
+    path('reminders/', views_extras.feedback_reminders, name='reminders'),
 
     # API URLs
     # path('', include(router.urls)), # Removed to consolidate to /api/v1/

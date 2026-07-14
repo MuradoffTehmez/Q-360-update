@@ -1,0 +1,87 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Göndərdiyiniz və aldığınız rəy istəkləri." %}</p>
+        </div>
+        <div>
+            <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium shadow-sm">
+                <i class="fas fa-paper-plane mr-2"></i>{% trans "Rəy İstə" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Received Requests -->
+        <div>
+            <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                <i class="fas fa-inbox text-blue-500 mr-2"></i> {% trans "Sizdən İstənilən Rəylər" %}
+            </h2>
+            <div class="space-y-4">
+                {% for req in received_requests %}
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-l-4 border-l-blue-500 border-gray-200 dark:border-gray-700 p-5">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="font-bold text-gray-900 dark:text-white">{{ req.requester.get_full_name }}</div>
+                        <span class="text-xs text-gray-500 dark:text-gray-400">{{ req.created_at|date:"d M Y" }}</span>
+                    </div>
+                    <h3 class="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">{{ req.topic }}</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">{{ req.message }}</p>
+                    
+                    <div class="flex gap-3">
+                        <button class="px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-medium rounded hover:bg-blue-100 transition dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50">
+                            {% trans "Rəy Yaz" %}
+                        </button>
+                        <button class="px-4 py-1.5 bg-gray-50 text-gray-700 text-sm font-medium rounded hover:bg-gray-100 transition dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">
+                            {% trans "Rədd Et" %}
+                        </button>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="bg-gray-50 dark:bg-gray-800/50 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-8 text-center text-gray-500 dark:text-gray-400">
+                    <p>{% trans "Hazırda sizdən rəy istəyən yoxdur." %}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Sent Requests -->
+        <div>
+            <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                <i class="fas fa-paper-plane text-green-500 mr-2"></i> {% trans "Sizin Göndərdiyiniz İstəklər" %}
+            </h2>
+            <div class="space-y-4">
+                {% for req in sent_requests %}
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400 block mb-1">Kimin üçün:</span>
+                            <div class="font-bold text-gray-900 dark:text-white">{{ req.recipient.get_full_name }}</div>
+                        </div>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                            {% if req.status == 'pending' %}bg-yellow-100 text-yellow-800
+                            {% elif req.status == 'completed' %}bg-green-100 text-green-800
+                            {% else %}bg-gray-100 text-gray-800{% endif %}">
+                            {{ req.get_status_display }}
+                        </span>
+                    </div>
+                    <h3 class="text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">{{ req.topic }}</h3>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-3 flex items-center">
+                        <i class="far fa-clock mr-1.5"></i> {% trans "Göndərilib:" %} {{ req.created_at|date:"d M Y, H:i" }}
+                    </div>
+                </div>
+                {% empty %}
+                <div class="bg-gray-50 dark:bg-gray-800/50 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-8 text-center text-gray-500 dark:text-gray-400">
+                    <p>{% trans "Heç kəsdən rəy istəməmisiniz." %}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

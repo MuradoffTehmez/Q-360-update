@@ -404,3 +404,71 @@ QuickFeedback.add_to_class(
         verbose_name='Etiketlər'
     )
 )
+
+
+class FeedbackTemplate(models.Model):
+    """
+    Rəy şablonları.
+    """
+    title = models.CharField(max_length=200, verbose_name='Şablon Adı')
+    description = models.TextField(blank=True, verbose_name='Təsvir')
+    content_template = models.TextField(verbose_name='Şablon Məzmunu')
+    feedback_type = models.CharField(max_length=20, choices=QuickFeedback.FEEDBACK_TYPE_CHOICES, default='general')
+    is_active = models.BooleanField(default=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = 'Rəy Şablonu'
+        verbose_name_plural = 'Rəy Şablonları'
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+
+
+class FeedbackRequest(models.Model):
+    """
+    Digər işçilərdən rəy istənilməsi.
+    """
+    requester = models.ForeignKey(User, on_delete=models.CASCADE, related_name='feedback_requests_sent')
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='feedback_requests_received')
+    topic = models.CharField(max_length=255, verbose_name='Mövzu')
+    message = models.TextField(verbose_name='Mesaj', blank=True)
+    status = models.CharField(
+        max_length=20, 
+        choices=[('pending', 'Gözləyir'), ('completed', 'Tamamlandı'), ('declined', 'Rədd edildi')],
+        default='pending'
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = 'Rəy Sorğusu'
+        verbose_name_plural = 'Rəy Sorğuları'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.requester.get_full_name()} -> {self.recipient.get_full_name()}"
+
+
+class FeedbackReminder(models.Model):
+    """
+    Rəy xatırlatmaları.
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='feedback_reminders')
+    title = models.CharField(max_length=200, verbose_name='Başlıq')
+    description = models.TextField(blank=True)
+    remind_at = models.DateTimeField(verbose_name='Xatırlatma Vaxtı')
+    is_sent = models.BooleanField(default=False)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Rəy Xatırlatması'
+        verbose_name_plural = 'Rəy Xatırlatmaları'
+        ordering = ['remind_at']
+
+    def __str__(self):
+        return f"{self.user.get_full_name()} - {self.title}"
+

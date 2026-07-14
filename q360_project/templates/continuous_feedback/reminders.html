@@ -1,0 +1,76 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Rəy verməyi unutmamaq üçün təyin edilmiş xatırlatmalarınız." %}</p>
+        </div>
+        <div>
+            <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium shadow-sm">
+                <i class="fas fa-bell mr-2"></i>{% trans "Yeni Xatırlatma" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+        <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+            {% for reminder in reminders %}
+            <li class="p-5 hover:bg-gray-50 dark:hover:bg-gray-750 transition flex justify-between items-center group">
+                <div class="flex items-start gap-4">
+                    <div class="mt-1">
+                        {% if reminder.is_sent %}
+                        <i class="fas fa-check-circle text-gray-400 text-xl" title="Göndərildi"></i>
+                        {% else %}
+                        <i class="far fa-bell text-blue-500 text-xl animate-pulse"></i>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-gray-900 dark:text-white {% if reminder.is_sent %}line-through text-opacity-50{% endif %}">
+                            {{ reminder.title }}
+                        </h3>
+                        {% if reminder.description %}
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">{{ reminder.description }}</p>
+                        {% endif %}
+                        <div class="text-xs font-medium text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-4">
+                            <span class="flex items-center">
+                                <i class="far fa-calendar-alt mr-1.5"></i> {{ reminder.remind_at|date:"d M Y, H:i" }}
+                            </span>
+                            {% if reminder.is_sent %}
+                            <span class="text-green-600 dark:text-green-400">
+                                <i class="fas fa-check mr-1"></i> Göndərilib
+                            </span>
+                            {% else %}
+                            <span class="text-yellow-600 dark:text-yellow-400">
+                                <i class="fas fa-hourglass-half mr-1"></i> Gözləyir
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="opacity-0 group-hover:opacity-100 transition flex gap-2">
+                    {% if not reminder.is_sent %}
+                    <button class="p-2 text-blue-600 hover:bg-blue-50 rounded-full dark:text-blue-400 dark:hover:bg-blue-900/30 transition" title="Redaktə et">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    {% endif %}
+                    <button class="p-2 text-red-600 hover:bg-red-50 rounded-full dark:text-red-400 dark:hover:bg-red-900/30 transition" title="Sil">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </li>
+            {% empty %}
+            <li class="py-16 text-center text-gray-500 dark:text-gray-400">
+                <i class="far fa-bell-slash text-5xl mb-4 opacity-20"></i>
+                <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">{% trans "Xatırlatma Yoxdur" %}</h3>
+                <p>{% trans "Hazırda planlaşdırılmış rəy xatırlatmanız yoxdur." %}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

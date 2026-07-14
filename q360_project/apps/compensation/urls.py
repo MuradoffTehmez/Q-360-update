@@ -1,6 +1,7 @@
 """URLs for Compensation module."""
 from django.urls import path
 from . import views
+from . import views_extras
 
 app_name = 'compensation'
 
@@ -18,4 +19,10 @@ urlpatterns = [
     # Market Benchmarking & Total Rewards
     path('market-benchmarking/', views.market_benchmarking, name='market_benchmarking'),
     path('total-rewards/', views.total_rewards_statement, name='total_rewards'),
+
+    # Batch 20
+    path('pay-grades/', views_extras.pay_grades_list, name='pay_grades'),
+    path('salary-bands/', views_extras.salary_bands_list, name='salary_bands'),
+    path('currencies/', views_extras.currencies_list, name='currencies'),
+    path('cycles/', views_extras.payroll_cycles_list, name='cycles'),
 ]

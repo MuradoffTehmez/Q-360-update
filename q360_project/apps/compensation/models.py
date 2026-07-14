@@ -1173,3 +1173,79 @@ class EmployeeBenefit(models.Model):
             return False
 
         return today >= self.start_date
+
+
+class PayGrade(models.Model):
+    """
+    Pay Grade level definition.
+    """
+    code = models.CharField(_('Kod'), max_length=50, unique=True)
+    name = models.CharField(_('Ad'), max_length=100)
+    level = models.IntegerField(_('Səviyyə'), help_text=_('İyerarxik səviyyə (1, 2, 3...)'))
+    description = models.TextField(_('Təsvir'), blank=True)
+    is_active = models.BooleanField(_('Aktivdir'), default=True)
+
+    class Meta:
+        verbose_name = _('Maaş Dərəcəsi')
+        verbose_name_plural = _('Maaş Dərəcələri')
+        ordering = ['level', 'code']
+
+    def __str__(self):
+        return f"{self.code} - {self.name}"
+
+
+class Currency(models.Model):
+    """
+    Currency model for compensation module.
+    """
+    code = models.CharField(_('Valyuta Kodu'), max_length=3, unique=True, help_text=_('AZN, USD, EUR'))
+    name = models.CharField(_('Valyuta Adı'), max_length=50)
+    symbol = models.CharField(_('Simvol'), max_length=5)
+    exchange_rate = models.DecimalField(_('Məzənnə (AZN)'), max_digits=10, decimal_places=4, default=1.0)
+    is_base = models.BooleanField(_('Əsas Valyutadır'), default=False)
+    is_active = models.BooleanField(_('Aktivdir'), default=True)
+
+    class Meta:
+        verbose_name = _('Valyuta')
+        verbose_name_plural = _('Valyutalar')
+
+    def __str__(self):
+        return f"{self.code} ({self.symbol})"
+
+
+class SalaryBand(models.Model):
+    """
+    Salary bands associated with Pay Grades.
+    """
+    pay_grade = models.OneToOneField(PayGrade, on_delete=models.CASCADE, related_name='salary_band', verbose_name=_('Maaş Dərəcəsi'))
+    min_salary = models.DecimalField(_('Minimum Maaş'), max_digits=12, decimal_places=2)
+    mid_salary = models.DecimalField(_('Orta Maaş'), max_digits=12, decimal_places=2)
+    max_salary = models.DecimalField(_('Maksimum Maaş'), max_digits=12, decimal_places=2)
+    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, verbose_name=_('Valyuta'))
+
+    class Meta:
+        verbose_name = _('Maaş Aralığı')
+        verbose_name_plural = _('Maaş Aralıqları')
+
+    def __str__(self):
+        return f"{self.pay_grade.code} Band ({self.min_salary} - {self.max_salary})"
+
+
+class PayrollCycle(models.Model):
+    """
+    Payroll processing cycles.
+    """
+    name = models.CharField(_('Dövr Adı'), max_length=100)
+    start_date = models.DateField(_('Başlama Tarixi'))
+    end_date = models.DateField(_('Bitmə Tarixi'))
+    payment_date = models.DateField(_('Ödəniş Tarixi'))
+    status = models.CharField(_('Status'), max_length=20, choices=[('DRAFT', 'Qaralama'), ('PROCESSING', 'İşlənir'), ('COMPLETED', 'Tamamlandı')])
+
+    class Meta:
+        verbose_name = _('Ödəniş Dövrü')
+        verbose_name_plural = _('Ödəniş Dövrləri')
+        ordering = ['-start_date']
+
+    def __str__(self):
+        return f"{self.name} ({self.start_date} - {self.end_date})"
+

@@ -1,0 +1,76 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Təşkilatın əsas bacarıq və kompetensiyalarının tam siyahısı." %}</p>
+        </div>
+        <div>
+            <a href="{% url 'competencies:competency-manage' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+                <i class="fas fa-cog mr-2"></i>{% trans "İdarəetmə" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div class="p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+            <div class="relative w-full max-w-md">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-gray-400"></i>
+                </div>
+                <input type="text" id="competency-search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="{% trans 'Kompetensiya axtar...' %}">
+            </div>
+        </div>
+        
+        <div class="divide-y divide-gray-200 dark:divide-gray-700">
+            {% for competency in competencies %}
+            <div class="p-6 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center">
+                        <i class="fas fa-award text-yellow-500 mr-2"></i> {{ competency.name }}
+                    </h3>
+                    {% if competency.is_active %}
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300">
+                        {% trans "Aktiv" %}
+                    </span>
+                    {% else %}
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+                        {% trans "Deaktiv" %}
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">{{ competency.description }}</p>
+                
+                {% if competency.behaviors.exists %}
+                <div class="mt-4 bg-gray-50 dark:bg-gray-900 rounded border border-gray-100 dark:border-gray-700 p-4">
+                    <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">{% trans "Gözlənilən Davranışlar" %}</h4>
+                    <ul class="space-y-2">
+                        {% for behavior in competency.behaviors.all %}
+                        <li class="flex items-start text-sm">
+                            <span class="flex-shrink-0 w-2 h-2 mt-1.5 rounded-full bg-blue-500 mr-2"></span>
+                            <span class="text-gray-700 dark:text-gray-300">
+                                <strong class="text-gray-900 dark:text-white">{{ behavior.level.display_name }}:</strong> 
+                                {{ behavior.description }}
+                            </span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            {% empty %}
+            <div class="p-12 text-center text-gray-500 dark:text-gray-400">
+                <i class="fas fa-book text-4xl mb-3 opacity-20"></i>
+                <p>{% trans "Kompetensiya lüğəti boşdur." %}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

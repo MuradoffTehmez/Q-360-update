@@ -380,3 +380,36 @@ class UserSkill(models.Model):
         if self.level:
             return self.level.display_name
         return "Naməlum"
+
+
+class BehavioralIndicator(models.Model):
+    """
+    Davranış İndikatorları.
+    Müəyyən bir kompetensiyanın konkret səviyyəsində gözlənilən davranışlar.
+    """
+    competency = models.ForeignKey(
+        Competency,
+        on_delete=models.CASCADE,
+        related_name='behaviors',
+        verbose_name=_('Kompetensiya')
+    )
+    level = models.ForeignKey(
+        ProficiencyLevel,
+        on_delete=models.CASCADE,
+        related_name='behaviors',
+        verbose_name=_('Səviyyə')
+    )
+    description = models.TextField(verbose_name=_('Davranış Təsviri'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Aktivdir'))
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Davranış İndikatoru')
+        verbose_name_plural = _('Davranış İndikatorları')
+        ordering = ['competency', 'level']
+
+    def __str__(self):
+        return f"{self.competency.name} ({self.level.display_name})"
+

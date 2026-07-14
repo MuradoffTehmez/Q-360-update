@@ -25,6 +25,90 @@ HƏR ZAMAN bu qaydalara bax və yalnız onlara uyğun kod yaz!
 ---
 
 
+
+
+
+## TƏCİLİ DÜZƏLİŞ 1 — Access Control / Policy Engine Təhlükəsizlik Boşluğu
+
+KRİTİK: Batch 14-18 (Workflow, Approval, Access Control, Policy Engine, 
+Feature Flags) idarəetmə səhifələri iki problemlə üzləşir: (a) səhv URL 
+prefiksində (/api/v1/ altında, planlaşdırılan /access-control/ və s. 
+yerinə), (b) yalnız @login_required ilə qorunur, superuser/permission 
+yoxlaması yoxdur. Hər ikisini BİRLİKDƏ düzəlt (biri digərini tələb edir).
+
+1. config/api_urls.py:366-370-dən UI route-larını (workflow/, approval/, 
+   access-control/, policy-engine/, feature-flags/ üçün 
+   include('apps.X.urls')) TAM ÇIXAR — API yalnız router-ləri saxlasın
+2. config/urls.py-də hər 5 app üçün düzgün prefiksdə UI-nı qoş: 
+   path('access-control/', include('apps.access_control.urls', 
+   namespace='access_control')) (eyni məntiq workflow/, approval/, 
+   policy-engine/, feature-flags/ üçün)
+3. Namespace konfliktinə diqqət et — ui_urls.py (mövcud dashboard 
+   səhifəsi) ilə urls.py (yeni idarəetmə səhifələri) arasında namespace 
+   toqquşması olmasın; lazımdırsa ui_urls.py-in məzmununu urls.py-a 
+   birləşdir, tək namespace saxla
+4. apps/access_control/views_extras.py, apps/policy_engine/views_extras.py, 
+   apps/workflow_engine/views_extras.py, apps/approval_engine/
+   views_extras.py, apps/feature_flags/views_extras.py-dəki BÜTÜN 
+   @login_required-i @user_passes_test(lambda u: u.is_superuser or 
+   u.has_perm(...)) ilə əvəzlə — mövcud RBAC sistemində bu modullar 
+   üçün hansı permission-un məntiqi olduğunu FAZA A-dakı konvensiyalara 
+   (əvvəlki audit-də öyrənilən permission pattern) uyğun seç
+5. access-requests/access-history vs requests/history adlandırma 
+   fərqini planlaşdırılan formaya (access-requests/, access-history/) 
+   uyğunlaşdır
+6. DÜZƏLİŞDƏN SONRA MÜTLƏQ: verify_sec_alt.py-ə bənzər testi TƏKRARLA — 
+   adi (superuser olmayan) istifadəçi ilə bütün 26 URL-i sorğula, 
+   HAMISININ 403 qaytardığını təsdiqlə. Sonra superuser ilə eyni 
+   URL-ləri sorğula, 200 qaytardığını təsdiqlə. Hər ikisinin tam əmr 
+   çıxışını göstər.
+7. manage.py check xətasız keçsin
+
+## TƏCİLİ DÜZƏLİŞ 2 — Trivial Bug-lar (Batch 19, 22, 23, 26, 27)
+
+Bunlar bir-iki sətirlik düzəlişlərdir, ayrı-ayrı tətbiq et, hər birindən 
+sonra test client ilə 200 qaytardığını təsdiqlə:
+
+1. apps/accounts/views_pfile.py: fayl başına 
+   `from django.utils.translation import gettext_lazy as _` əlavə et 
+   (NameError düzəlişi, Batch 19 — 6 URL)
+2. OKR check-ins view-da select_related('user') → select_related
+   ('created_by') (Batch 22)
+3. Recruitment referrals view-da select_related('referred_by') → 
+   select_related('referrer') (Batch 23)
+4. Engagement anonymous-feedback view-da filter/order_by-dakı 
+   created_at → responded_at (Batch 26)
+5. Support ticket detail view-da select_related('user') → düzgün 
+   sahə adı (modeldə hansı sahə varsa) + /support/tickets/<id>/ 
+   planlaşdırılan URL-i əlavə et (hazırda yalnız /support/<id>/ var)
+
+Hər düzəlişdən sonra: docker compose exec web python manage.py check
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## KRİTİK DOĞRULAMA: 161 Səhifə Hesabatının Real Vəziyyəti
 
 ƏVVƏLKİ "Yeni Modulların Yekun Hesabatı"nda 161 səhifənin tikildiyi 

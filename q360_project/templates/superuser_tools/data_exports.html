@@ -1,0 +1,21 @@
+﻿{% extends ""base/base.html"" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class=""max-w-7xl mx-auto"">
+    <div class=""mb-6 flex justify-between items-end"">
+        <div>
+            <h1 class=""text-2xl font-bold text-gray-900 dark:text-white"">{{ title }}</h1>
+            <p class=""text-sm text-gray-500 dark:text-gray-400 mt-1"">{% trans ""Bu sәhifә yalnız superuser-lar üçün nәzәrdә tutulub."" %}</p>
+        </div>
+    </div>
+
+    <div class=""bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-12 text-center text-gray-500 dark:text-gray-400"">
+        <i class=""fas fa-tools text-5xl mb-4 opacity-20""></i>
+        <h2 class=""text-lg font-medium text-gray-900 dark:text-white mb-2"">{% trans ""Modul Hazırlanır"" %}</h2>
+        <p>{% trans ""Bu xüsusiyyәt hazırda inkişaf mәrhәlәsindәdir vә tezliklә әlavә edilәcәk."" %}</p>
+    </div>
+</div>
+{% endblock %}

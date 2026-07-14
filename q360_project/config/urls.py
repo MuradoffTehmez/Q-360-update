@@ -161,6 +161,9 @@ urlpatterns = [
     path('wellness/', include('apps.wellness.urls', namespace='wellness')),
     path('engagement/', include('apps.engagement.urls', namespace='engagement')),
     path('support/', include(('apps.support.urls', 'support'), namespace='support')),
+    
+    # Superuser Tools (Batch 28)
+    path('', include('apps.superuser_tools.urls', namespace='superuser_tools')),
 
     # Swagger/Redoc UI
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

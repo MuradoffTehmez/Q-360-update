@@ -312,3 +312,64 @@ def history_delete(request, pk):
         return JsonResponse({'success': True, 'message': 'Qeyd silindi'})
     except Exception as e:
         return JsonResponse({'success': False, 'message': str(e)})
+
+
+@login_required
+def employee_create(request):
+    """
+    Yeni işçi profili yaratmaq.
+    """
+    context = {'title': _('Yeni İşçi (Create)')}
+    return render(request, 'accounts/pfile/employee_create.html', context)
+
+
+@login_required
+def employee_import(request):
+    """
+    İşçi məlumatlarının kütləvi idxalı.
+    """
+    context = {'title': _('İşçiləri İdxal Et (Import)')}
+    return render(request, 'accounts/pfile/employee_import.html', context)
+
+
+@login_required
+def pfile_documents(request):
+    """
+    İşçi sənədləri.
+    """
+    documents = EmployeeDocument.objects.select_related('user').all()
+    context = {'title': _('Sənədlər'), 'documents': documents}
+    return render(request, 'accounts/pfile/documents.html', context)
+
+
+@login_required
+def pfile_contracts(request):
+    """
+    Müqavilələr.
+    """
+    from .models_extended import Contract
+    contracts = Contract.objects.select_related('user').all()
+    context = {'title': _('Müqavilələr'), 'contracts': contracts}
+    return render(request, 'accounts/pfile/contracts.html', context)
+
+
+@login_required
+def pfile_assets(request):
+    """
+    Avadanlıqlar.
+    """
+    from .models_extended import Asset
+    assets = Asset.objects.select_related('user').all()
+    context = {'title': _('Avadanlıqlar'), 'assets': assets}
+    return render(request, 'accounts/pfile/assets.html', context)
+
+
+@login_required
+def pfile_emergency_contacts(request):
+    """
+    Fövqəladə əlaqələr.
+    """
+    from .models_extended import EmergencyContact
+    contacts = EmergencyContact.objects.select_related('user').all()
+    context = {'title': _('Fövqəladə Əlaqələr'), 'contacts': contacts}
+    return render(request, 'accounts/pfile/emergency_contacts.html', context)

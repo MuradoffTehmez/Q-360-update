@@ -1,0 +1,45 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Excel və ya CSV faylı vasitəsilə birdən çox işçini sistemə əlavə edin." %}</p>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-6">
+        <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6 flex items-start">
+            <i class="fas fa-info-circle text-blue-500 mt-1 mr-3"></i>
+            <div>
+                <h4 class="text-blue-800 dark:text-blue-300 font-bold mb-1">Nümunə Şablon</h4>
+                <p class="text-sm text-blue-600 dark:text-blue-400 mb-2">Məlumatların düzgün oxunması üçün Excel şablonumuzu yükləyib doldurun.</p>
+                <button class="text-xs font-bold px-3 py-1 bg-white border border-blue-200 rounded text-blue-700 hover:bg-blue-50 transition">
+                    <i class="fas fa-download mr-1"></i> Şablonu Yüklə
+                </button>
+            </div>
+        </div>
+
+        <form class="space-y-6">
+            <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-10 text-center">
+                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1">Faylı bura sürükləyin</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">və ya kompyuterdən seçin (Excel, CSV)</p>
+                <input type="file" class="hidden" id="file_upload">
+                <label for="file_upload" class="cursor-pointer px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition font-medium text-sm">
+                    Fayl Seçin
+                </label>
+            </div>
+
+            <div class="pt-4 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-3">
+                <a href="{% url 'pfile:employee_list' %}" class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition">Ləğv Et</a>
+                <button type="button" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"><i class="fas fa-upload mr-2"></i>İdxal Et</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

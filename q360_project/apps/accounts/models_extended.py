@@ -229,3 +229,61 @@ class WorkHistory(models.Model):
 
     def __str__(self):
         return f"{self.user.get_full_name()} - {self.get_change_type_display()} ({self.effective_date})"
+
+
+class Contract(models.Model):
+    """
+    Employee contract model.
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='contracts', verbose_name=_('İstifadəçi'))
+    contract_number = models.CharField(_('Müqavilə Nömrəsi'), max_length=100)
+    contract_type = models.CharField(_('Müqavilə Növü'), max_length=100, choices=[('PERMANENT', 'Daimi'), ('FIXED_TERM', 'Müddətli'), ('INTERN', 'Təcrübəçi')])
+    start_date = models.DateField(_('Başlama Tarixi'))
+    end_date = models.DateField(_('Bitmə Tarixi'), null=True, blank=True)
+    file = models.FileField(_('Müqavilə Faylı'), upload_to='contracts/', null=True, blank=True)
+    is_active = models.BooleanField(_('Aktivdir'), default=True)
+
+    class Meta:
+        verbose_name = _('Müqavilə')
+        verbose_name_plural = _('Müqavilələr')
+
+    def __str__(self):
+        return f"{self.contract_number} ({self.user.get_full_name()})"
+
+
+class Asset(models.Model):
+    """
+    Employee assigned assets (laptop, phone, etc).
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assets', verbose_name=_('İstifadəçi'))
+    name = models.CharField(_('Avadanlıq Adı'), max_length=200)
+    asset_id = models.CharField(_('İnventar Nömrəsi'), max_length=100)
+    assigned_date = models.DateField(_('Verilmə Tarixi'))
+    returned_date = models.DateField(_('Qaytarılma Tarixi'), null=True, blank=True)
+    status = models.CharField(_('Status'), max_length=50, choices=[('ASSIGNED', 'İstifadədə'), ('RETURNED', 'Qaytarılıb'), ('LOST', 'İtib')])
+
+    class Meta:
+        verbose_name = _('Avadanlıq')
+        verbose_name_plural = _('Avadanlıqlar')
+
+    def __str__(self):
+        return f"{self.name} - {self.user.get_full_name()}"
+
+
+class EmergencyContact(models.Model):
+    """
+    Employee emergency contacts.
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='emergency_contacts', verbose_name=_('İstifadəçi'))
+    name = models.CharField(_('Ad Soyad'), max_length=200)
+    relationship = models.CharField(_('Qohumluq Əlaqəsi'), max_length=100)
+    phone = models.CharField(_('Telefon'), max_length=50)
+    is_primary = models.BooleanField(_('Əsas Əlaqə'), default=False)
+
+    class Meta:
+        verbose_name = _('Fövqəladə Əlaqə')
+        verbose_name_plural = _('Fövqəladə Əlaqələr')
+
+    def __str__(self):
+        return f"{self.name} ({self.relationship}) - {self.user.get_full_name()}"
+

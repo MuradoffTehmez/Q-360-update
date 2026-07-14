@@ -528,3 +528,23 @@ class Holiday(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.date}"
+
+
+class LeaveSettings(models.Model):
+    """
+    Global leave and attendance settings.
+    """
+    fiscal_year_start_month = models.IntegerField(_('Maliyyə İlinin Başlanğıc Ayı'), default=1, choices=[(i, i) for i in range(1, 13)])
+    default_work_start_time = models.TimeField(_('Standart İş Başlama Vaxtı'), default='09:00:00')
+    default_work_end_time = models.TimeField(_('Standart İş Bitmə Vaxtı'), default='18:00:00')
+    working_days_per_week = models.IntegerField(_('Həftəlik İş Günləri'), default=5)
+    allow_negative_balance = models.BooleanField(_('Mənfi Qalığa İcazə Ver'), default=False)
+    max_negative_balance = models.IntegerField(_('Maksimum Mənfi Qalıq'), default=0)
+
+    class Meta:
+        verbose_name = _('Məzuniyyət Tənzimləməsi')
+        verbose_name_plural = _('Məzuniyyət Tənzimləmələri')
+
+    def __str__(self):
+        return f"Tənzimləmələr ({self.id})"
+

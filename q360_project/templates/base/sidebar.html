@@ -107,6 +107,20 @@
                 </button>
                 <div x-show="activeAccordion === 'acc_10084'" x-transition x-cloak class="mt-2 space-y-1">
                     
+                    
+                    <a href="{% url 'evaluations:question-list' %}"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/questions' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
+                        <i class="fas fa-list-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Forms & Questions</span>
+                    </a>
+                    <a href="{% url 'evaluations:review-cycles' %}"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/review-cycles' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
+                        <i class="fas fa-sync w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Review Cycles</span>
+                    </a>
+                    <a href="{% url 'evaluations:templates' %}"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/templates' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
+                        <i class="fas fa-file-contract w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Templates</span>
+                    </a>
+
                     <a href="{% url 'evaluations:my-assignments' %}"
                         class="flex items-center justify-between px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/my-assignments' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -802,6 +816,24 @@
                     
 
                     
+                    
+                    <a href="{% url 'notifications:sms-templates' %}"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/sms-templates' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
+                        <i class="fas fa-sms w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">SMS Templates</span>
+                    </a>
+                    <a href="{% url 'notifications:push-templates' %}"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/push-templates' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
+                        <i class="fas fa-mobile-alt w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Push Templates</span>
+                    </a>
+                    <a href="{% url 'notifications:webhooks' %}"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/webhooks' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
+                        <i class="fas fa-link w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Webhooks</span>
+                    </a>
+                    <a href="{% url 'notifications:queue' %}"
+                        class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/queue' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
+                        <i class="fas fa-layer-group w-6 text-center relative z-10 flex-shrink-0 text-lg transition-all" :class="sidebarOpen ? 'mr-3' : 'mx-auto text-xl'"></i><span class="relative z-10 flex-1 whitespace-normal leading-tight" x-show="sidebarOpen">Notification Queue</span>
+                    </a>
+
                     <a href="{% url 'notifications:test' %}"
                         class="flex items-center px-3 py-2 text-sm font-semibold rounded-lg transition-all duration-200 relative overflow-hidden group {% if '/notifications/test' in request.path %}bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-700 dark:text-blue-400 border-l-4 border-blue-500{% else %}text-gray-900 font-bold dark:text-white hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100 dark:hover:from-gray-700 dark:hover:to-gray-600/50{% endif %}">
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

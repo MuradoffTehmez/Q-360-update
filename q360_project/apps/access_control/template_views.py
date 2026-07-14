@@ -1,9 +1,9 @@
+from apps.core.decorators import superuser_required
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from .models import Role, Permission, AbacPolicy
 
 
-@login_required
+@superuser_required
 def access_control_dashboard(request):
     """Access Control dashboard — server-side rendering."""
     roles = Role.objects.all().order_by('name')

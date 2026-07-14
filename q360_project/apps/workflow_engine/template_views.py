@@ -1,9 +1,9 @@
+from apps.core.decorators import superuser_required
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from .models import WorkflowTemplate, WorkflowInstance
 
 
-@login_required
+@superuser_required
 def workflow_dashboard(request):
     """Workflow Engine dashboard — server-side rendering."""
     templates = WorkflowTemplate.objects.all().order_by('-created_at')

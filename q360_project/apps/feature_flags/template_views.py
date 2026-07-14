@@ -1,9 +1,9 @@
+from apps.core.decorators import superuser_required
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from .models import FeatureFlag, FeatureFlagRule
 
 
-@login_required
+@superuser_required
 def feature_flags_dashboard(request):
     """Feature Flags dashboard — server-side rendering."""
     flags = FeatureFlag.objects.all().order_by('-created_at')

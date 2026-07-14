@@ -1,9 +1,9 @@
+from apps.core.decorators import superuser_required
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from .models import Policy, PolicyVersion
 
 
-@login_required
+@superuser_required
 def policy_dashboard(request):
     """Policy Engine dashboard — server-side rendering."""
     policies = Policy.objects.all().order_by('-created_at')

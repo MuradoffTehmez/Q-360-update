@@ -1,6 +1,6 @@
+from apps.core.decorators import superuser_required
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
-from apps.core.decorators import superuser_required
 from .models import Policy, PolicyVersion, PolicyRule, PolicyLog
 
 @superuser_required

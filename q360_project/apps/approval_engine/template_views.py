@@ -1,9 +1,9 @@
+from apps.core.decorators import superuser_required
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from .models import ApprovalChain, ApprovalRequest
 
 
-@login_required
+@superuser_required
 def approval_dashboard(request):
     """Approval Engine dashboard — server-side rendering."""
     chains = ApprovalChain.objects.all().order_by('-created_at')

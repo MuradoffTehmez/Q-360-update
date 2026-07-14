@@ -142,11 +142,11 @@ urlpatterns = [
     path('performance-reviews/', include('apps.performance_reviews.urls', namespace='performance_reviews')),
 
     # Phase 1 Core Engines
-    path('workflow/', include('apps.workflow_engine.ui_urls', namespace='workflow_engine_ui')),
-    path('approval/', include('apps.approval_engine.ui_urls', namespace='approval_engine_ui')),
-    path('access-control/', include('apps.access_control.ui_urls', namespace='access_control_ui')),
-    path('policy-engine/', include('apps.policy_engine.ui_urls', namespace='policy_engine_ui')),
-    path('feature-flags/', include('apps.feature_flags.ui_urls', namespace='feature_flags_ui')),
+    path('workflow/', include('apps.workflow_engine.urls', namespace='workflow_engine')),
+    path('approval/', include('apps.approval_engine.urls', namespace='approval_engine')),
+    path('access-control/', include('apps.access_control.urls', namespace='access_control')),
+    path('policy-engine/', include('apps.policy_engine.urls', namespace='policy_engine')),
+    path('feature-flags/', include('apps.feature_flags.urls', namespace='feature_flags')),
 
     # Platform Settings (admin-only pages)
     path('settings/', include('apps.system_settings.urls', namespace='system_settings')),

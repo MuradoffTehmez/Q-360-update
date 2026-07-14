@@ -362,10 +362,5 @@ urlpatterns = [
     path('wellness/', include(wellness_router.urls)),
     path('search/', search_api_view, name='search-api'),
     
-    # Phase 1 Core Engines
-    path('workflow/', include('apps.workflow_engine.urls')),
-    path('approval/', include('apps.approval_engine.urls')),
-    path('access-control/', include('apps.access_control.urls')),
-    path('policy-engine/', include('apps.policy_engine.urls')),
-    path('feature-flags/', include('apps.feature_flags.urls')),
+
 ]

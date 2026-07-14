@@ -7,7 +7,12 @@
 <div class="max-w-4xl mx-auto">
     <div class="mb-6 flex justify-between items-end">
         <div>
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                {{ title }}
+                <span class="ml-3 inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20 dark:bg-yellow-900/30 dark:text-yellow-500">
+                    <i class="fas fa-hourglass-half mr-1"></i> Tezliklə
+                </span>
+            </h1>
             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Siyasət qaydalarını test etmək üçün simulyasiya mühiti." %}</p>
         </div>
     </div>

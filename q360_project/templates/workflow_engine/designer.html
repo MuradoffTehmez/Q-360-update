@@ -9,13 +9,16 @@
         <div>
             <h1 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                 <i class="fas fa-sitemap text-blue-500"></i> {{ title }}
+                <span class="ml-3 inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20 dark:bg-yellow-900/30 dark:text-yellow-500">
+                    <i class="fas fa-hourglass-half mr-1"></i> Tezliklə
+                </span>
             </h1>
         </div>
         <div class="flex gap-2">
-            <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition text-sm font-medium dark:bg-gray-700 dark:text-white">
+            <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition text-sm font-medium dark:bg-gray-700 dark:text-white" disabled>
                 <i class="fas fa-play mr-1.5"></i>{% trans "Test Et" %}
             </button>
-            <button class="px-3 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium shadow-sm">
+            <button class="px-3 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium shadow-sm opacity-50 cursor-not-allowed" disabled>
                 <i class="fas fa-save mr-1.5"></i>{% trans "Yadda Saxla" %}
             </button>
         </div>

@@ -1,0 +1,67 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Sistem üzrə qlobal 360 dərəcə qiymətləndirmə qaydaları və parametrləri." %}</p>
+    </div>
+
+    <form method="post" class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden divide-y divide-gray-100 dark:divide-gray-700">
+        {% csrf_token %}
+        
+        <div class="p-6">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4"><i class="fas fa-bell text-blue-500 mr-2"></i>{% trans "Bildirişlər və Anonimlik" %}</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-1">{% trans "Xatırlatma (Gün)" %}</label>
+                    <p class="text-xs text-gray-500 mb-2">{% trans "Deadline-a neçə gün qalmış xatırlatma göndərilsin?" %}</p>
+                    <input type="number" name="reminder_days" value="{{ setting.reminder_days }}" min="1" max="14" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                
+                <div class="flex items-center mt-6">
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" name="allow_anonymous" class="sr-only peer" {% if setting.allow_anonymous %}checked{% endif %}>
+                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{% trans "Şərhlərdə anonimliyə icazə ver" %}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4"><i class="fas fa-balance-scale text-blue-500 mr-2"></i>{% trans "Defolt Ağırlıq Çəkiləri (%)" %}</h3>
+            <p class="text-xs text-gray-500 mb-4">{% trans "Yeni kampaniya yaradılarkən istifadə olunacaq standart faizlər. Cəmi 100% olmalıdır." %}</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{% trans "Özünü" %}</label>
+                    <input type="number" name="default_self_weight" value="{{ setting.default_self_weight }}" min="0" max="100" step="0.01" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{% trans "Rəhbər" %}</label>
+                    <input type="number" name="default_supervisor_weight" value="{{ setting.default_supervisor_weight }}" min="0" max="100" step="0.01" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{% trans "Həmkar" %}</label>
+                    <input type="number" name="default_peer_weight" value="{{ setting.default_peer_weight }}" min="0" max="100" step="0.01" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{% trans "Tabelik" %}</label>
+                    <input type="number" name="default_subordinate_weight" value="{{ setting.default_subordinate_weight }}" min="0" max="100" step="0.01" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 dark:text-white">
+                </div>
+            </div>
+        </div>
+        
+        <div class="p-6 bg-gray-50 dark:bg-gray-800/80 flex items-center justify-end">
+            <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow transition-colors">
+                <i class="fas fa-save mr-2"></i>{% trans "Yadda saxla" %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "İllik, rüblük və ya xüsusi dövrlər üzrə qiymətləndirmələri qruplaşdırın." %}</p>
+        </div>
+        <div>
+            <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+                <i class="fas fa-calendar-plus mr-2"></i>{% trans "Yeni Dövr" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for cycle in cycles %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 p-5 relative">
+            <div class="absolute top-4 right-4">
+                {% if cycle.is_active %}
+                <span class="w-3 h-3 rounded-full bg-green-500 inline-block shadow-[0_0_8px_rgba(34,197,94,0.5)]"></span>
+                {% else %}
+                <span class="w-3 h-3 rounded-full bg-gray-400 inline-block"></span>
+                {% endif %}
+            </div>
+            
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white pr-6 mb-2">{{ cycle.name }}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 h-10 overflow-hidden">{{ cycle.description|default:"Təsvir yoxdur" }}</p>
+            
+            <div class="flex items-center text-xs text-gray-600 dark:text-gray-400 mb-4 bg-gray-50 dark:bg-gray-700/50 p-2 rounded">
+                <i class="far fa-calendar-alt mr-2 text-blue-500"></i>
+                {{ cycle.start_date|date:"d M Y" }} — {{ cycle.end_date|date:"d M Y" }}
+            </div>
+            
+            <div class="flex justify-between items-center border-t border-gray-100 dark:border-gray-700 pt-4">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <i class="fas fa-layer-group mr-1 text-gray-400"></i>
+                    {% trans "Kampaniyalar" %}: 0
+                </span>
+                <a href="#" class="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 font-semibold">{% trans "İdarə et" %} <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-16 bg-white dark:bg-gray-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-700 text-center">
+            <div class="text-gray-400 mb-4 text-4xl"><i class="fas fa-calendar-day"></i></div>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">{% trans "Heç bir rəy dövrü yoxdur" %}</h3>
+            <p class="text-gray-500 mb-4">{% trans "Məsələn, '2026 İllik Dəyərləndirmə' dövrü yaradaraq başlayın." %}</p>
+            <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">{% trans "İlk Dövrü Yarat" %}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

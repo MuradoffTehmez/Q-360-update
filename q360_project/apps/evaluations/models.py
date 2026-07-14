@@ -746,3 +746,78 @@ class CalibrationLog(models.Model):
 
     def __str__(self):
         return f"{self.evaluation_result.evaluatee.get_full_name()} ({self.old_score} -> {self.new_score})"
+
+
+class ReviewCycle(models.Model):
+    """
+    Higher-level grouping of EvaluationCampaigns (e.g. "2026 Annual Review").
+    """
+    name = models.CharField(max_length=200, verbose_name=_('Dövr Adı'))
+    description = models.TextField(blank=True, verbose_name=_('Təsvir'))
+    start_date = models.DateField(verbose_name=_('Başlama Tarixi'))
+    end_date = models.DateField(verbose_name=_('Bitmə Tarixi'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Aktiv'))
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Rəy Dövrü')
+        verbose_name_plural = _('Rəy Dövrləri')
+        ordering = ['-start_date']
+
+    def __str__(self):
+        return self.name
+
+
+class EvaluationTemplate(models.Model):
+    """
+    Pre-configured set of questions that can be cloned to campaigns.
+    """
+    name = models.CharField(max_length=200, verbose_name=_('Şablon Adı'))
+    description = models.TextField(blank=True, verbose_name=_('Təsvir'))
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name=_('Yaradan'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Aktiv'))
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Qiymətləndirmə Şablonu')
+        verbose_name_plural = _('Qiymətləndirmə Şablonları')
+
+    def __str__(self):
+        return self.name
+
+
+class TemplateQuestion(models.Model):
+    """
+    Links questions to an EvaluationTemplate.
+    """
+    template = models.ForeignKey(EvaluationTemplate, on_delete=models.CASCADE, related_name='questions', verbose_name=_('Şablon'))
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name=_('Sual'))
+    order = models.IntegerField(default=0, verbose_name=_('Sıra'))
+
+    class Meta:
+        verbose_name = _('Şablon Sualı')
+        verbose_name_plural = _('Şablon Sualları')
+        ordering = ['order']
+
+    def __str__(self):
+        return f"{self.template.name} - {self.question.text[:30]}"
+
+
+class EvaluationSetting(models.Model):
+    """
+    General settings for the evaluations module.
+    """
+    reminder_days = models.IntegerField(default=3, verbose_name=_('Xatırlatma Günləri'))
+    allow_anonymous = models.BooleanField(default=True, verbose_name=_('Anonimliyə icazə ver'))
+    default_self_weight = models.DecimalField(max_digits=5, decimal_places=2, default=20.00, verbose_name=_('Defolt Özünüdəyərləndirmə Çəkisi'))
+    default_supervisor_weight = models.DecimalField(max_digits=5, decimal_places=2, default=50.00, verbose_name=_('Defolt Rəhbər Çəkisi'))
+    default_peer_weight = models.DecimalField(max_digits=5, decimal_places=2, default=20.00, verbose_name=_('Defolt Həmkar Çəkisi'))
+    default_subordinate_weight = models.DecimalField(max_digits=5, decimal_places=2, default=10.00, verbose_name=_('Defolt Tabelik Çəkisi'))
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Qiymətləndirmə Parametri')
+        verbose_name_plural = _('Qiymətləndirmə Parametrləri')
+
+    def __str__(self):
+        return _("Ümumi Qiymətləndirmə Parametrləri")

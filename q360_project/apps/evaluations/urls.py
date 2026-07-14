@@ -9,6 +9,7 @@ from .views import (
 )
 from . import template_views
 from . import views_calibration
+from . import views_extras
 
 router = DefaultRouter()
 router.register(r'api/campaigns', EvaluationCampaignViewSet, basename='campaign-api')
@@ -62,6 +63,12 @@ urlpatterns = [
     path('calibration/result/<int:result_id>/adjust/', views_calibration.adjust_score, name='adjust-score'),
     path('calibration/result/<int:result_id>/finalize/', views_calibration.finalize_result, name='finalize-result'),
     path('calibration/campaign/<int:campaign_id>/bulk-finalize/', views_calibration.bulk_finalize, name='bulk-finalize'),
+
+    # Batch 4 Extras
+    path('templates/', views_extras.templates_list, name='templates'),
+    path('review-cycles/', views_extras.review_cycles_list, name='review-cycles'),
+    path('history/', views_extras.evaluation_history, name='history'),
+    path('settings/', views_extras.evaluation_settings, name='settings'),
 
     # API URLs
     # path('', include(router.urls)), # Removed to consolidate to /api/v1/

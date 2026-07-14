@@ -1,0 +1,50 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Təlim və kursların qruplaşdırıldığı kateqoriyalar." %}</p>
+        </div>
+        <div>
+            <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+                <i class="fas fa-plus mr-2"></i>{% trans "Yeni Kateqoriya" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+            {% for category in categories %}
+            <li class="p-4 hover:bg-gray-50 dark:hover:bg-gray-750 flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400 flex items-center justify-center mr-4">
+                        <i class="fas fa-folder text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-md font-bold text-gray-900 dark:text-white">{{ category.name }}</h3>
+                        {% if category.parent %}
+                        <p class="text-xs text-gray-500">{% trans "Üst Kateqoriya" %}: {{ category.parent.name }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button class="text-gray-400 hover:text-blue-600 transition p-2">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+            </li>
+            {% empty %}
+            <li class="p-12 text-center text-gray-500 dark:text-gray-400">
+                <i class="fas fa-sitemap text-4xl mb-3 opacity-20"></i>
+                <p>{% trans "Heç bir kateqoriya tapılmadı." %}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

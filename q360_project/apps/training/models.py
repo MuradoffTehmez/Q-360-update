@@ -688,3 +688,57 @@ class ContinuingEducationLog(models.Model):
 
     def __str__(self):
         return f"{self.certification.certification_name} - {self.hours} hours - {self.activity_date}"
+
+
+class CourseCategory(models.Model):
+    """Təlim və kurslar üçün kateqoriyalar."""
+    name = models.CharField(max_length=100, unique=True, verbose_name=_('Kateqoriya Adı'))
+    description = models.TextField(blank=True, verbose_name=_('Təsvir'))
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='subcategories', verbose_name=_('Üst Kateqoriya'))
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = _('Kurs Kateqoriyası')
+        verbose_name_plural = _('Kurs Kateqoriyaları')
+        ordering = ['name']
+        
+    def __str__(self):
+        return self.name
+
+
+class LearningPath(models.Model):
+    """Ardılcıllıq təşkil edən təlimlər qrupu (Öyrənmə Yolu)."""
+    title = models.CharField(max_length=200, verbose_name=_('Öyrənmə Yolu Adı'))
+    description = models.TextField(verbose_name=_('Təsvir'))
+    courses = models.ManyToManyField(TrainingResource, related_name='learning_paths', verbose_name=_('Kurslar'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Aktivdir'))
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Öyrənmə Yolu')
+        verbose_name_plural = _('Öyrənmə Yolları')
+        
+    def __str__(self):
+        return self.title
+
+
+class Exam(models.Model):
+    """Təlim və ya kurs sonu qiymətləndirmə (İmtahan)."""
+    title = models.CharField(max_length=200, verbose_name=_('İmtahan Adı'))
+    course = models.ForeignKey(TrainingResource, on_delete=models.CASCADE, related_name='exams', verbose_name=_('Əlaqəli Kurs'))
+    passing_score = models.IntegerField(default=50, verbose_name=_('Keçid Balı'))
+    time_limit = models.IntegerField(null=True, blank=True, verbose_name=_('Müddət (Dəqiqə)'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Aktivdir'))
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('İmtahan')
+        verbose_name_plural = _('İmtahanlar')
+        
+    def __str__(self):
+        return self.title
+

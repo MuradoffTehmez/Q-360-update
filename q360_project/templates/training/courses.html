@@ -1,0 +1,66 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} — Q360{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-6 flex justify-between items-end">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ title }}</h1>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{% trans "Sistemdə mövcud olan bütün aktiv kurslar və təlimlər." %}</p>
+        </div>
+        <div>
+            <a href="{% url 'training:training-manage' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+                <i class="fas fa-cog mr-2"></i>{% trans "Təlimləri İdarə Et" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for course in courses %}
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+            <div class="h-32 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center text-white relative">
+                <i class="fas fa-graduation-cap text-5xl opacity-20"></i>
+                <div class="absolute top-3 right-3 bg-white/20 backdrop-blur-sm rounded px-2 py-1 text-xs font-semibold uppercase">
+                    {{ course.get_type_display }}
+                </div>
+            </div>
+            
+            <div class="p-5 flex-grow flex flex-col">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight">{{ course.title }}</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mb-4">{{ course.description }}</p>
+                
+                <div class="mt-auto space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                    <div class="flex items-center">
+                        <i class="fas fa-clock w-5 text-center mr-2 text-blue-500"></i>
+                        <span>{{ course.duration_hours|default:"-" }} {% trans "saat" %}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-signal w-5 text-center mr-2 text-green-500"></i>
+                        <span>{{ course.get_difficulty_level_display }}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-desktop w-5 text-center mr-2 text-purple-500"></i>
+                        <span>{{ course.get_delivery_method_display }}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 bg-gray-50 dark:bg-gray-750 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                <span class="text-sm font-bold text-gray-900 dark:text-white">
+                    {% if course.cost %}{{ course.cost }} ₼{% else %}{% trans "Ödənişsiz" %}{% endif %}
+                </span>
+                <a href="{% url 'training:training-detail' course.pk %}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-sm font-medium">{% trans "Ətraflı Bax" %} <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-16 text-center text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-700">
+            <i class="fas fa-layer-group text-4xl mb-3 opacity-20"></i>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">{% trans "Kurs Tapılmadı" %}</h3>
+            <p>{% trans "Hələ heç bir aktiv kurs və ya təlim proqramı yaradılmayıb." %}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -3,6 +3,7 @@ URL configuration for training app.
 """
 from django.urls import path
 from . import template_views
+from . import views_extras
 
 app_name = 'training'
 
@@ -18,4 +19,10 @@ urlpatterns = [
     # Skill Matrix & Certifications
     path('skill-matrix/', template_views.skill_matrix, name='skill-matrix'),
     path('certifications/', template_views.certification_tracking, name='certifications'),
+    
+    # Batch 10
+    path('courses/', views_extras.courses_list, name='courses-list'),
+    path('learning-paths/', views_extras.learning_paths_list, name='learning-paths-list'),
+    path('course-categories/', views_extras.course_categories_list, name='course-categories-list'),
+    path('exams/', views_extras.exams_list, name='exams-list'),
 ]

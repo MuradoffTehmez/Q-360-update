@@ -16,6 +16,19 @@ class ApprovalChain(TimeStampedModel, SoftDeletableModel):
     def __str__(self):
         return self.name
 
+class ApprovalRule(TimeStampedModel):
+    chain = models.ForeignKey(ApprovalChain, on_delete=models.CASCADE, related_name='rules', verbose_name='Zəncir')
+    name = models.CharField('Qayda adı', max_length=255)
+    condition_json = models.JSONField('Şərtlər (JSON)', default=dict, blank=True)
+    is_active = models.BooleanField('Aktivdir', default=True)
+
+    class Meta:
+        verbose_name = 'Təsdiq Qaydası'
+        verbose_name_plural = 'Təsdiq Qaydaları'
+
+    def __str__(self):
+        return f"{self.chain.name} - {self.name}"
+
 class ApprovalNode(TimeStampedModel):
     NODE_TYPE_CHOICES = (
         ('USER', 'Konkret İstifadəçi'),

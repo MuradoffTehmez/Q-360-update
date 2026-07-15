@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}401 - İcazə Verilmədi | Q360{% endblock %}
+
+{% block content %}
+<style>
+    .glass-panel {
+        @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl border border-white/50 dark:border-slate-700/50 shadow-[0_8px_32px_rgba(0, 0, 0, 0.08)] dark:shadow-[0_8px_32px_rgba(0, 0, 0, 0.3)];
+    }
+
+    @keyframes float-slow {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-20px) scale(1.02); }
+    }
+
+    .animate-float-slow {
+        animation: float-slow 8s ease-in-out infinite;
+    }
+</style>
+
+<main class="min-h-screen relative flex items-center justify-center p-4 bg-slate-50 dark:bg-slate-950 overflow-hidden font-sans transition-colors duration-500">
+    <div class="absolute top-0 left-1/4 w-[40rem] h-[40rem] bg-amber-400/20 dark:bg-amber-600/10 rounded-full blur-[100px] animate-float-slow pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-[35rem] h-[35rem] bg-orange-500/20 dark:bg-orange-700/10 rounded-full blur-[100px] animate-float-slow pointer-events-none" style="animation-delay: -3s;"></div>
+
+    <div class="relative z-10 w-full max-w-3xl glass-panel rounded-3xl overflow-hidden flex flex-col md:flex-row">
+        <div class="w-full md:w-2/5 bg-gradient-to-br from-amber-100 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/20 p-10 flex items-center justify-center border-b md:border-b-0 md:border-r border-amber-200/50 dark:border-amber-800/50 relative">
+            <svg class="w-full h-auto max-w-[200px] text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path>
+            </svg>
+        </div>
+
+        <div class="w-full md:w-3/5 p-10 md:p-12 flex flex-col justify-center">
+            <div class="inline-flex items-center space-x-2 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 px-3 py-1 rounded-full text-sm font-semibold mb-6 w-max">
+                <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                <span>HTTP 401</span>
+            </div>
+
+            <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">İcazə Verilmədi</h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                Sistemə daxil olmadığınız üçün bu səhifəyə baxa bilməzsiniz. Zəhmət olmasa hesabınıza daxil olun.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                <a href="{% url 'accounts:login' %}" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-semibold shadow-lg shadow-amber-500/30 hover:scale-[1.02] transition-all flex items-center justify-center">
+                    Sistemə Daxil Ol
+                </a>
+                <a href="/" class="px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700/50 hover:scale-[1.02] transition-all flex items-center justify-center">
+                    Ana Səhifəyə Dön
+                </a>
+            </div>
+
+            <div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 grid grid-cols-2 gap-2">
+                <div><span class="font-semibold">Request ID:</span> {{ request.headers.X_Request_Id|default:"REQ-401-AUTH" }}</div>
+                <div><span class="font-semibold">Timestamp:</span> {% now "Y-m-d H:i:s T" %}</div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

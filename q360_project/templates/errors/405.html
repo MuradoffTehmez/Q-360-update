@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}405 - İcazə Verilməyən Metod | Q360{% endblock %}
+
+{% block content %}
+<style>
+    .glass-panel {
+        @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl border border-white/50 dark:border-slate-700/50 shadow-[0_8px_32px_rgba(0, 0, 0, 0.08)] dark:shadow-[0_8px_32px_rgba(0, 0, 0, 0.3)];
+    }
+
+    @keyframes float-slow {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-20px) scale(1.02); }
+    }
+
+    .animate-float-slow {
+        animation: float-slow 8s ease-in-out infinite;
+    }
+</style>
+
+<main class="min-h-screen relative flex items-center justify-center p-4 bg-slate-50 dark:bg-slate-950 overflow-hidden font-sans transition-colors duration-500">
+    <div class="absolute top-0 left-1/4 w-[40rem] h-[40rem] bg-indigo-400/20 dark:bg-indigo-600/10 rounded-full blur-[100px] animate-float-slow pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-[35rem] h-[35rem] bg-purple-500/20 dark:bg-purple-700/10 rounded-full blur-[100px] animate-float-slow pointer-events-none" style="animation-delay: -3s;"></div>
+
+    <div class="relative z-10 w-full max-w-3xl glass-panel rounded-3xl overflow-hidden flex flex-col md:flex-row">
+        <div class="w-full md:w-2/5 bg-gradient-to-br from-indigo-100 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/20 p-10 flex items-center justify-center border-b md:border-b-0 md:border-r border-indigo-200/50 dark:border-indigo-800/50 relative">
+            <svg class="w-full h-auto max-w-[200px] text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+        </div>
+
+        <div class="w-full md:w-3/5 p-10 md:p-12 flex flex-col justify-center">
+            <div class="inline-flex items-center space-x-2 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-400 px-3 py-1 rounded-full text-sm font-semibold mb-6 w-max">
+                <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+                <span>HTTP 405</span>
+            </div>
+
+            <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Metod Qəbul Edilmir</h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                Bu URL üçün istifadə etdiyiniz HTTP metodu (məsələn, POST əvəzinə GET) icazə verilmir. Server bu əməliyyatı emal edə bilməz.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                <button onclick="window.history.back()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold shadow-lg shadow-indigo-500/30 hover:scale-[1.02] transition-all flex items-center justify-center">
+                    Geri Qayıt
+                </button>
+                <a href="/" class="px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700/50 hover:scale-[1.02] transition-all flex items-center justify-center">
+                    Ana Səhifəyə Dön
+                </a>
+            </div>
+
+            <div class="mt-auto pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 grid grid-cols-2 gap-2">
+                <div><span class="font-semibold">Request ID:</span> {{ request.headers.X_Request_Id|default:"REQ-405-METH" }}</div>
+                <div><span class="font-semibold">Timestamp:</span> {% now "Y-m-d H:i:s T" %}</div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

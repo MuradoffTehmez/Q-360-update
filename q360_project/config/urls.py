@@ -191,20 +191,32 @@ handler500 = 'config.urls.custom_500'
 
 
 def custom_400(request, exception):
+    if request.path.startswith('/api/'):
+        from django.http import JsonResponse
+        return JsonResponse({'status': 'error', 'message': 'Bad Request', 'errors': str(exception)}, status=400)
     from django.shortcuts import render
     return render(request, 'errors/400.html', status=400)
 
 
 def custom_403(request, exception):
+    if request.path.startswith('/api/'):
+        from django.http import JsonResponse
+        return JsonResponse({'status': 'error', 'message': 'Forbidden', 'errors': str(exception)}, status=403)
     from django.shortcuts import render
     return render(request, 'errors/403.html', status=403)
 
 
 def custom_404(request, exception):
+    if request.path.startswith('/api/'):
+        from django.http import JsonResponse
+        return JsonResponse({'status': 'error', 'message': 'Not Found', 'errors': 'The requested resource was not found on this server.'}, status=404)
     from django.shortcuts import render
     return render(request, 'errors/404.html', status=404)
 
 
 def custom_500(request):
+    if request.path.startswith('/api/'):
+        from django.http import JsonResponse
+        return JsonResponse({'status': 'error', 'message': 'Internal Server Error', 'errors': 'A server error occurred. Please contact the administrator.'}, status=500)
     from django.shortcuts import render
     return render(request, 'errors/500.html', status=500)

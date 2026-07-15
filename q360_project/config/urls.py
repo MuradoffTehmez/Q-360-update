@@ -184,9 +184,15 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Custom error handlers
+handler400 = 'config.urls.custom_400'
 handler403 = 'config.urls.custom_403'
 handler404 = 'config.urls.custom_404'
 handler500 = 'config.urls.custom_500'
+
+
+def custom_400(request, exception):
+    from django.shortcuts import render
+    return render(request, 'errors/400.html', status=400)
 
 
 def custom_403(request, exception):
